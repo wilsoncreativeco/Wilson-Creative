@@ -67,12 +67,17 @@ body, html, #root {
   width: 800px;
   height: auto;
 
-  opacity: 7;
+  opacity: 0; /* start hidden */
   z-index: 1;
 
   pointer-events: none;
 
-  filter: blur(1px) brightness(20);
+  filter: blur(25px) brightness(1.2); /* stable from start */
+
+  transition: opacity 1.2s ease;
+}
+.hero.loaded .logo-watermark {
+  opacity: 0.1;
 }
 
 /* TEXT */
