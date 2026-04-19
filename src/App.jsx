@@ -61,7 +61,7 @@ useEffect(() => {
 
 if (logo) {
   const base = 0.1; // always slightly visible
-  logo.style.opacity = loaded ? base + (0.08 * (1 - progress)) : 0;
+  
 }
     }
   };
