@@ -60,8 +60,7 @@ useEffect(() => {
       overlay.style.background = `rgba(0,0,0,${darkness})`;
 
 if (logo) {
-  const base = 0.1; // always slightly visible
-  
+  logo.style.opacity = 0.12;
 }
     }
   };
