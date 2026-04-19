@@ -64,17 +64,17 @@ body, html, #root {
   left: 50%;
   transform: translate(-50%, -50%);
   
-  width: 500px;
+  width: 810px;
 
   z-index: 9999; /* above EVERYTHING */
   opacity: 0.2;
 
-  filter: none; /* remove blur for now */
+   filter: blur(20px) brightness(1.3); /* 👈 less blur, more punch */
   pointer-events: none;
 }
 
 .hero.loaded .logo-watermark {
-  opacity: 0.12;
+  opacity: 0.6;
 }
 
 .hero.loaded .logo-watermark {
