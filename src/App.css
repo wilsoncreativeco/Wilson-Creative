@@ -43,7 +43,7 @@ body, html, #root {
     rgba(0,0,0,0.6) 100%
   );
 
-  z-index: 2;
+  z-index: 1;
   pointer-events: none;
   transition: background 0.3s ease;
 }
@@ -64,15 +64,15 @@ body, html, #root {
   left: 50%;
   transform: translate(-50%, -50%);
   
-  width: 800px;
-  height: auto;
+  width: min(90vw, 900px);
+  max-width: 100%;
 
-  opacity: 7;
-  z-index: 1;
+  opacity: 0.08;
+  z-index: 2;
 
   pointer-events: none;
 
-  filter: blur(1px) brightness(20);
+  filter: blur(1px) brightness(1.2);
 }
 
 /* TEXT */
