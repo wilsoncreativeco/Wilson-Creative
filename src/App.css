@@ -64,18 +64,20 @@ body, html, #root {
   left: 50%;
   transform: translate(-50%, -50%);
   
-  width: 400px;
+  width: 800px;
+  height: auto;
 
-  opacity: 1 !important;
-  z-index: 9999;
+  opacity: 0;
+  z-index: 1;
+  pointer-events: none;
 
-  filter: none;
+  filter: blur(30px) brightness(1.1);
+  transition: opacity 1.2s ease;
 }
 
 .hero.loaded .logo-watermark {
-  opacity: 0.12;
+  opacity: 0.1;
 }
-
 /* TEXT */
 .hero-content {
   position: relative;
