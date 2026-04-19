@@ -69,12 +69,11 @@ body, html, #root {
   width: 700px;
 
   opacity: 0.12;
-  z-index: 3;
+  z-index: 2; /* above video, below text */
   pointer-events: none;
 
   filter: blur(20px);
-}
-.hero.loaded .logo-watermark {
+}.hero.loaded .logo-watermark {
   opacity: 0.6;
 }
 
