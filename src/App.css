@@ -7,7 +7,7 @@ body, html, #root {
 
 /* HERO */
 .hero {
-  height: 120vh;
+  height: 100vh;
   position: relative;
   z-index: 1;
 }
@@ -64,7 +64,7 @@ body, html, #root {
   left: 50%;
   transform: translate(-50%, -50%);
   
-  width: 1350px;
+  width: 900px;
   height: auto;
 
   opacity: 7;
@@ -341,4 +341,8 @@ html {
 
 .work-item:hover::before {
   opacity: 1;
+}
+body {
+  overflow-x: hidden;
+  touch-action: pan-y;
 }
