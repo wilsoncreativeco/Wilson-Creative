@@ -67,7 +67,7 @@ body, html, #root {
   width: 800px;
   height: auto;
 
-  opacity: 0;
+  opacity: 1;
   z-index: 1;
   pointer-events: none;
 
