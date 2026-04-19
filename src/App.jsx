@@ -99,6 +99,7 @@ useEffect(() => {
 
   return (
     <>
+      <div className="watermark">WILSON CREATIVE CO.</div>
       {/* HERO */}
      <div className={`hero ${loaded ? "loaded" : ""}`}>
         <video
@@ -114,7 +115,7 @@ useEffect(() => {
         </video>
 
         <div className="overlay" />
-        <img src="/logo.png" className="logo-watermark" />
+
 
         <div className="hero-content">
           <h1>Creative Media & Production</h1>
