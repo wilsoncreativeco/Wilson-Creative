@@ -59,20 +59,18 @@ body, html, #root {
 
 /* LOGO */
 .logo-watermark {
-  position: absolute;
+  position: fixed; /* ← key change */
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   
-  width: 800px;
-  height: auto;
+  width: 500px;
 
-  opacity: 1;
-  z-index: 1;
+  z-index: 9999; /* above EVERYTHING */
+  opacity: 0.2;
+
+  filter: none; /* remove blur for now */
   pointer-events: none;
-
-  filter: blur(30px) brightness(1.1);
-  transition: opacity 1.2s ease;
 }
 
 .hero.loaded .logo-watermark {
