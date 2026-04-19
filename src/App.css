@@ -51,7 +51,9 @@ body, html, #root {
   content: "";
   position: absolute;
   inset: 0;
-  backdrop-filter: blur(2px);
+.overlay::after {
+  backdrop-filter: none;
+}
   pointer-events: none;
 }
 
@@ -67,12 +69,11 @@ body, html, #root {
   width: 700px;
 
   opacity: 0.12;
-  z-index: 1;
+  z-index: 3;
   pointer-events: none;
 
   filter: blur(20px);
 }
-
 .hero.loaded .logo-watermark {
   opacity: 0.6;
 }
