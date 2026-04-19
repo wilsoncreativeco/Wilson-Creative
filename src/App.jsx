@@ -2,71 +2,76 @@ import "./App.css";
 import { useState, useEffect } from "react";
 
 export default function App() {
+  const [loaded, setLoaded] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
-  useEffect(() => {
-    const sections = document.querySelectorAll(".section");
-    const video = document.querySelector(".hero-video");
+useEffect(() => {
+  // ✅ LOAD FIX (prevents watermark flash)
+  const timer = setTimeout(() => setLoaded(true), 300);
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("show");
-          }
-        });
-      },
-      { threshold: 0.2 }
-    );
+  const sections = document.querySelectorAll(".section");
+  const video = document.querySelector(".hero-video");
 
-    sections.forEach((section) => observer.observe(section));
-
-    const handleScroll = () => {
-      const scrollY = window.scrollY;
-      const heroHeight = window.innerHeight;
-      const subText = document.querySelector(".what-we-do .sub");
-      const overlay = document.querySelector(".overlay");
-      const logo = document.querySelector(".logo-watermark");
-
-      if (video) {
-        const start = heroHeight * 0.2;
-        const end = heroHeight;
-
-        let progress = (scrollY - start) / (end - start);
-        progress = Math.max(0, Math.min(progress, 1));
-
-        const scale = 1 + progress * 0.05;
-        video.style.transform = `scale(${scale})`;
-      }
-
-      if (video && subText && overlay) {
-        const rect = subText.getBoundingClientRect();
-        const start = window.innerHeight * 0.9;
-        const end = window.innerHeight * 0.4;
-
-        let progress = (start - rect.top) / (start - end);
-        progress = Math.max(0, Math.min(progress, 1));
-
-        const blur = progress * 30;
-        const brightness = 1 - progress * 0.85;
-        const darkness = 0.3 + progress * 0.45;
-
-        video.style.filter = `blur(${blur}px) brightness(${brightness})`;
-        overlay.style.background = `rgba(0,0,0,${darkness})`;
-
-        if (logo) {
-          logo.style.opacity = 0.18 * (1 - progress);
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("show");
         }
+      });
+    },
+    { threshold: 0.2 }
+  );
+
+  sections.forEach((section) => observer.observe(section));
+
+  const handleScroll = () => {
+    const scrollY = window.scrollY;
+    const heroHeight = window.innerHeight;
+    const subText = document.querySelector(".what-we-do .sub");
+    const overlay = document.querySelector(".overlay");
+    const logo = document.querySelector(".logo-watermark");
+
+    if (video) {
+      const start = heroHeight * 0.2;
+      const end = heroHeight;
+
+      let progress = (scrollY - start) / (end - start);
+      progress = Math.max(0, Math.min(progress, 1));
+
+      const scale = 1 + progress * 0.05;
+      video.style.transform = `scale(${scale})`;
+    }
+
+    if (video && subText && overlay) {
+      const rect = subText.getBoundingClientRect();
+      const start = window.innerHeight * 0.9;
+      const end = window.innerHeight * 0.4;
+
+      let progress = (start - rect.top) / (start - end);
+      progress = Math.max(0, Math.min(progress, 1));
+
+      const blur = progress * 30;
+      const brightness = 1 - progress * 0.85;
+      const darkness = 0.3 + progress * 0.45;
+
+      video.style.filter = `blur(${blur}px) brightness(${brightness})`;
+      overlay.style.background = `rgba(0,0,0,${darkness})`;
+
+      if (logo) {
+        logo.style.opacity = 0.18 * (1 - progress);
       }
-    };
+    }
+  };
 
-    window.addEventListener("scroll", handleScroll);
+  window.addEventListener("scroll", handleScroll);
 
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
+  return () => {
+    window.removeEventListener("scroll", handleScroll);
+    clearTimeout(timer); // ✅ important cleanup
+  };
+}, []);
 
   // ✅ FORM HANDLER
   const handleSubmit = async (e) => {
