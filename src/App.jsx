@@ -103,7 +103,7 @@ if (logo) {
   return (
     <>
       {/* HERO */}
-      <div className="hero">
+     <div className={`hero ${loaded ? "loaded" : ""}`}>
         <video
           autoPlay
           muted
