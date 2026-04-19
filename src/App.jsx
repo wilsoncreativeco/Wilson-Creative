@@ -59,9 +59,7 @@ useEffect(() => {
       video.style.filter = `blur(${blur}px) brightness(${brightness})`;
       overlay.style.background = `rgba(0,0,0,${darkness})`;
 
-if (logo) {
-  logo.style.opacity = 0.12;
-}
+
     }
   };
 
