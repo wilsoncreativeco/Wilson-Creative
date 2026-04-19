@@ -351,3 +351,28 @@ body {
   overflow-x: hidden;
   touch-action: pan-y;
 }
+
+.watermark {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  
+  font-size: 14px;
+  letter-spacing: 4px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.15);
+
+  pointer-events: none;
+  z-index: 9999;
+  text-transform: uppercase;
+}
+
+.watermark::after {
+  content: "WILSON CREATIVE CO.";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: rgba(255, 255, 255, 0.05);
+  filter: blur(6px);
+}
