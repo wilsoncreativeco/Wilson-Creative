@@ -76,6 +76,10 @@ body, html, #root {
 }
 
 .hero.loaded .logo-watermark {
+  opacity: 0.12;
+}
+
+.hero.loaded .logo-watermark {
   opacity: 0.1;
 }
 /* TEXT */
