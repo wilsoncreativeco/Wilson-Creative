@@ -26,9 +26,7 @@ export default function App() {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("show");
-          }
+          if (entry.isIntersecting) entry.target.classList.add("show");
         });
       },
       { threshold: 0.2 }
@@ -95,7 +93,6 @@ export default function App() {
     <>
       <div className="watermark">WILSON CREATIVE CO.</div>
 
-      {/* HERO */}
       <div className={`hero ${loaded ? "loaded" : ""}`}>
         <video
           autoPlay
@@ -114,7 +111,6 @@ export default function App() {
         <div className="hero-content">
           <p className="hero-kicker">Wilson Creative Co.</p>
           <h1>Creative Media & Production</h1>
-
           <p className="sub">
             Cinematic content designed to elevate brands and capture attention.
           </p>
@@ -142,7 +138,6 @@ export default function App() {
         </div>
       </div>
 
-      {/* SECTION 1 */}
       <section className="section what-we-do">
         <h2>Featured Services</h2>
 
@@ -169,7 +164,6 @@ export default function App() {
         </p>
       </section>
 
-      {/* SECTION 2 */}
       <section className="section statement">
         <h1>
           We don’t just create content.
@@ -178,10 +172,8 @@ export default function App() {
         </h1>
       </section>
 
-      {/* SECTION 3 */}
       <section className="section">
         <h2>Why Creative Co.</h2>
-
         <p className="text">
           We combine cinematic production with strategy to create content that
           not only looks premium, but actually performs—whether that’s
@@ -189,10 +181,8 @@ export default function App() {
         </p>
       </section>
 
-      {/* WORK SECTION */}
       <section id="work" className="section work">
         <h2>Our Work</h2>
-
         <p className="text">
           A selection of cinematic projects crafted to elevate brands and
           capture attention.
@@ -202,6 +192,7 @@ export default function App() {
           <div className="work-item">Coming Soon</div>
           <div className="work-item">Coming Soon</div>
           <div className="work-item">Coming Soon</div>
-          <div className="work-item">Coming Soon</div
+          <div className="work-item">Coming Soon</divPerfect — that JSX/CSS block is the clean final version.
 
+If you want to finish this 100%, I can send the matching **full `index.html`** next (with the Safari/Vercel favicon fix) so your deploy reflects everything in one pass.
 
