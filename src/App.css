@@ -12,6 +12,23 @@ body, html, #root {
   z-index: 1;
 }
 
+.hero::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 34vh;
+  z-index: 2;
+  pointer-events: none;
+  background: linear-gradient(
+    to bottom,
+    rgba(10, 10, 10, 0) 0%,
+    rgba(10, 10, 10, 0.55) 62%,
+    #0a0a0a 100%
+  );
+}
+
 /* VIDEO */
 .hero-video {
   position: fixed;
@@ -21,13 +38,10 @@ body, html, #root {
   height: 100%;
   object-fit: cover;
   z-index: 0;
-
-  transition: transform 0.15s linear, filter 0.15s linear;
-}
-
-/* 🔥 BLUR EFFECT */
-.hero-video {
-  transition: transform 0.2s linear, filter 0.2s linear;
+  transform: translateZ(0) scale(1);
+  will-change: transform, filter;
+  backface-visibility: hidden;
+  transition: transform 0.12s linear, filter 0.12s linear;
 }
 
 /* OVERLAY */
@@ -47,39 +61,7 @@ body, html, #root {
   pointer-events: none;
   transition: background 0.3s ease;
 }
-.overlay::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-.overlay::after {
-  backdrop-filter: none;
-}
-  pointer-events: none;
-}
 
-
-
-/* LOGO */
-.logo-watermark {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  
-  width: 700px;
-
-  opacity: 0.12;
-  z-index: 2; /* above video, below text */
-  pointer-events: none;
-
-  filter: blur(20px);
-}.hero.loaded .logo-watermark {
-  opacity: 0.6;
-}
-
-.hero.loaded .logo-watermark {
-  opacity: 0.1;
-}
 /* TEXT */
 .hero-content {
   position: relative;
@@ -244,14 +226,14 @@ body, html, #root {
 
   background: linear-gradient(
     to bottom,
-    rgba(10,10,10,0) 0%,
-    rgba(10,10,10,0.2) 50%,
-    rgba(10,10,10,0.6) 75%,
+    rgba(10,10,10,0.02) 0%,
+    rgba(10,10,10,0.3) 45%,
+    rgba(10,10,10,0.65) 72%,
     #0a0a0a 100%
   );
 
-  margin-top: -20vh;
-  padding-top: 140px;
+  margin-top: -22vh;
+  padding-top: 160px;
 
   position: relative;
   z-index: 2;
@@ -269,6 +251,62 @@ body, html, #root {
 .services p {
   margin: 10px 0;
   opacity: 0.8;
+}
+
+.services {
+  width: min(980px, 100%);
+  margin: 0 auto 24px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 14px;
+}
+
+.service-item {
+  text-align: left;
+  padding: 16px 18px;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.08),
+    rgba(255, 255, 255, 0.03)
+  );
+  backdrop-filter: blur(6px);
+  transition: transform 0.28s ease, border-color 0.28s ease, background 0.28s ease;
+}
+
+.service-item:hover {
+  transform: translateY(-6px);
+  border-color: rgba(255, 255, 255, 0.26);
+  background: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.14),
+    rgba(255, 255, 255, 0.05)
+  );
+}
+
+.service-item h3 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.35;
+}
+
+.service-status {
+  display: inline-block;
+  margin-top: 8px;
+  font-size: 0.75rem;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  opacity: 0.85;
+  padding: 5px 9px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+}
+
+.service-status.soon {
+  border-color: rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.08);
 }
 
 .statement h1 {
@@ -375,4 +413,15 @@ body {
   top: 0;
   color: rgba(255, 255, 255, 0.05);
   filter: blur(6px);
+}
+
+@media (max-width: 768px) {
+  .section {
+    margin-top: -15vh;
+    padding-top: 130px;
+  }
+
+  .services {
+    grid-template-columns: 1fr;
+  }
 }
