@@ -2,12 +2,12 @@ import "./App.css";
 import { useState, useEffect } from "react";
 
 const services = [
-  { title: "Web Design & Development", status: "Now booking" },
-  { title: "Aerial Cinematography", status: "Now booking" },
-  { title: "Video Production", status: "Now booking" },
-  { title: "Photography", status: "Now booking" },
-  { title: "Social Media Content", status: "Now booking" },
-  { title: "Commercial & Brand Media", status: "Now booking" },
+  { title: "Web Design & Development", status: "" },
+  { title: "Aerial Cinematography", status: "Coming soon" },
+  { title: "Video Production", status: "Coming soon" },
+  { title: "Photography", status: "Coming soon" },
+  { title: "Social Media Content", status: "Coming soon" },
+  { title: "Commercial & Brand Media", status: "Coming soon" },
   { title: "Creative Strategy", status: "Coming soon" },
 ];
 
@@ -16,55 +16,55 @@ export default function App() {
   const [showModal, setShowModal] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
-useEffect(() => {
-  const timer = setTimeout(() => setLoaded(true), 300);
+  useEffect(() => {
+    const timer = setTimeout(() => setLoaded(true), 300);
 
-  const sections = document.querySelectorAll(".section");
-  const video = document.querySelector(".hero-video");
-  const overlay = document.querySelector(".overlay");
+    const sections = document.querySelectorAll(".section");
+    const video = document.querySelector(".hero-video");
+    const overlay = document.querySelector(".overlay");
 
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("show");
-        }
-      });
-    },
-    { threshold: 0.2 }
-  );
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("show");
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
 
-  sections.forEach((section) => observer.observe(section));
+    sections.forEach((section) => observer.observe(section));
 
-  const handleScroll = () => {
-    const scrollY = window.scrollY;
-    const heroHeight = window.innerHeight * 1.1;
+    const handleScroll = () => {
+      const scrollY = window.scrollY;
+      const heroHeight = window.innerHeight * 1.1;
 
-    if (video && overlay) {
-      let progress = scrollY / heroHeight;
-      progress = Math.max(0, Math.min(progress, 1));
+      if (video && overlay) {
+        let progress = scrollY / heroHeight;
+        progress = Math.max(0, Math.min(progress, 1));
 
-      const eased = progress * progress * (3 - 2 * progress);
-      const scale = 1 + eased * 0.06;
-      const blur = eased * 32;
-      const brightness = 1 - eased * 0.72;
-      const darkness = 0.33 + eased * 0.5;
+        const eased = progress * progress * (3 - 2 * progress);
+        const scale = 1 + eased * 0.06;
+        const blur = eased * 32;
+        const brightness = 1 - eased * 0.72;
+        const darkness = 0.33 + eased * 0.5;
 
-      video.style.transform = `scale(${scale})`;
-      video.style.filter = `blur(${blur}px) brightness(${brightness})`;
-      overlay.style.background = `rgba(0,0,0,${darkness})`;
-    }
-  };
+        video.style.transform = `scale(${scale})`;
+        video.style.filter = `blur(${blur}px) brightness(${brightness})`;
+        overlay.style.background = `rgba(0,0,0,${darkness})`;
+      }
+    };
 
-  window.addEventListener("scroll", handleScroll);
-  handleScroll();
+    window.addEventListener("scroll", handleScroll);
+    handleScroll();
 
-  return () => {
-    window.removeEventListener("scroll", handleScroll);
-    observer.disconnect();
-    clearTimeout(timer);
-  };
-}, []);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      observer.disconnect();
+      clearTimeout(timer);
+    };
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -94,8 +94,9 @@ useEffect(() => {
   return (
     <>
       <div className="watermark">WILSON CREATIVE CO.</div>
+
       {/* HERO */}
-     <div className={`hero ${loaded ? "loaded" : ""}`}>
+      <div className={`hero ${loaded ? "loaded" : ""}`}>
         <video
           autoPlay
           muted
@@ -110,8 +111,8 @@ useEffect(() => {
 
         <div className="overlay" />
 
-
         <div className="hero-content">
+          <p className="hero-kicker">Wilson Creative Co.</p>
           <h1>Creative Media & Production</h1>
 
           <p className="sub">
@@ -119,27 +120,24 @@ useEffect(() => {
           </p>
 
           <div className="buttons">
-            <button
-              className="primary"
-              onClick={() => setShowModal(true)}
-            >
+            <button className="primary" onClick={() => setShowModal(true)}>
               Contact Now
             </button>
 
             <button
-  className="secondary"
-  onClick={() => {
-    const section = document.getElementById("work");
-    if (section) {
-      section.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
-    }
-  }}
->
-  View Work
-</button>
+              className="secondary"
+              onClick={() => {
+                const section = document.getElementById("work");
+                if (section) {
+                  section.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start",
+                  });
+                }
+              }}
+            >
+              View Work
+            </button>
           </div>
         </div>
       </div>
@@ -152,9 +150,15 @@ useEffect(() => {
           {services.map((service) => (
             <article key={service.title} className="service-item">
               <h3>{service.title}</h3>
-              <span className={`service-status ${service.status === "Coming soon" ? "soon" : ""}`}>
-                {service.status}
-              </span>
+              {service.status ? (
+                <span
+                  className={`service-status ${
+                    service.status === "Coming soon" ? "soon" : ""
+                  }`}
+                >
+                  {service.status}
+                </span>
+              ) : null}
             </article>
           ))}
         </div>
@@ -168,7 +172,8 @@ useEffect(() => {
       {/* SECTION 2 */}
       <section className="section statement">
         <h1>
-          We don’t just create content.<br />
+          We don’t just create content.
+          <br />
           We create presence.
         </h1>
       </section>
@@ -178,74 +183,25 @@ useEffect(() => {
         <h2>Why Creative Co.</h2>
 
         <p className="text">
-          We combine cinematic production with strategy to create content that not only looks premium,
-          but actually performs—whether that’s attracting clients, building brand presence, or capturing key moments.
+          We combine cinematic production with strategy to create content that
+          not only looks premium, but actually performs—whether that’s
+          attracting clients, building brand presence, or capturing key moments.
         </p>
       </section>
-{/* WORK SECTION */}
-<section id="work" className="section work">
-  <h2>Our Work</h2>
 
-  <p className="text">
-    A selection of cinematic projects crafted to elevate brands and capture attention.
-  </p>
+      {/* WORK SECTION */}
+      <section id="work" className="section work">
+        <h2>Our Work</h2>
 
-  <div className="work-grid">
-    <div className="work-item">Coming Soon</div>
-    <div className="work-item">Coming Soon</div>
-    <div className="work-item">Coming Soon</div>
-    <div className="work-item">Coming Soon</div>
-  </div>
-</section>
-      {/* MODAL */}
-      {showModal && (
-        <div className="modal">
-          <div className="modal-content">
-            <button
-              className="close"
-              onClick={() => setShowModal(false)}
-            >
-              ×
-            </button>
+        <p className="text">
+          A selection of cinematic projects crafted to elevate brands and
+          capture attention.
+        </p>
 
-            {submitted ? (
-              <>
-                <h2>Message Sent</h2>
-                <p style={{ opacity: 0.7, marginTop: "10px" }}>
-                  We’ll get back to you shortly.
-                </p>
-              </>
-            ) : (
-              <>
-                <h2>Start a Project</h2>
-
-                <form
-                  action="https://formspree.io/f/xojywkwo"
-                  method="POST"
-                  onSubmit={handleSubmit}
-                >
-                  <input type="text" name="name" placeholder="Name" required />
-                  <input type="email" name="email" placeholder="Email" required />
-                  <textarea
-                    name="message"
-                    placeholder="Tell us about your project"
-                    required
-                  ></textarea>
-
-                  <button type="submit" className="primary">
-                    Send
-                  </button>
-                </form>
-              </>
-            )}
-          </div>
-        </div>
-      )}
-    </>
-  );
-}
-
-
-
+        <div className="work-grid">
+          <div className="work-item">Coming Soon</div>
+          <div className="work-item">Coming Soon</div>
+          <div className="work-item">Coming Soon</div>
+          <div className="work-item">Coming Soon</div
 
 
