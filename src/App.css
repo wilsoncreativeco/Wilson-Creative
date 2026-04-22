@@ -10,6 +10,7 @@ body, html, #root {
   height: 100vh;
   position: relative;
   z-index: 1;
+  overflow: hidden;
 }
 
 .hero::after {
@@ -27,6 +28,22 @@ body, html, #root {
     rgba(10, 10, 10, 0.55) 62%,
     #0a0a0a 100%
   );
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: -20% -10% auto -10%;
+  height: 70vh;
+  z-index: 1;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse at top center,
+    rgba(214, 196, 153, 0.2) 0%,
+    rgba(214, 196, 153, 0.05) 36%,
+    rgba(214, 196, 153, 0) 70%
+  );
+  mix-blend-mode: screen;
 }
 
 /* VIDEO */
@@ -72,12 +89,64 @@ body, html, #root {
   color: white;
   text-align: center;
   max-width: 700px;
-  padding: 0 20px;
+  padding: 24px 24px 20px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: linear-gradient(
+    180deg,
+    rgba(20, 20, 20, 0.42),
+    rgba(10, 10, 10, 0.2)
+  );
+  backdrop-filter: blur(10px);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.35);
+  opacity: 0;
+  transform: translate(-50%, calc(-50% + 14px));
+  transition: opacity 0.9s ease, transform 0.9s ease;
+}
+
+.hero.loaded .hero-content {
+  opacity: 1;
+  transform: translate(-50%, -50%);
+}
+
+.hero-content > * {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.75s ease, transform 0.75s ease;
+}
+
+.hero.loaded .hero-content > * {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.hero.loaded .hero-kicker {
+  transition-delay: 0.1s;
+}
+
+.hero.loaded .hero-content h1 {
+  transition-delay: 0.18s;
+}
+
+.hero.loaded .hero-content .sub {
+  transition-delay: 0.26s;
+}
+
+.hero.loaded .hero-content .buttons {
+  transition-delay: 0.34s;
+}
+
+.hero-kicker {
+  margin: 0 0 14px;
+  font-size: 0.75rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.82);
 }
 
 .hero-content h1 {
   font-size: clamp(2.5rem, 5vw, 3.5rem);
-  font-weight: 500;
+  font-weight: 550;
   letter-spacing: -0.04em;
   line-height: 1.1;
   margin-bottom: 14px;
@@ -85,10 +154,12 @@ body, html, #root {
   background: linear-gradient(
     to bottom,
     #ffffff 0%,
-    #d1d1d1 100%
+    #ece7dc 55%,
+    #b8b3a8 100%
   );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  text-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
 }
 
 .sub {
@@ -108,6 +179,8 @@ body, html, #root {
 }
 
 .primary {
+  position: relative;
+  overflow: hidden;
   padding: 14px 28px;
   border-radius: 999px;
   background: white;
@@ -118,6 +191,8 @@ body, html, #root {
 }
 
 .secondary {
+  position: relative;
+  overflow: hidden;
   padding: 14px 28px;
   border-radius: 999px;
   background: rgba(255,255,255,0.12);
@@ -125,6 +200,24 @@ body, html, #root {
   border: 1px solid rgba(255,255,255,0.12);
   box-shadow: inset 0 0 0 1px rgba(255,255,255,0.08);
   transition: all 0.25s ease;
+}
+
+.primary::after,
+.secondary::after {
+  content: "";
+  position: absolute;
+  top: -110%;
+  left: -35%;
+  width: 26%;
+  height: 300%;
+  transform: rotate(22deg);
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0),
+    rgba(255, 255, 255, 0.36),
+    rgba(255, 255, 255, 0)
+  );
+  transition: left 0.55s ease;
 }
 
 .primary:hover {
@@ -135,6 +228,11 @@ body, html, #root {
 .secondary:hover {
   background: rgba(255,255,255,0.15);
   transform: translateY(-2px);
+}
+
+.primary:hover::after,
+.secondary:hover::after {
+  left: 120%;
 }
 
 /* MODAL */
@@ -305,8 +403,9 @@ body, html, #root {
 }
 
 .service-status.soon {
-  border-color: rgba(255, 255, 255, 0.3);
-  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(232, 218, 182, 0.42);
+  background: rgba(232, 218, 182, 0.12);
+  color: rgba(255, 245, 218, 0.95);
 }
 
 .statement h1 {
@@ -416,6 +515,15 @@ body {
 }
 
 @media (max-width: 768px) {
+  .hero-content {
+    width: calc(100% - 28px);
+    padding: 20px 16px 16px;
+  }
+
+  .hero-kicker {
+    letter-spacing: 0.14em;
+  }
+
   .section {
     margin-top: -15vh;
     padding-top: 130px;
@@ -423,5 +531,23 @@ body {
 
   .services {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-content,
+  .hero-content > * {
+    transition: none;
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+
+  .hero-content {
+    transform: translate(-50%, -50%);
+  }
+
+  .primary::after,
+  .secondary::after {
+    display: none;
   }
 }
