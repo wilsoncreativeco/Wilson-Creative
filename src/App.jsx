@@ -161,3 +161,8 @@ export default function App() {
           <div className="work-item">Coming Soon</div>
           <div className="work-item">Coming Soon</div>
           <div className="work-item">Coming Soon</div>
+        </div>
+      )}
+    </>
+  );
+}
