@@ -6,7 +6,6 @@ html,
   background: black;
   font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
 }
-
 /* HERO */
 .hero {
   height: 100vh;
@@ -14,7 +13,6 @@ html,
   z-index: 1;
   overflow: hidden;
 }
-
 .hero::after {
   content: "";
   position: absolute;
@@ -31,7 +29,6 @@ html,
     #0a0a0a 100%
   );
 }
-
 .hero::before {
   content: "";
   position: absolute;
@@ -47,7 +44,6 @@ html,
   );
   mix-blend-mode: screen;
 }
-
 /* VIDEO */
 .hero-video {
   position: fixed;
@@ -62,7 +58,6 @@ html,
   backface-visibility: hidden;
   transition: transform 0.12s linear, filter 0.12s linear;
 }
-
 /* OVERLAY */
 .overlay {
   position: absolute;
@@ -78,7 +73,6 @@ html,
   pointer-events: none;
   transition: background 0.3s ease;
 }
-
 /* HERO CONTENT */
 .hero-content {
   position: relative;
@@ -93,39 +87,31 @@ html,
   transform: translate(-50%, calc(-50% + 14px));
   transition: opacity 0.9s ease, transform 0.9s ease;
 }
-
 .hero.loaded .hero-content {
   opacity: 1;
   transform: translate(-50%, -50%);
 }
-
 .hero-content > * {
   opacity: 0;
   transform: translateY(10px);
   transition: opacity 0.75s ease, transform 0.75s ease;
 }
-
 .hero.loaded .hero-content > * {
   opacity: 1;
   transform: translateY(0);
 }
-
 .hero.loaded .hero-kicker {
   transition-delay: 0.1s;
 }
-
 .hero.loaded .hero-content h1 {
   transition-delay: 0.18s;
 }
-
 .hero.loaded .hero-content .sub {
   transition-delay: 0.26s;
 }
-
 .hero.loaded .hero-content .buttons {
   transition-delay: 0.34s;
 }
-
 .hero-kicker {
   margin: 0 0 14px;
   font-size: 0.72rem;
@@ -133,7 +119,6 @@ html,
   text-transform: uppercase;
   color: rgba(255, 255, 255, 0.74);
 }
-
 .hero-content h1 {
   font-size: clamp(2.5rem, 5vw, 3.5rem);
   font-weight: 560;
@@ -145,7 +130,6 @@ html,
   -webkit-text-fill-color: transparent;
   text-shadow: 0 14px 40px rgba(0, 0, 0, 0.3);
 }
-
 .sub {
   font-size: 1.06rem;
   font-weight: 300;
@@ -154,7 +138,6 @@ html,
   margin-bottom: 28px;
   color: rgba(255, 255, 255, 0.92);
 }
-
 /* BUTTONS */
 .buttons {
   margin-top: 30px;
@@ -162,7 +145,6 @@ html,
   justify-content: center;
   gap: 16px;
 }
-
 .primary {
   position: relative;
   overflow: hidden;
@@ -174,8 +156,9 @@ html,
   font-weight: 500;
   transition: all 0.25s ease;
   box-shadow: 0 8px 28px rgba(0, 0, 0, 0.24);
+  border: none;
+  cursor: pointer;
 }
-
 .secondary {
   position: relative;
   overflow: hidden;
@@ -186,8 +169,8 @@ html,
   border: 1px solid rgba(255, 255, 255, 0.2);
   box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
   transition: all 0.25s ease;
+  cursor: pointer;
 }
-
 .primary::after,
 .secondary::after {
   content: "";
@@ -205,22 +188,18 @@ html,
   );
   transition: left 0.55s ease;
 }
-
 .primary:hover {
   transform: translateY(-2px);
   box-shadow: 0 14px 32px rgba(0, 0, 0, 0.32);
 }
-
 .secondary:hover {
   background: rgba(255, 255, 255, 0.16);
   transform: translateY(-2px);
 }
-
 .primary:hover::after,
 .secondary:hover::after {
   left: 120%;
 }
-
 /* MODAL */
 .modal {
   position: fixed;
@@ -235,7 +214,6 @@ html,
   align-items: center;
   z-index: 9999;
 }
-
 .modal-content {
   animation: fadeIn 0.25s ease;
   background: rgba(15, 15, 15, 0.75);
@@ -246,8 +224,8 @@ html,
   width: 90%;
   max-width: 420px;
   color: white;
+  position: relative;
 }
-
 .modal input,
 .modal textarea {
   width: 100%;
@@ -259,13 +237,12 @@ html,
   color: white;
   font-family: "Inter", sans-serif;
   outline: none;
+  box-sizing: border-box;
 }
-
 .modal input:focus,
 .modal textarea:focus {
   border: 1px solid rgba(255, 255, 255, 0.3);
 }
-
 .close {
   position: absolute;
   top: 12px;
@@ -276,16 +253,13 @@ html,
   font-size: 20px;
   cursor: pointer;
 }
-
 .close:hover {
   color: white;
 }
-
 .modal-content h2 {
   font-weight: 500;
   margin-bottom: 10px;
 }
-
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -296,7 +270,6 @@ html,
     transform: translateY(0) scale(1);
   }
 }
-
 /* SECTIONS */
 .section {
   min-height: 100vh;
@@ -321,12 +294,10 @@ html,
   transform: translateY(40px);
   transition: all 0.8s ease;
 }
-
 .section.show {
   opacity: 1;
   transform: translateY(0);
 }
-
 .services {
   width: min(980px, 100%);
   margin: 0 auto 24px;
@@ -334,7 +305,6 @@ html,
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 14px;
 }
-
 .service-item {
   text-align: left;
   padding: 16px 18px;
@@ -348,7 +318,6 @@ html,
   backdrop-filter: blur(6px);
   transition: transform 0.28s ease, border-color 0.28s ease, background 0.28s ease;
 }
-
 .service-item:hover {
   transform: translateY(-6px);
   border-color: rgba(255, 255, 255, 0.26);
@@ -358,14 +327,12 @@ html,
     rgba(255, 255, 255, 0.05)
   );
 }
-
 .service-item h3 {
   margin: 0;
   font-size: 1rem;
   font-weight: 500;
   line-height: 1.35;
 }
-
 .service-status {
   display: inline-block;
   margin-top: 8px;
@@ -377,13 +344,11 @@ html,
   border-radius: 999px;
   border: 1px solid rgba(255, 255, 255, 0.16);
 }
-
 .service-status.soon {
   border-color: rgba(232, 218, 182, 0.42);
   background: rgba(232, 218, 182, 0.12);
   color: rgba(255, 245, 218, 0.95);
 }
-
 .statement h1 {
   font-size: 2.6rem;
   font-weight: 500;
@@ -392,7 +357,6 @@ html,
   margin: 0 auto;
   line-height: 1.4;
 }
-
 .text {
   max-width: 600px;
   margin: 0 auto;
@@ -400,22 +364,18 @@ html,
   line-height: 1.6;
   font-size: 1.05rem;
 }
-
 html {
   scroll-behavior: smooth;
 }
-
 .work {
   text-align: center;
 }
-
 .work-grid {
   margin-top: 40px;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 20px;
 }
-
 .work-item {
   height: 200px;
   background: rgba(255, 255, 255, 0.04);
@@ -430,7 +390,6 @@ html {
   position: relative;
   overflow: hidden;
 }
-
 .work-item::before {
   content: "";
   position: absolute;
@@ -444,23 +403,19 @@ html {
   opacity: 0;
   transition: opacity 0.4s ease;
 }
-
 .work-item:hover {
   transform: translateY(-8px) scale(1.02);
   opacity: 1;
   border: 1px solid rgba(255, 255, 255, 0.2);
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
 }
-
 .work-item:hover::before {
   opacity: 1;
 }
-
 body {
   overflow-x: hidden;
   touch-action: pan-y;
 }
-
 .watermark {
   position: fixed;
   top: 20px;
@@ -474,7 +429,6 @@ body {
   z-index: 9999;
   text-transform: uppercase;
 }
-
 .watermark::after {
   content: "WILSON CREATIVE CO.";
   position: absolute;
@@ -483,27 +437,22 @@ body {
   color: rgba(255, 255, 255, 0.05);
   filter: blur(6px);
 }
-
 @media (max-width: 768px) {
   .hero-content {
     width: calc(100% - 24px);
     padding: 0 14px;
   }
-
   .hero-kicker {
     letter-spacing: 0.14em;
   }
-
   .section {
     margin-top: -15vh;
     padding-top: 130px;
   }
-
   .services {
     grid-template-columns: 1fr;
   }
 }
-
 @media (prefers-reduced-motion: reduce) {
   .hero-content,
   .hero-content > * {
@@ -511,11 +460,9 @@ body {
     opacity: 1;
     transform: translate(0, 0);
   }
-
   .hero-content {
     transform: translate(-50%, -50%);
   }
-
   .primary::after,
   .secondary::after {
     display: none;
