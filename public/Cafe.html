@@ -1,0 +1,128 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Cafe | Good Coffee. Good People.</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&family=Playfair+Display:ital,wght@1,400;1,700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body { font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; background-color: #fdfdfa; scroll-behavior: smooth; }
+        h1, h2, h3, .serif { font-family: 'Playfair Display', serif; }
+    </style>
+</head>
+<body class="text-stone-900 overflow-x-hidden">
+    <nav class="fixed top-0 w-full z-50 px-8 py-6 flex justify-between items-center bg-white/80 backdrop-blur-md border-b border-stone-100">
+        <div class="flex items-center gap-2">
+            <i data-lucide="coffee" class="w-5 h-5 text-stone-500"></i>
+            <span class="serif text-2xl tracking-tighter italic font-black">Your Cafe.</span>
+        </div>
+        <div class="flex gap-8 text-[11px] uppercase tracking-widest font-black text-stone-400">
+            <a href="#vibe" class="hover:text-stone-900">Vibe</a>
+            <a href="#menu" class="hover:text-stone-900">Menu</a>
+            <a href="#locations" class="hover:text-stone-900">Locations</a>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="h-screen flex items-center justify-center relative overflow-hidden px-6 text-center text-white">
+        <div class="absolute inset-0">
+            <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&q=80&w=1920" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-stone-900/40"></div>
+        </div>
+        <div class="relative z-10">
+            <h1 class="text-6xl md:text-[10vw] serif italic leading-none mb-6">Simple Coffee,<br>Fine Details.</h1>
+            <p class="text-lg font-light tracking-wide max-w-sm mx-auto opacity-90 italic">Our doors are open for the early birds and the dreamers.</p>
+        </div>
+    </section>
+
+    <!-- THE VIBE -->
+    <section id="vibe" class="py-32 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="aspect-[4/5] rounded-[40px] overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover">
+                </div>
+                <div class="aspect-[4/5] rounded-[40px] overflow-hidden mt-12 md:mt-0">
+                    <img src="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover">
+                </div>
+                <div class="aspect-[4/5] rounded-[40px] overflow-hidden mt-12 md:mt-24">
+                    <img src="https://images.unsplash.com/photo-1442512595331-e89e73853f31?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover">
+                </div>
+            </div>
+            <div class="mt-20 text-center max-w-2xl mx-auto">
+                <h2 class="text-5xl serif italic mb-6">A space to be.</h2>
+                <p class="text-stone-500 text-lg font-light">We simple provided the warmth, you bring the conversation. From morning roasts to afternoon quiet, we're your local sanctuary.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- THE MENU -->
+    <section id="menu" class="py-32 px-6 bg-stone-100">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-16">
+                <span class="text-[10px] uppercase font-black tracking-widest text-stone-400 mb-2 block">Caffeine & Flour</span>
+                <h2 class="text-6xl serif italic">The Selection.</h2>
+            </div>
+            <div class="grid md:grid-cols-2 gap-x-20 gap-y-12">
+                <div class="flex justify-between items-start border-b border-stone-200 pb-4">
+                    <div>
+                        <h4 class="serif text-xl italic italic">House Flat White</h4>
+                        <p class="text-[10px] text-stone-400 uppercase font-black">Medium Roast — Smooth</p>
+                    </div>
+                    <span class="serif text-lg italic">$6.5</span>
+                </div>
+                <div class="flex justify-between items-start border-b border-stone-200 pb-4">
+                    <div>
+                        <h4 class="serif text-xl italic italic">Batch Brew</h4>
+                        <p class="text-[10px] text-stone-400 uppercase font-black">Featured Ethiopian</p>
+                    </div>
+                    <span class="serif text-lg italic">$7.0</span>
+                </div>
+                <div class="flex justify-between items-start border-b border-stone-200 pb-4">
+                    <div>
+                        <h4 class="serif text-xl italic italic">Classic Sourdough</h4>
+                        <p class="text-[10px] text-stone-400 uppercase font-black">Butter — Sea Salt</p>
+                    </div>
+                    <span class="serif text-lg italic">$12.0</span>
+                </div>
+                <div class="flex justify-between items-start border-b border-stone-200 pb-4">
+                    <div>
+                        <h4 class="serif text-xl italic italic">Almond Croissant</h4>
+                        <p class="text-[10px] text-stone-400 uppercase font-black">Twice Baked</p>
+                    </div>
+                    <span class="serif text-lg italic">$9.0</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- LOCATIONS -->
+    <section id="locations" class="py-32 px-6 text-center">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-5xl serif italic mb-20 italic">Come say hi.</h2>
+            <div class="grid md:grid-cols-2 gap-12">
+                <div class="p-12 bg-stone-50 rounded-[40px] hover:scale-[1.02] transition-transform">
+                    <h3 class="serif text-3xl italic mb-4">West End Studio</h3>
+                    <p class="text-stone-500 font-light italic mb-8">14 Boundary St, West End<br>Mon - Fri: 6am - 3pm</p>
+                    <button class="text-[11px] uppercase tracking-widest font-black border-b border-stone-400 pb-1">Get Directions</button>
+                </div>
+                <div class="p-12 bg-stone-50 rounded-[40px] hover:scale-[1.02] transition-transform">
+                    <h3 class="serif text-3xl italic mb-4">The Alleyway</h3>
+                    <p class="text-stone-500 font-light italic mb-8">42 Lane Way, Downtown<br>Daily: 7am - 4pm</p>
+                    <button class="text-[11px] uppercase tracking-widest font-black border-b border-stone-400 pb-1">Get Directions</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-20 bg-stone-900 text-white text-center">
+        <div class="serif text-3xl italic mb-4 italic">Your Cafe.</div>
+        <p class="text-[10px] uppercase font-black tracking-widest opacity-30">Roasted with soul. Served with heart. © 2024</p>
+    </footer>
+
+    <script>lucide.createIcons();</script>
+</body>
+</html>
