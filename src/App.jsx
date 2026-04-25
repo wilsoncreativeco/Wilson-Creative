@@ -73,29 +73,29 @@ export default function App() {
   }, []);
 
   useEffect(() => {
-    const frames = document.querySelectorAll(".work-iframe");
-    const scrollers = [];
+  const frames = document.querySelectorAll(".work-iframe");
 
-    frames.forEach((frame) => {
-      frame.addEventListener("load", () => {
-        const doc = frame.contentDocument || frame.contentWindow.document;
-        let pos = 0;
-        let direction = 1;
-        const maxScroll = doc.body.scrollHeight - doc.documentElement.clientHeight;
+  frames.forEach((frame) => {
+    let scroller = null;
+    let pos = 0;
 
-        const scroller = setInterval(() => {
-          pos += 0.8 * direction;
-          if (pos >= maxScroll) direction = -1;
-          if (pos <= 0) direction = 1;
-          frame.contentWindow.scrollTo(0, pos);
-        }, 16);
+    const startScroll = () => {
+      scroller = setInterval(() => {
+        pos += 1.5;
+        frame.contentWindow.scrollTo(0, pos);
+      }, 16);
+    };
 
-        scrollers.push(scroller);
-      });
-    });
+    const stopScroll = () => {
+      clearInterval(scroller);
+      pos = 0;
+      frame.contentWindow.scrollTo(0, 0);
+    };
 
-    return () => scrollers.forEach(clearInterval);
-  }, []);
+    frame.parentElement.addEventListener("mouseenter", startScroll);
+    frame.parentElement.addEventListener("mouseleave", stopScroll);
+  });
+}, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
