@@ -1,0 +1,149 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Daily Grind | Best Coffee in Town</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700;900&family=Space+Grotesk:wght@300;400;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body { font-family: 'Space Grotesk', sans-serif; background-color: #FEFAE0; color: #3D405B; scroll-behavior: smooth; }
+        h1, h2, h3 { font-family: 'Outfit', sans-serif; }
+        .neo-shadow { box-shadow: 4px 4px 0px 0px #3D405B; }
+        .neo-shadow-lg { box-shadow: 8px 8px 0px 0px #BC6C25; }
+        .sticker { transform: rotate(-2deg); }
+    </style>
+</head>
+<body class="overflow-x-hidden">
+    <nav class="fixed top-6 left-1/2 -translate-x-1/2 w-[90%] z-50 px-8 py-4 flex justify-between items-center bg-white border-2 border-[#3D405B] rounded-2xl neo-shadow">
+        <div class="flex items-center gap-2">
+            <div class="bg-[#BC6C25] p-2 rounded-lg text-white">
+                <i data-lucide="coffee" class="w-6 h-6"></i>
+            </div>
+            <span class="text-2xl font-black tracking-tight uppercase">The Grind</span>
+        </div>
+        <div class="hidden md:flex gap-8 text-[12px] font-bold uppercase tracking-widest">
+            <a href="#vibe" class="hover:text-[#BC6C25] transition-colors">The Vibe</a>
+            <a href="#menu" class="hover:text-[#BC6C25] transition-colors">Eat/Drink</a>
+            <a href="#locations" class="hover:text-[#BC6C25] transition-colors">Find Us</a>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="min-h-screen pt-32 pb-20 px-6 flex flex-col items-center justify-center text-center">
+        <div class="sticker bg-[#F2CC8F] border-2 border-[#3D405B] px-6 py-2 rounded-full inline-block mb-8 text-sm font-bold uppercase tracking-[0.2em] neo-shadow">
+            Roasted Locally in Brisbane
+        </div>
+        <h1 class="text-7xl md:text-[12vw] font-black leading-[0.9] tracking-tighter uppercase mb-12">
+            STAY <br> <span class="text-[#BC6C25]">CAFFEINATED</span>
+        </h1>
+        <div class="relative w-full max-w-5xl aspect-video rounded-[3rem] overflow-hidden border-4 border-[#3D405B] neo-shadow-lg">
+             <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&q=80&w=1920" class="w-full h-full object-cover">
+        </div>
+    </section>
+
+    <!-- VIBE / STORY -->
+    <section id="vibe" class="py-32 px-6 bg-[#E3D5CA]/30">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-16 items-center">
+            <div class="grid grid-cols-2 gap-4">
+                 <div class="aspect-square bg-[#F2CC8F] rounded-3xl border-2 border-[#3D405B] overflow-hidden neo-shadow">
+                     <img src="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover">
+                 </div>
+                 <div class="aspect-square bg-[#81B29A] rounded-3xl border-2 border-[#3D405B] overflow-hidden neo-shadow mt-8">
+                     <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover">
+                 </div>
+            </div>
+            <div>
+                <h2 class="text-5xl font-black uppercase mb-8 leading-none">Not Just Your <br> <span class="bg-[#F2CC8F] px-4">Daily Ritual</span></h2>
+                <p class="text-xl leading-relaxed font-medium opacity-80 mb-8 italic">
+                    We're the noisy corner where ideas happen. No "shhh", just good tunes, great brews, and the best damn sourdough in Brisbane.
+                </p>
+                <div class="flex flex-wrap gap-4">
+                    <span class="bg-white border-2 border-[#3D405B] px-5 py-2 rounded-xl text-xs font-black uppercase neo-shadow">Open Early</span>
+                    <span class="bg-white border-2 border-[#3D405B] px-5 py-2 rounded-xl text-xs font-black uppercase neo-shadow">Dog Friendly</span>
+                    <span class="bg-white border-2 border-[#3D405B] px-5 py-2 rounded-xl text-xs font-black uppercase neo-shadow">Free Wifi</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MENU -->
+    <section id="menu" class="py-32 px-6">
+        <div class="max-w-4xl mx-auto bg-white border-4 border-[#3D405B] rounded-[3rem] p-12 md:p-20 neo-shadow-lg relative overflow-hidden">
+            <div class="absolute top-0 right-0 p-8 transform rotate-12 opacity-10">
+                <i data-lucide="utensils" class="w-40 h-40"></i>
+            </div>
+            <h2 class="text-6xl font-black uppercase mb-16 text-center italic underline decoration-[#BC6C25]">The Fuel</h2>
+            
+            <div class="space-y-12 relative z-10">
+                <div class="flex justify-between items-center group">
+                    <div>
+                        <h4 class="text-2xl font-black uppercase group-hover:text-[#BC6C25] transition-colors">THE OG FLAT WHITE</h4>
+                        <p class="text-sm opacity-50 font-bold uppercase">House Blend — Creamy & Rich</p>
+                    </div>
+                    <div class="text-3xl font-black">$6.5</div>
+                </div>
+                <div class="flex justify-between items-center group">
+                    <div>
+                        <h4 class="text-2xl font-black uppercase group-hover:text-[#BC6C25] transition-colors">BIG BATCH BREW</h4>
+                        <p class="text-sm opacity-50 font-bold uppercase">Rotating Seasonal Origin</p>
+                    </div>
+                    <div class="text-3xl font-black">$7.0</div>
+                </div>
+                <div class="flex justify-between items-center group">
+                    <div>
+                        <h4 class="text-2xl font-black uppercase group-hover:text-[#BC6C25] transition-colors">LOADED SOURDOUGH</h4>
+                        <p class="text-sm opacity-50 font-bold uppercase">Avo, Feta, Lemon & Chilli</p>
+                    </div>
+                    <div class="text-3xl font-black">$18.5</div>
+                </div>
+                <div class="flex justify-between items-center group">
+                    <div>
+                        <h4 class="text-2xl font-black uppercase group-hover:text-[#BC6C25] transition-colors">SMASHED COOKIE</h4>
+                        <p class="text-sm opacity-50 font-bold uppercase">Gooey Choc & Sea Salt</p>
+                    </div>
+                    <div class="text-3xl font-black">$5.50</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- LOCATIONS -->
+    <section id="locations" class="py-32 px-6 bg-[#3D405B] text-[#FEFAE0]">
+        <div class="max-w-7xl mx-auto text-center mb-16">
+            <h2 class="text-5xl md:text-7xl font-black uppercase italic">Find the Grind</h2>
+        </div>
+        <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-8">
+            <div class="bg-[#81B29A] text-[#3D405B] border-2 border-white p-12 rounded-[2rem] neo-shadow group">
+                <h3 class="text-3xl font-black uppercase mb-4">West End</h3>
+                <p class="font-bold opacity-80 mb-8 uppercase text-sm tracking-widest">14 Boundary St, Brisbane<br>Daily 6am — 2pm</p>
+                <div class="w-12 h-12 rounded-full border-2 border-white flex items-center justify-center group-hover:bg-white transition-colors cursor-pointer">
+                    <i data-lucide="map-pin" class="w-6 h-6"></i>
+                </div>
+            </div>
+            <div class="bg-[#F4F1DE] text-[#3D405B] border-2 border-white p-12 rounded-[2rem] neo-shadow group">
+                <h3 class="text-3xl font-black uppercase mb-4">CBD Alleyway</h3>
+                <p class="font-bold opacity-80 mb-8 uppercase text-sm tracking-widest">42 Lane Way, Downtown<br>Mon-Fri 7am — 4pm</p>
+                <div class="w-12 h-12 rounded-full border-2 border-[#3D405B] flex items-center justify-center group-hover:bg-[#3D405B] group-hover:text-white transition-colors cursor-pointer">
+                    <i data-lucide="map-pin" class="w-6 h-6"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="py-20 px-6 text-center border-t-2 border-[#3D405B]">
+        <div class="text-4xl font-black uppercase mb-8">THE GRIND CO.</div>
+        <div class="flex justify-center gap-8 mb-8 text-[#BC6C25]">
+            <i data-lucide="instagram" class="w-6 h-6"></i>
+            <i data-lucide="facebook" class="w-6 h-6"></i>
+            <i data-lucide="twitter" class="w-6 h-6"></i>
+        </div>
+        <p class="text-[10px] uppercase font-black tracking-widest opacity-40 italic">Stay Caffeinated. All Rights Reserved 2024.</p>
+    </footer>
+
+    <script>lucide.createIcons();</script>
+</body>
+</html>
