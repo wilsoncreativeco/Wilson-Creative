@@ -215,7 +215,6 @@ Whether you're local or operating globally, we work with clients anywhere to cre
     }}
   />
 </div>
-  </div>
   <div className="work-item">Coming Soon</div>
   <div className="work-item">Coming Soon</div>
   <div className="work-item">Coming Soon</div>
