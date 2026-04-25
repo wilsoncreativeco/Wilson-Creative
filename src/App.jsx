@@ -205,22 +205,23 @@ export default function App() {
         </p>
         <div className="work-grid">
           <div className="work-item" style={{ padding: 0, overflow: "hidden", position: "relative" }}>
-            <iframe
-              src="/meridian.html"
-              title="Your Agency — Real Estate Mockup"
-              scrolling="no"
-              style={{
-                position: "absolute",
-                top: 0,
-                left: 0,
-                width: "200%",
-                height: "200%",
-                border: "none",
-                transform: "scale(0.5)",
-                transformOrigin: "top left",
-                pointerEvents: "none",
-              }}
-            />
+           <iframe
+  src="/meridian.html"
+  title="Your Agency — Real Estate Mockup"
+  scrolling="no"
+  className="work-iframe"
+  style={{
+    position: "absolute",
+    top: 0,
+    left: 0,
+    width: "200%",
+    height: "200%",
+    border: "none",
+    transform: "scale(0.5)",
+    transformOrigin: "top left",
+    pointerEvents: "none",
+  }}
+/>
           </div>
           <div className="work-item">Coming Soon</div>
           <div className="work-item">Coming Soon</div>
