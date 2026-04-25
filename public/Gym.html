@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Gym | Performance Architecture</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;900&family=Playfair+Display:ital,wght@1,400;1,700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body { font-family: 'Inter', sans-serif; color: white; background-color: black; -webkit-font-smoothing: antialiased; }
+        h1, h2, h3, .serif { font-family: 'Playfair Display', serif; }
+        .text-outline { -webkit-text-stroke: 1px white; color: transparent; }
+    </style>
+</head>
+<body class="overflow-x-hidden">
+    <nav class="fixed top-0 w-full z-50 px-10 py-8 flex justify-between items-center transition-all duration-500">
+        <div class="flex items-center gap-3">
+            <div class="w-10 h-10 bg-white text-black flex items-center justify-center rounded-sm font-bold font-sans">Y.G</div>
+            <span class="serif text-2xl tracking-[0.1em] italic uppercase italic">Your Gym</span>
+        </div>
+        <div class="hidden lg:flex gap-16 text-[9px] uppercase tracking-[0.5em] font-black opacity-30 font-sans">
+            <a href="#suites">Suites</a>
+            <a href="#stats">Performance</a>
+            <a href="#join">Membership</a>
+        </div>
+        <button class="border border-white/20 px-8 py-3 rounded-full text-[11px] font-black uppercase tracking-widest hover:bg-white hover:text-black transition-all font-sans">Apply</button>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="h-screen relative flex items-center px-10 overflow-hidden">
+        <div class="absolute inset-0">
+            <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&q=80&w=1920" class="w-full h-full object-cover grayscale brightness-50">
+        </div>
+        <div class="relative z-10 w-full text-center md:text-left">
+            <h2 class="text-[#D4AF37] uppercase tracking-[0.6em] text-xs font-black mb-8 italic font-sans">Performance Architecture</h2>
+            <h1 class="text-[12vw] serif italic leading-[0.8] mb-12 tracking-tighter italic">Fewer,<br><span class="text-outline italic">Better,</span><br>Stronger.</h1>
+            <p class="max-w-sm text-white/40 font-light leading-relaxed text-sm italic tracking-widest uppercase font-sans">An exclusive collective for high-performance individuals.</p>
+        </div>
+    </section>
+
+    <!-- STORY SECTION -->
+    <section id="suites" class="py-40 bg-[#080808] px-10">
+        <div class="max-w-7xl mx-auto flex flex-col lg:flex-row gap-20 items-end">
+            <div class="flex-1">
+                <span class="text-luxury-gold uppercase tracking-[0.5em] text-[10px] font-black mb-12 block italic font-sans">The Philosophy</span>
+                <h2 class="text-6xl md:text-8xl serif italic leading-tight italic">Total <br> Immersion.</h2>
+            </div>
+            <div class="flex-1 pb-10">
+                <p class="text-white/40 text-xl font-light leading-relaxed italic mb-12">
+                   Every element is optimized for peak human output. From medically-graded air filtration to circadian-responsive lighting that tracks your natural biological rhythm for absolute focus.
+                </p>
+                <div class="flex gap-8 border-t border-white/10 pt-12">
+                    <div>
+                        <h4 class="text-2xl serif italic mb-2 italic">Elite Bio</h4>
+                        <p class="text-[9px] uppercase font-black tracking-widest text-[#D4AF37] font-sans">Monitoring</p>
+                    </div>
+                    <div>
+                        <h4 class="text-2xl serif italic mb-2 italic">Private</h4>
+                        <p class="text-[9px] uppercase font-black tracking-widest text-[#D4AF37] font-sans">Suites</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DATA SECTION GRID -->
+    <section id="stats" class="py-40 bg-zinc-950 px-10 text-center border-y border-white/5">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-3 gap-20">
+            <div>
+                 <span class="text-8xl md:text-[10rem] font-serif italic text-outline opacity-20 italic">98</span>
+                 <p class="text-[10px] uppercase font-black tracking-[0.5em] text-[#D4AF37] mt-8 italic font-sans">Client Success Rate</p>
+            </div>
+            <div>
+                 <span class="text-8xl md:text-[10rem] font-serif italic text-outline opacity-20 italic">05</span>
+                 <p class="text-[10px] uppercase font-black tracking-[0.5em] text-[#D4AF37] mt-8 italic font-sans">Member Cap Weekly</p>
+            </div>
+            <div>
+                 <span class="text-8xl md:text-[10rem] font-serif italic text-outline opacity-20 italic">24</span>
+                 <p class="text-[10px] uppercase font-black tracking-[0.5em] text-[#D4AF37] mt-8 italic font-sans">Hour Performance Concierge</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- AMENITIES SECTION -->
+    <section class="py-40 px-10">
+        <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-8">
+            <div class="bg-zinc-900 rounded-[50px] overflow-hidden group min-h-[400px]">
+                 <img src="https://images.unsplash.com/photo-1540497077202-7c8a3999166f?auto=format&fit=crop&q=80&w=1200" class="w-full h-full object-cover transition-all duration-1000 grayscale group-hover:grayscale-0 group-hover:scale-105">
+            </div>
+            <div class="flex flex-col justify-center lg:pl-20 py-20">
+                 <h3 class="text-5xl serif italic mb-8 italic italic">The Restoration Suite.</h3>
+                 <p class="text-white/40 font-light text-lg mb-12 italic">
+                    Finish every session in our state-of-the-art recovery wing. Featuring zero-gravity cryotherapy, infrared salt saunas, and hyperbaric oxygen chambers.
+                 </p>
+                 <button class="w-fit border-b border-[#D4AF37] pb-2 text-[10px] font-black uppercase tracking-[0.3em] hover:text-[#D4AF37] transition-all font-sans">Explore Recovery</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- JOIN SECTION -->
+    <section id="join" class="py-40 px-10 bg-[#D4AF37] text-black text-center">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-7xl md:text-[8rem] serif italic leading-[0.8] mb-12 tracking-tighter italic">Qualified <br> Access.</h2>
+            <p class="text-xs uppercase font-black tracking-[0.5em] mb-12 opacity-60 font-sans">Membership is strictly limited and by application only.</p>
+            <button class="bg-black text-white px-20 py-8 text-[11px] font-black uppercase tracking-[0.3em] hover:scale-105 transition-transform font-sans">Begin Application</button>
+        </div>
+    </section>
+
+    <footer class="py-20 px-10 text-center opacity-20 bg-black">
+        <div class="serif text-xl italic uppercase mb-4 italic">Your Gym</div>
+        <p class="text-[9px] uppercase tracking-[0.5em] font-sans">© 2024. Absolute Excellence. Built for Elite Performance.</p>
+    </footer>
+
+    <script>lucide.createIcons();</script>
+</body>
+</html>

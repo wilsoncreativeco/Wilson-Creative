@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Plumbing | Luxury Infrastructure</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body { font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; }
+        h1, h2, h3, .serif { font-family: 'Playfair Display', serif; }
+        .glass { background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(0,0,0,0.05); }
+    </style>
+</head>
+<body class="bg-white text-slate-900 overflow-x-hidden">
+    <nav class="fixed top-0 w-full z-50 px-6 py-4 flex justify-between items-center glass">
+        <div class="flex items-center gap-2">
+            <i data-lucide="droplet" class="w-6 h-6"></i>
+            <span class="serif text-xl font-bold">Your Plumbing</span>
+        </div>
+        <div class="hidden md:flex gap-10 text-[10px] uppercase tracking-[0.3em] font-bold opacity-40 font-sans">
+            <a href="#about" class="hover:opacity-100 transition-opacity">About</a>
+            <a href="#services" class="hover:opacity-100 transition-opacity">Services</a>
+            <a href="#gallery" class="hover:opacity-100 transition-opacity">Gallery</a>
+        </div>
+        <button class="bg-black text-white px-6 py-2 rounded-full text-xs font-bold uppercase tracking-widest font-sans">Book Now</button>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="relative h-screen flex items-center justify-center text-center px-6">
+        <div class="absolute inset-0">
+            <div class="absolute inset-0 bg-black/40 z-10"></div>
+            <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&q=80&w=1920" class="w-full h-full object-cover">
+        </div>
+        <div class="relative z-20 max-w-4xl">
+            <span class="text-white/80 uppercase tracking-[0.4em] text-xs font-medium mb-4 block font-sans">Precision Engineering</span>
+            <h1 class="text-white text-6xl md:text-8xl mb-8 leading-[1.1]">The Art of <br> <span class="italic">Fluid Infrastructure</span></h1>
+            <p class="text-white/70 text-lg max-w-xl mx-auto mb-10 font-light">Elevating essential services into architectural excellence. Bespoke plumbing for high-end residences.</p>
+        </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section id="about" class="py-32 px-6 bg-slate-50">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-20 items-center">
+            <div class="relative rounded-[40px] overflow-hidden aspect-[4/5] shadow-2xl">
+                 <img src="https://images.unsplash.com/photo-1620626011761-9963d7521476?auto=format&fit=crop&q=80&w=1200" class="w-full h-full object-cover">
+                 <div class="absolute bottom-10 left-10 glass p-8 rounded-3xl max-w-xs transition-transform hover:scale-105">
+                     <span class="text-[10px] uppercase font-bold tracking-widest text-slate-400 mb-2 block font-sans">Our Standard</span>
+                     <h4 class="serif text-2xl mb-2 italic">Zero Friction</h4>
+                     <p class="text-xs font-light text-slate-500">Every installation is pressure-tested beyond industry requirements for absolute peace of mind.</p>
+                 </div>
+            </div>
+            <div>
+                <span class="text-slate-400 uppercase tracking-widest text-xs font-bold mb-6 block font-sans">Our Heritage</span>
+                <h2 class="text-5xl md:text-6xl serif italic mb-8 leading-tight">Craftsmanship <br> that flows.</h2>
+                <p class="text-slate-600 text-lg leading-relaxed font-light mb-8">
+                    Since 1994, Your Plumbing has redefined the relationship between utility and luxury. We approach pipes and fixtures as elements of architectural significance. 
+                </p>
+                <div class="grid grid-cols-2 gap-8 py-8 border-t border-slate-200">
+                    <div>
+                        <h5 class="serif text-xl mb-2 italic">25+ Years</h5>
+                        <p class="text-[9px] text-slate-400 font-bold uppercase tracking-widest font-sans">Industry Leadership</p>
+                    </div>
+                    <div>
+                        <h5 class="serif text-xl mb-2 italic">Premium Only</h5>
+                        <p class="text-[9px] text-slate-400 font-bold uppercase tracking-widest font-sans">Bespoke Materials</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICES SECTION -->
+    <section id="services" class="py-32 px-6 bg-white text-center">
+        <div class="max-w-7xl mx-auto">
+            <span class="text-slate-300 uppercase tracking-[0.5em] text-[10px] font-black mb-12 block font-sans">Bespoke Solutions</span>
+            <div class="grid md:grid-cols-3 gap-12 text-left">
+                <div class="p-12 bg-slate-50 rounded-[40px] hover:bg-slate-100 transition-colors">
+                    <i data-lucide="shield" class="w-10 h-10 mb-8 text-slate-900 opacity-20"></i>
+                    <h3 class="serif text-3xl mb-4 italic">Residential Elite</h3>
+                    <p class="text-slate-500 font-light leading-relaxed">Full system design and implementation for modern high-end architectural homes.</p>
+                </div>
+                <div class="p-12 bg-slate-50 rounded-[40px] hover:bg-slate-100 transition-colors">
+                    <i data-lucide="settings" class="w-10 h-10 mb-8 text-slate-900 opacity-20"></i>
+                    <h3 class="serif text-3xl mb-4 italic">Smart Tech</h3>
+                    <p class="text-slate-500 font-light leading-relaxed">Integrated leak detection, thermal management, and digital water filtration systems.</p>
+                </div>
+                <div class="p-12 bg-slate-50 rounded-[40px] hover:bg-slate-100 transition-colors">
+                    <i data-lucide="droplet" class="w-10 h-10 mb-8 text-slate-900 opacity-20"></i>
+                    <h3 class="serif text-3xl mb-4 italic text-balance">Master Fixtures</h3>
+                    <p class="text-slate-500 font-light leading-relaxed">Exclusive sourcing and installation of the world's most luxurious bathroom hardware.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- GALLERY SECTION -->
+    <section id="gallery" class="py-32 px-6 bg-black text-white">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex justify-between items-end mb-20">
+                <h2 class="text-5xl md:text-7xl serif italic leading-none">The Portfolio.</h2>
+                <span class="text-[10px] uppercase tracking-widest opacity-40 font-sans">View Projects — 012</span>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="aspect-square bg-white/5 rounded-[40px] overflow-hidden group">
+                    <img src="https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?auto=format&fit=crop&q=80&w=1200" class="w-full h-full object-cover grayscale opacity-50 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-1000 scale-105 group-hover:scale-100">
+                </div>
+                <div class="aspect-square bg-white/5 rounded-[40px] overflow-hidden group">
+                    <img src="https://images.unsplash.com/photo-1620626011761-9963d7521476?auto=format&fit=crop&q=80&w=1200" class="w-full h-full object-cover grayscale opacity-50 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-1000 scale-105 group-hover:scale-100">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA SECTION -->
+    <section class="py-40 px-6 bg-slate-50 text-center">
+        <div class="max-w-3xl mx-auto">
+            <h2 class="text-5xl md:text-7xl serif italic mb-12 italic">Begin your <br> <span class="opacity-30">Infrastructure Journey</span></h2>
+            <p class="text-slate-500 text-lg font-light mb-12">Consult with our lead engineers today to discuss your vision.</p>
+            <button class="bg-black text-white px-12 py-5 rounded-full font-bold uppercase text-xs tracking-widest hover:scale-105 transition-transform font-sans">Request Consultation</button>
+        </div>
+    </section>
+
+    <footer class="bg-white border-t border-slate-100 py-20 px-6 text-center">
+        <div class="flex items-center justify-center gap-2 mb-8">
+            <i data-lucide="droplet" class="w-6 h-6"></i>
+            <span class="serif text-2xl font-bold italic">Your Plumbing</span>
+        </div>
+        <p class="text-slate-400 text-[10px] uppercase font-bold tracking-[0.5em] font-sans">© 2024. The luxury standard in fluid design.</p>
+    </footer>
+
+    <script>lucide.createIcons();</script>
+</body>
+</html>
