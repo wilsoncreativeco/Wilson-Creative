@@ -69,30 +69,33 @@ export default function App() {
       window.removeEventListener("scroll", onScroll);
       observer.disconnect();
       clearTimeout(timer);
+    };
+  }, []);
+
   useEffect(() => {
-  const frames = document.querySelectorAll(".work-iframe");
-  const scrollers = [];
+    const frames = document.querySelectorAll(".work-iframe");
+    const scrollers = [];
 
-  frames.forEach((frame) => {
-    frame.addEventListener("load", () => {
-      const doc = frame.contentDocument || frame.contentWindow.document;
-      let pos = 0;
-      let direction = 1;
-      const maxScroll = doc.body.scrollHeight - doc.documentElement.clientHeight;
+    frames.forEach((frame) => {
+      frame.addEventListener("load", () => {
+        const doc = frame.contentDocument || frame.contentWindow.document;
+        let pos = 0;
+        let direction = 1;
+        const maxScroll = doc.body.scrollHeight - doc.documentElement.clientHeight;
 
-      const scroller = setInterval(() => {
-        pos += 0.8 * direction;
-        if (pos >= maxScroll) direction = -1;
-        if (pos <= 0) direction = 1;
-        frame.contentWindow.scrollTo(0, pos);
-      }, 16);
+        const scroller = setInterval(() => {
+          pos += 0.8 * direction;
+          if (pos >= maxScroll) direction = -1;
+          if (pos <= 0) direction = 1;
+          frame.contentWindow.scrollTo(0, pos);
+        }, 16);
 
-      scrollers.push(scroller);
+        scrollers.push(scroller);
+      });
     });
-  });
 
-  return () => scrollers.forEach(clearInterval);
-}, []);
+    return () => scrollers.forEach(clearInterval);
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -205,25 +208,43 @@ export default function App() {
         </p>
         <div className="work-grid">
           <div className="work-item" style={{ padding: 0, overflow: "hidden", position: "relative" }}>
-           <iframe
-  src="/meridian.html"
-  title="Your Agency — Real Estate Mockup"
-  scrolling="no"
-  className="work-iframe"
-  style={{
-    position: "absolute",
-    top: 0,
-    left: 0,
-    width: "200%",
-    height: "200%",
-    border: "none",
-    transform: "scale(0.5)",
-    transformOrigin: "top left",
-    pointerEvents: "none",
-  }}
-/>
+            <iframe
+              src="/meridian.html"
+              title="Your Agency — Real Estate Mockup"
+              scrolling="no"
+              className="work-iframe"
+              style={{
+                position: "absolute",
+                top: 0,
+                left: 0,
+                width: "200%",
+                height: "200%",
+                border: "none",
+                transform: "scale(0.5)",
+                transformOrigin: "top left",
+                pointerEvents: "none",
+              }}
+            />
           </div>
-          <div className="work-item">Coming Soon</div>
+          <div className="work-item" style={{ padding: 0, overflow: "hidden", position: "relative" }}>
+            <iframe
+              src="/barber.html"
+              title="Barber Mockup"
+              scrolling="no"
+              className="work-iframe"
+              style={{
+                position: "absolute",
+                top: 0,
+                left: 0,
+                width: "200%",
+                height: "200%",
+                border: "none",
+                transform: "scale(0.5)",
+                transformOrigin: "top left",
+                pointerEvents: "none",
+              }}
+            />
+          </div>
           <div className="work-item">Coming Soon</div>
           <div className="work-item">Coming Soon</div>
         </div>
