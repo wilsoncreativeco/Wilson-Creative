@@ -197,12 +197,27 @@ Whether you're local or operating globally, we work with clients anywhere to cre
           capture attention.
         </p>
 
-        <div className="work-grid">
-          <div className="work-item">Coming Soon</div>
-          <div className="work-item">Coming Soon</div>
-          <div className="work-item">Coming Soon</div>
-          <div className="work-item">Coming Soon</div>
-        </div>
+      <div className="work-grid">
+  <div className="work-item" style={{ padding: 0, overflow: "hidden" }}>
+    <iframe
+      src="/meridian.html"
+      title="Meridian Property"
+      scrolling="no"
+      style={{
+        width: "160%",
+        height: "160%",
+        border: "none",
+        transform: "scale(0.625)",
+        transformOrigin: "top left",
+        pointerEvents: "none",
+        borderRadius: "16px",
+      }}
+    />
+  </div>
+  <div className="work-item">Coming Soon</div>
+  <div className="work-item">Coming Soon</div>
+  <div className="work-item">Coming Soon</div>
+</div>
       </section>
       {showModal && (
         <div className="modal">
