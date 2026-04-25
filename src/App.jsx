@@ -221,10 +221,9 @@ export default function App() {
       </section>
 
       <section id="work" className="section work">
-        <h2>Our Work</h2>
+        <h2>Sample Builds</h2>
         <p className="text">
-          A selection of cinematic projects crafted to elevate brands and
-          capture attention.
+        High-performance sample builds demonstrating what we can create for your brand.
         </p>
         <div className="work-grid">
           <div className="work-item" style={{ padding: 0, overflow: "hidden", position: "relative" }}>
