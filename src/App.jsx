@@ -1,10 +1,5 @@
-/**
- * @license
- * SPDX-License-Identifier: Apache-2.0
- */
-
-import "./App.css"; // Ensure this file exists in your project
-import { useState, useEffect, useRef } from "react";
+import "./App.css";
+import { useState, useEffect } from "react";
 
 const services = [
   { title: "Web Design & Development", status: "" },
@@ -20,14 +15,15 @@ export default function App() {
   const [loaded, setLoaded] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [submitted, setSubmitted] = useState(false);
-  const workGridRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const timer = setTimeout(() => setLoaded(true), 300);
     const sections = document.querySelectorAll(".section");
-    const video = document.querySelector(".hero-video") as HTMLVideoElement;
-    const overlay = document.querySelector(".overlay") as HTMLDivElement;
-    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const video = document.querySelector(".hero-video");
+    const overlay = document.querySelector(".overlay");
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -76,42 +72,34 @@ export default function App() {
     };
   }, []);
 
-  // Fixed Iframe Auto-Scroll logic
   useEffect(() => {
-    const frames = document.querySelectorAll(".work-iframe") as NodeListOf<HTMLIFrameElement>;
+  const frames = document.querySelectorAll(".work-iframe");
 
-    frames.forEach((frame) => {
-      let scroller: any = null;
-      let pos = 0;
+  frames.forEach((frame) => {
+    let scroller = null;
+    let pos = 0;
 
-      const startScroll = () => {
-        scroller = setInterval(() => {
-          if (frame.contentWindow) {
-            pos += 1.5;
-            frame.contentWindow.scrollTo(0, pos);
-          }
-        }, 16);
-      };
+    const startScroll = () => {
+      scroller = setInterval(() => {
+        pos += 1.5;
+        frame.contentWindow.scrollTo(0, pos);
+      }, 16);
+    };
 
-      const stopScroll = () => {
-        clearInterval(scroller);
-        pos = 0;
-        if (frame.contentWindow) {
-          frame.contentWindow.scrollTo(0, 0);
-        }
-      };
+    const stopScroll = () => {
+      clearInterval(scroller);
+      pos = 0;
+      frame.contentWindow.scrollTo(0, 0);
+    };
 
-      const parent = frame.parentElement;
-      if (parent) {
-        parent.addEventListener("mouseenter", startScroll);
-        parent.addEventListener("mouseleave", stopScroll);
-      }
-    });
-  }, [loaded]);
+    frame.parentElement.addEventListener("mouseenter", startScroll);
+    frame.parentElement.addEventListener("mouseleave", stopScroll);
+  });
+}, []);
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const form = e.currentTarget;
+    const form = e.target;
     const data = new FormData(form);
     const response = await fetch(form.action, {
       method: "POST",
@@ -128,41 +116,42 @@ export default function App() {
     }
   };
 
-  const iframeStyle: React.CSSProperties = {
-    position: "absolute",
-    top: 0,
-    left: 0,
-    width: "200%",
-    height: "200%",
-    border: "none",
-    transform: "scale(0.5)",
-    transformOrigin: "top left",
-    pointerEvents: "none",
-  };
-
   return (
     <>
-      <div className="watermark font-bold tracking-[1em] fixed top-10 left-10 opacity-10 z-0 pointer-events-none text-xs">WILSON CREATIVE CO.</div>
-      
-      <div className={`hero relative h-screen overflow-hidden ${loaded ? "loaded" : ""}`}>
-        <video autoPlay muted loop playsInline preload="auto" className="hero-video absolute inset-0 w-full h-full object-cover">
+      <div className="watermark">WILSON CREATIVE CO.</div>
+      <div className={`hero ${loaded ? "loaded" : ""}`}>
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
+          poster="/fallback.jpg"
+          className="hero-video"
+        >
           <source src="/hero.mp4" type="video/mp4" />
         </video>
-        <div className="overlay absolute inset-0 bg-black/40" />
 
-        <div className="hero-content relative z-10 flex flex-col items-center justify-center h-full text-center px-6 text-white">
-          <p className="hero-kicker uppercase tracking-widest text-sm mb-4 opacity-80">Wilson Creative Co.</p>
-          <h1 className="text-5xl md:text-7xl font-serif mb-6 italic">Creative Media & Production</h1>
-          <p className="sub text-lg opacity-70 max-w-2xl mx-auto">
+        <div className="overlay" />
+
+        <div className="hero-content">
+          <p className="hero-kicker">Wilson Creative Co.</p>
+          <h1>Creative Media & Production</h1>
+          <p className="sub">
             Cinematic content designed to elevate brands and capture attention.
           </p>
-          <div className="buttons mt-10 flex gap-4">
-            <button className="primary bg-white text-black px-8 py-4 rounded-full font-bold hover:scale-105 transition-transform" onClick={() => setShowModal(true)}>
+          <div className="buttons">
+            <button className="primary" onClick={() => setShowModal(true)}>
               Contact Now
             </button>
             <button
-              className="secondary border border-white/30 px-8 py-4 rounded-full font-bold backdrop-blur-md hover:bg-white/10"
-              onClick={() => document.getElementById("work")?.scrollIntoView({ behavior: "smooth" })}
+              className="secondary"
+              onClick={() => {
+                const section = document.getElementById("work");
+                if (section) {
+                  section.scrollIntoView({ behavior: "smooth", block: "start" });
+                }
+              }}
             >
               View Work
             </button>
@@ -170,61 +159,163 @@ export default function App() {
         </div>
       </div>
 
-      <section className="section py-32 px-6 max-w-7xl mx-auto">
-        <h2 className="text-4xl font-serif italic mb-16">Featured Services</h2>
-        <div className="services grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <section className="section what-we-do">
+        <h2>Featured Services</h2>
+        <div className="services">
           {services.map((service) => (
-            <article key={service.title} className="service-item p-8 bg-slate-50 rounded-3xl border border-slate-100">
-              <h3 className="text-xl font-bold mb-2">{service.title}</h3>
-              {service.status && (
-                <span className={`text-[10px] uppercase font-black tracking-widest px-3 py-1 rounded-full ${service.status === "Coming soon" ? "bg-slate-200 text-slate-500" : ""}`}>
+            <article key={service.title} className="service-item">
+              <h3>{service.title}</h3>
+              {service.status ? (
+                <span className={`service-status ${service.status === "Coming soon" ? "soon" : ""}`}>
                   {service.status}
                 </span>
-              )}
+              ) : null}
             </article>
           ))}
         </div>
+        <p className="sub">
+          Premium production and strategy in one team, built to make your brand
+          look elevated and perform online.
+        </p>
       </section>
 
-      <section id="work" className="section py-32 bg-black text-white">
-        <div className="max-w-7xl mx-auto px-6">
-          <h2 className="text-4xl font-serif italic mb-4">Our Work</h2>
-          <p className="text-white/50 mb-16">A selection of cinematic projects crafted to elevate brands.</p>
-          
-          <div className="work-grid grid md:grid-cols-2 gap-8">
-            {["meridian", "barber", "cafe", "plumbing"].map((site) => (
-              <div key={site} className="work-item aspect-video rounded-3xl overflow-hidden relative group cursor-pointer bg-white/5">
-                <iframe
-                  src={`/${site}.html`}
-                  title={`${site} Mockup`}
-                  scrolling="no"
-                  className="work-iframe"
-                  style={iframeStyle}
-                />
-                <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors pointer-events-none" />
-              </div>
-            ))}
+      <section className="section statement">
+        <h1>
+          We don&apos;t just create content.
+          <br />
+          We create presence.
+        </h1>
+      </section>
+
+      <section className="section">
+        <h2>Why Creative Co.</h2>
+        <p className="text">
+          We&apos;re a Brisbane-based creative studio delivering high-performance
+          content and fully custom-coded websites for brands that want to stand
+          out. Every project is built from the ground up—no templates, no
+          limitations—giving you complete control, faster performance, and a
+          solution tailored exactly to your business. Whether you&apos;re local or
+          operating globally, we work with clients anywhere to create digital
+          experiences that not only look premium, but drive real results.
+        </p>
+      </section>
+
+      <section id="work" className="section work">
+        <h2>Our Work</h2>
+        <p className="text">
+          A selection of cinematic projects crafted to elevate brands and
+          capture attention.
+        </p>
+        <div className="work-grid">
+          <div className="work-item" style={{ padding: 0, overflow: "hidden", position: "relative" }}>
+            <iframe
+              src="/meridian.html"
+              title="Your Agency — Real Estate Mockup"
+              scrolling="no"
+              className="work-iframe"
+              style={{
+                position: "absolute",
+                top: 0,
+                left: 0,
+                width: "200%",
+                height: "200%",
+                border: "none",
+                transform: "scale(0.5)",
+                transformOrigin: "top left",
+                pointerEvents: "none",
+              }}
+            />
           </div>
+          <div className="work-item" style={{ padding: 0, overflow: "hidden", position: "relative" }}>
+            <iframe
+              src="/barber.html"
+              title="Barber Mockup"
+              scrolling="no"
+              className="work-iframe"
+              style={{
+                position: "absolute",
+                top: 0,
+                left: 0,
+                width: "200%",
+                height: "200%",
+                border: "none",
+                transform: "scale(0.5)",
+                transformOrigin: "top left",
+                pointerEvents: "none",
+              }}
+            />
+          </div>
+            <div className="work-item" style={{ padding: 0, overflow: "hidden", position: "relative" }}>
+            <iframe
+              src="/Plumbing.html"
+              title="Barber Mockup"
+              scrolling="no"
+              className="work-iframe"
+              style={{
+                position: "absolute",
+                top: 0,
+                left: 0,
+                width: "200%",
+                height: "200%",
+                border: "none",
+                transform: "scale(0.5)",
+                transformOrigin: "top left",
+                pointerEvents: "none",
+              }}
+            />
+          </div>
+            <div className="work-item" style={{ padding: 0, overflow: "hidden", position: "relative" }}>
+            <iframe
+              src="/Cafe.html"
+              title="Barber Mockup"
+              scrolling="no"
+              className="work-iframe"
+              style={{
+                position: "absolute",
+                top: 0,
+                left: 0,
+                width: "200%",
+                height: "200%",
+                border: "none",
+                transform: "scale(0.5)",
+                transformOrigin: "top left",
+                pointerEvents: "none",
+              }}
+            />
         </div>
       </section>
 
       {showModal && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center p-6 bg-black/60 backdrop-blur-sm">
-          <div className="bg-white rounded-[2rem] p-10 w-full max-w-lg relative">
-            <button className="absolute top-6 right-6 text-2xl" onClick={() => setShowModal(false)}>×</button>
+        <div className="modal">
+          <div className="modal-content">
+            <button className="close" onClick={() => setShowModal(false)}>
+              ×
+            </button>
             {submitted ? (
-              <div className="text-center py-10">
-                <h2 className="text-3xl font-serif italic">Message Sent</h2>
-                <p className="opacity-60 mt-4">We'll get back to you shortly.</p>
-              </div>
+              <>
+                <h2>Message Sent</h2>
+                <p style={{ opacity: 0.7, marginTop: "10px" }}>
+                  We&apos;ll get back to you shortly.
+                </p>
+              </>
             ) : (
               <>
-                <h2 className="text-3xl font-serif italic mb-8">Start a Project</h2>
-                <form action="https://formspree.io/f/xojywkwo" method="POST" onSubmit={handleSubmit} className="flex flex-col gap-4">
-                  <input className="p-4 bg-slate-50 rounded-xl outline-none focus:ring-1 ring-black/10" type="text" name="name" placeholder="Name" required />
-                  <input className="p-4 bg-slate-50 rounded-xl outline-none focus:ring-1 ring-black/10" type="email" name="email" placeholder="Email" required />
-                  <textarea className="p-4 bg-slate-50 rounded-xl outline-none focus:ring-1 ring-black/10 h-32" name="message" placeholder="Tell us about your project" required />
-                  <button type="submit" className="bg-black text-white py-4 rounded-xl font-bold mt-4 hover:bg-slate-800">Send</button>
+                <h2>Start a Project</h2>
+                <form
+                  action="https://formspree.io/f/xojywkwo"
+                  method="POST"
+                  onSubmit={handleSubmit}
+                >
+                  <input type="text" name="name" placeholder="Name" required />
+                  <input type="email" name="email" placeholder="Email" required />
+                  <textarea
+                    name="message"
+                    placeholder="Tell us about your project"
+                    required
+                  ></textarea>
+                  <button type="submit" className="primary">
+                    Send
+                  </button>
                 </form>
               </>
             )}
@@ -235,4 +326,5 @@ export default function App() {
   );
 }
 
+      
       
