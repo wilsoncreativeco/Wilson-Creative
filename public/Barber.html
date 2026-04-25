@@ -1,0 +1,657 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Barber Luxury Template</title>
+
+    <style>
+      :root {
+        --ink: #080807;
+        --charcoal: #11100f;
+        --ash: #1b1917;
+        --ivory: #f7f2ea;
+        --muted: rgba(247, 242, 234, 0.72);
+        --soft: rgba(247, 242, 234, 0.1);
+        --line: rgba(247, 242, 234, 0.16);
+        --accent: #c8a96a;
+        --accent-dark: #8d7041;
+        --shadow: rgba(0, 0, 0, 0.45);
+        --font: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        --max: 1180px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        background: var(--ink);
+        color: var(--ivory);
+        font-family: var(--font);
+        margin: 0;
+        overflow-x: hidden;
+      }
+
+      button,
+      input,
+      select,
+      textarea {
+        font: inherit;
+      }
+
+      .topbar {
+        align-items: center;
+        display: flex;
+        justify-content: space-between;
+        left: 50%;
+        max-width: var(--max);
+        padding: 24px;
+        position: fixed;
+        top: 0;
+        transform: translateX(-50%);
+        width: 100%;
+        z-index: 20;
+      }
+
+      .brand {
+        color: var(--ivory);
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 4px;
+        text-transform: uppercase;
+      }
+
+      .nav {
+        align-items: center;
+        display: flex;
+        gap: 24px;
+      }
+
+      .nav a {
+        color: var(--muted);
+        font-size: 13px;
+        text-decoration: none;
+      }
+
+      .nav a:hover {
+        color: var(--ivory);
+      }
+
+      .nav .book-link {
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        color: var(--ivory);
+        padding: 10px 16px;
+      }
+
+      .hero {
+        min-height: 100vh;
+        overflow: hidden;
+        position: relative;
+      }
+
+      .hero::before {
+        background:
+          linear-gradient(90deg, rgba(8, 8, 7, 0.92) 0%, rgba(8, 8, 7, 0.68) 42%, rgba(8, 8, 7, 0.18) 100%),
+          url("https://images.unsplash.com/photo-1585747860715-2ba37e788b70?auto=format&fit=crop&w=1900&q=85") center/cover;
+        content: "";
+        inset: 0;
+        position: absolute;
+        transform: scale(1.02);
+      }
+
+      .hero::after {
+        background: linear-gradient(to bottom, rgba(8, 8, 7, 0) 68%, var(--ink) 100%);
+        content: "";
+        inset: 0;
+        position: absolute;
+      }
+
+      .hero-inner {
+        align-items: center;
+        display: grid;
+        grid-template-columns: minmax(0, 0.95fr) minmax(280px, 0.55fr);
+        gap: 48px;
+        margin: 0 auto;
+        max-width: var(--max);
+        min-height: 100vh;
+        padding: 120px 24px 80px;
+        position: relative;
+        z-index: 2;
+      }
+
+      .eyebrow {
+        color: var(--accent);
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 4px;
+        margin: 0 0 18px;
+        text-transform: uppercase;
+      }
+
+      h1 {
+        font-size: clamp(3.4rem, 8vw, 7.6rem);
+        font-weight: 500;
+        letter-spacing: 0;
+        line-height: 0.92;
+        margin: 0;
+        max-width: 760px;
+      }
+
+      .hero-copy {
+        color: var(--muted);
+        font-size: 1.08rem;
+        line-height: 1.8;
+        margin: 28px 0 0;
+        max-width: 560px;
+      }
+
+      .hero-actions {
+        display: flex;
+        gap: 14px;
+        margin-top: 34px;
+      }
+
+      .button {
+        align-items: center;
+        border: 0;
+        border-radius: 999px;
+        cursor: pointer;
+        display: inline-flex;
+        font-weight: 700;
+        justify-content: center;
+        min-height: 48px;
+        min-width: 150px;
+        padding: 0 24px;
+        text-decoration: none;
+        transition: transform 0.24s ease, border 0.24s ease, background 0.24s ease;
+      }
+
+      .button:hover {
+        transform: translateY(-2px);
+      }
+
+      .button-primary {
+        background: var(--ivory);
+        color: var(--ink);
+      }
+
+      .button-secondary {
+        background: rgba(247, 242, 234, 0.08);
+        border: 1px solid var(--line);
+        color: var(--ivory);
+      }
+
+      .status-card {
+        align-self: end;
+        background: rgba(17, 16, 15, 0.72);
+        backdrop-filter: blur(18px);
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        box-shadow: 0 24px 80px var(--shadow);
+        padding: 24px;
+      }
+
+      .status-card p {
+        color: var(--muted);
+        line-height: 1.6;
+        margin: 0;
+      }
+
+      .status-row {
+        border-top: 1px solid var(--line);
+        display: flex;
+        justify-content: space-between;
+        margin-top: 20px;
+        padding-top: 18px;
+      }
+
+      .status-row span {
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      .status-row strong {
+        color: var(--ivory);
+        font-size: 13px;
+      }
+
+      .section {
+        padding: 110px 24px;
+        position: relative;
+      }
+
+      .section-inner {
+        margin: 0 auto;
+        max-width: var(--max);
+      }
+
+      .section-heading {
+        align-items: end;
+        display: grid;
+        gap: 24px;
+        grid-template-columns: minmax(0, 0.8fr) minmax(260px, 0.5fr);
+        margin-bottom: 48px;
+      }
+
+      h2 {
+        font-size: clamp(2.4rem, 5vw, 4.8rem);
+        font-weight: 500;
+        letter-spacing: 0;
+        line-height: 1;
+        margin: 0;
+      }
+
+      .section-heading p,
+      .body-copy {
+        color: var(--muted);
+        line-height: 1.75;
+        margin: 0;
+      }
+
+      .services-grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+
+      .service-card {
+        border-left: 1px solid var(--line);
+        min-height: 300px;
+        padding: 28px;
+      }
+
+      .service-card:last-child {
+        border-right: 1px solid var(--line);
+      }
+
+      .service-card span {
+        color: var(--accent);
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 3px;
+      }
+
+      .service-card h3 {
+        font-size: 1.35rem;
+        font-weight: 600;
+        margin: 52px 0 16px;
+      }
+
+      .service-card p {
+        color: var(--muted);
+        line-height: 1.65;
+        margin: 0;
+      }
+
+      .split {
+        align-items: center;
+        display: grid;
+        gap: 48px;
+        grid-template-columns: minmax(0, 0.72fr) minmax(0, 0.58fr);
+      }
+
+      .image-panel {
+        aspect-ratio: 4 / 5;
+        background:
+          linear-gradient(rgba(8, 8, 7, 0.1), rgba(8, 8, 7, 0.28)),
+          url("https://images.unsplash.com/photo-1599351431202-1e0f0137899a?auto=format&fit=crop&w=1100&q=85") center/cover;
+        border-radius: 8px;
+        min-height: 420px;
+      }
+
+      .feature-list {
+        border-top: 1px solid var(--line);
+        margin-top: 34px;
+      }
+
+      .feature-list p {
+        border-bottom: 1px solid var(--line);
+        color: var(--ivory);
+        display: flex;
+        justify-content: space-between;
+        margin: 0;
+        padding: 18px 0;
+      }
+
+      .feature-list span {
+        color: var(--accent);
+      }
+
+      .gallery-grid {
+        display: grid;
+        gap: 18px;
+        grid-template-columns: 1.2fr 0.8fr 1fr;
+      }
+
+      .gallery-card {
+        align-items: end;
+        background: var(--ash);
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        display: flex;
+        min-height: 320px;
+        overflow: hidden;
+        padding: 22px;
+        position: relative;
+      }
+
+      .gallery-card::before {
+        background: linear-gradient(to top, rgba(8, 8, 7, 0.82), rgba(8, 8, 7, 0.08));
+        content: "";
+        inset: 0;
+        position: absolute;
+      }
+
+      .gallery-card h3 {
+        font-size: 1.2rem;
+        margin: 0;
+        position: relative;
+      }
+
+      .gallery-card:nth-child(1) {
+        background: url("https://images.unsplash.com/photo-1621605815971-fbc98d665033?auto=format&fit=crop&w=900&q=85") center/cover;
+      }
+
+      .gallery-card:nth-child(2) {
+        background: url("https://images.unsplash.com/photo-1517832606299-7ae9b720a186?auto=format&fit=crop&w=900&q=85") center/cover;
+      }
+
+      .gallery-card:nth-child(3) {
+        background: url("https://images.unsplash.com/photo-1622296089863-eb7fc530daa8?auto=format&fit=crop&w=900&q=85") center/cover;
+      }
+
+      .booking-band {
+        background: var(--ivory);
+        color: var(--ink);
+      }
+
+      .booking-panel {
+        align-items: center;
+        display: grid;
+        gap: 32px;
+        grid-template-columns: minmax(0, 0.7fr) minmax(280px, 0.5fr);
+      }
+
+      .booking-panel h2,
+      .booking-panel p {
+        color: var(--ink);
+      }
+
+      .booking-form {
+        background: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0 20px 60px rgba(8, 8, 7, 0.14);
+        padding: 24px;
+      }
+
+      .booking-form input,
+      .booking-form select {
+        background: #f2eee7;
+        border: 1px solid rgba(8, 8, 7, 0.08);
+        border-radius: 6px;
+        color: var(--ink);
+        display: block;
+        margin-bottom: 12px;
+        padding: 14px;
+        width: 100%;
+      }
+
+      .booking-form .button {
+        width: 100%;
+      }
+
+      .quote-grid {
+        display: grid;
+        gap: 18px;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .quote-card {
+        background: rgba(247, 242, 234, 0.04);
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        padding: 30px;
+      }
+
+      .quote-card blockquote {
+        color: var(--muted);
+        line-height: 1.7;
+        margin: 0 0 22px;
+      }
+
+      .quote-card figcaption {
+        color: var(--ivory);
+        font-weight: 700;
+      }
+
+      .footer {
+        border-top: 1px solid var(--line);
+        color: var(--muted);
+        padding: 34px 24px;
+        text-align: center;
+      }
+
+      @media (max-width: 880px) {
+        .nav a:not(.book-link) {
+          display: none;
+        }
+
+        .hero-inner,
+        .section-heading,
+        .split,
+        .booking-panel {
+          grid-template-columns: 1fr;
+        }
+
+        .status-card {
+          align-self: auto;
+        }
+
+        .services-grid,
+        .gallery-grid,
+        .quote-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .service-card,
+        .service-card:last-child {
+          border: 1px solid var(--line);
+          margin-top: -1px;
+          min-height: auto;
+        }
+      }
+
+      @media (max-width: 560px) {
+        .topbar {
+          padding: 18px;
+        }
+
+        .brand {
+          letter-spacing: 2px;
+        }
+
+        .hero-actions {
+          flex-direction: column;
+        }
+
+        .button {
+          width: 100%;
+        }
+
+        .section {
+          padding: 86px 20px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <header class="topbar">
+      <div class="brand">Your Barber Here</div>
+      <nav class="nav" aria-label="Main navigation">
+        <a href="#services">Services</a>
+        <a href="#shop">The Shop</a>
+        <a href="#styles">Styles</a>
+        <a class="book-link" href="#booking">Book Now</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="hero-inner">
+          <div>
+            <p class="eyebrow">Luxury Barber Template</p>
+            <h1>Precision Cuts With Quiet Confidence.</h1>
+            <p class="hero-copy">
+              A premium barber experience for sharp fades, tailored scissor work, beard shaping, and appointments
+              that feel calm, polished, and easy to book.
+            </p>
+            <div class="hero-actions">
+              <a class="button button-primary" href="#booking">Book a Chair</a>
+              <a class="button button-secondary" href="#styles">View Styles</a>
+            </div>
+          </div>
+
+          <aside class="status-card" aria-label="Booking note">
+            <p>Designed for barbershops that want a premium first impression without feeling loud or overdone.</p>
+            <div class="status-row">
+              <span>Location</span>
+              <strong>Your City Here</strong>
+            </div>
+            <div class="status-row">
+              <span>Bookings</span>
+              <strong>Open This Week</strong>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section id="services" class="section">
+        <div class="section-inner">
+          <div class="section-heading">
+            <h2>Signature Services.</h2>
+            <p>Swap these for the client’s actual services, prices, and appointment durations.</p>
+          </div>
+
+          <div class="services-grid">
+            <article class="service-card">
+              <span>01</span>
+              <h3>Skin Fade</h3>
+              <p>Clean fade work with careful blending, neckline detail, and a polished finish.</p>
+            </article>
+            <article class="service-card">
+              <span>02</span>
+              <h3>Classic Cut</h3>
+              <p>Tailored scissor or clipper work for timeless shape and day-to-day wearability.</p>
+            </article>
+            <article class="service-card">
+              <span>03</span>
+              <h3>Beard Sculpt</h3>
+              <p>Shape, line-up, and finish for a beard that looks intentional from every angle.</p>
+            </article>
+            <article class="service-card">
+              <span>04</span>
+              <h3>Cut & Beard</h3>
+              <p>The full appointment for clients who want the cut, beard, and finish handled together.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="shop" class="section">
+        <div class="section-inner split">
+          <div class="image-panel" aria-hidden="true"></div>
+          <div>
+            <p class="eyebrow">The Chair</p>
+            <h2>Built Around Detail, Pace, And Trust.</h2>
+            <p class="body-copy">
+              Use this section to describe the barbershop’s story, standards, atmosphere, and what makes the
+              appointment different. Keep it confident, simple, and client-focused.
+            </p>
+
+            <div class="feature-list">
+              <p>Premium finish <span>Included</span></p>
+              <p>Online booking <span>Ready</span></p>
+              <p>Beard services <span>Available</span></p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="styles" class="section">
+        <div class="section-inner">
+          <div class="section-heading">
+            <h2>Featured Styles.</h2>
+            <p>Use real client images here when available. These cards give the page a more client-specific feel.</p>
+          </div>
+
+          <div class="gallery-grid">
+            <article class="gallery-card">
+              <h3>Low Fade</h3>
+            </article>
+            <article class="gallery-card">
+              <h3>Textured Crop</h3>
+            </article>
+            <article class="gallery-card">
+              <h3>Beard Line-Up</h3>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="booking" class="section booking-band">
+        <div class="section-inner booking-panel">
+          <div>
+            <p class="eyebrow">Booking Feature</p>
+            <h2>Make It Easy To Book The Next Cut.</h2>
+            <p class="body-copy">
+              This can stay as a simple enquiry form or connect to Calendly, Fresha, Square, Google Calendar,
+              or another booking system later.
+            </p>
+          </div>
+
+          <form class="booking-form">
+            <input type="text" name="name" placeholder="Your name" />
+            <input type="email" name="email" placeholder="Your email" />
+            <select name="service">
+              <option>Choose a service</option>
+              <option>Skin Fade</option>
+              <option>Classic Cut</option>
+              <option>Cut & Beard</option>
+              <option>Beard Sculpt</option>
+            </select>
+            <input type="text" name="time" placeholder="Preferred day/time" />
+            <button class="button button-primary" type="button">Request Booking</button>
+          </form>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-inner">
+          <div class="section-heading">
+            <h2>Client Proof.</h2>
+            <p>Short, believable reviews help the site feel trustworthy without overexplaining.</p>
+          </div>
+
+          <div class="quote-grid">
+            <figure class="quote-card">
+              <blockquote>Sharpest fade I’ve had in ages. Easy booking and the whole appointment felt premium.</blockquote>
+              <figcaption>Client Name Here</figcaption>
+            </figure>
+            <figure class="quote-card">
+              <blockquote>Great attention to detail, clean shop, and the beard line-up was spot on.</blockquote>
+              <figcaption>Client Name Here</figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">Your Barber Here - Your City Here</footer>
+  </body>
+</html>
