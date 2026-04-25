@@ -78,16 +78,37 @@ export default function App() {
   frames.forEach((frame) => {
     let scroller = null;
     let pos = 0;
+    let maxScroll = 0;
+
+    const init = () => {
+      const doc = frame.contentDocument;
+      if (!doc) return;
+
+      maxScroll =
+        doc.documentElement.scrollHeight - frame.clientHeight;
+    };
+
+    frame.addEventListener("load", init);
 
     const startScroll = () => {
+      if (scroller) return; // prevent stacking
+
       scroller = setInterval(() => {
-        pos += 1.5;
+        pos += 0.6;
+
+        if (pos >= maxScroll) {
+          clearInterval(scroller);
+          scroller = null;
+          return;
+        }
+
         frame.contentWindow.scrollTo(0, pos);
       }, 16);
     };
 
     const stopScroll = () => {
       clearInterval(scroller);
+      scroller = null;
       pos = 0;
       frame.contentWindow.scrollTo(0, 0);
     };
@@ -96,7 +117,6 @@ export default function App() {
     frame.parentElement.addEventListener("mouseleave", stopScroll);
   });
 }, []);
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     const form = e.target;
