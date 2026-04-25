@@ -370,10 +370,9 @@ export default function App() {
         <h2>Why Creative Co.</h2>
 
         <p className="text">
-         We’re a Brisbane-based creative studio delivering high-performance content and fully custom-coded websites for brands that want to stand out.
-Every project is built from the ground up—no templates, no limitations—giving you complete control, faster performance, and a solution tailored exactly to your business.
-Whether you're local or operating globally, we work with clients anywhere to create digital experiences that not only look premium, but drive real results.
-        </p>
+      <p className="text">
+  We’re a Brisbane-based creative studio delivering high-performance content and fully custom-coded websites for brands that want to stand out. Every project is built from the ground up—no templates, no limitations—giving you complete control, faster performance, and a solution tailored to your business. Whether you're local or global, we create digital experiences that not only look premium, but drive real results.
+</p>
       </section>
       <section id="work" className="section work">
         <h2>Our Work</h2>
