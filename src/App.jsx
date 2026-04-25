@@ -74,22 +74,16 @@ export default function App() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     const form = e.target;
     const data = new FormData(form);
-
     const response = await fetch(form.action, {
       method: "POST",
       body: data,
-      headers: {
-        Accept: "application/json",
-      },
+      headers: { Accept: "application/json" },
     });
-
     if (response.ok) {
       setSubmitted(true);
       form.reset();
-
       setTimeout(() => {
         setShowModal(false);
         setSubmitted(false);
@@ -115,32 +109,22 @@ export default function App() {
 
         <div className="overlay" />
 
-
         <div className="hero-content">
           <p className="hero-kicker">Wilson Creative Co.</p>
           <h1>Creative Media & Production</h1>
-
           <p className="sub">
             Cinematic content designed to elevate brands and capture attention.
           </p>
-
           <div className="buttons">
-            <button
-              className="primary"
-              onClick={() => setShowModal(true)}
-            >
+            <button className="primary" onClick={() => setShowModal(true)}>
               Contact Now
             </button>
-
             <button
               className="secondary"
               onClick={() => {
                 const section = document.getElementById("work");
                 if (section) {
-                  section.scrollIntoView({
-                    behavior: "smooth",
-                    block: "start",
-                  });
+                  section.scrollIntoView({ behavior: "smooth", block: "start" });
                 }
               }}
             >
@@ -152,7 +136,6 @@ export default function App() {
 
       <section className="section what-we-do">
         <h2>Featured Services</h2>
-
         <div className="services">
           {services.map((service) => (
             <article key={service.title} className="service-item">
@@ -165,7 +148,6 @@ export default function App() {
             </article>
           ))}
         </div>
-
         <p className="sub">
           Premium production and strategy in one team, built to make your brand
           look elevated and perform online.
@@ -182,62 +164,54 @@ export default function App() {
 
       <section className="section">
         <h2>Why Creative Co.</h2>
-
         <p className="text">
-      We’re a Brisbane-based creative studio delivering high-performance content and fully custom-coded websites for brands that want to stand out.
-Every project is built from the ground up—no templates, no limitations—giving you complete control, faster performance, and a solution tailored exactly to your business.
-Whether you're local or operating globally, we work with clients anywhere to create digital experiences that not only look premium, but drive real results.
+          We&apos;re a Brisbane-based creative studio delivering high-performance
+          content and fully custom-coded websites for brands that want to stand
+          out. Every project is built from the ground up—no templates, no
+          limitations—giving you complete control, faster performance, and a
+          solution tailored exactly to your business. Whether you&apos;re local or
+          operating globally, we work with clients anywhere to create digital
+          experiences that not only look premium, but drive real results.
         </p>
       </section>
+
       <section id="work" className="section work">
         <h2>Our Work</h2>
-
         <p className="text">
           A selection of cinematic projects crafted to elevate brands and
           capture attention.
         </p>
+        <div className="work-grid">
+          <div className="work-item" style={{ padding: 0, overflow: "hidden", position: "relative" }}>
+            <iframe
+              src="/meridian.html"
+              title="Your Agency — Real Estate Mockup"
+              scrolling="no"
+              style={{
+                position: "absolute",
+                top: 0,
+                left: 0,
+                width: "200%",
+                height: "200%",
+                border: "none",
+                transform: "scale(0.5)",
+                transformOrigin: "top left",
+                pointerEvents: "none",
+              }}
+            />
+          </div>
+          <div className="work-item">Coming Soon</div>
+          <div className="work-item">Coming Soon</div>
+          <div className="work-item">Coming Soon</div>
+        </div>
+      </section>
 
-  <section id="work" className="section work">
-  <h2>Our Work</h2>
-  <p className="text">
-    A selection of cinematic projects crafted to elevate brands and
-    capture attention.
-  </p>
-
-  <div className="work-grid">
-    <div className="work-item" style={{ padding: 0, overflow: "hidden", position: "relative" }}>
-      <iframe
-        src="/meridian.html"
-        title="Meridian Property"
-        scrolling="no"
-        style={{
-          position: "absolute",
-          top: 0,
-          left: 0,
-          width: "200%",
-          height: "200%",
-          border: "none",
-          transform: "scale(0.5)",
-          transformOrigin: "top left",
-          pointerEvents: "none",
-        }}
-      />
-    </div>
-    <div className="work-item">Coming Soon</div>
-    <div className="work-item">Coming Soon</div>
-    <div className="work-item">Coming Soon</div>
-  </div>
-</section>
       {showModal && (
         <div className="modal">
           <div className="modal-content">
-            <button
-              className="close"
-              onClick={() => setShowModal(false)}
-            >
+            <button className="close" onClick={() => setShowModal(false)}>
               ×
             </button>
-
             {submitted ? (
               <>
                 <h2>Message Sent</h2>
@@ -248,7 +222,6 @@ Whether you're local or operating globally, we work with clients anywhere to cre
             ) : (
               <>
                 <h2>Start a Project</h2>
-
                 <form
                   action="https://formspree.io/f/xojywkwo"
                   method="POST"
@@ -261,7 +234,6 @@ Whether you're local or operating globally, we work with clients anywhere to cre
                     placeholder="Tell us about your project"
                     required
                   ></textarea>
-
                   <button type="submit" className="primary">
                     Send
                   </button>
@@ -274,7 +246,5 @@ Whether you're local or operating globally, we work with clients anywhere to cre
     </>
   );
 }
-
-
 
       
