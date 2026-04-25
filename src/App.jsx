@@ -1,4 +1,9 @@
-import "./App.css";
+/**
+ * @license
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+import "./App.css"; // Ensure this file exists in your project
 import { useState, useEffect, useRef } from "react";
 
 const services = [
@@ -229,4 +234,5 @@ export default function App() {
     </>
   );
 }
+
       
