@@ -282,6 +282,7 @@ export default function App() {
                 pointerEvents: "none",
               }}
             />
+            </div>
         </div>
       </section>
 
