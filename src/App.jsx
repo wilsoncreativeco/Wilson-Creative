@@ -69,8 +69,30 @@ export default function App() {
       window.removeEventListener("scroll", onScroll);
       observer.disconnect();
       clearTimeout(timer);
-    };
-  }, []);
+  useEffect(() => {
+  const frames = document.querySelectorAll(".work-iframe");
+  const scrollers = [];
+
+  frames.forEach((frame) => {
+    frame.addEventListener("load", () => {
+      const doc = frame.contentDocument || frame.contentWindow.document;
+      let pos = 0;
+      let direction = 1;
+      const maxScroll = doc.body.scrollHeight - doc.documentElement.clientHeight;
+
+      const scroller = setInterval(() => {
+        pos += 0.8 * direction;
+        if (pos >= maxScroll) direction = -1;
+        if (pos <= 0) direction = 1;
+        frame.contentWindow.scrollTo(0, pos);
+      }, 16);
+
+      scrollers.push(scroller);
+    });
+  });
+
+  return () => scrollers.forEach(clearInterval);
+}, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
