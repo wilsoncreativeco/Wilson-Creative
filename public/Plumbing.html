@@ -1,0 +1,38 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Plumbing | Luxury Infrastructure</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3, .serif { font-family: 'Playfair Display', serif; }
+        .glass { background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(0,0,0,0.05); }
+    </style>
+</head>
+<body class="bg-white text-slate-900 antialiased">
+    <nav class="fixed top-0 w-full z-50 px-6 py-4 flex justify-between items-center glass">
+        <div class="flex items-center gap-2">
+            <i data-lucide="droplet" class="w-6 h-6"></i>
+            <span class="serif text-xl font-bold">Your Plumbing</span>
+        </div>
+        <button class="bg-black text-white px-6 py-2 rounded-full text-sm font-medium">Book Now</button>
+    </nav>
+    <section class="relative h-screen flex items-center justify-center overflow-hidden text-center px-6">
+        <div class="absolute inset-0">
+            <div class="absolute inset-0 bg-black/40 z-10"></div>
+            <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&q=80&w=1920" class="w-full h-full object-cover">
+        </div>
+        <div class="relative z-20 max-w-4xl">
+            <span class="text-white/80 uppercase tracking-[0.4em] text-xs font-medium mb-4 block">Precision Engineering</span>
+            <h1 class="text-white text-6xl md:text-8xl mb-8 leading-[1.1]">The Art of <br> <span class="italic">Fluid Infrastructure</span></h1>
+            <p class="text-white/70 text-lg max-w-xl mx-auto mb-10 font-light">Elevating essential services into architectural excellence.</p>
+        </div>
+    </section>
+    <script>lucide.createIcons();</script>
+</body>
+</html>
