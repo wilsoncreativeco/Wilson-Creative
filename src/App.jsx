@@ -197,29 +197,37 @@ Whether you're local or operating globally, we work with clients anywhere to cre
           capture attention.
         </p>
 
-      <div className="work-item" style={{ padding: 0, overflow: "hidden", position: "relative" }}>
-  <iframe
-    src="/meridian.html"
-    title="Meridian Property"
-    scrolling="no"
-    style={{
-      position: "absolute",
-      top: 0,
-      left: 0,
-      width: "200%",
-      height: "200%",
-      border: "none",
-      transform: "scale(0.5)",
-      transformOrigin: "top left",
-      pointerEvents: "none",
-    }}
-  />
-</div>
-  <div className="work-item">Coming Soon</div>
-  <div className="work-item">Coming Soon</div>
-  <div className="work-item">Coming Soon</div>
-</div>
-      </section>
+  <section id="work" className="section work">
+  <h2>Our Work</h2>
+  <p className="text">
+    A selection of cinematic projects crafted to elevate brands and
+    capture attention.
+  </p>
+
+  <div className="work-grid">
+    <div className="work-item" style={{ padding: 0, overflow: "hidden", position: "relative" }}>
+      <iframe
+        src="/meridian.html"
+        title="Meridian Property"
+        scrolling="no"
+        style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          width: "200%",
+          height: "200%",
+          border: "none",
+          transform: "scale(0.5)",
+          transformOrigin: "top left",
+          pointerEvents: "none",
+        }}
+      />
+    </div>
+    <div className="work-item">Coming Soon</div>
+    <div className="work-item">Coming Soon</div>
+    <div className="work-item">Coming Soon</div>
+  </div>
+</section>
       {showModal && (
         <div className="modal">
           <div className="modal-content">
