@@ -4,11 +4,9 @@ import { useState, useEffect } from "react";
 const services = [
   { title: "Web Design & Development", status: "" },
   { title: "Aerial Cinematography", status: "Coming soon" },
-  { title: "Video Production", status: "Coming soon" },
   { title: "Photography", status: "Coming soon" },
   { title: "Social Media Content", status: "Coming soon" },
-  { title: "Commercial & Brand Media", status: "Coming soon" },
-  { title: "Creative Strategy", status: "Coming soon" },
+ 
 ];
 
 const navItems = [
