@@ -47,34 +47,35 @@ const processSteps = [
 const pricingTiers = [
   {
     name: "Starter",
-    price: "From $1,500",
+    price: "From $800",
     desc: "Perfect for small businesses and personal brands getting started online.",
     features: [
       "Custom single-page website",
       "Mobile-responsive design",
-      "Contact form integration",
+      "Contact form + click-to-call integration",
       "Basic SEO setup",
       "1 round of revisions",
-      "2 weeks delivery",
+      "5–7 day delivery",
     ],
   },
   {
     name: "Growth",
-    price: "From $3,500",
+    price: "From $1,700",
     desc: "For established brands ready to scale their digital presence.",
     features: [
-      "Multi-page custom website",
+      "Multi-page custom website (up to 5)",
       "Advanced animations & interactions",
       "CMS or blog integration",
       "Full SEO optimisation",
       "3 rounds of revisions",
       "Analytics dashboard setup",
+      "10-14 day delivery"
     ],
     featured: true,
   },
   {
     name: "Premium",
-    price: "From $7,000",
+    price: "From $3,800",
     desc: "Full-service creative solution for brands that demand the best.",
     features: [
       "Everything in Growth",
@@ -83,6 +84,7 @@ const pricingTiers = [
       "Content creation & copywriting",
       "Priority ongoing support",
       "Unlimited revisions",
+        "2-3 week delivery",
     ],
   },
 ];
