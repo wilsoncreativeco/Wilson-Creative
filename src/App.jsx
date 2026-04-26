@@ -302,8 +302,8 @@ export default function App() {
             <div className="footer-col">
               <p className="footer-col-label">Follow</p>
               {/* ↓ Replace with your real URLs */}
-              <a href="https://instagram.com/YOURUSERNAME" target="_blank" rel="noopener noreferrer" className="footer-link">Instagram</a>
-              <a href="https://tiktok.com/@YOURUSERNAME" target="_blank" rel="noopener noreferrer" className="footer-link">TikTok</a>
+              <a href="https://instagram.com/wilsoncreativeco.au" target="_blank" rel="noopener noreferrer" className="footer-link">Instagram</a>
+              <a href="https://www.facebook.com/profile.php?id=61567993286002" target="_blank" rel="noopener noreferrer" className="footer-link">TikTok</a>
             </div>
             <div className="footer-col">
               <p className="footer-col-label">Contact</p>
