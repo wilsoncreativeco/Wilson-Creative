@@ -45,7 +45,7 @@ const processSteps = [
 const pricingTiers = [
   {
     name: "Starter",
-    price: "From $800",
+    price: "From $600",
     desc: "Perfect for small businesses and personal brands getting started online.",
     features: [
       "Custom single-page website",
@@ -58,7 +58,7 @@ const pricingTiers = [
   },
   {
     name: "Growth",
-    price: "From $1,700",
+    price: "From $1,000",
     desc: "For established brands ready to scale their digital presence.",
     features: [
       "Multi-page custom website (up to 5)",
@@ -73,7 +73,7 @@ const pricingTiers = [
   },
   {
     name: "Premium",
-    price: "From $3,800",
+    price: "From $2,000",
     desc: "Full-service creative solution for brands that demand the best.",
     features: [
       "Everything in Growth",
