@@ -308,8 +308,8 @@ export default function App() {
             <div className="footer-col">
               <p className="footer-col-label">Contact</p>
               {/* ↓ Replace with your real email and phone */}
-              <a href="mailto:hello@wilsoncreativeco.com" className="footer-link">hello@wilsoncreativeco.com</a>
-              <a href="tel:+61400000000" className="footer-link">+61 400 000 000</a>
+              <a href="mailto:wilsoncreativeco.au@gmail.com" className="footer-link">hello@wilsoncreativeco.com</a>
+              <a href="tel:+61 401 609 118" className="footer-link">+61 400 000 000</a>
             </div>
           </div>
           <div className="footer-divider" />
