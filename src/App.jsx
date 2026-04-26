@@ -101,6 +101,19 @@ const FacebookIcon = () => (
   </svg>
 );
 
+const EmailIcon = () => (
+  <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+    <rect x="2" y="4" width="20" height="16" rx="3" />
+    <polyline points="22,4 12,13 2,4" />
+  </svg>
+);
+
+const PhoneIcon = () => (
+  <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />
+  </svg>
+);
+
 export default function App() {
   const [loaded, setLoaded] = useState(false);
   const [showModal, setShowModal] = useState(false);
@@ -270,7 +283,7 @@ export default function App() {
       >
         <nav className="nav-overlay-inner">
           <ul className="nav-list">
-            {navItems.map((item, i) => (
+            {navItems.map((item) => (
               <li key={item.label} className="nav-item">
                 <button
                   className="nav-link"
@@ -278,7 +291,6 @@ export default function App() {
                 >
                   {item.label}
                 </button>
-                <span className="nav-num">0{i + 1}</span>
               </li>
             ))}
           </ul>
@@ -306,10 +318,10 @@ export default function App() {
                 href="mailto:wilsoncreativeco.au@gmail.com"
                 className="nav-social-link"
               >
-                wilsoncreativeco.au@gmail.com
+                <EmailIcon /> Email
               </a>
               <a href="tel:+61401609118" className="nav-social-link">
-                0401 609 118
+                <PhoneIcon /> Phone
               </a>
             </div>
             <button
@@ -361,6 +373,11 @@ export default function App() {
               View Work
             </button>
           </div>
+        </div>
+        <div className="scroll-indicator">
+          <div className="scroll-line" />
+          <span className="scroll-text">SCROLL</span>
+          <span className="scroll-arrow">&darr;</span>
         </div>
       </div>
 
@@ -687,3 +704,4 @@ export default function App() {
     </>
   );
 }
+
