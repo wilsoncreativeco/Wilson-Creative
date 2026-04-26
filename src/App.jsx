@@ -11,22 +11,20 @@ const services = [
   { title: "Creative Strategy", status: "Coming soon" },
 ];
 
-// ── ADDED: Nav menu items ─────────────────────────────────────────────────────
 const navItems = [
-  { label: "HOME", href: "#" },
-  { label: "ABOUT", href: "#about" },
-  { label: "SERVICES", href: "#services" },
-  { label: "WORK", href: "#work" },
-  { label: "PROCESS", href: "#process" },
-  { label: "PRICING", href: "#pricing" },
-  { label: "CONTACT", href: "#contact" },
+  { label: "HOME",     action: "scroll", target: "top" },
+  { label: "ABOUT",   action: "scroll", target: "about" },
+  { label: "SERVICES",action: "scroll", target: "services" },
+  { label: "WORK",    action: "scroll", target: "work" },
+  { label: "PROCESS", action: "scroll", target: "work" },
+  { label: "PRICING", action: "modal" },
+  { label: "CONTACT", action: "modal" },
 ];
 
 export default function App() {
   const [loaded, setLoaded] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [submitted, setSubmitted] = useState(false);
-  // ── ADDED: Hamburger menu state ───────────────────────────────────────────
   const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
@@ -34,9 +32,7 @@ export default function App() {
     const sections = document.querySelectorAll(".section");
     const video = document.querySelector(".hero-video");
     const overlay = document.querySelector(".overlay");
-    const prefersReducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
-    ).matches;
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -61,7 +57,7 @@ export default function App() {
       const scale = 1 + eased * 0.04;
       const blur = eased * 24;
       const brightness = 1 - eased * 0.52;
-      const darkness = 0.34 + eased * 0.36;
+      const darkness = 0.44 + eased * 0.36;
 
       video.style.transform = `translate3d(0, 0, 0) scale(${scale})`;
       video.style.filter = `blur(${blur}px) brightness(${brightness})`;
@@ -87,7 +83,6 @@ export default function App() {
 
   useEffect(() => {
     const frames = document.querySelectorAll(".work-iframe");
-
     frames.forEach((frame) => {
       let scroller = null;
       let pos = 0;
@@ -105,11 +100,7 @@ export default function App() {
         if (scroller) return;
         scroller = setInterval(() => {
           pos += 0.6;
-          if (pos >= maxScroll) {
-            clearInterval(scroller);
-            scroller = null;
-            return;
-          }
+          if (pos >= maxScroll) { clearInterval(scroller); scroller = null; return; }
           frame.contentWindow.scrollTo(0, pos);
         }, 16);
       };
@@ -126,7 +117,6 @@ export default function App() {
     });
   }, []);
 
-  // ── ADDED: Lock body scroll when menu is open ─────────────────────────────
   useEffect(() => {
     document.body.style.overflow = menuOpen ? "hidden" : "";
     return () => { document.body.style.overflow = ""; };
@@ -144,10 +134,19 @@ export default function App() {
     if (response.ok) {
       setSubmitted(true);
       form.reset();
-      setTimeout(() => {
-        setShowModal(false);
-        setSubmitted(false);
-      }, 2000);
+      setTimeout(() => { setShowModal(false); setSubmitted(false); }, 2000);
+    }
+  };
+
+  const handleNavClick = (item) => {
+    setMenuOpen(false);
+    if (item.action === "modal") {
+      setTimeout(() => setShowModal(true), 320);
+    } else if (item.target === "top") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    } else {
+      const el = document.getElementById(item.target);
+      if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
     }
   };
 
@@ -155,7 +154,7 @@ export default function App() {
     <>
       <div className="watermark">WILSON CREATIVE CO.</div>
 
-      {/* ── ADDED: Hamburger button ─────────────────────────────────────────── */}
+      {/* Hamburger button */}
       <button
         className={`hamburger-btn ${menuOpen ? "open" : ""}`}
         onClick={() => setMenuOpen(!menuOpen)}
@@ -167,24 +166,15 @@ export default function App() {
         <span className="ham-line" />
       </button>
 
-      {/* ── ADDED: Full-screen overlay menu ────────────────────────────────── */}
-      <div
-        className={`nav-overlay ${menuOpen ? "overlay-open" : ""}`}
-        role="dialog"
-        aria-modal="true"
-        aria-label="Navigation menu"
-      >
+      {/* Full-screen overlay nav */}
+      <div className={`nav-overlay ${menuOpen ? "overlay-open" : ""}`} role="dialog" aria-modal="true">
         <nav className="nav-overlay-inner">
           <ul className="nav-list">
             {navItems.map((item, i) => (
               <li key={item.label} className="nav-item">
-                <a
-                  href={item.href}
-                  className="nav-link"
-                  onClick={() => setMenuOpen(false)}
-                >
+                <button className="nav-link" onClick={() => handleNavClick(item)}>
                   {item.label}
-                </a>
+                </button>
                 <span className="nav-num">0{i + 1}</span>
               </li>
             ))}
@@ -193,32 +183,16 @@ export default function App() {
           <div className="nav-bottom">
             <p className="nav-connect">LET&apos;S CONNECT</p>
             <div className="nav-socials">
-              <a
-                href="https://instagram.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="nav-social-link"
-              >
-                Instagram
-              </a>
-              <a
-                href="https://tiktok.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="nav-social-link"
-              >
-                TikTok
-              </a>
-              <a href="mailto:hello@wilsoncreativeco.com" className="nav-social-link">
-                Email
-              </a>
-              <a href="tel:+61400000000" className="nav-social-link">
-                Phone
-              </a>
+              {/* ↓ Replace YOURUSERNAME with your actual handles */}
+              <a href="https://instagram.com/YOURUSERNAME" target="_blank" rel="noopener noreferrer" className="nav-social-link">Instagram</a>
+              <a href="https://tiktok.com/@YOURUSERNAME" target="_blank" rel="noopener noreferrer" className="nav-social-link">TikTok</a>
+              {/* ↓ Replace with your real email and phone */}
+              <a href="mailto:hello@wilsoncreativeco.com" className="nav-social-link">Email</a>
+              <a href="tel:+61400000000" className="nav-social-link">Phone</a>
             </div>
             <button
               className="nav-cta"
-              onClick={() => { setMenuOpen(false); setShowModal(true); }}
+              onClick={() => { setMenuOpen(false); setTimeout(() => setShowModal(true), 320); }}
             >
               Get a Free Demo
             </button>
@@ -226,22 +200,12 @@ export default function App() {
         </nav>
       </div>
 
+      {/* Hero */}
       <div className={`hero ${loaded ? "loaded" : ""}`}>
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="auto"
-          poster="/fallback.jpg"
-          className="hero-video"
-        >
+        <video autoPlay muted loop playsInline preload="auto" poster="/fallback.jpg" className="hero-video">
           <source src="/hero.mp4" type="video/mp4" />
         </video>
-
         <div className="overlay" />
-
-        {/* ── MODIFIED: Hero content — new heading, subtext, button label ───── */}
         <div className="hero-content">
           <p className="hero-kicker">Wilson Creative Co.</p>
           <h1>
@@ -251,17 +215,14 @@ export default function App() {
           </h1>
           <p className="sub">And turn it into customers.</p>
           <div className="buttons">
-            {/* ── MODIFIED: "Contact Now" → "Get a Free Demo" ─────────────── */}
             <button className="primary" onClick={() => setShowModal(true)}>
               Get a Free Demo
             </button>
             <button
               className="secondary"
               onClick={() => {
-                const section = document.getElementById("work");
-                if (section) {
-                  section.scrollIntoView({ behavior: "smooth", block: "start" });
-                }
+                const s = document.getElementById("work");
+                if (s) s.scrollIntoView({ behavior: "smooth", block: "start" });
               }}
             >
               View Work
@@ -270,8 +231,8 @@ export default function App() {
         </div>
       </div>
 
-      {/* ── UNCHANGED: All existing sections ─────────────────────────────────── */}
-      <section className="section what-we-do">
+      {/* Services */}
+      <section id="services" className="section what-we-do">
         <h2>Featured Services</h2>
         <div className="services">
           {services.map((service) => (
@@ -286,91 +247,48 @@ export default function App() {
           ))}
         </div>
         <p className="sub">
-          Premium production and strategy in one team, built to make your brand
-          look elevated and perform online.
+          Premium production and strategy in one team, built to make your brand look elevated and perform online.
         </p>
       </section>
 
-
-      <section className="section">
+      {/* About */}
+      <section id="about" className="section">
         <h2>Why Creative Co.</h2>
         <p className="text">
-          We&apos;re a Brisbane-based creative studio delivering high-performance
-          content and fully custom-coded websites for brands that want to stand
-          out. Every project is built from the ground up—no templates, no
-          limitations—giving you complete control, faster performance, and a
-          solution tailored exactly to your business. Whether you&apos;re local or
-          operating globally, we work with clients anywhere to create digital
-          experiences that not only look premium, but drive real results.
+          We&apos;re a Brisbane-based creative studio delivering high-performance content and fully
+          custom-coded websites for brands that want to stand out. Every project is built from the
+          ground up—no templates, no limitations—giving you complete control, faster performance,
+          and a solution tailored exactly to your business. Whether you&apos;re local or operating
+          globally, we work with clients anywhere to create digital experiences that not only look
+          premium, but drive real results.
         </p>
       </section>
 
+      {/* Work */}
       <section id="work" className="section work">
         <h2>Sample Builds</h2>
-        <p className="text">
-          High-performance sample builds demonstrating what we can create for your brand.
-        </p>
+        <p className="text">High-performance sample builds demonstrating what we can create for your brand.</p>
         <div className="work-grid">
           <div className="work-item" style={{ padding: 0, overflow: "hidden", position: "relative" }}>
-            <iframe
-              src="/meridian.html"
-              title="Your Agency — Real Estate Mockup"
-              scrolling="no"
-              className="work-iframe"
-              style={{
-                position: "absolute", top: 0, left: 0,
-                width: "200%", height: "200%", border: "none",
-                transform: "scale(0.5)", transformOrigin: "top left",
-                pointerEvents: "none",
-              }}
-            />
+            <iframe src="/meridian.html" title="Real Estate Mockup" scrolling="no" className="work-iframe"
+              style={{ position: "absolute", top: 0, left: 0, width: "200%", height: "200%", border: "none", transform: "scale(0.5)", transformOrigin: "top left", pointerEvents: "none" }} />
           </div>
           <div className="work-item" style={{ padding: 0, overflow: "hidden", position: "relative" }}>
-            <iframe
-              src="/barber.html"
-              title="Barber Mockup"
-              scrolling="no"
-              className="work-iframe"
-              style={{
-                position: "absolute", top: 0, left: 0,
-                width: "200%", height: "200%", border: "none",
-                transform: "scale(0.5)", transformOrigin: "top left",
-                pointerEvents: "none",
-              }}
-            />
+            <iframe src="/barber.html" title="Barber Mockup" scrolling="no" className="work-iframe"
+              style={{ position: "absolute", top: 0, left: 0, width: "200%", height: "200%", border: "none", transform: "scale(0.5)", transformOrigin: "top left", pointerEvents: "none" }} />
           </div>
           <div className="work-item" style={{ padding: 0, overflow: "hidden", position: "relative" }}>
-            <iframe
-              src="/Plumbing.html"
-              title="Plumbing Mockup"
-              scrolling="no"
-              className="work-iframe"
-              style={{
-                position: "absolute", top: 0, left: 0,
-                width: "200%", height: "200%", border: "none",
-                transform: "scale(0.5)", transformOrigin: "top left",
-                pointerEvents: "none",
-              }}
-            />
+            <iframe src="/Plumbing.html" title="Plumbing Mockup" scrolling="no" className="work-iframe"
+              style={{ position: "absolute", top: 0, left: 0, width: "200%", height: "200%", border: "none", transform: "scale(0.5)", transformOrigin: "top left", pointerEvents: "none" }} />
           </div>
           <div className="work-item" style={{ padding: 0, overflow: "hidden", position: "relative" }}>
-            <iframe
-              src="/Cafe.html"
-              title="Cafe Mockup"
-              scrolling="no"
-              className="work-iframe"
-              style={{
-                position: "absolute", top: 0, left: 0,
-                width: "200%", height: "200%", border: "none",
-                transform: "scale(0.5)", transformOrigin: "top left",
-                pointerEvents: "none",
-              }}
-            />
+            <iframe src="/Cafe.html" title="Cafe Mockup" scrolling="no" className="work-iframe"
+              style={{ position: "absolute", top: 0, left: 0, width: "200%", height: "200%", border: "none", transform: "scale(0.5)", transformOrigin: "top left", pointerEvents: "none" }} />
           </div>
         </div>
       </section>
 
-      {/* ── ADDED: Footer ──────────────────────────────────────────────────── */}
+      {/* Footer */}
       <footer className="site-footer">
         <div className="footer-inner">
           <div className="footer-brand">
@@ -379,50 +297,27 @@ export default function App() {
               Websites and content that build attention and turn it into customers.
             </p>
           </div>
-
           <div className="footer-divider" />
-
           <div className="footer-links">
             <div className="footer-col">
               <p className="footer-col-label">Follow</p>
-              <a
-                href="https://instagram.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="footer-link"
-              >
-                Instagram
-              </a>
-              <a
-                href="https://tiktok.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="footer-link"
-              >
-                TikTok
-              </a>
+              {/* ↓ Replace with your real URLs */}
+              <a href="https://instagram.com/YOURUSERNAME" target="_blank" rel="noopener noreferrer" className="footer-link">Instagram</a>
+              <a href="https://tiktok.com/@YOURUSERNAME" target="_blank" rel="noopener noreferrer" className="footer-link">TikTok</a>
             </div>
-
             <div className="footer-col">
               <p className="footer-col-label">Contact</p>
-              <a href="mailto:hello@wilsoncreativeco.com" className="footer-link">
-                hello@wilsoncreativeco.com
-              </a>
-              <a href="tel:+61400000000" className="footer-link">
-                +61 400 000 000
-              </a>
+              {/* ↓ Replace with your real email and phone */}
+              <a href="mailto:hello@wilsoncreativeco.com" className="footer-link">hello@wilsoncreativeco.com</a>
+              <a href="tel:+61400000000" className="footer-link">+61 400 000 000</a>
             </div>
           </div>
-
           <div className="footer-divider" />
-
-          <p className="footer-copy">
-            © {new Date().getFullYear()} Wilson Creative Co. All rights reserved.
-          </p>
+          <p className="footer-copy">© {new Date().getFullYear()} Wilson Creative Co. All rights reserved.</p>
         </div>
       </footer>
 
-      {/* ── UNCHANGED: Contact modal ─────────────────────────────────────────── */}
+      {/* Contact modal */}
       {showModal && (
         <div className="modal">
           <div className="modal-content">
@@ -430,25 +325,15 @@ export default function App() {
             {submitted ? (
               <>
                 <h2>Message Sent</h2>
-                <p style={{ opacity: 0.7, marginTop: "10px" }}>
-                  We&apos;ll get back to you shortly.
-                </p>
+                <p style={{ opacity: 0.7, marginTop: "10px" }}>We&apos;ll get back to you shortly.</p>
               </>
             ) : (
               <>
                 <h2>Start a Project</h2>
-                <form
-                  action="https://formspree.io/f/xojywkwo"
-                  method="POST"
-                  onSubmit={handleSubmit}
-                >
+                <form action="https://formspree.io/f/xojywkwo" method="POST" onSubmit={handleSubmit}>
                   <input type="text" name="name" placeholder="Name" required />
                   <input type="email" name="email" placeholder="Email" required />
-                  <textarea
-                    name="message"
-                    placeholder="Tell us about your project"
-                    required
-                  />
+                  <textarea name="message" placeholder="Tell us about your project" required />
                   <button type="submit" className="primary">Send</button>
                 </form>
               </>
