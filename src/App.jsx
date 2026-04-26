@@ -25,22 +25,22 @@ const processSteps = [
   {
     num: "01",
     title: "Discovery",
-    desc: "We start by understanding your brand, your audience, and your goals. Through research and conversation, we uncover what makes your business unique and identify the opportunities that matter most.",
+    desc: "We take the time to understand your business, your goals, and exactly what you want your website to achieve. Whether you have a clear vision or no idea where to start, we’ll guide the process and identify what will actually drive results.",
   },
   {
     num: "02",
     title: "Strategy",
-    desc: "With a clear picture of your brand, we map out a tailored plan — from site architecture and content direction to visual identity and conversion strategy. Every decision is intentional.",
+    desc: "We map out a clear plan for your site — structure, layout, and user flow — all tailored to your business. Every decision is made with one goal: turning visitors into enquiries or customers.",
   },
   {
     num: "03",
     title: "Design & Build",
-    desc: "We bring the strategy to life with custom design and hand-coded development. No templates, no shortcuts — just a premium digital experience built specifically for your business.",
+    desc: "Your website is fully custom coded from scratch — no Wix, no templates, no shortcuts. Everything is designed and built specifically for your business, giving you a fast, modern, and completely unique site that fits your exact vision.",
   },
   {
     num: "04",
     title: "Launch & Support",
-    desc: "After thorough testing and your final approval, we launch your project to the world. We stick around for ongoing support, updates, and optimisation to keep things running at their best.",
+    desc: "Once everything is tested and approved, we launch your site smoothly. After launch, we’re here for updates, tweaks, and ongoing support to keep everything running properly.",
   },
 ];
 
