@@ -291,13 +291,6 @@ export default function App() {
         </p>
       </section>
 
-      <section className="section statement">
-        <h1>
-          We don&apos;t just create content.
-          <br />
-          We create presence.
-        </h1>
-      </section>
 
       <section className="section">
         <h2>Why Creative Co.</h2>
