@@ -9,7 +9,7 @@ const services = [
  
 ];
 
-const navItems = [
+const navItems =
   { label: "HOME", action: "scroll", target: "top" },
   { label: "ABOUT", action: "scroll", target: "about" },
   { label: "SERVICES", action: "scroll", target: "services" },
@@ -266,10 +266,18 @@ export default function App() {
       <div className="watermark">WILSON CREATIVE CO.</div>
 
       <button
-        className={`hamburger-btn ${menuOpen ? "open" : ""}`}
-        onClick={() => setMenuOpen(!menuOpen)}
-        aria-label={menuOpen ? "Close menu" : "Open menu"}
-        aria-expanded={menuOpen}
+ {!showPricing && !showProcess && !showModal && (
+  <button
+    className={`hamburger-btn ${menuOpen ? "open" : ""}`}
+    onClick={() => setMenuOpen(!menuOpen)}
+    aria-label={menuOpen ? "Close menu" : "Open menu"}
+    aria-expanded={menuOpen}
+  >
+    <span className="ham-line" />
+    <span className="ham-line" />
+    <span className="ham-line" />
+  </button>
+)}
       >
         <span className="ham-line" />
         <span className="ham-line" />
