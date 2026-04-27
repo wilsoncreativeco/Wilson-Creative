@@ -267,11 +267,15 @@ export default function App() {
 
       <button
  {!showPricing && !showProcess && !showModal && (
-  <button
-    className={`hamburger-btn ${menuOpen ? "open" : ""}`}
-    onClick={() => setMenuOpen(!menuOpen)}
-    aria-label={menuOpen ? "Close menu" : "Open menu"}
-    aria-expanded={menuOpen}
+        className={hamburger-btn ${menuOpen ? "open" : ""}}
+        onClick={() => setMenuOpen(!menuOpen)}
+        aria-label={menuOpen ? "Close menu" : "Open menu"}
+        aria-expanded={menuOpen}
+      >
+        <span className="ham-line" />
+        <span className="ham-line" />
+        <span className="ham-line" />
+      </button>
   >
     <span className="ham-line" />
     <span className="ham-line" />
