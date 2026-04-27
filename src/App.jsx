@@ -6,10 +6,9 @@ const services = [
   { title: "Aerial Cinematography", status: "Coming soon" },
   { title: "Photography", status: "Coming soon" },
   { title: "Social Media Content", status: "Coming soon" },
- 
 ];
 
-const navItems =
+const navItems = [
   { label: "HOME", action: "scroll", target: "top" },
   { label: "ABOUT", action: "scroll", target: "about" },
   { label: "SERVICES", action: "scroll", target: "services" },
@@ -23,7 +22,7 @@ const processSteps = [
   {
     num: "01",
     title: "Discovery",
-    desc: "We take the time to understand your business, your goals, and exactly what you want your website to achieve. Whether you have a clear vision or no idea where to start, we’ll guide the process and identify what will actually drive results.",
+    desc: "We take the time to understand your business, your goals, and exactly what you want your website to achieve. Whether you have a clear vision or no idea where to start, we'll guide the process and identify what will actually drive results.",
   },
   {
     num: "02",
@@ -38,7 +37,7 @@ const processSteps = [
   {
     num: "04",
     title: "Launch & Support",
-    desc: "Once everything is tested and approved, we launch your site smoothly. After launch, we’re here for updates, tweaks, and ongoing support to keep everything running properly.",
+    desc: "Once everything is tested and approved, we launch your site smoothly. After launch, we're here for updates, tweaks, and ongoing support to keep everything running properly.",
   },
 ];
 
@@ -67,7 +66,7 @@ const pricingTiers = [
       "Full SEO optimisation",
       "3 rounds of revisions",
       "Analytics dashboard setup",
-      "10-14 day delivery"
+      "10-14 day delivery",
     ],
     featured: true,
   },
@@ -82,7 +81,7 @@ const pricingTiers = [
       "Content creation & copywriting",
       "Priority ongoing support",
       "Unlimited revisions",
-        "2-3 week delivery",
+      "2-3 week delivery",
     ],
   },
 ];
@@ -265,23 +264,16 @@ export default function App() {
     <>
       <div className="watermark">WILSON CREATIVE CO.</div>
 
+      {/* ── Hamburger — always rendered, closes whichever overlay is open ── */}
       <button
- {!showPricing && !showProcess && !showModal && (
-        className={hamburger-btn ${menuOpen ? "open" : ""}}
-        onClick={() => setMenuOpen(!menuOpen)}
+        className={`hamburger-btn ${menuOpen || showProcess || showPricing ? "open" : ""}`}
+        onClick={() => {
+          if (showProcess) { setShowProcess(false); return; }
+          if (showPricing) { setShowPricing(false); return; }
+          setMenuOpen(!menuOpen);
+        }}
         aria-label={menuOpen ? "Close menu" : "Open menu"}
         aria-expanded={menuOpen}
-      >
-        <span className="ham-line" />
-        <span className="ham-line" />
-        <span className="ham-line" />
-      </button>
-  >
-    <span className="ham-line" />
-    <span className="ham-line" />
-    <span className="ham-line" />
-  </button>
-)}
       >
         <span className="ham-line" />
         <span className="ham-line" />
@@ -378,8 +370,7 @@ export default function App() {
               className="secondary"
               onClick={() => {
                 const s = document.getElementById("work");
-                if (s)
-                  s.scrollIntoView({ behavior: "smooth", block: "start" });
+                if (s) s.scrollIntoView({ behavior: "smooth", block: "start" });
               }}
             >
               View Work
