@@ -86,6 +86,20 @@ const pricingTiers = [
   },
 ];
 
+const hostingOption = {
+  name: "Optional Hosting",
+  price: "$25 / month",
+  desc: "Hosting keeps your website live online after launch. This is completely optional, but ideal if you want us to handle the technical side for you.",
+  features: [
+    "Secure server space for your website files",
+    "Keeps your website accessible online 24/7",
+    "Domain connection support",
+    "SSL setup for secure HTTPS browsing",
+    "Basic uptime checks and technical maintenance",
+    "Simple support for hosting-related issues",
+  ],
+};
+
 const InstagramIcon = () => (
   <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
     <rect x="2" y="2" width="20" height="20" rx="5" />
@@ -264,7 +278,6 @@ export default function App() {
     <>
       <div className="watermark">WILSON CREATIVE CO.</div>
 
-      {/* ── Hamburger — always rendered, closes whichever overlay is open ── */}
       <button
         className={`hamburger-btn ${menuOpen || showProcess || showPricing ? "open" : ""}`}
         onClick={() => {
@@ -427,94 +440,36 @@ export default function App() {
           your brand.
         </p>
         <div className="work-grid">
-          <div
-            className="work-item"
-            style={{ padding: 0, overflow: "hidden", position: "relative" }}
-          >
-            <iframe
-              src="/meridian.html"
-              title="Real Estate Mockup"
-              scrolling="no"
-              className="work-iframe"
-              style={{
-                position: "absolute",
-                top: 0,
-                left: 0,
-                width: "200%",
-                height: "200%",
-                border: "none",
-                transform: "scale(0.5)",
-                transformOrigin: "top left",
-                pointerEvents: "none",
-              }}
-            />
-          </div>
-          <div
-            className="work-item"
-            style={{ padding: 0, overflow: "hidden", position: "relative" }}
-          >
-            <iframe
-              src="/barber.html"
-              title="Barber Mockup"
-              scrolling="no"
-              className="work-iframe"
-              style={{
-                position: "absolute",
-                top: 0,
-                left: 0,
-                width: "200%",
-                height: "200%",
-                border: "none",
-                transform: "scale(0.5)",
-                transformOrigin: "top left",
-                pointerEvents: "none",
-              }}
-            />
-          </div>
-          <div
-            className="work-item"
-            style={{ padding: 0, overflow: "hidden", position: "relative" }}
-          >
-            <iframe
-              src="/Plumbing.html"
-              title="Plumbing Mockup"
-              scrolling="no"
-              className="work-iframe"
-              style={{
-                position: "absolute",
-                top: 0,
-                left: 0,
-                width: "200%",
-                height: "200%",
-                border: "none",
-                transform: "scale(0.5)",
-                transformOrigin: "top left",
-                pointerEvents: "none",
-              }}
-            />
-          </div>
-          <div
-            className="work-item"
-            style={{ padding: 0, overflow: "hidden", position: "relative" }}
-          >
-            <iframe
-              src="/Cafe.html"
-              title="Cafe Mockup"
-              scrolling="no"
-              className="work-iframe"
-              style={{
-                position: "absolute",
-                top: 0,
-                left: 0,
-                width: "200%",
-                height: "200%",
-                border: "none",
-                transform: "scale(0.5)",
-                transformOrigin: "top left",
-                pointerEvents: "none",
-              }}
-            />
-          </div>
+          {[
+            ["/meridian.html", "Real Estate Mockup"],
+            ["/barber.html", "Barber Mockup"],
+            ["/Plumbing.html", "Plumbing Mockup"],
+            ["/Cafe.html", "Cafe Mockup"],
+          ].map(([src, title]) => (
+            <div
+              key={src}
+              className="work-item"
+              style={{ padding: 0, overflow: "hidden", position: "relative" }}
+            >
+              <iframe
+                src={src}
+                title={title}
+                scrolling="no"
+                className="work-iframe"
+                style={{
+                  position: "absolute",
+                  top: 0,
+                  left: 0,
+                  width: "200%",
+                  height: "200%",
+                  border: "none",
+                  transform: "scale(0.5)",
+                  transformOrigin: "top left",
+                  pointerEvents: "none",
+                }}
+              />
+            </div>
+          ))}
         </div>
       </section>
 
@@ -674,6 +629,7 @@ export default function App() {
                 Transparent pricing for every stage of growth. Every package is
                 tailored to your needs.
               </p>
+
               <div className="pricing-grid">
                 {pricingTiers.map((tier) => (
                   <div
@@ -700,6 +656,27 @@ export default function App() {
                   </div>
                 ))}
               </div>
+
+              <div className="pricing-card pricing-hosting">
+                <p className="page-overlay-kicker">Optional Add-On</p>
+                <h3 className="pricing-name">{hostingOption.name}</h3>
+                <p className="pricing-price">{hostingOption.price}</p>
+                <p className="pricing-desc">{hostingOption.desc}</p>
+                <ul className="pricing-features">
+                  {hostingOption.features.map((feature) => (
+                    <li key={feature}>{feature}</li>
+                  ))}
+                </ul>
+                <button
+                  className="secondary"
+                  onClick={() => {
+                    setShowPricing(false);
+                    setTimeout(() => setShowModal(true), 320);
+                  }}
+                >
+                  Ask About Hosting
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -707,4 +684,5 @@ export default function App() {
     </>
   );
 }
+
 
