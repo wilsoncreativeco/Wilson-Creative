@@ -87,18 +87,19 @@ const pricingTiers = [
 ];
 
 const hostingOption = {
-  name: "Optional Hosting",
+  name: "Optional Website Hosting",
   price: "$25 / month",
-  desc: "Hosting keeps your website live online after launch. This is completely optional, but ideal if you want us to handle the technical side for you.",
+  desc: "Hosting means we look after the technical side of keeping your website live online. It is completely optional — you can either host the website yourself, use your own provider, or have us manage it for you.",
   features: [
-    "Secure server space for your website files",
-    "Keeps your website accessible online 24/7",
-    "Domain connection support",
-    "SSL setup for secure HTTPS browsing",
-    "Basic uptime checks and technical maintenance",
-    "Simple support for hosting-related issues",
+    "We keep your website live and accessible online",
+    "We connect your domain to the website",
+    "We manage the hosting setup so you do not have to",
+    "We set up SSL so your site loads securely with HTTPS",
+    "We monitor the site for basic uptime and hosting issues",
+    "You can move to your own hosting at any time",
   ],
 };
+
 
 const InstagramIcon = () => (
   <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
