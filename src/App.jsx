@@ -434,45 +434,46 @@ export default function App() {
         </p>
       </section>
 
-      <section id="work" className="section work">
-        <h2>Sample Builds</h2>
-        <p className="text">
-          High-performance sample builds demonstrating what we can create for
-          your brand.
-        </p>
-        <div className="work-grid">
-          {[
-            ["/meridian.html", "Real Estate Mockup"],
-            ["/barber.html", "Cafe Mockup"],
-            ["/Plumbing.html", "Plumbing Mockup"],
-            ["/Cafe.html", "Cafe Mockup"],
-          ].map(([src, title]) => (
-            <div
-              key={src}
-              className="work-item"
-              style={{ padding: 0, overflow: "hidden", position: "relative" }}
-            >
-              <iframe
-                src={src}
-                title={title}
-                scrolling="no"
-                className="work-iframe"
-                style={{
-                  position: "absolute",
-                  top: 0,
-                  left: 0,
-                  width: "200%",
-                  height: "200%",
-                  border: "none",
-                  transform: "scale(0.5)",
-                  transformOrigin: "top left",
-                  pointerEvents: "none",
-                }}
-              />
-            </div>
-          ))}
-        </div>
-      </section>
+    <section id="work" className="section work">
+  <h2>Sample Builds</h2>
+  <p className="text">
+    High-performance sample builds demonstrating what we can create for
+    your brand.
+  </p>
+  <div className="work-grid">
+    {[
+      ["/meridian.html", "Real Estate Mockup"],
+      ["/barber.html", "Barber Mockup"],
+      ["/Plumbing.html", "Plumbing Mockup"],
+      ["/Cafe.html", "Cafe Mockup"],
+      ["https://noir-cafe-beige.vercel.app", "NOIR Café Mockup"],
+    ].map(([src, title]) => (
+      <div
+        key={src}
+        className="work-item"
+        style={{ padding: 0, overflow: "hidden", position: "relative" }}
+      >
+        <iframe
+          src={src}
+          title={title}
+          scrolling="no"
+          className="work-iframe"
+          style={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            width: "200%",
+            height: "200%",
+            border: "none",
+            transform: "scale(0.5)",
+            transformOrigin: "top left",
+            pointerEvents: "none",
+          }}
+        />
+      </div>
+    ))}
+  </div>
+</section>
 
       <footer className="site-footer">
         <div className="footer-inner">
