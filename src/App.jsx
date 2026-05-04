@@ -443,7 +443,7 @@ export default function App() {
         <div className="work-grid">
           {[
             ["/meridian.html", "Real Estate Mockup"],
-            ["/barber.html", "Barber Mockup"],
+            ["/Noir.html", "Cafe Mockup"],
             ["/Plumbing.html", "Plumbing Mockup"],
             ["/Cafe.html", "Cafe Mockup"],
           ].map(([src, title]) => (
