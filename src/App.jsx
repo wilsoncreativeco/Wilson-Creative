@@ -391,8 +391,14 @@ export default function App() {
             </button>
           </div>
         </div>
-        <div className="scroll-indicator">
-      </div>
+   <div className="scroll-indicator">
+  <span style={{
+    color: 'white',
+    fontSize: '20px',
+    animation: 'bounce 1.5s infinite'
+  }}>↓</span>
+</div>
+
 
       <section id="services" className="section what-we-do">
         <h2>Featured Services</h2>
