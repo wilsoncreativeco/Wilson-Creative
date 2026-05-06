@@ -392,10 +392,6 @@ export default function App() {
           </div>
         </div>
         <div className="scroll-indicator">
-          <div className="scroll-line" />
-          <span className="scroll-text">SCROLL</span>
-          <span className="scroll-arrow">&darr;</span>
-        </div>
       </div>
 
       <section id="services" className="section what-we-do">
