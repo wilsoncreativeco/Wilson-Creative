@@ -378,7 +378,7 @@ export default function App() {
           <p className="sub">And turn it into customers.</p>
           <div className="buttons">
             <button className="primary" onClick={() => setShowModal(true)}>
-              Let's Chat
+              Start a Project
             </button>
             <button
               className="secondary"
