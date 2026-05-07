@@ -95,13 +95,11 @@ export default function App() {
   const [formStatus,   setFormStatus]   = useState('idle')
   const [flippedCard,  setFlippedCard]  = useState(null)
 
-  const canvasRef    = useRef(null)
-  const heroRef      = useRef(null)
-  const heroInnerRef = useRef(null)
-  const portTrackRef = useRef(null)
-  const canvasRef    = useRef(null)
-const videoRef     = useRef(null)   // ← ADD THIS
-
+const canvasRef    = useRef(null)
+const heroRef      = useRef(null)
+const heroInnerRef = useRef(null)
+const portTrackRef = useRef(null)
+const videoRef     = useRef(null)
   // LOADER
   useEffect(() => {
     let p = 0
