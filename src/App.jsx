@@ -437,10 +437,20 @@ export default function App() {
         <div className="h-inner" ref={heroInnerRef}>
           <p className="h-eye">Brisbane Based — Global Reach</p>
           <h1 className="h1" aria-label="We Don't Just Build Websites. We Build Attention.">
-            <span className="hl"><span className="hw">We Don&apos;t</span></span>
-            <span className="hl"><span className="hw">Just Build</span></span>
-            <span className="hl"><span className="hw">Attention.</span></span>
-          </h1>
+            <<h1>
+  <span className="hl">
+    <span className="hw">We Don&apos;t Build</span>
+  </span>
+  <span className="hl">
+    <span className="hw">Websites.</span>
+  </span>
+  <span className="hl">
+    <span className="hw">We Build</span>
+  </span>
+  <span className="hl">
+    <span className="hw">Attention.</span>
+  </span>
+</h1>
           <p className="h-sub">And turn it into customers.</p>
           <div className="h-btns">
             <a href="#contact" className="btn-g" onClick={(e) => handleNavClick(e, '#contact')}>Start a Project</a>
