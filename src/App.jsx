@@ -93,6 +93,7 @@ export default function App() {
   const [showFCta,     setShowFCta]     = useState(false)
   const [openFaq,      setOpenFaq]      = useState(null)
   const [formStatus,   setFormStatus]   = useState('idle')
+  const [heroReady,    setHeroReady]    = useState(false)
   const [flippedCard,  setFlippedCard]  = useState(null)
 
 const canvasRef    = useRef(null)
