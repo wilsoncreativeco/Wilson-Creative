@@ -534,7 +534,7 @@ export default function App() {
       <section id="work" className="port" aria-labelledby="work-h2">
         <div className="port-hd">
           <div>
-            <p className="stag rv">Sample Builds</p>
+            <p className="stag rv"> Recent Designs </p>
             <h2 className="sh2 rv d1" id="work-h2" style={{ maxWidth: 420, fontSize: 'clamp(32px,4vw,56px)' }}>What we <em>create</em></h2>
           </div>
           <a href="#contact" className="view-all rv" onClick={(e) => handleNavClick(e, '#contact')}>Get Your Build →</a>
