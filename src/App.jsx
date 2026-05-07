@@ -315,8 +315,6 @@ export default function App() {
 >
   <source src="/hero.mp4" type="video/mp4" />
 </video>
-    <source src="/hero.mp4" type="video/mp4" />
-  </video>
 
   <div className="h-orb h-orb-1" aria-hidden="true" />
   <div className="h-orb h-orb-2" aria-hidden="true" />
