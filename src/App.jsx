@@ -300,45 +300,50 @@ export default function App() {
         </div>
       </nav>
 
-      {/* ── HERO ── FIX 1: CSS orb background (no video needed) */}
-   <canvas id="hcanvas" ref={canvasRef} aria-hidden="true" />
+<section className="hero" id="top" ref={heroRef} aria-label="Hero">
+  <canvas id="hcanvas" ref={canvasRef} aria-hidden="true" />
 
-<video
-  className="hero-video"
-  autoPlay muted loop playsInline preload="auto"
-  poster="/fallback.jpg"
-  aria-hidden="true"
->
-  <source src="/hero.mp4" type="video/mp4" />
-</video>
+  <video
+    className="hero-video"
+    autoPlay
+    muted
+    loop
+    playsInline
+    preload="auto"
+    aria-hidden="true"
+  >
+    <source src="/hero.mp4" type="video/mp4" />
+  </video>
 
-<div className="h-orb h-orb-1" aria-hidden="true" />
+  <div className="h-orb h-orb-1" aria-hidden="true" />
+  <div className="h-orb h-orb-2" aria-hidden="true" />
+  <div className="h-orb h-orb-3" aria-hidden="true" />
+  <div className="h-ov" aria-hidden="true" />
 
-        <div className="h-inner" ref={heroInnerRef}>
-          <p className="h-eye">Brisbane Based — Global Reach</p>
+  <div className="h-inner" ref={heroInnerRef}>
+    <p className="h-eye">Brisbane Based — Global Reach</p>
+    <h1 className="h1" aria-label="We Don't Just Build Websites. We Build Attention.">
+      <span className="hl"><span className="hw hw1">We Don&apos;t Just</span></span>
+      <span className="hl"><span className="hw hw2">Build Websites.</span></span>
+      <span className="hl"><span className="hw hw3">We Build</span></span>
+      <span className="hl"><span className="hw hw4 gold-line">Attention.</span></span>
+    </h1>
+    <p className="h-sub">And turn it into customers.</p>
+    <div className="h-btns">
+      <a href="#contact" className="btn-g" onClick={e => handleNav(e, '#contact')}>Start a Project</a>
+      <a href="#work" className="btn-o" onClick={e => handleNav(e, '#work')}>View Our Work →</a>
+    </div>
+  </div>
 
-          {/* FIX 2: Correct full headline with gold on "Attention." */}
-          <h1 className="h1" aria-label="We Don't Just Build Websites. We Build Attention.">
-            <span className="hl"><span className="hw hw1">We Don&apos;t Just</span></span>
-            <span className="hl"><span className="hw hw2">Build Websites.</span></span>
-            <span className="hl"><span className="hw hw3">We Build</span></span>
-            <span className="hl"><span className="hw hw4 gold-line">Attention.</span></span>
-          </h1>
-
-          <p className="h-sub">And turn it into customers.</p>
-          <div className="h-btns">
-            <a href="#contact" className="btn-g" onClick={e => handleNav(e, '#contact')}>Start a Project</a>
-            <a href="#work"    className="btn-o" onClick={e => handleNav(e, '#work')}>View Our Work →</a>
-          </div>
-        </div>
-
-        <div className="h-scroll" aria-hidden="true"><span className="h-sl" /> Scroll to Explore</div>
-        <div className="h-stats" aria-label="Key stats">
-          <div><span className="hs-val cnt" data-t="47"  data-s="+">0</span><span className="hs-lbl">Projects Delivered</span></div>
-          <div><span className="hs-val cnt" data-t="100" data-s="%">0</span><span className="hs-lbl">Client Satisfaction</span></div>
-          <div><span className="hs-val cnt" data-t="3"   data-s="+">0</span><span className="hs-lbl">Years Building</span></div>
-        </div>
-      </section>
+  <div className="h-scroll" aria-hidden="true">
+    <span className="h-sl" /> Scroll to Explore
+  </div>
+  <div className="h-stats" aria-label="Key stats">
+    <div><span className="hs-val cnt" data-t="47" data-s="+">0</span><span className="hs-lbl">Projects Delivered</span></div>
+    <div><span className="hs-val cnt" data-t="100" data-s="%">0</span><span className="hs-lbl">Client Satisfaction</span></div>
+    <div><span className="hs-val cnt" data-t="3" data-s="+">0</span><span className="hs-lbl">Years Building</span></div>
+  </div>
+</section>
 
       {/* MARQUEE */}
       <div className="mqs" aria-hidden="true">
