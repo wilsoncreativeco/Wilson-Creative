@@ -314,15 +314,14 @@ useEffect(() => {
 
 <section className="hero" id="top" ref={heroRef} aria-label="Hero">
   <canvas id="hcanvas" ref={canvasRef} aria-hidden="true" />
-
 <video
-  ref={videoRef}          
+  ref={videoRef}
   className="hero-video"
   autoPlay
   muted
   loop
   playsInline
-  preload="auto"           
+  preload="auto"
   poster="/fallback.jpg"
   aria-hidden="true"
 >
