@@ -301,12 +301,18 @@ export default function App() {
       </nav>
 
       {/* ── HERO ── FIX 1: CSS orb background (no video needed) */}
-      <section className="hero" id="top" ref={heroRef} aria-label="Hero">
-        <canvas id="hcanvas" ref={canvasRef} aria-hidden="true" />
-        <div className="h-orb h-orb-1" aria-hidden="true" />
-        <div className="h-orb h-orb-2" aria-hidden="true" />
-        <div className="h-orb h-orb-3" aria-hidden="true" />
-        <div className="h-ov"          aria-hidden="true" />
+   <canvas id="hcanvas" ref={canvasRef} aria-hidden="true" />
+
+<video
+  className="hero-video"
+  autoPlay muted loop playsInline preload="auto"
+  poster="/fallback.jpg"
+  aria-hidden="true"
+>
+  <source src="/hero.mp4" type="video/mp4" />
+</video>
+
+<div className="h-orb h-orb-1" aria-hidden="true" />
 
         <div className="h-inner" ref={heroInnerRef}>
           <p className="h-eye">Brisbane Based — Global Reach</p>
