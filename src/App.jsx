@@ -316,13 +316,13 @@ useEffect(() => {
   <canvas id="hcanvas" ref={canvasRef} aria-hidden="true" />
 
 <video
-  ref={videoRef}           {/* ← ADD ref */}
+  ref={videoRef}          
   className="hero-video"
   autoPlay
   muted
   loop
   playsInline
-  preload="auto"           {/* ← was "metadata", auto loads the full file */}
+  preload="auto"           
   poster="/fallback.jpg"
   aria-hidden="true"
 >
