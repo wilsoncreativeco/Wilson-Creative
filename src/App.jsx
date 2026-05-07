@@ -99,6 +99,8 @@ export default function App() {
   const heroRef      = useRef(null)
   const heroInnerRef = useRef(null)
   const portTrackRef = useRef(null)
+  const canvasRef    = useRef(null)
+const videoRef     = useRef(null)   // ← ADD THIS
 
   // LOADER
   useEffect(() => {
@@ -114,7 +116,19 @@ export default function App() {
     }, 55)
     return () => clearInterval(iv)
   }, [])
-
+// FORCE VIDEO PLAY — handles browser autoplay policy blocks
+useEffect(() => {
+  const v = videoRef.current
+  if (!v) return
+  v.muted = true
+  const tryPlay = () => v.play().catch(() => {})
+  if (v.readyState >= 2) {
+    tryPlay()
+  } else {
+    v.addEventListener('loadeddata', tryPlay, { once: true })
+  }
+  return () => v.removeEventListener('loadeddata', tryPlay)
+}, [])
   // SCROLL
   useEffect(() => {
     const onScroll = () => {
@@ -303,13 +317,14 @@ export default function App() {
 <section className="hero" id="top" ref={heroRef} aria-label="Hero">
   <canvas id="hcanvas" ref={canvasRef} aria-hidden="true" />
 
- <video
+<video
+  ref={videoRef}           {/* ← ADD ref */}
   className="hero-video"
   autoPlay
   muted
   loop
   playsInline
-  preload="metadata"
+  preload="auto"           {/* ← was "metadata", auto loads the full file */}
   poster="/fallback.jpg"
   aria-hidden="true"
 >
