@@ -1675,3 +1675,112 @@ footer{
   .h-orb{animation:none}
   .sc-flipper{transition:none}
 }
+/* MOBILE PREMIUM LOAD FIX — paste at very bottom */
+
+@media(max-width:768px){
+  #loader{
+    transition:
+      opacity .9s cubic-bezier(.16,1,.3,1),
+      transform .9s cubic-bezier(.16,1,.3,1),
+      filter .9s cubic-bezier(.16,1,.3,1) !important;
+  }
+
+  #loader.out{
+    opacity:0 !important;
+    transform:scale(1.025) !important;
+    filter:blur(10px) !important;
+    pointer-events:none !important;
+  }
+
+  .hero::before{
+    content:'';
+    position:absolute;
+    inset:0;
+    z-index:0;
+    background:
+      linear-gradient(135deg,rgba(7,6,10,.72),rgba(7,6,10,.48)),
+      url('/fallback.jpg') center/cover no-repeat;
+    opacity:.22;
+    transform:scale(1.02);
+    animation:mobileHeroBgIn 1.4s .2s cubic-bezier(.16,1,.3,1) forwards;
+  }
+
+  .hero-video{
+    opacity:0 !important;
+    transform:scale(1.035);
+    transition:
+      opacity 1.4s ease,
+      transform 1.8s cubic-bezier(.16,1,.3,1) !important;
+  }
+
+  body.video-ready .hero-video{
+    opacity:.12 !important;
+    transform:scale(1);
+  }
+
+  .h-eye,
+  .h-sub,
+  .h-btns,
+  .h-scroll{
+    opacity:0 !important;
+    transform:translateY(18px);
+    animation:none !important;
+  }
+
+  .hw{
+    transform:translateY(112%);
+    animation:none !important;
+  }
+
+  .h-eye{
+    animation:mobileFadeUp .9s .55s cubic-bezier(.16,1,.3,1) forwards !important;
+  }
+
+  .hw1{
+    animation:mobileSlideUp 1s .72s cubic-bezier(.16,1,.3,1) forwards !important;
+  }
+
+  .hw2{
+    animation:mobileSlideUp 1s .86s cubic-bezier(.16,1,.3,1) forwards !important;
+  }
+
+  .hw3{
+    animation:mobileSlideUp 1s 1s cubic-bezier(.16,1,.3,1) forwards !important;
+  }
+
+  .hw4{
+    animation:mobileSlideUp 1s 1.14s cubic-bezier(.16,1,.3,1) forwards !important;
+  }
+
+  .h-sub{
+    animation:mobileFadeUp .9s 1.32s cubic-bezier(.16,1,.3,1) forwards !important;
+  }
+
+  .h-btns{
+    animation:mobileFadeUp .9s 1.48s cubic-bezier(.16,1,.3,1) forwards !important;
+  }
+
+  .h-scroll{
+    animation:mobileFadeUp .9s 1.65s cubic-bezier(.16,1,.3,1) forwards !important;
+  }
+}
+
+@keyframes mobileFadeUp{
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+@keyframes mobileSlideUp{
+  to{
+    transform:translateY(0);
+  }
+}
+
+@keyframes mobileHeroBgIn{
+  to{
+    opacity:.16;
+    transform:scale(1);
+  }
+}
