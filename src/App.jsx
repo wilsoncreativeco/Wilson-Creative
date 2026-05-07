@@ -303,15 +303,18 @@ export default function App() {
 <section className="hero" id="top" ref={heroRef} aria-label="Hero">
   <canvas id="hcanvas" ref={canvasRef} aria-hidden="true" />
 
-  <video
-    className="hero-video"
-    autoPlay
-    muted
-    loop
-    playsInline
-    preload="auto"
-    aria-hidden="true"
-  >
+ <video
+  className="hero-video"
+  autoPlay
+  muted
+  loop
+  playsInline
+  preload="metadata"
+  poster="/fallback.jpg"
+  aria-hidden="true"
+>
+  <source src="/hero.mp4" type="video/mp4" />
+</video>
     <source src="/hero.mp4" type="video/mp4" />
   </video>
 
