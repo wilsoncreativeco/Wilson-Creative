@@ -276,13 +276,17 @@ useEffect(() => {
       <div id="spb" style={{ width: `${scrollProg}%` }} />
 
       {/* LOADER */}
-      {!loaderHidden && (
-        <div id="loader" className={loaderOut ? 'out' : ''}>
-          <div className="l-name">Wilson <b>Creative</b> Co.</div>
-          <div className="l-pct">{loadPct}</div>
-          <div className="l-bar"><div className="l-fill" style={{ width: `${loadPct}%` }} /></div>
-        </div>
-      )}
+{!loaderHidden && (
+  <div id="loader" className={loaderOut ? 'out' : ''}>
+    <div className="l-name">Wilson <b>Creative</b> Co.</div>
+    <div className="l-tagline">Premium Web Design Studio</div>
+    <div className="l-bar"><div className="l-fill" style={{ width: `${loadPct}%` }} /></div>
+    <div className="l-status">
+      {loadPct < 40 ? 'Loading' : loadPct < 75 ? 'Preparing' : loadPct < 95 ? 'Almost there' : 'Ready'}
+    </div>
+  </div>
+)}
+
 
       {/* ── NAV ── FIX 3: white-space nowrap, all links work */}
       <nav id="nav" className={navScrolled ? 'sc' : ''} aria-label="Main navigation">
