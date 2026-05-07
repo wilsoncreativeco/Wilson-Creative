@@ -553,7 +553,7 @@ export default function App() {
             </article>
           ))}
         </div>
-        <div className="port-hint rv">Drag to explore more</div>
+        <div className="port-hint rv">swipe to explore more</div>
       </section>
 
       {/* PROCESS */}
