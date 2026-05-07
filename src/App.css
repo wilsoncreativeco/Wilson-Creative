@@ -242,8 +242,8 @@ body::before{
 /* ╔══ MARQUEE ══╗ */
 .mqs{overflow:hidden;border-top:1px solid var(--bd);border-bottom:1px solid var(--bd);background:rgba(197,164,74,.02)}
 .mqr{display:flex;width:max-content;white-space:nowrap;padding:14px 0}
-.mqr:nth-child(1){animation:aMQ 24s linear infinite}
-.mqr:nth-child(2){animation:aMQ 24s linear infinite reverse}
+.mqr:nth-child(1){animation:aMQ 40s linear infinite}
+.mqr:nth-child(2){animation:aMQ 40s linear infinite reverse}
 .mqi{display:flex;align-items:center;gap:44px;font-family:'Bebas Neue',sans-serif;font-size:12px;letter-spacing:.28em;color:var(--w3);padding:0 22px}
 .mqd{width:3px;height:3px;background:var(--g);border-radius:50%;flex-shrink:0}
 
