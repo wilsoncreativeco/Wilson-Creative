@@ -535,7 +535,7 @@ useEffect(() => {
         </div>
       </section>
 
-      {/* CTA / CONTACT */}
+      {/* CTA / CONTACT */}p
       <section id="contact" className="cta-sec" aria-labelledby="cta-h2">
         <div className="cta-glow" aria-hidden="true" />
         <p className="stag rv" style={{ justifyContent:'center' }}>Ready to Stand Out?</p>
