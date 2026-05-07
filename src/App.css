@@ -150,6 +150,9 @@ body::before{
   object-fit:cover;z-index:0;opacity:.18;pointer-events:none;
   transition:transform .3s ease,filter .3s ease;
 }
+@media(max-width:768px){
+  .hero-video{display:none}
+}
 
 /* CSS orbs — no video needed */
 .h-orb{position:absolute;border-radius:50%;pointer-events:none;z-index:0;filter:blur(80px)}
