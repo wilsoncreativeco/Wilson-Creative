@@ -1,692 +1,749 @@
-import "./App.css";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from 'react'
+import './App.css'
+
+// ═══════════════════════════════════════
+// DATA
+// ═══════════════════════════════════════
+const navItems = [
+  { label: 'Services', href: '#services' },
+  { label: 'Work', href: '#work' },
+  { label: 'About', href: '#about' },
+  { label: 'Process', href: '#process' },
+  { label: 'Pricing', href: '#pricing' },
+  { label: 'Contact', href: '#contact' },
+]
 
 const services = [
-  { title: "Web Design & Development", status: "" },
-  { title: "Aerial Cinematography", status: "Coming soon" },
-  { title: "Photography", status: "Coming soon" },
-  { title: "Social Media Content", status: "Coming soon" },
-];
+  {
+    num: '01', icon: '🖥', name: 'Web Design & Development',
+    desc: "Fully custom-coded websites built from the ground up. No Wix, no templates, no shortcuts. Everything designed specifically for your business — giving you a fast, modern, completely unique site that fits your exact vision.",
+    statusType: 'live', statusLabel: 'Available Now',
+  },
+  {
+    num: '02', icon: '🚁', name: 'Aerial Cinematography',
+    desc: "Cinematic drone footage that gives your brand an elevated perspective. Hero videos, property showcases, and scroll-stopping content that makes people stare. The kind of shots your competitors can't afford to ignore.",
+    statusType: 'soon', statusLabel: 'Coming Soon',
+  },
+  {
+    num: '03', icon: '📷', name: 'Photography',
+    desc: "Premium product and brand photography that communicates quality before a single word is read. Every image crafted with intention — because your visuals are the first thing people judge you on.",
+    statusType: 'soon', statusLabel: 'Coming Soon',
+  },
+  {
+    num: '04', icon: '📱', name: 'Social Media Content',
+    desc: "High-performance content strategy and production designed to build an audience, hold their attention, and convert them into loyal customers. Content that performs — not just looks good.",
+    statusType: 'soon', statusLabel: 'Coming Soon',
+  },
+]
 
-const navItems = [
-  { label: "HOME", action: "scroll", target: "top" },
-  { label: "ABOUT", action: "scroll", target: "about" },
-  { label: "SERVICES", action: "scroll", target: "services" },
-  { label: "WORK", action: "scroll", target: "work" },
-  { label: "PROCESS", action: "process" },
-  { label: "PRICING", action: "pricing" },
-  { label: "CONTACT", action: "modal" },
-];
+const aboutPills = ['Custom Code','No Templates','Brisbane Based','Global Clients','Conversion First','Mobile First']
+
+const workItems = [
+  { src: '/meridian.html', tag: 'Real Estate', industry: 'Sample Build — Luxury Property', title: 'Where Exceptional Homes Find Their People', sub: 'Premium real estate agency experience' },
+  { src: '/barber.html', tag: 'Barbershop', industry: 'Sample Build — Luxury Barber', title: 'Precision Cuts. Quiet Confidence.', sub: 'Premium booking & brand experience' },
+  { src: '/Plumbing.html', tag: 'Trades', industry: 'Sample Build — Plumbing Co.', title: 'The Art of Fluid Infrastructure', sub: 'Precision engineering meets premium design' },
+  { src: '/Cafe.html', tag: 'Hospitality', industry: 'Sample Build — Boutique Café', title: 'Coffee · Culture · Community', sub: 'Boutique café digital experience' },
+  { src: 'https://noir-cafe-beige.vercel.app', tag: 'Hospitality', industry: 'Sample Build — NOIR Café', title: 'Coffee · Matcha · Culture', sub: 'Award-worthy café brand & site' },
+]
 
 const processSteps = [
-  {
-    num: "01",
-    title: "Discovery",
-    desc: "We take the time to understand your business, your goals, and exactly what you want your website to achieve. Whether you have a clear vision or no idea where to start, we'll guide the process and identify what will actually drive results.",
-  },
-  {
-    num: "02",
-    title: "Strategy",
-    desc: "We map out a clear plan for your site — structure, layout, and user flow — all tailored to your business. Every decision is made with one goal: turning visitors into enquiries or customers.",
-  },
-  {
-    num: "03",
-    title: "Design & Build",
-    desc: "Your website is fully custom coded from scratch — no Wix, no templates, no shortcuts. Everything is designed and built specifically for your business, giving you a fast, modern, and completely unique site that fits your exact vision.",
-  },
-  {
-    num: "04",
-    title: "Launch & Support",
-    desc: "Once everything is tested and approved, we launch your site smoothly. After launch, we're here for updates, tweaks, and ongoing support to keep everything running properly.",
-  },
-];
+  { num: '01', title: 'Discovery', desc: "We take the time to understand your business, your goals, and exactly what you want your website to achieve. Whether you have a clear vision or no idea where to start, we'll guide the process and identify what will actually drive results." },
+  { num: '02', title: 'Strategy', desc: "We map out a clear plan for your site — structure, layout, and user flow — all tailored to your business. Every decision is made with one goal: turning visitors into enquiries or customers." },
+  { num: '03', title: 'Design & Build', desc: "Your website is fully custom coded from scratch — no Wix, no templates, no shortcuts. Everything is designed and built specifically for your business, giving you a fast, modern, and completely unique site that fits your exact vision." },
+  { num: '04', title: 'Launch & Support', desc: "Once everything is tested and approved, we launch your site smoothly. After launch, we're here for updates, tweaks, and ongoing support to keep everything running properly." },
+]
 
 const pricingTiers = [
   {
-    name: "Starter",
-    price: "From $600",
-    desc: "Perfect for small businesses and personal brands getting started online.",
-    features: [
-      "Custom single-page website",
-      "Mobile-responsive design",
-      "Contact form + click-to-call integration",
-      "Basic SEO setup",
-      "1 round of revisions",
-      "5–7 day delivery",
-    ],
+    name: 'Starter', price: 'From $600',
+    desc: 'Perfect for small businesses and personal brands getting started online.',
+    features: ['Custom single-page website','Mobile-responsive design','Contact form + click-to-call','Basic SEO setup','1 round of revisions','5–7 day delivery'],
+    featured: false,
   },
   {
-    name: "Growth",
-    price: "From $1,000",
-    desc: "For established brands ready to scale their digital presence.",
-    features: [
-      "Multi-page custom website (up to 5)",
-      "Advanced animations & interactions",
-      "CMS or blog integration",
-      "Full SEO optimisation",
-      "3 rounds of revisions",
-      "Analytics dashboard setup",
-      "10-14 day delivery",
-    ],
+    name: 'Growth', price: 'From $1,000',
+    desc: 'For established brands ready to scale their digital presence.',
+    features: ['Multi-page website (up to 5 pages)','Advanced animations & interactions','CMS or blog integration','Full SEO optimisation','3 rounds of revisions','Analytics dashboard setup','10–14 day delivery'],
     featured: true,
   },
   {
-    name: "Premium",
-    price: "From $2,000",
-    desc: "Full-service creative solution for brands that demand the best.",
-    features: [
-      "Everything in Growth",
-      "E-commerce or booking system",
-      "Custom brand strategy session",
-      "Content creation & copywriting",
-      "Priority ongoing support",
-      "Unlimited revisions",
-      "2-3 week delivery",
-    ],
+    name: 'Premium', price: 'From $2,000',
+    desc: 'Full-service creative solution for brands that demand the best.',
+    features: ['Everything in Growth','E-commerce or booking system','Custom brand strategy session','Content creation & copywriting','Priority ongoing support','Unlimited revisions','2–3 week delivery'],
+    featured: false,
   },
-];
+]
 
-const hostingOption = {
-  name: "Optional Website Hosting",
-  price: "$25 / month",
-  desc: "Hosting means we look after the technical side of keeping your website live online. It is completely optional — you can either host the website yourself, use your own provider, or have us manage it for you.",
-  features: [
-    "We keep your website live and accessible online",
-    "We connect your domain to the website",
-    "We manage the hosting setup so you do not have to",
-    "We set up SSL so your site loads securely with HTTPS",
-    "We monitor the site for basic uptime and hosting issues",
-    "You can move to your own hosting at any time",
-  ],
-};
+const hostingFeatures = [
+  'We keep your website live and accessible online',
+  'We connect your domain to the website',
+  'We manage the full hosting setup',
+  'SSL so your site loads securely with HTTPS',
+  'Basic uptime and hosting monitoring',
+  'Move to your own hosting at any time',
+]
 
+const faqItems = [
+  { q: 'How much does a custom website cost in Brisbane?', a: 'Wilson Creative Co. websites start from $600 for a single-page Starter site, $1,000 for a multi-page Growth site, and from $2,000 for a full Premium build including e-commerce or booking systems. Optional hosting is available at $25/month.' },
+  { q: 'How long does it take to build a website?', a: 'Starter sites are delivered in 5–7 days. Growth sites take 10–14 days. Premium builds are completed in 2–3 weeks. All timelines include your revision rounds.' },
+  { q: 'Do you use templates or page builders like Wix?', a: 'Never. Every Wilson Creative Co. website is fully custom-coded from scratch. No Wix, no Squarespace, no Webflow templates — just clean, fast, custom code built specifically for your business. This means better performance, full ownership, and a site no one else has.' },
+  { q: 'Do you work with clients outside of Brisbane?', a: "Absolutely. While we're based in Brisbane, we work with clients across Australia and globally. The entire process is handled remotely with clear communication and collaboration at every stage." },
+  { q: 'What do I need to provide to get started?', a: "Not much. If you have a logo, brand colours, and some idea of what you want — great. If you're starting from scratch, we'll guide you through everything during the Discovery phase. We're here to make the process as easy as possible." },
+]
 
-const InstagramIcon = () => (
-  <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-    <rect x="2" y="2" width="20" height="20" rx="5" />
-    <circle cx="12" cy="12" r="5" />
-    <circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none" />
-  </svg>
-);
+const marqueeRow1 = ['Web Design & Development','Aerial Cinematography','Brand Strategy','Social Media Content','Photography','Custom Code — No Templates','Brisbane Based — Global Reach']
+const marqueeRow2 = ['Conversion Focused','Mobile First','Premium Animations','Lightning Fast','SEO Optimised','Built to Convert','100% Custom Code']
 
-const FacebookIcon = () => (
-  <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor">
-    <path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" />
-  </svg>
-);
-
-const EmailIcon = () => (
-  <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-    <rect x="2" y="4" width="20" height="16" rx="3" />
-    <polyline points="22,4 12,13 2,4" />
-  </svg>
-);
-
-const PhoneIcon = () => (
-  <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />
-  </svg>
-);
-
+// ═══════════════════════════════════════
+// COMPONENT
+// ═══════════════════════════════════════
 export default function App() {
-  const [loaded, setLoaded] = useState(false);
-  const [showModal, setShowModal] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [showProcess, setShowProcess] = useState(false);
-  const [showPricing, setShowPricing] = useState(false);
+  const [loadPct, setLoadPct] = useState(0)
+  const [loaderOut, setLoaderOut] = useState(false)
+  const [loaderHidden, setLoaderHidden] = useState(false)
+  const [navScrolled, setNavScrolled] = useState(false)
+  const [menuOpen, setMenuOpen] = useState(false)
+  const [scrollProgress, setScrollProgress] = useState(0)
+  const [showFloatCta, setShowFloatCta] = useState(false)
+  const [openFaq, setOpenFaq] = useState(null)
+  const [formStatus, setFormStatus] = useState('idle') // 'idle' | 'sending' | 'sent'
 
+  const canvasRef = useRef(null)
+  const heroRef = useRef(null)
+  const heroVideoRef = useRef(null)
+  const heroInnerRef = useRef(null)
+  const portTrackRef = useRef(null)
+
+  // ═══ LOADER ═══
   useEffect(() => {
-    const timer = setTimeout(() => setLoaded(true), 300);
-    const sections = document.querySelectorAll(".section");
-    const video = document.querySelector(".hero-video");
-    const overlay = document.querySelector(".overlay");
-    const prefersReducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
-    ).matches;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) entry.target.classList.add("show");
-        });
-      },
-      { threshold: 0.18, rootMargin: "0px 0px -4% 0px" }
-    );
-
-    sections.forEach((section) => observer.observe(section));
-
-    let ticking = false;
-    const updateHero = () => {
-      ticking = false;
-      if (!video || !overlay || prefersReducedMotion) return;
-      const scrollY = window.scrollY;
-      const heroHeight = window.innerHeight * 1.08;
-      let progress = scrollY / heroHeight;
-      progress = Math.max(0, Math.min(progress, 1));
-      const eased = progress * progress * (3 - 2 * progress);
-      const scale = 1 + eased * 0.04;
-      const blur = eased * 24;
-      const brightness = 1 - eased * 0.52;
-      const darkness = 0.44 + eased * 0.36;
-
-      video.style.transform = `translate3d(0, 0, 0) scale(${scale})`;
-      video.style.filter = `blur(${blur}px) brightness(${brightness})`;
-      overlay.style.setProperty("--overlay-darkness", String(darkness));
-    };
-
-    const onScroll = () => {
-      if (!ticking) {
-        ticking = true;
-        window.requestAnimationFrame(updateHero);
+    let p = 0
+    const iv = setInterval(() => {
+      p += Math.random() * 9 + 3
+      if (p >= 100) {
+        p = 100
+        clearInterval(iv)
+        setTimeout(() => setLoaderOut(true), 180)
+        setTimeout(() => setLoaderHidden(true), 880)
       }
-    };
+      setLoadPct(Math.floor(p))
+    }, 55)
+    return () => clearInterval(iv)
+  }, [])
 
-    window.addEventListener("scroll", onScroll, { passive: true });
-    updateHero();
-
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-      observer.disconnect();
-      clearTimeout(timer);
-    };
-  }, []);
-
+  // ═══ SCROLL: NAV STATE + PROGRESS + FLOATING CTA ═══
   useEffect(() => {
-    const frames = document.querySelectorAll(".work-iframe");
-    frames.forEach((frame) => {
-      let scroller = null;
-      let pos = 0;
-      let maxScroll = 0;
+    const onScroll = () => {
+      const sy = window.scrollY
+      setNavScrolled(sy > 60)
+      const h = document.documentElement.scrollHeight - window.innerHeight
+      setScrollProgress((sy / h) * 100)
+      setShowFloatCta(sy > window.innerHeight * 0.8)
+    }
+    window.addEventListener('scroll', onScroll, { passive: true })
+    onScroll()
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
 
-      const init = () => {
-        const doc = frame.contentDocument;
-        if (!doc) return;
-        maxScroll = doc.documentElement.scrollHeight - frame.clientHeight;
-      };
+  // ═══ MENU OPEN — LOCK BODY ═══
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? 'hidden' : ''
+    return () => { document.body.style.overflow = '' }
+  }, [menuOpen])
 
-      frame.addEventListener("load", init);
+  // ═══ HERO CANVAS PARTICLES + PARALLAX ═══
+  useEffect(() => {
+    const canvas = canvasRef.current
+    const hero = heroRef.current
+    if (!canvas || !hero) return
 
-      const startScroll = () => {
-        if (scroller) return;
-        scroller = setInterval(() => {
-          pos += 0.6;
-          if (pos >= maxScroll) {
-            clearInterval(scroller);
-            scroller = null;
-            return;
+    const ctx = canvas.getContext('2d')
+    const resize = () => {
+      canvas.width = window.innerWidth
+      canvas.height = window.innerHeight
+    }
+    resize()
+
+    const pts = Array.from({ length: 130 }, () => ({
+      x: Math.random() * window.innerWidth,
+      y: Math.random() * window.innerHeight,
+      vx: (Math.random() - 0.5) * 0.18,
+      vy: (Math.random() - 0.5) * 0.18,
+      r: Math.random() * 1.1 + 0.2,
+      o: Math.random() * 0.7 + 0.1,
+    }))
+
+    let hmx = window.innerWidth / 2, hmy = window.innerHeight / 2
+    const onMove = (e) => { hmx = e.clientX; hmy = e.clientY }
+    hero.addEventListener('mousemove', onMove)
+
+    let raf
+    const draw = () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height)
+      pts.forEach(p => {
+        p.vx += (hmx - canvas.width / 2) * 4e-6
+        p.vy += (hmy - canvas.height / 2) * 4e-6
+        p.vx *= 0.999; p.vy *= 0.999
+        p.x += p.vx; p.y += p.vy
+        if (p.x < 0) p.x = canvas.width
+        if (p.x > canvas.width) p.x = 0
+        if (p.y < 0) p.y = canvas.height
+        if (p.y > canvas.height) p.y = 0
+        ctx.beginPath()
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2)
+        ctx.fillStyle = `rgba(197,164,74,${p.o * 0.55})`
+        ctx.fill()
+      })
+      pts.forEach((a, i) => {
+        pts.slice(i + 1).forEach(b => {
+          const d = Math.hypot(a.x - b.x, a.y - b.y)
+          if (d < 110) {
+            ctx.beginPath()
+            ctx.moveTo(a.x, a.y)
+            ctx.lineTo(b.x, b.y)
+            ctx.strokeStyle = `rgba(197,164,74,${(1 - d / 110) * 0.065})`
+            ctx.lineWidth = 0.5
+            ctx.stroke()
           }
-          frame.contentWindow.scrollTo(0, pos);
-        }, 16);
-      };
+        })
+      })
+      raf = requestAnimationFrame(draw)
+    }
+    draw()
 
-      const stopScroll = () => {
-        clearInterval(scroller);
-        scroller = null;
-        pos = 0;
-        frame.contentWindow.scrollTo(0, 0);
-      };
+    // Parallax
+    let tick = false
+    const onParallax = () => {
+      if (tick) return
+      tick = true
+      requestAnimationFrame(() => {
+        const sy = window.scrollY
+        const hh = window.innerHeight * 1.1
+        const prog = Math.min(sy / hh, 1)
+        const ease = prog * prog * (3 - 2 * prog)
+        if (heroVideoRef.current) {
+          heroVideoRef.current.style.transform = `scale(${1 + ease * 0.05})`
+          heroVideoRef.current.style.filter = `blur(${ease * 20}px) brightness(${1 - ease * 0.55})`
+        }
+        if (heroInnerRef.current) {
+          heroInnerRef.current.style.transform = `translateY(${sy * 0.28}px)`
+        }
+        tick = false
+      })
+    }
+    window.addEventListener('scroll', onParallax, { passive: true })
+    window.addEventListener('resize', resize)
 
-      frame.parentElement.addEventListener("mouseenter", startScroll);
-      frame.parentElement.addEventListener("mouseleave", stopScroll);
-    });
-  }, []);
-
-  useEffect(() => {
-    document.body.style.overflow =
-      menuOpen || showProcess || showPricing ? "hidden" : "";
     return () => {
-      document.body.style.overflow = "";
-    };
-  }, [menuOpen, showProcess, showPricing]);
+      cancelAnimationFrame(raf)
+      hero.removeEventListener('mousemove', onMove)
+      window.removeEventListener('scroll', onParallax)
+      window.removeEventListener('resize', resize)
+    }
+  }, [])
+
+  // ═══ INTERSECTION REVEALS ═══
+  useEffect(() => {
+    const els = document.querySelectorAll('.rv,.rl,.rr')
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('vi')
+          io.unobserve(e.target)
+        }
+      })
+    }, { threshold: 0.1, rootMargin: '0px 0px -4% 0px' })
+    els.forEach(el => io.observe(el))
+    return () => io.disconnect()
+  }, [])
+
+  // ═══ COUNTERS ═══
+  useEffect(() => {
+    const animCnt = (el) => {
+      const t = +el.dataset.t
+      const s = el.dataset.s || ''
+      let c = 0
+      const step = t / 55
+      const ti = setInterval(() => {
+        c = Math.min(c + step, t)
+        el.textContent = Math.floor(c) + s
+        if (c >= t) clearInterval(ti)
+      }, 22)
+    }
+    const els = document.querySelectorAll('.cnt')
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          animCnt(e.target)
+          io.unobserve(e.target)
+        }
+      })
+    }, { threshold: 0.5 })
+    els.forEach(el => io.observe(el))
+    return () => io.disconnect()
+  }, [])
+
+  // ═══ 3D TILT ═══
+  useEffect(() => {
+    const els = document.querySelectorAll('.tilt')
+    const handlers = []
+    els.forEach(el => {
+      const onMove = (e) => {
+        const r = el.getBoundingClientRect()
+        const x = (e.clientX - r.left) / r.width - 0.5
+        const y = (e.clientY - r.top) / r.height - 0.5
+        el.style.transform = `perspective(900px) rotateY(${x * 9}deg) rotateX(${-y * 9}deg) translateZ(8px)`
+        el.style.transition = 'transform .05s'
+      }
+      const onLeave = () => {
+        el.style.transform = 'perspective(900px) rotateY(0) rotateX(0) translateZ(0)'
+        el.style.transition = 'transform .5s cubic-bezier(.16,1,.3,1)'
+      }
+      el.addEventListener('mousemove', onMove)
+      el.addEventListener('mouseleave', onLeave)
+      handlers.push({ el, onMove, onLeave })
+    })
+    return () => {
+      handlers.forEach(({ el, onMove, onLeave }) => {
+        el.removeEventListener('mousemove', onMove)
+        el.removeEventListener('mouseleave', onLeave)
+      })
+    }
+  }, [])
+
+  // ═══ PORTFOLIO DRAG SCROLL ═══
+  useEffect(() => {
+    const pt = portTrackRef.current
+    if (!pt) return
+    let isDrag = false, sx = 0, sl = 0
+    const onDown = (e) => { isDrag = true; sx = e.pageX - pt.offsetLeft; sl = pt.scrollLeft; pt.style.cursor = 'grabbing' }
+    const onUp = () => { isDrag = false; pt.style.cursor = 'grab' }
+    const onMove = (e) => { if (!isDrag) return; e.preventDefault(); pt.scrollLeft = sl - (e.pageX - pt.offsetLeft - sx) }
+    pt.addEventListener('mousedown', onDown)
+    document.addEventListener('mouseup', onUp)
+    document.addEventListener('mousemove', onMove)
+    return () => {
+      pt.removeEventListener('mousedown', onDown)
+      document.removeEventListener('mouseup', onUp)
+      document.removeEventListener('mousemove', onMove)
+    }
+  }, [])
+
+  // ═══ HANDLERS ═══
+  const handleNavClick = (e, href) => {
+    e.preventDefault()
+    setMenuOpen(false)
+    setTimeout(() => {
+      const el = document.querySelector(href)
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    }, menuOpen ? 320 : 0)
+  }
+
+  const scrollToContact = () => {
+    setMenuOpen(false)
+    setTimeout(() => {
+      const el = document.getElementById('contact')
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    }, menuOpen ? 320 : 0)
+  }
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    const form = e.target;
-    const data = new FormData(form);
-    const response = await fetch(form.action, {
-      method: "POST",
-      body: data,
-      headers: { Accept: "application/json" },
-    });
-    if (response.ok) {
-      setSubmitted(true);
-      form.reset();
-      setTimeout(() => {
-        setShowModal(false);
-        setSubmitted(false);
-      }, 2000);
+    e.preventDefault()
+    setFormStatus('sending')
+    const form = e.target
+    const fd = new FormData(form)
+    try {
+      const r = await fetch(form.action, {
+        method: 'POST', body: fd,
+        headers: { Accept: 'application/json' },
+      })
+      if (r.ok) {
+        setFormStatus('sent')
+        form.reset()
+      } else {
+        setFormStatus('idle')
+      }
+    } catch {
+      setFormStatus('idle')
     }
-  };
+  }
 
-  const handleNavClick = (item) => {
-    setMenuOpen(false);
-    if (item.action === "modal") {
-      setTimeout(() => setShowModal(true), 320);
-    } else if (item.action === "process") {
-      setTimeout(() => setShowProcess(true), 320);
-    } else if (item.action === "pricing") {
-      setTimeout(() => setShowPricing(true), 320);
-    } else if (item.target === "top") {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    } else {
-      const el = document.getElementById(item.target);
-      if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
-  };
+  const year = new Date().getFullYear()
 
   return (
     <>
-      <div className="watermark">WILSON CREATIVE CO.</div>
+      {/* SCROLL PROGRESS */}
+      <div id="spb" style={{ width: `${scrollProgress}%` }} />
 
-      <button
-        className={`hamburger-btn ${menuOpen || showProcess || showPricing ? "open" : ""}`}
-        onClick={() => {
-          if (showProcess) { setShowProcess(false); return; }
-          if (showPricing) { setShowPricing(false); return; }
-          setMenuOpen(!menuOpen);
-        }}
-        aria-label={menuOpen ? "Close menu" : "Open menu"}
-        aria-expanded={menuOpen}
-      >
-        <span className="ham-line" />
-        <span className="ham-line" />
-        <span className="ham-line" />
-      </button>
+      {/* LOADER */}
+      {!loaderHidden && (
+        <div id="loader" className={loaderOut ? 'out' : ''}>
+          <div className="l-name">Wilson <b>Creative</b> Co.</div>
+          <div className="l-pct">{loadPct}</div>
+          <div className="l-bar"><div className="l-fill" style={{ width: `${loadPct}%` }} /></div>
+        </div>
+      )}
 
-      <div
-        className={`nav-overlay ${menuOpen ? "overlay-open" : ""}`}
-        role="dialog"
-        aria-modal="true"
-      >
-        <nav className="nav-overlay-inner">
-          <ul className="nav-list">
-            {navItems.map((item) => (
-              <li key={item.label} className="nav-item">
-                <button
-                  className="nav-link"
-                  onClick={() => handleNavClick(item)}
-                >
-                  {item.label}
-                </button>
-              </li>
-            ))}
-          </ul>
+      {/* NAV */}
+      <nav id="nav" className={navScrolled ? 'sc' : ''} aria-label="Main navigation">
+        <a href="/" className="n-logo" aria-label="Wilson Creative Co. Home">
+          Wilson <span>Creative</span> Co.
+        </a>
+        <ul className="n-links">
+          {navItems.map(item => (
+            <li key={item.label}>
+              <a href={item.href} onClick={(e) => handleNavClick(e, item.href)}>{item.label}</a>
+            </li>
+          ))}
+        </ul>
+        <a href="#contact" className="n-cta" onClick={(e) => handleNavClick(e, '#contact')}>Start a Project</a>
+        <button
+          className={`ham ${menuOpen ? 'on' : ''}`}
+          onClick={() => setMenuOpen(!menuOpen)}
+          aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+          aria-expanded={menuOpen}
+        >
+          <s></s><s></s><s></s>
+        </button>
+      </nav>
 
-          <div className="nav-bottom">
-            <p className="nav-connect">LET&apos;S CONNECT</p>
-            <div className="nav-socials">
-              <a
-                href="https://instagram.com/wilsoncreativeco.au"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="nav-social-link"
-              >
-                <InstagramIcon /> Instagram
-              </a>
-              <a
-                href="https://www.facebook.com/profile.php?id=61567993286002"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="nav-social-link"
-              >
-                <FacebookIcon /> Facebook
-              </a>
-              <a
-                href="mailto:wilsoncreativeco.au@gmail.com"
-                className="nav-social-link"
-              >
-                <EmailIcon /> Email
-              </a>
-              <a href="tel:+61401609118" className="nav-social-link">
-                <PhoneIcon /> Phone
-              </a>
-            </div>
-            <button
-              className="nav-cta"
-              onClick={() => {
-                setMenuOpen(false);
-                setTimeout(() => setShowModal(true), 320);
-              }}
-            >
-              Get a Free Demo
-            </button>
+      {/* MOBILE NAV */}
+      <nav id="mnav" className={menuOpen ? 'on' : ''} aria-label="Mobile navigation" role="dialog" aria-modal="true">
+        {navItems.map(item => (
+          <a key={item.label} className="mn-link" href={item.href} onClick={(e) => handleNavClick(e, item.href)}>
+            {item.label}
+          </a>
+        ))}
+        <div className="mn-bottom">
+          <div className="mn-contact">
+            <a href="tel:+61401609118">📞 0401 609 118</a>
+            <a href="mailto:wilsoncreativeco.au@gmail.com">✉️ wilsoncreativeco.au@gmail.com</a>
           </div>
-        </nav>
-      </div>
+          <a href="#contact" className="mn-cta" onClick={(e) => handleNavClick(e, '#contact')}>Get a Free Demo →</a>
+        </div>
+      </nav>
 
-      <div className={`hero ${loaded ? "loaded" : ""}`}>
+      {/* HERO */}
+      <section className="hero" id="top" ref={heroRef} aria-label="Hero">
+        <canvas id="hcanvas" ref={canvasRef} aria-hidden="true" />
         <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="auto"
-          poster="/fallback.jpg"
+          ref={heroVideoRef}
           className="hero-video"
+          autoPlay muted loop playsInline preload="auto"
+          poster="/fallback.jpg" aria-hidden="true"
         >
           <source src="/hero.mp4" type="video/mp4" />
         </video>
-        <div className="overlay" />
-        <div className="hero-content">
-          <p className="hero-kicker">Wilson Creative Co.</p>
-          <h1>
-            We Don&apos;t Just Build Websites.
-            <br />
-            <span className="hero-gold">We Build Attention.</span>
+        <div className="h-ov" aria-hidden="true" />
+        <div className="h-inner" ref={heroInnerRef}>
+          <p className="h-eye">Brisbane Based — Global Reach</p>
+          <h1 className="h1" aria-label="We Don't Just Build Websites. We Build Attention.">
+            <span className="hl"><span className="hw">We Don&apos;t</span></span>
+            <span className="hl"><span className="hw">Just Build</span></span>
+            <span className="hl"><span className="hw">Attention.</span></span>
           </h1>
-          <p className="sub">And turn it into customers.</p>
-          <div className="buttons">
-            <button className="primary" onClick={() => setShowModal(true)}>
-              Start a Project
-            </button>
-            <button
-              className="secondary"
-              onClick={() => {
-                const s = document.getElementById("work");
-                if (s) s.scrollIntoView({ behavior: "smooth", block: "start" });
-              }}
-            >
-              View Work
-            </button>
+          <p className="h-sub">And turn it into customers.</p>
+          <div className="h-btns">
+            <a href="#contact" className="btn-g" onClick={(e) => handleNavClick(e, '#contact')}>Start a Project</a>
+            <a href="#work" className="btn-o" onClick={(e) => handleNavClick(e, '#work')}>View Our Work →</a>
           </div>
         </div>
-   <div className="scroll-indicator">
-  <span style={{
-    color: 'white',
-    fontSize: '20px',
-    animation: 'bounce 1.5s infinite'
-  }}>↓</span>
-</div>
+        <div className="h-scroll" aria-hidden="true">
+          <span className="h-sl"></span> Scroll to Explore
+        </div>
+        <div className="h-stats" aria-label="Key stats">
+          <div><span className="hs-val cnt" data-t="47" data-s="+">0</span><span className="hs-lbl">Projects Delivered</span></div>
+          <div><span className="hs-val cnt" data-t="100" data-s="%">0</span><span className="hs-lbl">Client Satisfaction</span></div>
+          <div><span className="hs-val cnt" data-t="3" data-s="+">0</span><span className="hs-lbl">Years Building</span></div>
+        </div>
+      </section>
 
+      {/* MARQUEE */}
+      <div className="mqs" aria-hidden="true">
+        <div className="mqr">
+          {[...marqueeRow1, ...marqueeRow1].map((t, i) => (
+            <span className="mqi" key={i}>{t}<span className="mqd"></span></span>
+          ))}
+        </div>
+        <div className="mqr">
+          {[...marqueeRow2, ...marqueeRow2].map((t, i) => (
+            <span className="mqi" key={i}>{t}<span className="mqd"></span></span>
+          ))}
+        </div>
+      </div>
 
-      <section id="services" className="section what-we-do">
-        <h2>Featured Services</h2>
-        <div className="services">
-          {services.map((service) => (
-            <article key={service.title} className="service-item">
-              <h3>{service.title}</h3>
-              {service.status ? (
-                <span
-                  className={`service-status ${service.status === "Coming soon" ? "soon" : ""}`}
-                >
-                  {service.status}
-                </span>
-              ) : null}
+      {/* SERVICES */}
+      <section id="services" className="secpad" aria-labelledby="svc-h2">
+        <div className="svc-intro">
+          <div className="svc-intro-l">
+            <p className="stag rv">What We Do</p>
+            <h2 className="sh2 rv d1" id="svc-h2">Services built to make<br />your brand <em>unforgettable</em></h2>
+          </div>
+          <div className="svc-intro-r rv d2">
+            <p>Premium production and strategy in one team, built to make your brand look elevated and perform online.</p>
+            <a href="#contact" className="btn-g" onClick={(e) => handleNavClick(e, '#contact')}>Get a Free Demo</a>
+          </div>
+        </div>
+        <div className="svc-grid rv d1">
+          {services.map(s => (
+            <article className="sc tilt" key={s.num}>
+              <div className="sc-num">{s.num}</div>
+              <div className="sc-ico" aria-hidden="true">{s.icon}</div>
+              <h3 className="sc-name">{s.name}</h3>
+              <p className="sc-desc">{s.desc}</p>
+              <span className={`sc-badge ${s.statusType}`}>
+                {s.statusType === 'live' && <span>●</span>} {s.statusLabel}
+              </span>
+              <div className="sc-arr" aria-hidden="true">→</div>
             </article>
           ))}
         </div>
-        <p className="sub">
-          Premium production and strategy in one team, built to make your brand
-          look elevated and perform online.
-        </p>
       </section>
 
-      <section id="about" className="section">
-        <h2>Why Creative Co.</h2>
-        <p className="text">
-          We&apos;re a Brisbane-based creative studio delivering
-          high-performance content and fully custom-coded websites for brands
-          that want to stand out. Every project is built from the ground up—no
-          templates, no limitations—giving you complete control, faster
-          performance, and a solution tailored exactly to your business. Whether
-          you&apos;re local or operating globally, we work with clients anywhere
-          to create digital experiences that not only look premium, but drive
-          real results.
-        </p>
+      {/* ABOUT */}
+      <section id="about" className="secpad" aria-labelledby="about-h2">
+        <div className="about">
+          <div className="about-vis rl" aria-hidden="true">
+            <div className="av-frame">
+              <div className="av-inner">
+                <div className="av-bg">WC</div>
+                <p className="av-tagline">Built to<br /><span>dominate</span><br />your market.</p>
+                <div className="av-c">
+                  <span></span><span></span><span></span><span></span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="about-text">
+            <p className="stag rv">Why Creative Co.</p>
+            <h2 className="sh2 rv d1" id="about-h2">The studio that<br /><em>does the work</em></h2>
+            <p className="rv d2">We&apos;re a Brisbane-based creative studio delivering high-performance content and fully custom-coded websites for brands that want to stand out. Every project is built from the ground up — no templates, no limitations — giving you complete control, faster performance, and a solution tailored exactly to your business.</p>
+            <p className="rv d3">Whether you&apos;re local or operating globally, we work with clients anywhere to create digital experiences that not only look premium, but drive real results.</p>
+            <div className="about-pills rv d3">
+              {aboutPills.map(p => <span className="pill" key={p}>{p}</span>)}
+            </div>
+            <div className="about-sts rv d4">
+              <div><span className="as-val cnt" data-t="47" data-s="+">0</span><span className="as-lbl">Projects Done</span></div>
+              <div><span className="as-val cnt" data-t="100" data-s="%">0</span><span className="as-lbl">Satisfaction</span></div>
+              <div><span className="as-val cnt" data-t="3" data-s="+">0</span><span className="as-lbl">Years Active</span></div>
+            </div>
+          </div>
+        </div>
       </section>
 
-    <section id="work" className="section work">
-  <h2>Sample Builds</h2>
-  <p className="text">
-    High-performance sample builds demonstrating what we can create for
-    your brand.
-  </p>
-  <div className="work-grid">
-    {[
-      ["/meridian.html", "Real Estate Mockup"],
-      ["/barber.html", "Barber Mockup"],
-      ["/Plumbing.html", "Plumbing Mockup"],
-      ["/Cafe.html", "Cafe Mockup"],
-      ["https://noir-cafe-beige.vercel.app", "NOIR Café Mockup"],
-    ].map(([src, title]) => (
-      <div
-        key={src}
-        className="work-item"
-        style={{ padding: 0, overflow: "hidden", position: "relative" }}
-      >
-        <iframe
-          src={src}
-          title={title}
-          scrolling="no"
-          className="work-iframe"
-          style={{
-            position: "absolute",
-            top: 0,
-            left: 0,
-            width: "200%",
-            height: "200%",
-            border: "none",
-            transform: "scale(0.5)",
-            transformOrigin: "top left",
-            pointerEvents: "none",
-          }}
-        />
-      </div>
-    ))}
-  </div>
-</section>
+      {/* PORTFOLIO */}
+      <section id="work" className="port" aria-labelledby="work-h2">
+        <div className="port-hd">
+          <div>
+            <p className="stag rv">Sample Builds</p>
+            <h2 className="sh2 rv d1" id="work-h2" style={{ maxWidth: 420, fontSize: 'clamp(32px,4vw,56px)' }}>What we <em>create</em></h2>
+          </div>
+          <a href="#contact" className="view-all rv" onClick={(e) => handleNavClick(e, '#contact')}>Get Your Build →</a>
+        </div>
+        <div className="port-track" ref={portTrackRef} role="list">
+          {workItems.map(w => (
+            <article className="pcard" role="listitem" key={w.src}>
+              <div className="pcard-preview" aria-hidden="true">
+                <iframe src={w.src} title={w.title} scrolling="no" loading="lazy" tabIndex="-1" />
+              </div>
+              <span className="pcard-tag">{w.tag}</span>
+              <div className="pcard-arr" aria-hidden="true">↗</div>
+              <p className="pcard-ind">{w.industry}</p>
+              <h3 className="pcard-title">{w.title}</h3>
+              <p className="pcard-sub">{w.sub}</p>
+            </article>
+          ))}
+        </div>
+        <div className="port-hint rv">Drag to explore more</div>
+      </section>
 
-      <footer className="site-footer">
-        <div className="footer-inner">
-          <div className="footer-brand">
-            <p className="footer-name">WILSON CREATIVE CO.</p>
-            <p className="footer-tagline">
-              Websites and content that build attention and turn it into
-              customers.
-            </p>
-          </div>
-          <div className="footer-divider" />
-          <div className="footer-links">
-            <div className="footer-col">
-              <p className="footer-col-label">Follow</p>
+      {/* PROCESS */}
+      <section id="process" className="secpad" aria-labelledby="proc-h2">
+        <p className="stag rv">How It Works</p>
+        <h2 className="sh2 rv d1" id="proc-h2">A process built<br />for <em>results</em></h2>
+        <div className="proc-steps">
+          {processSteps.map((s, i) => (
+            <div className={`ps rv d${i + 1}`} key={s.num}>
+              <div className="ps-num" aria-hidden="true">{s.num}</div>
+              <div>
+                <h3 className="ps-ttl">{s.title}</h3>
+                <p className="ps-desc">{s.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* PRICING */}
+      <section id="pricing" className="secpad pricing-bg" aria-labelledby="price-h2">
+        <p className="stag rv">Investment</p>
+        <h2 className="sh2 rv d1" id="price-h2">Transparent pricing.<br />No <em>surprises.</em></h2>
+        <p className="rv d2" style={{ maxWidth: 540, fontSize: 14, color: 'var(--w6)', lineHeight: 1.85, marginTop: 14 }}>
+          Transparent pricing for every stage of growth. Every package is tailored to your needs — and every site is built from scratch.
+        </p>
+        <div className="pc-grid">
+          {pricingTiers.map((t, i) => (
+            <div className={`pc ${t.featured ? 'feat' : ''} rv d${i + 1} tilt`} key={t.name}>
+              {t.featured && <div className="pc-badge">Most Popular</div>}
+              <h3 className="pc-name">{t.name}</h3>
+              <div className="pc-price">{t.price}</div>
+              <p className="pc-desc">{t.desc}</p>
+              <ul className="pc-feats">
+                {t.features.map(f => <li key={f}>{f}</li>)}
+              </ul>
               <a
-                href="https://instagram.com/wilsoncreativeco.au"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="footer-link"
+                href="#contact"
+                className={t.featured ? 'btn-g' : 'btn-o'}
+                onClick={(e) => handleNavClick(e, '#contact')}
+                style={{ textAlign: 'center', width: '100%', display: 'block', padding: 14 }}
               >
-                Instagram
-              </a>
-              <a
-                href="https://www.facebook.com/profile.php?id=61567993286002"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="footer-link"
-              >
-                Facebook
+                Get Started
               </a>
             </div>
-            <div className="footer-col">
-              <p className="footer-col-label">Contact</p>
-              <a
-                href="mailto:wilsoncreativeco.au@gmail.com"
-                className="footer-link"
+          ))}
+        </div>
+        <div className="hosting rv d2">
+          <div>
+            <p className="h-lbl">Optional Add-On</p>
+            <h3 className="h-name">Website Hosting</h3>
+            <div className="h-price">$25 / month</div>
+            <p className="h-desc">Hosting means we look after the technical side of keeping your website live online. Completely optional — host yourself or let us manage everything for you.</p>
+            <br />
+            <a href="#contact" className="btn-o" onClick={(e) => handleNavClick(e, '#contact')} style={{ display: 'inline-block', marginTop: 8 }}>Ask About Hosting</a>
+          </div>
+          <ul className="h-feats">
+            {hostingFeatures.map(f => <li key={f}>{f}</li>)}
+          </ul>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section className="secpad" aria-labelledby="faq-h2">
+        <p className="stag rv">Common Questions</p>
+        <h2 className="sh2 rv d1" id="faq-h2">Everything you need<br />to <em>know</em></h2>
+        <div className="faq-list rv d2" role="list">
+          {faqItems.map((f, i) => (
+            <div className={`faq-item ${openFaq === i ? 'open' : ''}`} key={i} role="listitem">
+              <button
+                className="faq-q"
+                onClick={() => setOpenFaq(openFaq === i ? null : i)}
+                aria-expanded={openFaq === i}
               >
-                wilsoncreativeco.au@gmail.com
-              </a>
-              <a href="tel:+61401609118" className="footer-link">
-                0401 609 118
-              </a>
+                {f.q}<span className="faq-ico" aria-hidden="true">+</span>
+              </button>
+              <div className="faq-a" role="region">{f.a}</div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* CTA / CONTACT */}
+      <section id="contact" className="cta-sec" aria-labelledby="cta-h2">
+        <div className="cta-glow" aria-hidden="true"></div>
+        <p className="stag rv" style={{ justifyContent: 'center' }}>Ready to Stand Out?</p>
+        <h2 className="cta-h2 rv d1" id="cta-h2">
+          Let&apos;s Build<br /><span>Something</span><br />Insane.
+        </h2>
+        <p className="cta-sub rv d2">
+          Your competitors are using templates. Your customers deserve better. Tell us about your project and let&apos;s make something that stops the scroll.
+        </p>
+
+        <div className="contact-form rv d3">
+          {formStatus === 'sent' ? (
+            <div className="f-ok" role="alert" aria-live="polite">
+              <div className="f-ok-ico">✦</div>
+              <h3>Message Received</h3>
+              <p>We&apos;ll get back to you shortly. Talk soon.</p>
+            </div>
+          ) : (
+            <>
+              <form action="https://formspree.io/f/xojywkwo" method="POST" onSubmit={handleSubmit} noValidate>
+                <div className="f-row">
+                  <div className="f-fld"><input type="text" name="name" placeholder="Your Name" required autoComplete="name" aria-label="Your Name" /></div>
+                  <div className="f-fld"><input type="email" name="email" placeholder="Email Address" required autoComplete="email" aria-label="Email Address" /></div>
+                </div>
+                <div className="f-fld"><input type="tel" name="phone" placeholder="Phone Number (optional)" autoComplete="tel" aria-label="Phone Number" /></div>
+                <div className="f-fld"><textarea name="message" placeholder="Tell us about your project — what do you need, what's your vision?" required aria-label="Project details" /></div>
+                <button type="submit" className="f-sub" disabled={formStatus === 'sending'}>
+                  {formStatus === 'sending' ? 'Sending…' : 'Send Message →'}
+                </button>
+              </form>
+              <p className="f-note">We&apos;ll get back to you within 24 hours. No obligation, no spam — just a conversation.</p>
+            </>
+          )}
+        </div>
+
+        <div className="cta-ci rv d4">
+          <div className="ci"><p className="ci-l">Call Us</p><a href="tel:+61401609118" className="ci-v">0401 609 118</a></div>
+          <div className="ci-div" aria-hidden="true"></div>
+          <div className="ci"><p className="ci-l">Email Us</p><a href="mailto:wilsoncreativeco.au@gmail.com" className="ci-v">wilsoncreativeco.au@gmail.com</a></div>
+          <div className="ci-div" aria-hidden="true"></div>
+          <div className="ci"><p className="ci-l">Based In</p><span className="ci-v">Brisbane, Australia</span></div>
+        </div>
+      </section>
+
+      {/* FOOTER */}
+      <footer role="contentinfo">
+        <div className="ft">
+          <div className="fb">
+            <p className="fb-name">Wilson <span>Creative</span> Co.</p>
+            <p>Websites and content that build attention and turn it into customers. Brisbane-based. Built for the world.</p>
+          </div>
+          <div className="f-cols">
+            <div className="fc">
+              <p>Navigate</p>
+              {navItems.map(i => (
+                <a key={i.label} href={i.href} onClick={(e) => handleNavClick(e, i.href)}>{i.label}</a>
+              ))}
+            </div>
+            <div className="fc">
+              <p>Follow</p>
+              <a href="https://instagram.com/wilsoncreativeco.au" target="_blank" rel="noopener noreferrer">Instagram</a>
+              <a href="https://www.facebook.com/profile.php?id=61567993286002" target="_blank" rel="noopener noreferrer">Facebook</a>
+            </div>
+            <div className="fc">
+              <p>Contact</p>
+              <a href="mailto:wilsoncreativeco.au@gmail.com">wilsoncreativeco.au@gmail.com</a>
+              <a href="tel:+61401609118">0401 609 118</a>
+              <a href="#contact" onClick={(e) => handleNavClick(e, '#contact')}>Start a Project</a>
             </div>
           </div>
-          <div className="footer-divider" />
-          <p className="footer-copy">
-            &copy; {new Date().getFullYear()} Wilson Creative Co. All rights
-            reserved.
-          </p>
+        </div>
+        <div className="fb-bot">
+          <p className="f-copy">© {year} Wilson Creative Co. All rights reserved. | Brisbane, QLD, Australia</p>
+          <div className="f-soc">
+            <a href="https://instagram.com/wilsoncreativeco.au" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
+                <rect x="2" y="2" width="20" height="20" rx="5" />
+                <circle cx="12" cy="12" r="5" />
+                <circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none" />
+              </svg>
+            </a>
+            <a href="https://www.facebook.com/profile.php?id=61567993286002" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" />
+              </svg>
+            </a>
+            <a href="mailto:wilsoncreativeco.au@gmail.com" aria-label="Email">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
+                <rect x="2" y="4" width="20" height="16" rx="3" />
+                <polyline points="22,4 12,13 2,4" />
+              </svg>
+            </a>
+          </div>
         </div>
       </footer>
 
-      {showModal && (
-        <div className="modal">
-          <div className="modal-content">
-            <button className="close" onClick={() => setShowModal(false)}>
-              &times;
-            </button>
-            {submitted ? (
-              <>
-                <h2>Message Sent</h2>
-                <p style={{ opacity: 0.7, marginTop: "10px" }}>
-                  We&apos;ll get back to you shortly.
-                </p>
-              </>
-            ) : (
-              <>
-                <h2>Start a Project</h2>
-                <form
-                  action="https://formspree.io/f/xojywkwo"
-                  method="POST"
-                  onSubmit={handleSubmit}
-                >
-                  <input
-                    type="text"
-                    name="name"
-                    placeholder="Name"
-                    required
-                  />
-                  <input
-                    type="email"
-                    name="email"
-                    placeholder="Email"
-                    required
-                  />
-                  <textarea
-                    name="message"
-                    placeholder="Tell us about your project"
-                    required
-                  />
-                  <button type="submit" className="primary">
-                    Send
-                  </button>
-                </form>
-              </>
-            )}
-          </div>
-        </div>
-      )}
-
-      {showProcess && (
-        <div className="page-overlay">
-          <div className="page-overlay-inner">
-            <button
-              className="page-overlay-close"
-              onClick={() => setShowProcess(false)}
-            >
-              &larr; Back
-            </button>
-            <div className="page-overlay-content">
-              <p className="page-overlay-kicker">How We Work</p>
-              <h2 className="page-overlay-title">Our Process</h2>
-              <p className="page-overlay-subtitle">
-                Every project follows a proven framework designed to deliver
-                results — on time and on brand.
-              </p>
-              <div className="process-steps">
-                {processSteps.map((step) => (
-                  <div key={step.num} className="process-step">
-                    <span className="process-num">{step.num}</span>
-                    <div className="process-body">
-                      <h3 className="process-title">{step.title}</h3>
-                      <p className="process-desc">{step.desc}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-              <button
-                className="primary page-overlay-cta"
-                onClick={() => {
-                  setShowProcess(false);
-                  setTimeout(() => setShowModal(true), 320);
-                }}
-              >
-                Start Your Project
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {showPricing && (
-        <div className="page-overlay">
-          <div className="page-overlay-inner">
-            <button
-              className="page-overlay-close"
-              onClick={() => setShowPricing(false)}
-            >
-              &larr; Back
-            </button>
-            <div className="page-overlay-content">
-              <p className="page-overlay-kicker">Investment</p>
-              <h2 className="page-overlay-title">Pricing</h2>
-              <p className="page-overlay-subtitle">
-                Transparent pricing for every stage of growth. Every package is
-                tailored to your needs.
-              </p>
-
-              <div className="pricing-grid">
-                {pricingTiers.map((tier) => (
-                  <div
-                    key={tier.name}
-                    className={`pricing-card ${tier.featured ? "pricing-featured" : ""}`}
-                  >
-                    <h3 className="pricing-name">{tier.name}</h3>
-                    <p className="pricing-price">{tier.price}</p>
-                    <p className="pricing-desc">{tier.desc}</p>
-                    <ul className="pricing-features">
-                      {tier.features.map((f) => (
-                        <li key={f}>{f}</li>
-                      ))}
-                    </ul>
-                    <button
-                      className={tier.featured ? "primary" : "secondary"}
-                      onClick={() => {
-                        setShowPricing(false);
-                        setTimeout(() => setShowModal(true), 320);
-                      }}
-                    >
-                      Contact Us
-                    </button>
-                  </div>
-                ))}
-              </div>
-
-              <div className="pricing-card pricing-hosting">
-                <p className="page-overlay-kicker">Optional Add-On</p>
-                <h3 className="pricing-name">{hostingOption.name}</h3>
-                <p className="pricing-price">{hostingOption.price}</p>
-                <p className="pricing-desc">{hostingOption.desc}</p>
-                <ul className="pricing-features">
-                  {hostingOption.features.map((feature) => (
-                    <li key={feature}>{feature}</li>
-                  ))}
-                </ul>
-                <button
-                  className="secondary"
-                  onClick={() => {
-                    setShowPricing(false);
-                    setTimeout(() => setShowModal(true), 320);
-                  }}
-                >
-                  Ask About Hosting
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
+      {/* FLOATING MOBILE CTA */}
+      <button
+        id="fcta"
+        className={showFloatCta ? 'show' : ''}
+        onClick={scrollToContact}
+        aria-label="Start a project"
+      >
+        Start a Project ✦
+      </button>
     </>
-  );
+  )
 }
 
 
