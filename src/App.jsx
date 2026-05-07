@@ -39,12 +39,12 @@ const services = [
 const aboutPills = ['Custom Code','No Templates','Brisbane Based','Global Clients','Conversion First','Mobile First']
 
 const workItems = [
+  { src: 'https://noir-cafe-beige.vercel.app', tag: 'Hospitality', industry: 'Sample Build — NOIR Café', title: 'Coffee · Matcha · Culture', sub: 'Award-worthy café brand & site' },
   { src: '/meridian.html', tag: 'Real Estate', industry: 'Sample Build — Luxury Property', title: 'Where Exceptional Homes Find Their People', sub: 'Premium real estate agency experience' },
   { src: '/barber.html', tag: 'Barbershop', industry: 'Sample Build — Luxury Barber', title: 'Precision Cuts. Quiet Confidence.', sub: 'Premium booking & brand experience' },
   { src: '/Plumbing.html', tag: 'Trades', industry: 'Sample Build — Plumbing Co.', title: 'The Art of Fluid Infrastructure', sub: 'Precision engineering meets premium design' },
   { src: '/Cafe.html', tag: 'Hospitality', industry: 'Sample Build — Boutique Café', title: 'Coffee · Culture · Community', sub: 'Boutique café digital experience' },
-  { src: 'https://noir-cafe-beige.vercel.app', tag: 'Hospitality', industry: 'Sample Build — NOIR Café', title: 'Coffee · Matcha · Culture', sub: 'Award-worthy café brand & site' },
-]
+  ]
 
 const processSteps = [
   { num: '01', title: 'Discovery', desc: "We take the time to understand your business, your goals, and exactly what you want your website to achieve. Whether you have a clear vision or no idea where to start, we'll guide the process and identify what will actually drive results." },
