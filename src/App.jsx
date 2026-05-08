@@ -101,7 +101,7 @@ const workItems = [
     scroll: 1420,
   },
   {
-    src: 'https://detailing-hg9jy7lct-wilsoncreativco-8134s-projects.vercel.app',
+    src: 'https://detailing-ashen.vercel.app',
     preview: '/work-detailing.jpg',
     tag: 'Automotive',
     industry: 'Sample Build — Elite Detailing',
