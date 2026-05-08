@@ -1503,54 +1503,54 @@ body::before{
   display:none;
 }
 
+/* ── Card shell ── */
+
 .pcard{
-  flex:0 0 400px;
+  flex:0 0 420px;
   scroll-snap-align:start;
-  height:520px;
+  height:580px;
   border:1px solid var(--bd);
-  background:var(--card);
+  background:#07060a;
   position:relative;
   overflow:hidden;
-  transition:border-color .35s, transform .35s var(--ease);
   display:flex;
   flex-direction:column;
-  justify-content:flex-end;
-  padding:32px 28px;
+  transition:border-color .35s, transform .35s var(--ease), box-shadow .4s;
 }
 
+/* Bottom-to-top gradient so text stays readable */
 .pcard::before{
   content:'';
   position:absolute;
   inset:0;
-  z-index:4;
+  z-index:6;
   pointer-events:none;
   background:linear-gradient(
     to top,
-    rgba(7,6,10,.97) 0%,
-    rgba(7,6,10,.68) 35%,
-    rgba(7,6,10,.18) 72%,
-    rgba(7,6,10,.06) 100%
+    rgba(7,6,10,.98) 0%,
+    rgba(7,6,10,.82) 22%,
+    rgba(7,6,10,.18) 52%,
+    rgba(7,6,10,.04) 76%,
+    transparent 100%
   );
 }
 
 .pcard:hover{
   border-color:var(--bdg);
-  transform:translateY(-5px);
+  transform:translateY(-8px);
+  box-shadow:0 32px 72px rgba(0,0,0,.6), 0 0 0 1px rgba(197,164,74,.12);
 }
 
+/* ── Preview layer ── */
+
 .pcard-preview{
-  --scroll-distance:1400px;
+  --scroll-distance:4000px;
   position:absolute;
   inset:0;
   z-index:0;
-  display:block;
-  overflow:hidden;
-  pointer-events:auto;
-  background:
-    radial-gradient(circle at 24% 16%, rgba(197,164,74,.22), transparent 34%),
-    linear-gradient(145deg,#111,#030303);
-  isolation:isolate;
 }
+
+/* ── Still image fallback ── */
 
 .pcard-still{
   position:absolute;
@@ -1558,13 +1558,8 @@ body::before{
   z-index:1;
   background-size:cover;
   background-position:top center;
-  opacity:1;
-  transform:scale(1);
-  filter:saturate(.88) contrast(1.02) brightness(.76);
-  transition:
-    opacity .48s var(--ease),
-    transform .7s var(--ease),
-    filter .48s var(--ease);
+  filter:saturate(.72) brightness(.58);
+  transition:opacity .9s .1s var(--ease), transform 1.1s var(--ease);
 }
 
 .pcard-still::after{
@@ -1572,168 +1567,276 @@ body::before{
   position:absolute;
   inset:0;
   background:
-    linear-gradient(to bottom, rgba(0,0,0,.06), rgba(0,0,0,.18) 42%, rgba(0,0,0,.72)),
-    repeating-linear-gradient(90deg, rgba(255,255,255,.035) 0 1px, transparent 1px 26px);
+    linear-gradient(to bottom, rgba(7,6,10,.12) 0%, rgba(7,6,10,.52) 100%),
+    repeating-linear-gradient(90deg, rgba(255,255,255,.022) 0 1px, transparent 1px 28px);
 }
 
-.pcard-still span{
-  position:absolute;
-  top:74px;
-  left:26px;
-  z-index:2;
-  font-family:'Bebas Neue',sans-serif;
-  font-size:54px;
-  line-height:1;
-  color:rgba(245,242,236,.12);
+.pcard-preview.is-live .pcard-still{
+  opacity:0;
+  transform:scale(1.03);
 }
 
-.pcard-still strong{
-  position:absolute;
-  top:122px;
-  left:28px;
-  z-index:2;
-  font-size:9px;
-  letter-spacing:.28em;
-  text-transform:uppercase;
-  color:var(--g);
-}
+/* ── Browser chrome wrapper ── */
 
-.pcard-loading{
+.pcard-browser{
   position:absolute;
   inset:0;
-  z-index:3;
+  z-index:2;
+  display:flex;
+  flex-direction:column;
+  opacity:0;
+  transition:opacity .45s var(--ease);
+}
+
+.pcard-preview.is-live .pcard-browser{
+  opacity:1;
+}
+
+/* ── Browser bar ── */
+
+.pcard-bbar{
+  height:36px;
+  flex-shrink:0;
+  background:#111010;
+  border-bottom:1px solid rgba(255,255,255,.07);
+  display:flex;
+  align-items:center;
+  gap:8px;
+  padding:0 10px;
+}
+
+.pcard-dots{
+  display:flex;
+  gap:5px;
+  align-items:center;
+  flex-shrink:0;
+}
+
+.pcard-dots span{
+  width:9px;
+  height:9px;
+  border-radius:50%;
+  transition:filter .25s;
+}
+
+.pcard-dots span:nth-child(1){ background:#ff5f57; }
+.pcard-dots span:nth-child(2){ background:#febc2e; }
+.pcard-dots span:nth-child(3){ background:#28c840; }
+
+.pcard:hover .pcard-dots span{
+  filter:brightness(1.18) saturate(1.1);
+}
+
+.pcard-url-bar{
+  flex:1;
+  height:20px;
+  background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.07);
+  border-radius:4px;
+  display:flex;
+  align-items:center;
+  gap:5px;
+  padding:0 7px;
+  overflow:hidden;
+  color:rgba(245,242,236,.36);
+  min-width:0;
+}
+
+.pcard-url-bar svg{
+  flex-shrink:0;
+  color:rgba(40,200,64,.72);
+}
+
+.pcard-url-bar span{
+  font-size:8.5px;
+  letter-spacing:.01em;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+.pcard-launch{
+  flex-shrink:0;
+  width:22px;
+  height:22px;
   display:flex;
   align-items:center;
   justify-content:center;
-  background:rgba(7,6,10,.36);
-  backdrop-filter:blur(5px);
-  -webkit-backdrop-filter:blur(5px);
+  color:rgba(245,242,236,.22);
+  border:1px solid rgba(255,255,255,.07);
+  border-radius:3px;
+  transition:color .2s, border-color .2s, background .2s;
+  position:relative;
+  z-index:10;
 }
 
-.pcard-loading span{
-  width:42px;
-  height:42px;
-  border-radius:50%;
-  border:1px solid rgba(197,164,74,.22);
-  border-top-color:var(--g);
-  animation:pcardSpin .85s linear infinite;
-  box-shadow:0 0 30px rgba(197,164,74,.18);
+.pcard-launch:hover{
+  color:var(--g);
+  border-color:var(--bdg);
+  background:var(--gdim);
 }
 
-.pcard-live{
+/* ── Browser screen area ── */
+
+.pcard-screen{
+  flex:1;
+  position:relative;
+  overflow:hidden;
+  background:#060505;
+}
+
+/* ── Shimmer loading skeleton ── */
+
+.pcard-shimmer{
   position:absolute;
   inset:0;
-  z-index:2;
-  opacity:0;
-  background:#050505;
-  transition:opacity .5s var(--ease);
+  z-index:3;
+  background:#0c0b0f;
+  overflow:hidden;
+  transition:opacity .6s var(--ease);
 }
 
-.pcard-live iframe{
-  position:absolute;
-  top:0;
-  left:0;
-  width:200%;
-  height:1900px;
-  border:0;
-  display:block;
+.pcard-preview.is-ready .pcard-shimmer{
+  opacity:0;
   pointer-events:none;
-  opacity:1;
-  transform:scale(.5) translateY(0);
-  transform-origin:top left;
-  filter:saturate(.92) contrast(.99) brightness(.84);
-  will-change:transform;
 }
 
-.pcard-preview.is-ready .pcard-live{
-  opacity:.7;
-}
-
-.pcard-preview.is-ready .pcard-still{
-  opacity:0;
-  transform:scale(1.035);
-  filter:blur(5px) saturate(.8) brightness(.65);
-}
-
-.pcard:hover .pcard-preview.is-ready .pcard-live iframe,
-.pcard:focus-within .pcard-preview.is-ready .pcard-live iframe{
-  animation:pcardSiteScroll 6.4s linear forwards;
-  filter:saturate(1) contrast(1) brightness(.96);
-}
-
-.pcard-preview::after{
+.pcard-shimmer::after{
   content:'';
   position:absolute;
   inset:0;
-  z-index:5;
-  pointer-events:none;
-  background:
-    linear-gradient(to bottom, rgba(0,0,0,.14), transparent 24%, transparent 68%, rgba(0,0,0,.62)),
-    linear-gradient(to right, rgba(0,0,0,.16), transparent 18%, transparent 82%, rgba(0,0,0,.16));
+  background:linear-gradient(
+    108deg,
+    transparent 28%,
+    rgba(197,164,74,.055) 50%,
+    transparent 72%
+  );
+  background-size:200% 100%;
+  animation:pShimmer 1.8s ease-in-out infinite;
 }
 
-.pcard-open{
+.psh-nav{
   position:absolute;
-  right:16px;
-  top:16px;
-  z-index:7;
-  padding:8px 11px;
-  border:1px solid rgba(255,255,255,.14);
-  background:rgba(7,6,10,.72);
-  color:var(--w);
-  font-size:8px;
-  letter-spacing:.24em;
-  text-transform:uppercase;
-  opacity:0;
-  transform:translateY(-5px);
-  transition:opacity .25s var(--ease), transform .25s var(--ease), border-color .25s;
+  top:0;
+  left:0;
+  right:0;
+  height:26px;
+  background:rgba(255,255,255,.024);
+  border-bottom:1px solid rgba(255,255,255,.032);
 }
 
-.pcard-preview:hover .pcard-open,
-.pcard-preview:focus-visible .pcard-open{
+.psh-hero{
+  position:absolute;
+  top:26px;
+  left:0;
+  right:0;
+  height:46%;
+  background:rgba(255,255,255,.018);
+}
+
+.psh-lines{
+  position:absolute;
+  bottom:0;
+  left:0;
+  right:0;
+  padding:18px 18px 22px;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
+.psh-lines span{
+  display:block;
+  height:7px;
+  border-radius:3px;
+  background:rgba(255,255,255,.036);
+}
+
+.psh-lines span:nth-child(1){ width:58%; }
+.psh-lines span:nth-child(2){ width:80%; }
+.psh-lines span:nth-child(3){ width:40%; }
+.psh-lines span:nth-child(4){ width:68%; }
+
+/* ── Live iframe ── */
+
+.pcard-frame{
+  position:absolute;
+  inset:0;
+  z-index:1;
+  opacity:0;
+  transition:opacity .65s var(--ease);
+}
+
+.pcard-preview.is-ready .pcard-frame{
   opacity:1;
-  transform:none;
-  border-color:var(--bdg);
+}
+
+/* 1440px wide iframe scaled to fit the 420px card — true desktop viewport */
+.pcard-frame iframe{
+  position:absolute;
+  top:0;
+  left:0;
+  width:1440px;
+  height:6400px;
+  border:0;
+  display:block;
+  pointer-events:none;
+  transform:scale(.2917) translateY(0);
+  transform-origin:top left;
+  filter:saturate(.92) brightness(.84);
+  will-change:transform;
+}
+
+/* On hover: S-curve scroll through the full page */
+.pcard:hover .pcard-preview.is-ready .pcard-frame iframe{
+  animation:pcardScroll 12s .18s cubic-bezier(.45,0,.55,1) forwards;
+  filter:saturate(1) brightness(.98);
+}
+
+/* ── Card text overlay ── */
+
+.pcard-info{
+  position:relative;
+  z-index:8;
+  padding:20px 24px 26px;
+  margin-top:auto;
 }
 
 .pcard-tag{
-  position:absolute;
-  top:26px;
-  left:26px;
-  z-index:8;
+  display:inline-block;
   font-size:8px;
   letter-spacing:.28em;
   text-transform:uppercase;
   color:var(--bg);
   background:var(--g);
   padding:4px 11px;
+  margin-bottom:10px;
 }
 
 .pcard-ind{
-  font-size:8.5px;
-  letter-spacing:.34em;
+  font-size:8px;
+  letter-spacing:.32em;
   text-transform:uppercase;
   color:var(--g);
-  position:relative;
-  z-index:8;
-  margin-bottom:9px;
+  margin-bottom:8px;
+  opacity:.8;
 }
 
 .pcard-title{
   font-family:'Cormorant Garamond',serif;
-  font-size:clamp(20px,2.4vw,28px);
+  font-size:clamp(17px,2vw,22px);
   font-weight:300;
-  position:relative;
-  z-index:8;
-  margin-bottom:7px;
+  margin-bottom:6px;
+  line-height:1.22;
 }
 
 .pcard-sub{
-  font-size:11.5px;
+  font-size:11px;
   color:var(--w3);
-  position:relative;
-  z-index:8;
+  line-height:1.55;
 }
+
+/* ── Hint bar ── */
 
 .port-hint{
   display:flex;
@@ -1753,32 +1856,24 @@ body::before{
   animation:aPR 1.6s ease-in-out infinite;
 }
 
-@keyframes pcardSiteScroll{
-  from{
-    transform:scale(.5) translateY(0);
-  }
+/* ── Keyframes ── */
 
-  to{
-    transform:scale(.5) translateY(calc(var(--scroll-distance) * -1));
-  }
+/* Pauses 5% at top, scrolls through page, pauses 5% at bottom */
+@keyframes pcardScroll{
+  0%{   transform:scale(.2917) translateY(0); }
+  5%{   transform:scale(.2917) translateY(0); }
+  95%{  transform:scale(.2917) translateY(calc(var(--scroll-distance) * -1)); }
+  100%{ transform:scale(.2917) translateY(calc(var(--scroll-distance) * -1)); }
 }
 
-@keyframes pcardSpin{
-  to{
-    transform:rotate(360deg);
-  }
+@keyframes pShimmer{
+  from{ background-position:200% 0; }
+  to{   background-position:-200% 0; }
 }
 
 @keyframes aPR{
-  0%,100%{
-    transform:translateX(0);
-    opacity:.35;
-  }
-
-  50%{
-    transform:translateX(5px);
-    opacity:1;
-  }
+  0%,100%{ transform:translateX(0); opacity:.35; }
+  50%{     transform:translateX(5px); opacity:1; }
 }
 
 /* ╔══════════════════════════════╗
