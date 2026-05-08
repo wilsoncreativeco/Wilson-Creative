@@ -49,7 +49,7 @@ const aboutPills = ['Custom Code','No Templates','Brisbane Based','Global Client
 const workItems = [
   { src: 'https://noir-cafe-beige.vercel.app', tag: 'Hospitality', industry: 'Sample Build — NOIR Café', title: 'Coffee · Matcha · Culture', sub: 'Award-worthy café brand & site' },
 
-  { src: 'https://detailing-ebql3c8wt-wilsoncreativco-8134s-projects.vercel.app', tag: 'Automotive', industry: 'Sample Build — Elite Detailing', title: 'Precision · Gloss · Protection', sub: 'High-end detailing experience & conversion-focused site' },
+  { src: 'https://detailing-hg9jy7lct-wilsoncreativco-8134s-projects.vercel.app', tag: 'Automotive', industry: 'Sample Build — Elite Detailing', title: 'Precision · Gloss · Protection', sub: 'High-end detailing experience & conversion-focused site' },
 
   { src: 'landscaping-mwggngwq0-wilsoncreativco-8134s-projects.vercel.app', tag: 'Landscaping', industry: 'Sample Build — Horizon Landscaping', title: 'Outdoor · Luxury · Transformation', sub: 'Premium landscaping brand & modern lead-generation site' },
 
