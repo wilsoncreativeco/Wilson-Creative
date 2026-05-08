@@ -907,7 +907,8 @@ useEffect(() => {
 
         <div className="pc-grid">
           {pricingTiers.map((t, i) => (
-            <div className={`pc ${t.featured ? 'feat' : ''} rv d${i + 1} tilt`} key={t.name}>
+            <div className={`pc ${t.featured?'feat':''} rv d${i+1}`} key={t.name}>
+
               {t.featured && <div className="pc-badge">Most Popular</div>}
 
               <h3 className="pc-name">{t.name}</h3>
