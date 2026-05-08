@@ -686,7 +686,8 @@ useEffect(() => {
           </div>
 
           <div className="svc-intro-r rv d2">
-            <p>Premium production and strategy in one team, built to make your brand look elevated and perform online.</p>
+           <p>We focus on what moves the needle first: a custom website that converts, with cinematic drone content coming next.</p>
+
             <a href="#contact" className="btn-g" onClick={e => handleNav(e, '#contact')}>Get a Free Demo</a>
           </div>
         </div>
