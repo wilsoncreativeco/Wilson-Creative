@@ -48,11 +48,23 @@ const aboutPills = ['Custom Code','No Templates','Brisbane Based','Global Client
 
 const workItems = [
   { src: 'https://noir-cafe-beige.vercel.app', tag: 'Hospitality', industry: 'Sample Build — NOIR Café',       title: 'Coffee · Matcha · Culture',                 sub: 'Award-worthy café brand & site' },
+ {
+  src: 'https://detailing-ebql3c8wt-wilsoncreativco-8134s-projects.vercel.app',
+  tag: 'Automotive',
+  industry: 'Sample Build — Elite Detailing',
+  title: 'Precision · Gloss · Protection',
+  sub: 'High-end detailing experience & conversion-focused site'
+}
+  {
+  src: 'https://landscaping-gxqw2iadx-wilsoncreativco-8134s-projects.vercel.app',
+  tag: 'Landscaping',
+  industry: 'Sample Build — Horizon Landscaping',
+  title: 'Outdoor · Luxury · Transformation',
+  sub: 'Premium landscaping brand & modern lead-generation site'
+}
   { src: '/meridian.html',                     tag: 'Real Estate', industry: 'Sample Build — Luxury Property', title: 'Where Exceptional Homes Find Their People', sub: 'Premium real estate agency experience' },
   { src: '/barber.html',                       tag: 'Barbershop',  industry: 'Sample Build — Luxury Barber',   title: 'Precision Cuts. Quiet Confidence.',          sub: 'Premium booking & brand experience' },
-  { src: '/Plumbing.html',                     tag: 'Trades',      industry: 'Sample Build — Plumbing Co.',    title: 'The Art of Fluid Infrastructure',            sub: 'Precision engineering meets premium design' },
-  { src: '/Cafe.html',                         tag: 'Hospitality', industry: 'Sample Build — Boutique Café',   title: 'Coffee · Culture · Community',              sub: 'Boutique café digital experience' },
-]
+
 
 const processSteps = [
   { num: '01', title: 'Discovery',        desc: "We take the time to understand your business, your goals, and exactly what you want your website to achieve. Whether you have a clear vision or no idea where to start, we'll guide the process and identify what will actually drive results." },
