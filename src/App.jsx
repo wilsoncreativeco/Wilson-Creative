@@ -70,7 +70,7 @@ const workItems = [
     scroll: 1420,
   },
   {
-    src: 'https://detailing-ashen.vercel.app',
+    src: ' https://detailing-ashen.vercel.app',
     preview: '/work-detailing.jpg',
     tag: 'Automotive',
     industry: 'Sample Build — Elite Detailing',
