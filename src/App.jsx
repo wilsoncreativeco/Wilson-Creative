@@ -1070,7 +1070,7 @@ useEffect(() => {
         <div className="cta-glow" aria-hidden="true" />
 
         <p className="stag rv" style={{ justifyContent: 'center' }}>Ready to Stand Out?</p>
-        <h2 className="cta-h2 rv d1" id="cta-h2">Let&apos;s Build<br /><span>Something</span><br />Insane.</h2>
+        <h2 className="cta-h2 rv d1" id="cta-h2">Let&apos;s Build<br /><span>Something</span><br />Unforgettable.</h2>
         <p className="cta-sub rv d2">Your competitors are using templates. Your customers deserve better. Let&apos;s make something that stops the scroll.</p>
 
         <div className="contact-form rv d3">
