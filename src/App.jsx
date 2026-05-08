@@ -310,14 +310,44 @@ useEffect(() => {
       {/* LOADER */}
 {!loaderHidden && (
   <div id="loader" className={loaderOut ? 'out' : ''}>
-    <div className="l-name">Wilson <b>Creative</b> Co.</div>
-    <div className="l-tagline">Premium Web Design Studio</div>
-    <div className="l-bar"><div className="l-fill" style={{ width: `${loadPct}%` }} /></div>
-    <div className="l-status">
-      {loadPct < 40 ? 'Loading' : loadPct < 75 ? 'Preparing' : loadPct < 95 ? 'Almost there' : 'Ready'}
+    <div className="loader-grid" aria-hidden="true" />
+
+    <div className="loader-mark">
+      <div className="loader-kicker">Initializing Studio</div>
+
+      <div className="loader-brand" aria-label="Wilson Creative Co.">
+        <span style={{ '--i': 0 }}>W</span>
+        <span style={{ '--i': 1 }}>i</span>
+        <span style={{ '--i': 2 }}>l</span>
+        <span style={{ '--i': 3 }}>s</span>
+        <span style={{ '--i': 4 }}>o</span>
+        <span style={{ '--i': 5 }}>n</span>
+        <span className="space"> </span>
+        <span className="gold" style={{ '--i': 6 }}>C</span>
+        <span className="gold" style={{ '--i': 7 }}>r</span>
+        <span className="gold" style={{ '--i': 8 }}>e</span>
+        <span className="gold" style={{ '--i': 9 }}>a</span>
+        <span className="gold" style={{ '--i': 10 }}>t</span>
+        <span className="gold" style={{ '--i': 11 }}>i</span>
+        <span className="gold" style={{ '--i': 12 }}>v</span>
+        <span className="gold" style={{ '--i': 13 }}>e</span>
+        <span className="space"> </span>
+        <span style={{ '--i': 14 }}>C</span>
+        <span style={{ '--i': 15 }}>o</span>
+        <span style={{ '--i': 16 }}>.</span>
+      </div>
+
+      <div className="loader-line">
+        <span style={{ width: `${loadPct}%` }} />
+      </div>
+
+      <div className="loader-status">
+        {loadPct < 40 ? 'Building attention' : loadPct < 75 ? 'Sharpening pixels' : loadPct < 95 ? 'Preparing reveal' : 'Ready'}
+      </div>
     </div>
   </div>
 )}
+
 
 
       {/* ── NAV ── FIX 3: white-space nowrap, all links work */}
