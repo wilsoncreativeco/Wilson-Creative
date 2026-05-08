@@ -68,6 +68,13 @@ const workItems = [
     title: 'Outdoor · Luxury · Transformation',
     sub: 'Premium landscaping brand & modern lead-generation site',
   },
+   {
+    src: 'https://n-two-theta-61.vercel.app',
+    tag: 'Gym',
+    industry: 'Sample Build — Luxury Barber',
+    title: 'Precision Cuts. Quiet Confidence.',
+    sub: 'Premium booking & brand experience',
+  },
   {
     src: '/meridian.html',
     tag: 'Real Estate',
@@ -75,13 +82,7 @@ const workItems = [
     title: 'Where Exceptional Homes Find Their People',
     sub: 'Premium real estate agency experience',
   },
-  {
-    src: '/barber.html',
-    tag: 'Barbershop',
-    industry: 'Sample Build — Luxury Barber',
-    title: 'Precision Cuts. Quiet Confidence.',
-    sub: 'Premium booking & brand experience',
-  },
+
 ]
 
 const processSteps = [
