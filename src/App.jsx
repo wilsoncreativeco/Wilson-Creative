@@ -286,24 +286,31 @@ export default function App() {
   const videoRef = useRef(null)
 
   /* ═════════ LOADER ═════════ */
-  useEffect(() => {
-    let p = 0
+// LOADER — ATTENTION ENGINE INTRO
+useEffect(() => {
+  const duration = 3200
+  const start = performance.now()
+  let raf
 
-    const iv = setInterval(() => {
-      p += Math.random() * 9 + 3
+  const tick = now => {
+    const t = Math.min((now - start) / duration, 1)
+    const eased = 1 - Math.pow(1 - t, 3)
 
-      if (p >= 100) {
-        p = 100
-        clearInterval(iv)
-        setTimeout(() => setLoaderOut(true), 180)
-        setTimeout(() => setLoaderHidden(true), 880)
-      }
+    setLoadPct(Math.floor(eased * 100))
 
-      setLoadPct(Math.floor(p))
-    }, 55)
+    if (t < 1) {
+      raf = requestAnimationFrame(tick)
+    } else {
+      setTimeout(() => setLoaderOut(true), 260)
+      setTimeout(() => setLoaderHidden(true), 980)
+    }
+  }
 
-    return () => clearInterval(iv)
-  }, [])
+  raf = requestAnimationFrame(tick)
+
+  return () => cancelAnimationFrame(raf)
+}, [])
+
 
   /* ═════════ HERO VIDEO PLAY ═════════ */
   useEffect(() => {
@@ -644,29 +651,44 @@ export default function App() {
       <div id="spb" style={{ width: `${scrollProg}%` }} />
 
       {/* ═════════ LOADER ═════════ */}
-      {!loaderHidden && (
-        <div id="loader" className={loaderOut ? 'out' : ''}>
-          <div className="loader-grid" aria-hidden="true" />
+    {/* LOADER — ATTENTION ENGINE */}
+{!loaderHidden && (
+  <div id="loader" className={loaderOut ? 'out' : ''}>
+    <div className="ae-grid" aria-hidden="true" />
+    <div className="ae-noise" aria-hidden="true" />
+    <div className="ae-scan" aria-hidden="true" />
 
-          <div className="loader-mark">
-            <div className="loader-kicker">Initializing Studio</div>
+    <div className="ae-core">
+      <div className="ae-code" aria-hidden="true">
+        <span>build_attention()</span>
+      </div>
 
-            <div className="loader-brand" aria-label="Wilson Creative Co.">
-              <span className="loader-word" style={{ '--i': 0 }}>Wilson</span>
-              <span className="loader-word gold" style={{ '--i': 1 }}>Creative</span>
-              <span className="loader-word" style={{ '--i': 2 }}>Co.</span>
-            </div>
+      <div className="ae-lock" aria-hidden="true">
+        <span />
+        <span />
+        <span />
+        <span />
+      </div>
 
-            <div className="loader-line">
-              <span style={{ width: `${loadPct}%` }} />
-            </div>
+      <div className="loader-brand" aria-label="Wilson Creative Co.">
+        <span className="loader-word" style={{ '--i': 0 }}>Wilson</span>
+        <span className="loader-word gold" style={{ '--i': 1 }}>Creative</span>
+        <span className="loader-word" style={{ '--i': 2 }}>Co.</span>
+      </div>
 
-            <div className="loader-status">
-              {loadPct < 40 ? 'Building attention' : loadPct < 75 ? 'Sharpening pixels' : loadPct < 95 ? 'Preparing reveal' : 'Ready'}
-            </div>
-          </div>
-        </div>
-      )}
+      <div className="ae-tagline">Custom websites. Built to convert.</div>
+
+      <div className="loader-line">
+        <span style={{ width: `${loadPct}%` }} />
+      </div>
+
+      <div className="loader-status">
+        {loadPct < 35 ? 'Compiling attention' : loadPct < 70 ? 'Calibrating brand signal' : loadPct < 96 ? 'Preparing reveal' : 'Ready'}
+      </div>
+    </div>
+  </div>
+)}
+
 
       {/* ═════════ NAV ═════════ */}
       <nav id="nav" className={navScrolled ? 'sc' : ''} aria-label="Main navigation">
