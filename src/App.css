@@ -1321,21 +1321,22 @@ body::before{
 .port-track::-webkit-scrollbar{
   display:none;
 }
-
-.pcard{
-  flex:0 0 400px;
-  scroll-snap-align:start;
-  height:520px;
-  border:1px solid var(--bd);
-  background:var(--card);
-  position:relative;
-  overflow:hidden;
-  transition:border-color .35s, transform .35s var(--ease);
-  display:flex;
-  flex-direction:column;
-  justify-content:flex-end;
-  padding:32px 28px;
+.pcard-live iframe{
+  position:absolute;
+  top:0;
+  left:0;
+  width:1440px;
+  height:1900px;
+  border:0;
+  display:block;
+  pointer-events:none;
+  opacity:1;
+  transform:scale(.278) translateY(0);
+  transform-origin:top left;
+  filter:saturate(.92) contrast(.99) brightness(.84);
+  will-change:transform;
 }
+
 
 .pcard::before{
   content:'';
@@ -1574,13 +1575,14 @@ body::before{
 
 @keyframes pcardSiteScroll{
   from{
-    transform:scale(.5) translateY(0);
+    transform:scale(.278) translateY(0);
   }
 
   to{
-    transform:scale(.5) translateY(calc(var(--scroll-distance) * -1));
+    transform:scale(.278) translateY(calc(var(--scroll-distance) * -1));
   }
 }
+
 
 @keyframes pcardSpin{
   to{
