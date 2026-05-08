@@ -51,7 +51,7 @@ const workItems = [
 
   { src: 'https://detailing-ebql3c8wt-wilsoncreativco-8134s-projects.vercel.app', tag: 'Automotive', industry: 'Sample Build — Elite Detailing', title: 'Precision · Gloss · Protection', sub: 'High-end detailing experience & conversion-focused site' },
 
-  { src: 'https://landscaping-gxqw2iadx-wilsoncreativco-8134s-projects.vercel.app', tag: 'Landscaping', industry: 'Sample Build — Horizon Landscaping', title: 'Outdoor · Luxury · Transformation', sub: 'Premium landscaping brand & modern lead-generation site' },
+  { src: 'landscaping-mwggngwq0-wilsoncreativco-8134s-projects.vercel.app', tag: 'Landscaping', industry: 'Sample Build — Horizon Landscaping', title: 'Outdoor · Luxury · Transformation', sub: 'Premium landscaping brand & modern lead-generation site' },
 
   { src: '/meridian.html', tag: 'Real Estate', industry: 'Sample Build — Luxury Property', title: 'Where Exceptional Homes Find Their People', sub: 'Premium real estate agency experience' },
 
