@@ -833,7 +833,8 @@ useEffect(() => {
                   )}
 
                   
-                </a>
+                </div>
+
 
                 <span className="pcard-tag">{w.tag}</span>
                 <p className="pcard-ind">{w.industry}</p>
