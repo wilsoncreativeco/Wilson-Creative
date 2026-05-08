@@ -2568,3 +2568,8 @@ footer{
     transform:scale(.5) translateY(0);
   }
 }
+@media(max-width:768px){
+  .mqs{
+    display:none;
+  }
+}
