@@ -79,7 +79,7 @@ const workItems = [
     scroll: 1500,
   },
   {
-    src: 'https://landscaping-mwggngwq0-wilsoncreativco-8134s-projects.vercel.app',
+    src: 'https://landscaping-azure.vercel.app',
     preview: '/work-landscaping.jpg',
     tag: 'Landscaping',
     industry: 'Sample Build — Horizon Landscaping',
