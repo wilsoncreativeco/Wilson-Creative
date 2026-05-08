@@ -971,11 +971,11 @@ body::before{
 }
 
 .mqr:nth-child(1){
-  animation:aMQ 58s linear infinite;
+  animation:aMQ 70s linear infinite;
 }
 
 .mqr:nth-child(2){
-  animation:aMQ 58s linear infinite reverse;
+  animation:aMQ 70s linear infinite reverse;
 }
 
 .mqi{
