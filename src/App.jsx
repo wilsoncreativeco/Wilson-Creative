@@ -681,7 +681,8 @@ useEffect(() => {
         <div className="svc-intro">
           <div className="svc-intro-l">
             <p className="stag rv">What We Do</p>
-            <h2 className="sh2 rv d1" id="svc-h2">Services built to make<br />your brand <em>unforgettable</em></h2>
+          <h2 className="sh2 rv d1" id="svc-h2">Focused services for<br />brands that want to <em>stand out</em></h2>
+
           </div>
 
           <div className="svc-intro-r rv d2">
