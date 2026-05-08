@@ -800,14 +800,11 @@ useEffect(() => {
 
             return (
               <article className="pcard" role="listitem" key={w.src}>
-                <a
-                  className={`pcard-preview ${isLive ? 'is-live' : ''} ${isReady ? 'is-ready' : ''}`}
-                  href={w.src}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={`Open ${w.industry}`}
-                  style={{ '--scroll-distance': `${w.scroll}px` }}
-                >
+<div
+  className={`pcard-preview ${isLive ? 'is-live' : ''} ${isReady ? 'is-ready' : ''}`}
+  style={{ '--scroll-distance': `${w.scroll}px` }}
+>
+
                   <div
                     className="pcard-still"
                     style={{ backgroundImage: `linear-gradient(to top, rgba(7,6,10,.82), rgba(7,6,10,.1)), url(${w.preview})` }}
@@ -835,7 +832,7 @@ useEffect(() => {
                     </div>
                   )}
 
-                  <span className="pcard-open">Open Site →</span>
+                  
                 </a>
 
                 <span className="pcard-tag">{w.tag}</span>
