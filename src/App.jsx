@@ -799,59 +799,86 @@ useEffect(() => {
         </div>
 
         <div className="port-track" ref={portTrackRef} role="list">
-          {workItems.map((w, i) => {
-            const isLive = livePreviews.includes(w.src)
-            const isReady = readyPreviews.includes(w.src)
+      {workItems.map((w, i) => {
+  const isLive = livePreviews.includes(w.src)
+  const isReady = readyPreviews.includes(w.src)
 
-            return (
-              <article className="pcard" role="listitem" key={w.src}>
-<div
-  className={`pcard-preview ${isLive ? 'is-live' : ''} ${isReady ? 'is-ready' : ''}`}
-  style={{ '--scroll-distance': `${w.scroll}px` }}
->
+  return (
+    <article className="pcard" role="listitem" key={w.src}>
+      <div
+        className={`pcard-preview ${isLive ? 'is-live' : ''} ${isReady ? 'is-ready' : ''}`}
+        style={{ '--scroll-distance': `${w.scroll}px` }}
+      >
+        {/* Still image placeholder — fades out when iframe loads */}
+        <div
+          className="pcard-still"
+          style={{ backgroundImage: `url(${w.preview})` }}
+          aria-hidden="true"
+        />
 
-                  <div
-                    className="pcard-still"
-                    style={{ backgroundImage: `linear-gradient(to top, rgba(7,6,10,.82), rgba(7,6,10,.1)), url(${w.preview})` }}
-                    aria-hidden="true"
-                  >
-                    <span>{String(i + 1).padStart(2, '0')}</span>
-                    <strong>{w.tag}</strong>
-                  </div>
+        {/* Browser chrome + iframe */}
+        {isLive && (
+          <div className="pcard-browser">
+            <div className="pcard-bbar">
+              <div className="pcard-dots" aria-hidden="true">
+                <span /><span /><span />
+              </div>
+              <div className="pcard-url-bar" aria-hidden="true">
+                <svg width="7" height="8" viewBox="0 0 10 12" fill="none" aria-hidden="true">
+                  <rect x="1" y="5" width="8" height="7" rx="1.5" stroke="currentColor" strokeWidth="1.3"/>
+                  <path d="M3 5V3.5a2 2 0 0 1 4 0V5" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round"/>
+                </svg>
+                <span>{w.displayUrl}</span>
+              </div>
+              <a
+                href={w.src}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="pcard-launch"
+                aria-label={`Open ${w.industry} live site`}
+                tabIndex={isReady ? 0 : -1}
+              >
+                <svg width="9" height="9" viewBox="0 0 10 10" fill="none" aria-hidden="true">
+                  <path d="M1.5 8.5L8.5 1.5M8.5 1.5H4.5M8.5 1.5V5.5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </a>
+            </div>
 
-                  {isLive && !isReady && (
-                    <div className="pcard-loading" aria-hidden="true">
-                      <span />
-                    </div>
-                  )}
-
-                  {isLive && (
-                    <div className="pcard-live" aria-hidden="true">
-                      <iframe
-                        src={w.src}
-                        title={w.title}
-                        loading="lazy"
-                        tabIndex="-1"
-                        onLoad={() => markPreviewReady(w.src)}
-                      />
-                    </div>
-                  )}
-
-                  
+            <div className="pcard-screen">
+              {/* Shimmer skeleton shown while iframe loads */}
+              <div className="pcard-shimmer" aria-hidden="true">
+                <div className="psh-nav" />
+                <div className="psh-hero" />
+                <div className="psh-lines">
+                  <span /><span /><span /><span />
                 </div>
+              </div>
 
+              {/* Live iframe */}
+              <div className="pcard-frame">
+                <iframe
+                  src={w.src}
+                  title={w.title}
+                  loading="lazy"
+                  tabIndex="-1"
+                  onLoad={() => markPreviewReady(w.src)}
+                />
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
 
-                <span className="pcard-tag">{w.tag}</span>
-                <p className="pcard-ind">{w.industry}</p>
-                <h3 className="pcard-title">{w.title}</h3>
-                <p className="pcard-sub">{w.sub}</p>
-              </article>
-            )
-          })}
-        </div>
-
-        <div className="port-hint rv">Previews load in sequence · Hover to scroll</div>
-      </section>
+      {/* Text info — always visible over gradient */}
+      <div className="pcard-info">
+        <span className="pcard-tag">{w.tag}</span>
+        <p className="pcard-ind">{w.industry}</p>
+        <h3 className="pcard-title">{w.title}</h3>
+        <p className="pcard-sub">{w.sub}</p>
+      </div>
+    </article>
+  )
+})}
 
       {/* ═════════ PROCESS ═════════ */}
       <section id="process" className="secpad" aria-labelledby="proc-h2">
