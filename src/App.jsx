@@ -510,44 +510,47 @@ useEffect(() => {
         </div>
       </section>
 
-      {/* ── PORTFOLIO ── FIX 5: pcard-arr removed entirely */}
-      <section id="work" className="port" aria-labelledby="work-h2">
-        <div className="port-hd">
-          <div>
-            <p className="stag rv">Recent Designs</p>
-            <h2 className="sh2 rv d1" id="work-h2" style={{ maxWidth:420, fontSize:'clamp(32px,4vw,56px)' }}>What we <em>create</em></h2>
-          </div>
-          <a href="#contact" className="view-all rv" onClick={e => handleNav(e,'#contact')}>Get Your Build →</a>
-        </div>
-        <div className="port-track" ref={portTrackRef} role="list">
-          {workItems.map(w => (
-            <article className="pcard" role="listitem" key={w.src}>
-              <div className="pcard-preview" aria-hidden="true">
-                <iframe src={w.src} title={w.title} scrolling="no" loading="lazy" tabIndex="-1" />
-              </div>
-              <span className="pcard-tag">{w.tag}</span>
-              <p className="pcard-ind">{w.industry}</p>
-              <h3 className="pcard-title">{w.title}</h3>
-              <p className="pcard-sub">{w.sub}</p>
-            </article>
-          ))}
-        </div>
-        <div className="port-hint rv">Swipe to explore more</div>
-      </section>
+ {/* PORTFOLIO */}
+<section id="work" className="port" aria-labelledby="work-h2">
+  <div className="port-hd">
+    <div>
+      <p className="stag rv">Recent Designs</p>
+      <h2 className="sh2 rv d1" id="work-h2" style={{ maxWidth:420, fontSize:'clamp(32px,4vw,56px)' }}>
+        What we <em>create</em>
+      </h2>
+    </div>
+    <a href="#contact" className="view-all rv" onClick={e => handleNav(e,'#contact')}>Get Your Build →</a>
+  </div>
 
-      {/* PROCESS */}
-      <section id="process" className="secpad" aria-labelledby="proc-h2">
-        <p className="stag rv">How It Works</p>
-        <h2 className="sh2 rv d1" id="proc-h2">A process built<br />for <em>results</em></h2>
-        <div className="proc-steps">
-          {processSteps.map((s, i) => (
-            <div className={`ps rv d${i+1}`} key={s.num}>
-              <div className="ps-num" aria-hidden="true">{s.num}</div>
-              <div><h3 className="ps-ttl">{s.title}</h3><p className="ps-desc">{s.desc}</p></div>
-            </div>
-          ))}
-        </div>
-      </section>
+  <div className="port-track" ref={portTrackRef} role="list">
+    {workItems.map(w => (
+      <article className="pcard" role="listitem" key={w.src}>
+        <a
+          className="pcard-preview"
+          href={w.src}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={`Open ${w.industry}`}
+        >
+          <iframe
+            src={w.src}
+            title={w.title}
+            loading="lazy"
+            tabIndex="-1"
+          />
+          <span className="pcard-open">Open Site →</span>
+        </a>
+
+        <span className="pcard-tag">{w.tag}</span>
+        <p className="pcard-ind">{w.industry}</p>
+        <h3 className="pcard-title">{w.title}</h3>
+        <p className="pcard-sub">{w.sub}</p>
+      </article>
+    ))}
+  </div>
+
+  <div className="port-hint rv">Hover to preview · Click to open</div>
+</section>
 
       {/* PRICING */}
       <section id="pricing" className="secpad pricing-bg" aria-labelledby="price-h2">
