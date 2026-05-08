@@ -675,9 +675,7 @@ useEffect(() => {
         <span className="loader-word gold" style={{ '--i': 1 }}>Creative</span>
         <span className="loader-word" style={{ '--i': 2 }}>Co.</span>
       </div>
-
-      <div className="ae-tagline">Custom websites. Built to convert.</div>
-
+       
       <div className="loader-line">
         <span style={{ width: `${loadPct}%` }} />
       </div>
