@@ -2309,3 +2309,4 @@ iframe{
   transform:none !important;
   animation:none !important;
 }
+@media(prefers-reduced-motion:reduce){
