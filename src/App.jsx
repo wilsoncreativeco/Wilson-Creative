@@ -709,10 +709,6 @@ const goNext = () => {
   className="build-side build-left"
   onClick={goPrev}
 >
-<article
-  className="build-side build-left"
-  onClick={goPrev}
->
 
   <div className="build-browser-shell side-shell">
 
@@ -860,6 +856,8 @@ const goNext = () => {
   </div>
 
 </article>
+
+    </div>
 
   <div className="recent-builds-btn">
     <a
