@@ -705,7 +705,6 @@ const goNext = () => {
 
   <div className="recent-builds-wrap">
 
-    {/* LEFT */}
 <article
   className="build-side build-left"
   onClick={goPrev}
@@ -729,134 +728,12 @@ const goNext = () => {
     </div>
 
     <div className="build-iframe-wrap side-wrap">
-
       <iframe
         src={workItems[prevBuild].src}
         title={workItems[prevBuild].title}
         loading="lazy"
         scrolling="no"
-      />
-
-    </div>
-
-  </div>
-
-</article>
-
-{/* CENTER */}
-<article className="build-main">
-
-  <button className="build-nav prev" onClick={goPrev}>
-    ←
-  </button>
-
-  <button className="build-nav next" onClick={goNext}>
-    →
-  </button>
-
-  <div className="build-glow" />
-
-  <div className="build-browser-shell main-shell">
-
-    <div className="build-browser-bar">
-
-      <div className="build-dots">
-        <span />
-        <span />
-        <span />
-      </div>
-
-      <div className="build-url">
-        <span className="build-lock">🔒</span>
-        {workItems[activeBuild].displayUrl}
-      </div>
-
-      <div className="build-expand">↗</div>
-
-    </div>
-
-    <div className="build-iframe-wrap main-wrap">
-
-      <iframe
-        src={workItems[activeBuild].src}
-        title={workItems[activeBuild].title}
-        loading="lazy"
-        scrolling="no"
-      />
-
-    </div>
-
-  </div>
-
-  <div className="build-meta center-meta">
-
-    <span className="build-tag">
-      {workItems[activeBuild].tag}
-    </span>
-
-    <h3>
-      {workItems[activeBuild].industry.replace('Sample Build — ', '')}
-    </h3>
-
-    <p>
-      {workItems[activeBuild].title}
-    </p>
-
-  </div>
-
-  <div className="build-dots-nav">
-
-    {workItems.map((_, i) => (
-
-      <button
-        key={i}
-        className={`build-dot ${i === activeBuild ? 'active' : ''}`}
-        onClick={() => setActiveBuild(i)}
-      />
-
-    ))}
-
-  </div>
-
-</article>
-
-{/* RIGHT */}
-<article
-  className="build-side build-right"
-  onClick={goNext}
->
-
-  <div className="build-browser-shell side-shell">
-
-    <div className="build-browser-bar">
-
-      <div className="build-dots">
-        <span />
-        <span />
-        <span />
-      </div>
-
-      <div className="build-url">
-        <span className="build-lock">🔒</span>
-        {workItems[nextBuild].displayUrl}
-      </div>
-
-    </div>
-
-    <div className="build-iframe-wrap side-wrap">
-
-      <iframe
-        src={workItems[nextBuild].src}
-        title={workItems[nextBuild].title}
-        loading="lazy"
-        scrolling="no"
-      />
-
-    </div>
-
-  </div>
-
-</article>
+     
 
 
   <div className="recent-builds-btn">
