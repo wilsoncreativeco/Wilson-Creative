@@ -2254,3 +2254,58 @@ footer{
     transform:scale(.2917) translateY(0);
   }
 }
+/* ===== FINAL IFRAME FIX ===== */
+
+.build-iframe-wrap{
+  position:relative;
+  overflow:hidden;
+  background:#000;
+}
+
+.build-iframe-wrap iframe{
+  position:absolute;
+  top:0;
+  left:0;
+
+  width:1440px !important;
+  height:900px !important;
+
+  border:none;
+  display:block;
+
+  transform-origin:top left !important;
+  pointer-events:none;
+}
+
+/* CENTER */
+
+.main-wrap{
+  height:540px;
+}
+
+.main-wrap iframe{
+  transform:scale(.64) !important;
+}
+
+/* SIDES */
+
+.side-wrap{
+  height:440px;
+}
+
+.side-wrap iframe{
+  transform:scale(.48) !important;
+}
+
+/* KILL OLD STYLES */
+
+iframe{
+  max-width:none !important;
+}
+
+.pcard iframe,
+.port-track iframe,
+.pcard-preview iframe{
+  transform:none !important;
+  animation:none !important;
+}
