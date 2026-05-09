@@ -1295,33 +1295,24 @@ body::before{
   box-shadow:0 38px 100px rgba(0,0,0,.48), 0 0 0 1px rgba(197,164,74,.08);
 }
 
-/*
-  PREVIEW SCALE FIX
-  -----------------
-  The iframe is 1440 px wide.  To centre it we use:
-    left: calc(50% - 720px)
-  which places the element's midpoint exactly at 50% of the
-  parent.  Then  scale()  with  transform-origin: top center
-  shrinks symmetrically around that midpoint — no translate
-  needed (the old translate3d(-50%,0,0) was fighting the
-  maths and causing off-centre rendering).
-
-  Scale is reduced to 0.30 so a ~480 px tall container
-  exposes  480 / 0.30 ≈ 1600 px  of page content — enough
-  to show well past any full-viewport hero section.
-*/
+/* ── Portfolio preview ──────────────────────────────────────
+   Scale is applied directly on .pcard-page (not via variable).
+   .pcard-screen is a flex container → justify-content:center
+   centres the oversized 1440px child, then scale(.38) shrinks
+   it around its top-centre, which sits exactly at the parent
+   centre. No wrapper divs, no CSS-variable magic.
+   At scale .38: visual width 547px, height shows 1263px of
+   page content — well past any full-viewport hero.
+─────────────────────────────────────────────────────────── */
 .pcard-preview{
   --preview-scroll:4200px;
   --preview-duration:40s;
-  --preview-scale:.30;
   position:relative;
   height:clamp(430px,38vw,560px);
   border-radius:22px;
   overflow:hidden;
   background:#060609;
   border:1px solid rgba(255,255,255,.075);
-  transform:translateZ(0);
-  isolation:isolate;
 }
 
 .pcard-still{
@@ -1365,12 +1356,16 @@ body::before{
   -webkit-backdrop-filter:blur(14px);
 }
 
+/* flex-container: centres the 1440px child then scale shrinks
+   it symmetrically around its top-centre = parent centre    */
 .pcard-screen{
   flex:1;
-  position:relative;
   overflow:hidden;
+  display:flex;
+  justify-content:center;
+  align-items:flex-start;
   background:#07070a;
-  contain:layout paint;
+  position:relative;
 }
 
 .pcard-shimmer{
@@ -1387,58 +1382,34 @@ body::before{
   pointer-events:none;
 }
 
-.pcard-frame{
-  position:absolute;
-  inset:0;
-  z-index:1;
-  opacity:0;
-  overflow:hidden;
-  transition:opacity .55s ease;
-  transform:translateZ(0);
-}
-
-.pcard-preview.is-ready .pcard-frame{ opacity:1; }
-
-.pcard-viewport{
-  position:absolute;
-  top:0;
-  left:calc(50% - 720px);
+/* Scale is hardcoded here — no variable, no wrapper divs    */
+.pcard-page{
   width:1440px;
   height:5600px;
-  transform:scale(var(--preview-scale));
+  flex-shrink:0;
+  transform:scale(.38);
   transform-origin:top center;
   will-change:transform;
 }
 
-.pcard-page{
-  width:1440px;
-  height:5600px;
-  will-change:transform;
-  transform:translate3d(0,0,0);
-}
-
 .pcard-preview.is-ready .pcard-page{
-  animation:pcardCinematicScroll var(--preview-duration) linear infinite alternate;
+  animation:pcardScroll var(--preview-duration) linear infinite alternate;
 }
 
-.pcard-frame iframe{
+/* Both keyframes include the scale so it never changes      */
+@keyframes pcardScroll{
+  from{ transform:scale(.38) translateY(0); }
+  to{   transform:scale(.38) translateY(calc(var(--preview-scroll) * -1)); }
+}
+
+.pcard-page iframe{
   width:1440px;
   height:5600px;
   border:0;
   display:block;
   pointer-events:none;
   background:#fff;
-  filter:saturate(.94) brightness(.9);
-  transform:translateZ(0);
-}
-
-.pcard:hover .pcard-frame iframe{
-  filter:saturate(1) brightness(.98);
-}
-
-@keyframes pcardCinematicScroll{
-  from{ transform:translate3d(0,0,0); }
-  to{ transform:translate3d(0,calc(var(--preview-scroll) * -1),0); }
+  filter:saturate(.94) brightness(.92);
 }
 
 /* ── Card text ── */
@@ -2151,7 +2122,6 @@ footer{
   }
 
   .pcard-preview{
-    --preview-scale:.28;
     height:430px;
   }
 }
@@ -2173,7 +2143,6 @@ footer{
   }
 
   .pcard-preview{
-    --preview-scale:.22;
     height:390px;
     border-radius:18px;
   }
@@ -2188,6 +2157,6 @@ footer{
 @media(prefers-reduced-motion:reduce){
   .pcard-preview.is-ready .pcard-page{
     animation:none !important;
-    transform:translate3d(0,0,0);
+    transform:scale(.38);
   }
 }
