@@ -2146,102 +2146,48 @@ footer{
    ╚══════════════════════════════╝ */
 
 @media(max-width:1100px){
-  .pc-grid{ grid-template-columns:1fr 1fr; }
-  .about{ grid-template-columns:1fr; }
-  .about-vis{ display:none; }
-
   .pcard{
-    flex:0 0 360px;
-    height:510px;
+    flex-basis:clamp(500px,70vw,640px);
   }
 
-  .pcard:hover .pcard-preview.is-ready .pcard-frame iframe{
-    animation-duration:10s;
+  .pcard-preview{
+    --preview-scale:.38;
+    height:430px;
   }
 }
 
 @media(max-width:768px){
-  #nav{ padding:16px 24px; }
-  #nav.sc{ padding:11px 24px; }
-  .n-links, .n-cta{ display:none; }
-  .ham{ display:flex; }
-
-  .hero{ padding:0 24px; min-height:100svh; }
-  .hero-video{ opacity:.12; }
-  .h-stats{ display:none; }
-  .h-scroll{ left:24px; bottom:28px; }
-  .h-btns{ flex-direction:column; width:100%; }
-
-  .btn-g,
-  .btn-o{ width:100%; text-align:center; padding:16px; }
-
-  .secpad{ padding:80px 24px; }
-
-  .svc-intro{ flex-direction:column; align-items:flex-start; margin-bottom:36px; }
-  .svc-intro-r{ max-width:100%; }
-  .svc-grid{ grid-template-columns:1fr; }
-
-  .sc-wrapper{ perspective:none; min-height:auto; }
-  .sc-flipper{ transform:none !important; min-height:auto; }
-  .sc-front{ position:relative; inset:auto; }
-  .sc-back{ display:none; }
-  .sc-arr{ display:none; }
-
-  .mqs{ display:none; }
-
   .port{ padding:80px 0 80px 24px; }
   .port-hd{ padding-right:24px; }
-  .port-track{ padding-right:24px; }
+  .port-track{
+    gap:18px;
+    padding-right:24px;
+    scroll-snap-type:x mandatory;
+  }
   .port-hint{ padding-right:24px; }
 
   .pcard{
-    flex:0 0 86vw;
-    height:480px;
+    flex:0 0 88vw;
+    border-radius:24px;
+    padding:10px;
   }
 
-  .pcard:hover .pcard-preview.is-ready .pcard-frame iframe,
-  .pcard:focus-within .pcard-preview.is-ready .pcard-frame iframe{
-    animation-duration:9s;
+  .pcard-preview{
+    --preview-scale:.285;
+    height:390px;
+    border-radius:18px;
   }
 
-  .pc-grid{ grid-template-columns:1fr; }
-  .hosting{ grid-template-columns:1fr; gap:24px; }
-  .f-row{ flex-direction:column; gap:0; }
+  .pcard-bbar{ height:38px; }
 
-  .cta-sec{ padding:90px 24px; }
-  .cta-ci{ gap:24px; }
-  .ci-div{ display:none; }
-
-  footer{ padding:50px 24px 36px; }
-  .ft{ flex-direction:column; }
-  .f-cols{ gap:32px; }
-  .fb-bot{ flex-direction:column; align-items:flex-start; gap:14px; }
-
-  #fcta{ display:block; }
-  .faq-list{ max-width:100%; }
+  .pcard-info{
+    padding:18px 8px 6px;
+  }
 }
 
-/* ╔══════════════════════════════╗
-   ║  REDUCED MOTION              ║
-   ╚══════════════════════════════╝ */
-
 @media(prefers-reduced-motion:reduce){
-  *{ animation-duration:.01ms !important; transition-duration:.01ms !important; }
-
-  .hw{ transform:none; }
-
-  .h-eye,
-  .h-sub,
-  .h-btns,
-  .h-scroll,
-  .h-stats{ opacity:1; transform:none; }
-
-  .h-orb{ animation:none; }
-  .sc-flipper{ transition:none; }
-
-  .pcard-frame iframe{ animation:none !important; transition:none !important; }
-
-  .pcard:hover .pcard-preview.is-ready .pcard-frame iframe{
-    transform:scale(.2917) translateY(0);
+  .pcard-preview.is-ready .pcard-page{
+    animation:none !important;
+    transform:translate3d(0,0,0);
   }
 }
