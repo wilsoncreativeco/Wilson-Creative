@@ -2308,9 +2308,8 @@ iframe{
 .pcard-preview iframe{
   transform:none !important;
   animation:none !important;
-}
+
 @media(prefers-reduced-motion:reduce){}
-} 
 /* ===== MOBILE RECENT BUILDS FIX ===== */
 
 @media (max-width: 768px){
