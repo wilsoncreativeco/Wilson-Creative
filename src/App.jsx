@@ -705,119 +705,159 @@ const goNext = () => {
 
   <div className="recent-builds-wrap">
 
-    {/* LEFT CARD */}
-    <article className="build-side build-left">
-      <div className="build-browser-shell side-shell">
+    {/* LEFT */}
+<article
+  className="build-side build-left"
+  onClick={goPrev}
+>
 
-        <div className="build-browser-bar">
-          <div className="build-dots">
-            <span />
-            <span />
-            <span />
-          </div>
+  <div className="build-browser-shell side-shell">
 
-          <div className="build-url">
-            <span className="build-lock">🔒</span>
-            noircafe.com.au
-          </div>
-        </div>
+    <div className="build-browser-bar">
 
-        <div className="build-iframe-wrap side-wrap">
-          <iframe
-            src="https://noir-cafe-beige.vercel.app"
-            title="Noir Cafe"
-            loading="lazy"
-            scrolling="no"
-          />
-        </div>
+      <div className="build-dots">
+        <span />
+        <span />
+        <span />
       </div>
 
-      <div className="build-meta">
-        <span className="build-tag">Hospitality</span>
-
-        <h3>Noir Café</h3>
-
-        <p>Coffee • Matcha • Culture</p>
-      </div>
-    </article>
-
-    {/* CENTER CARD */}
-    <article className="build-main">
-
-      <div className="build-browser-shell main-shell">
-
-        <div className="build-browser-bar">
-          <div className="build-dots">
-            <span />
-            <span />
-            <span />
-          </div>
-
-          <div className="build-url">
-            <span className="build-lock">🔒</span>
-            elitedetailing.com.au
-          </div>
-
-          <div className="build-expand">↗</div>
-        </div>
-
-        <div className="build-iframe-wrap main-wrap">
-          <iframe
-            src="https://detailing-ashen.vercel.app"
-            title="Elite Detailing"
-            loading="lazy"
-            scrolling="no"
-          />
-        </div>
+      <div className="build-url">
+        <span className="build-lock">🔒</span>
+        {workItems[prevBuild].displayUrl}
       </div>
 
-      <div className="build-meta center-meta">
-        <span className="build-tag">Automotive</span>
+    </div>
 
-        <h3>Elite Detailing</h3>
+    <div className="build-iframe-wrap side-wrap">
 
-        <p>Precision • Gloss • Protection</p>
-      </div>
-    </article>
+      <iframe
+        src={workItems[prevBuild].src}
+        title={workItems[prevBuild].title}
+        loading="lazy"
+        scrolling="no"
+      />
 
-    {/* RIGHT CARD */}
-    <article className="build-side build-right">
-
-      <div className="build-browser-shell side-shell">
-
-        <div className="build-browser-bar">
-          <div className="build-dots">
-            <span />
-            <span />
-            <span />
-          </div>
-
-          <div className="build-url">
-            <span className="build-lock">🔒</span>
-            horizonlandscaping.com.au
-          </div>
-        </div>
-
-        <div className="build-iframe-wrap side-wrap">
-          <iframe
-            src="https://landscaping-azure.vercel.app"
-            title="Horizon Landscaping"
-            loading="lazy"
-            scrolling="no"
-          />
-        </div>
-      </div>
-
-      <div className="build-meta">
-        <span className="build-tag">Landscaping</span>
-
-        <h3>Horizon Landscaping</h3>
-
-        <p>Outdoor • Luxury • Transformation</p>
-      </div>
-    </article>
+    </div>
 
   </div>
+
+</article>
+
+{/* CENTER */}
+<article className="build-main">
+
+  <button className="build-nav prev" onClick={goPrev}>
+    ←
+  </button>
+
+  <button className="build-nav next" onClick={goNext}>
+    →
+  </button>
+
+  <div className="build-glow" />
+
+  <div className="build-browser-shell main-shell">
+
+    <div className="build-browser-bar">
+
+      <div className="build-dots">
+        <span />
+        <span />
+        <span />
+      </div>
+
+      <div className="build-url">
+        <span className="build-lock">🔒</span>
+        {workItems[activeBuild].displayUrl}
+      </div>
+
+      <div className="build-expand">↗</div>
+
+    </div>
+
+    <div className="build-iframe-wrap main-wrap">
+
+      <iframe
+        src={workItems[activeBuild].src}
+        title={workItems[activeBuild].title}
+        loading="lazy"
+        scrolling="no"
+      />
+
+    </div>
+
+  </div>
+
+  <div className="build-meta center-meta">
+
+    <span className="build-tag">
+      {workItems[activeBuild].tag}
+    </span>
+
+    <h3>
+      {workItems[activeBuild].industry.replace('Sample Build — ', '')}
+    </h3>
+
+    <p>
+      {workItems[activeBuild].title}
+    </p>
+
+  </div>
+
+  <div className="build-dots-nav">
+
+    {workItems.map((_, i) => (
+
+      <button
+        key={i}
+        className={`build-dot ${i === activeBuild ? 'active' : ''}`}
+        onClick={() => setActiveBuild(i)}
+      />
+
+    ))}
+
+  </div>
+
+</article>
+
+{/* RIGHT */}
+<article
+  className="build-side build-right"
+  onClick={goNext}
+>
+
+  <div className="build-browser-shell side-shell">
+
+    <div className="build-browser-bar">
+
+      <div className="build-dots">
+        <span />
+        <span />
+        <span />
+      </div>
+
+      <div className="build-url">
+        <span className="build-lock">🔒</span>
+        {workItems[nextBuild].displayUrl}
+      </div>
+
+    </div>
+
+    <div className="build-iframe-wrap side-wrap">
+
+      <iframe
+        src={workItems[nextBuild].src}
+        title={workItems[nextBuild].title}
+        loading="lazy"
+        scrolling="no"
+      />
+
+    </div>
+
+  </div>
+
+</article>
+
 
   <div className="recent-builds-btn">
     <a
