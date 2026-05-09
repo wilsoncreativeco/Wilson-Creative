@@ -715,23 +715,30 @@ style={{
                         </a>
                       </div>
 
-                      <div className="pcard-screen">
-                        <div className="pcard-shimmer" aria-hidden="true">
-                          <div className="psh-nav" />
-                          <div className="psh-hero" />
-                          <div className="psh-lines">
-                            <span /><span /><span /><span />
-                          </div>
-                        </div>
-                        <div className="pcard-frame">
-                          <iframe
-                            src={w.src}
-                            title={w.title}
-                            loading="lazy"
-                            tabIndex="-1"
-                            onLoad={() => markPreviewReady(w.src)}
-                          />
-                        </div>
+<div className="pcard-screen">
+  <div className="pcard-shimmer" aria-hidden="true">
+    <div className="psh-nav" />
+    <div className="psh-hero" />
+    <div className="psh-lines">
+      <span /><span /><span /><span />
+    </div>
+  </div>
+
+  <div className="pcard-frame">
+    <div className="pcard-viewport">
+      <div className="pcard-page">
+        <iframe
+          src={w.src}
+          title={w.title}
+          loading="lazy"
+          tabIndex="-1"
+          onLoad={() => markPreviewReady(w.src)}
+        />
+      </div>
+    </div>
+  </div>
+</div>
+
                       </div>
                     </div>
                   )}
