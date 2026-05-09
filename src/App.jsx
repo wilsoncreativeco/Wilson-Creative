@@ -653,101 +653,166 @@ export default function App() {
         </div>
       </section>
 
-      <section id="work" className="port" aria-labelledby="work-h2" ref={portfolioRef}>
-        <div className="port-hd">
-          <div>
-            <p className="stag rv">Recent Designs</p>
-            <h2 className="sh2 rv d1" id="work-h2" style={{ maxWidth: 420, fontSize: 'clamp(32px,4vw,56px)' }}>
-              What we <em>create</em>
-            </h2>
+<section id="work" className="port recent-builds" aria-labelledby="work-h2" ref={portfolioRef}>
+  <div className="port-hd recent-builds-hd">
+    <div>
+      <p className="stag rv">Featured Work</p>
+
+      <h2
+        className="sh2 rv d1"
+        id="work-h2"
+        style={{
+          maxWidth: 680,
+          textAlign: 'center',
+          margin: '0 auto',
+        }}
+      >
+        Recent Builds
+      </h2>
+
+      <p
+        style={{
+          marginTop: 18,
+          color: 'rgba(245,242,236,.55)',
+          fontSize: '15px',
+          lineHeight: 1.7,
+          textAlign: 'center',
+          maxWidth: 520,
+          marginInline: 'auto',
+        }}
+      >
+        A selection of recent websites we&apos;ve designed & developed
+        for brands that demand quality.
+      </p>
+    </div>
+  </div>
+
+  <div className="recent-builds-wrap">
+
+    {/* LEFT CARD */}
+    <article className="build-side build-left">
+      <div className="build-browser-shell side-shell">
+
+        <div className="build-browser-bar">
+          <div className="build-dots">
+            <span />
+            <span />
+            <span />
           </div>
-          <a href="#contact" className="view-all rv" onClick={e => handleNav(e, '#contact')}>
-            Get Your Build →
-          </a>
+
+          <div className="build-url">
+            <span className="build-lock">🔒</span>
+            noircafe.com.au
+          </div>
         </div>
 
-        <div className="port-track" ref={portTrackRef} role="list">
-          {workItems.map((w, i) => {
-            const isLive = livePreviews.includes(w.src)
-            const isReady = readyPreviews.includes(w.src)
+        <div className="build-iframe-wrap side-wrap">
+          <iframe
+            src="https://noir-cafe-beige.vercel.app"
+            title="Noir Cafe"
+            loading="lazy"
+            scrolling="no"
+          />
+        </div>
+      </div>
 
-            return (
-              <article className="pcard" role="listitem" key={w.src}>
-                <div
-                  className={`pcard-preview ${isLive ? 'is-live' : ''} ${isReady ? 'is-ready' : ''}`}
-                  style={{ '--scroll-distance': `${w.scroll}px` }}
-                >
-                  {/* Still image — fades out once iframe loads */}
-                  <div
-                    className="pcard-still"
-                    style={{ backgroundImage: `url(${w.preview})` }}
-                    aria-hidden="true"
-                  />
+      <div className="build-meta">
+        <span className="build-tag">Hospitality</span>
 
-                  {/* Browser chrome + live iframe */}
-                  {isLive && (
-                    <div className="pcard-browser">
-                      <div className="pcard-bbar">
-                        <div className="pcard-dots" aria-hidden="true">
-                          <span /><span /><span />
-                        </div>
-                        <div className="pcard-url-bar" aria-hidden="true">
-                          <svg width="7" height="8" viewBox="0 0 10 12" fill="none" aria-hidden="true">
-                            <rect x="1" y="5" width="8" height="7" rx="1.5" stroke="currentColor" strokeWidth="1.3" />
-                            <path d="M3 5V3.5a2 2 0 0 1 4 0V5" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" />
-                          </svg>
-                          <span>{w.displayUrl}</span>
-                        </div>
-                        <a
-                          href={w.src}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="pcard-launch"
-                          aria-label={`Open ${w.industry} live site`}
-                          tabIndex={isReady ? 0 : -1}
-                        >
-                          <svg width="9" height="9" viewBox="0 0 10 10" fill="none" aria-hidden="true">
-                            <path d="M1.5 8.5L8.5 1.5M8.5 1.5H4.5M8.5 1.5V5.5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
-                          </svg>
-                        </a>
-                      </div>
+        <h3>Noir Café</h3>
 
-                      <div className="pcard-screen">
-                        <div className="pcard-shimmer" aria-hidden="true">
-                          <div className="psh-nav" />
-                          <div className="psh-hero" />
-                          <div className="psh-lines">
-                            <span /><span /><span /><span />
-                          </div>
-                        </div>
-                        <div className="pcard-frame">
-                          <iframe
-                            src={w.src}
-                            title={w.title}
-                            loading="lazy"
-                            tabIndex="-1"
-                            onLoad={() => markPreviewReady(w.src)}
-                          />
-                        </div>
-                      </div>
-                    </div>
-                  )}
-                </div>
+        <p>Coffee • Matcha • Culture</p>
+      </div>
+    </article>
 
-                <div className="pcard-info">
-                  <span className="pcard-tag">{w.tag}</span>
-                  <p className="pcard-ind">{w.industry}</p>
-                  <h3 className="pcard-title">{w.title}</h3>
-                  <p className="pcard-sub">{w.sub}</p>
-                </div>
-              </article>
-            )
-          })}
+    {/* CENTER CARD */}
+    <article className="build-main">
+
+      <div className="build-browser-shell main-shell">
+
+        <div className="build-browser-bar">
+          <div className="build-dots">
+            <span />
+            <span />
+            <span />
+          </div>
+
+          <div className="build-url">
+            <span className="build-lock">🔒</span>
+            elitedetailing.com.au
+          </div>
+
+          <div className="build-expand">↗</div>
         </div>
 
-        <div className="port-hint rv">Previews load in sequence · Hover to scroll</div>
-      </section>
+        <div className="build-iframe-wrap main-wrap">
+          <iframe
+            src="https://detailing-ashen.vercel.app"
+            title="Elite Detailing"
+            loading="lazy"
+            scrolling="no"
+          />
+        </div>
+      </div>
 
+      <div className="build-meta center-meta">
+        <span className="build-tag">Automotive</span>
+
+        <h3>Elite Detailing</h3>
+
+        <p>Precision • Gloss • Protection</p>
+      </div>
+    </article>
+
+    {/* RIGHT CARD */}
+    <article className="build-side build-right">
+
+      <div className="build-browser-shell side-shell">
+
+        <div className="build-browser-bar">
+          <div className="build-dots">
+            <span />
+            <span />
+            <span />
+          </div>
+
+          <div className="build-url">
+            <span className="build-lock">🔒</span>
+            horizonlandscaping.com.au
+          </div>
+        </div>
+
+        <div className="build-iframe-wrap side-wrap">
+          <iframe
+            src="https://landscaping-azure.vercel.app"
+            title="Horizon Landscaping"
+            loading="lazy"
+            scrolling="no"
+          />
+        </div>
+      </div>
+
+      <div className="build-meta">
+        <span className="build-tag">Landscaping</span>
+
+        <h3>Horizon Landscaping</h3>
+
+        <p>Outdoor • Luxury • Transformation</p>
+      </div>
+    </article>
+
+  </div>
+
+  <div className="recent-builds-btn">
+    <a
+      href="#contact"
+      className="btn-o"
+      onClick={e => handleNav(e, '#contact')}
+    >
+      View All Projects →
+    </a>
+  </div>
+</section>
       <section id="process" className="secpad" aria-labelledby="proc-h2">
         <p className="stag rv">How It Works</p>
         <h2 className="sh2 rv d1" id="proc-h2">A process built<br />for <em>results</em></h2>
