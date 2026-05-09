@@ -244,7 +244,7 @@ export default function App() {
   const [flippedCard, setFlippedCard] = useState(null)
   const [livePreviews, setLivePreviews] = useState([])
   const [readyPreviews, setReadyPreviews] = useState([])
-
+const [activeBuild, setActiveBuild] = useState(1)
   const canvasRef = useRef(null)
   const heroRef = useRef(null)
   const heroInnerRef = useRef(null)
