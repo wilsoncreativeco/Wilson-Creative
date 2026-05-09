@@ -857,8 +857,7 @@ const goNext = () => {
 
 </article>
 
-    </div>
-
+</div>
   <div className="recent-builds-btn">
     <a
       href="#contact"
