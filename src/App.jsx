@@ -688,56 +688,61 @@ style={{
                   />
 
                   {/* Browser chrome + live iframe */}
-                  {isLive && (
-                    <div className="pcard-browser">
-                      <div className="pcard-bbar">
-                        <div className="pcard-dots" aria-hidden="true">
-                          <span /><span /><span />
-                        </div>
-                        <div className="pcard-url-bar" aria-hidden="true">
-                          <svg width="7" height="8" viewBox="0 0 10 12" fill="none" aria-hidden="true">
-                            <rect x="1" y="5" width="8" height="7" rx="1.5" stroke="currentColor" strokeWidth="1.3" />
-                            <path d="M3 5V3.5a2 2 0 0 1 4 0V5" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" />
-                          </svg>
-                          <span>{w.displayUrl}</span>
-                        </div>
-                        <a
-                          href={w.src}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="pcard-launch"
-                          aria-label={`Open ${w.industry} live site`}
-                          tabIndex={isReady ? 0 : -1}
-                        >
-                          <svg width="9" height="9" viewBox="0 0 10 10" fill="none" aria-hidden="true">
-                            <path d="M1.5 8.5L8.5 1.5M8.5 1.5H4.5M8.5 1.5V5.5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
-                          </svg>
-                        </a>
-                      </div>
+     {isLive && (
+  <div className="pcard-browser">
+    <div className="pcard-bbar">
+      <div className="pcard-dots" aria-hidden="true">
+        <span /><span /><span />
+      </div>
 
-<div className="pcard-screen">
-  <div className="pcard-shimmer" aria-hidden="true">
-    <div className="psh-nav" />
-    <div className="psh-hero" />
-    <div className="psh-lines">
-      <span /><span /><span /><span />
+      <div className="pcard-url-bar" aria-hidden="true">
+        <svg width="7" height="8" viewBox="0 0 10 12" fill="none" aria-hidden="true">
+          <rect x="1" y="5" width="8" height="7" rx="1.5" stroke="currentColor" strokeWidth="1.3" />
+          <path d="M3 5V3.5a2 2 0 0 1 4 0V5" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" />
+        </svg>
+        <span>{w.displayUrl}</span>
+      </div>
+
+      <a
+        href={w.src}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="pcard-launch"
+        aria-label={`Open ${w.industry} live site`}
+        tabIndex={isReady ? 0 : -1}
+      >
+        <svg width="9" height="9" viewBox="0 0 10 10" fill="none" aria-hidden="true">
+          <path d="M1.5 8.5L8.5 1.5M8.5 1.5H4.5M8.5 1.5V5.5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      </a>
     </div>
-  </div>
 
-  <div className="pcard-frame">
-    <div className="pcard-viewport">
-      <div className="pcard-page">
-        <iframe
-          src={w.src}
-          title={w.title}
-          loading="lazy"
-          tabIndex="-1"
-          onLoad={() => markPreviewReady(w.src)}
-        />
+    <div className="pcard-screen">
+      <div className="pcard-shimmer" aria-hidden="true">
+        <div className="psh-nav" />
+        <div className="psh-hero" />
+        <div className="psh-lines">
+          <span /><span /><span /><span />
+        </div>
+      </div>
+
+      <div className="pcard-frame">
+        <div className="pcard-viewport">
+          <div className="pcard-page">
+            <iframe
+              src={w.src}
+              title={w.title}
+              loading="lazy"
+              tabIndex="-1"
+              onLoad={() => markPreviewReady(w.src)}
+            />
+          </div>
+        </div>
       </div>
     </div>
   </div>
-</div>
+)}
+
 
                       </div>
                     </div>
