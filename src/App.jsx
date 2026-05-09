@@ -449,7 +449,23 @@ const [activeBuild, setActiveBuild] = useState(1)
   const markPreviewReady = src => {
     setReadyPreviews(prev => prev.includes(src) ? prev : [...prev, src])
   }
+const prevBuild =
+  activeBuild === 0
+    ? workItems.length - 1
+    : activeBuild - 1
 
+const nextBuild =
+  activeBuild === workItems.length - 1
+    ? 0
+    : activeBuild + 1
+
+const goPrev = () => {
+  setActiveBuild(prevBuild)
+}
+
+const goNext = () => {
+  setActiveBuild(nextBuild)
+}
   const year = new Date().getFullYear()
 
   return (
