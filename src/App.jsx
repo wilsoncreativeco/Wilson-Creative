@@ -675,7 +675,10 @@ export default function App() {
               <article className="pcard" role="listitem" key={w.src}>
                 <div
                   className={`pcard-preview ${isLive ? 'is-live' : ''} ${isReady ? 'is-ready' : ''}`}
-                  style={{ '--scroll-distance': `${w.scroll}px` }}
+style={{
+  '--preview-scroll': `${w.scroll}px`,
+  '--preview-duration': `${Math.max(36, Math.round(w.scroll / 105))}s`,
+}}
                 >
                   {/* Still image — fades out once iframe loads */}
                   <div
