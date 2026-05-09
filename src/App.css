@@ -1295,10 +1295,25 @@ body::before{
   box-shadow:0 38px 100px rgba(0,0,0,.48), 0 0 0 1px rgba(197,164,74,.08);
 }
 
+/*
+  PREVIEW SCALE FIX
+  -----------------
+  The iframe is 1440 px wide.  To centre it we use:
+    left: calc(50% - 720px)
+  which places the element's midpoint exactly at 50% of the
+  parent.  Then  scale()  with  transform-origin: top center
+  shrinks symmetrically around that midpoint — no translate
+  needed (the old translate3d(-50%,0,0) was fighting the
+  maths and causing off-centre rendering).
+
+  Scale is reduced to 0.30 so a ~480 px tall container
+  exposes  480 / 0.30 ≈ 1600 px  of page content — enough
+  to show well past any full-viewport hero section.
+*/
 .pcard-preview{
   --preview-scroll:4200px;
   --preview-duration:40s;
-  --preview-scale:.44;
+  --preview-scale:.30;
   position:relative;
   height:clamp(430px,38vw,560px);
   border-radius:22px;
@@ -1387,10 +1402,10 @@ body::before{
 .pcard-viewport{
   position:absolute;
   top:0;
-  left:50%;
+  left:calc(50% - 720px);
   width:1440px;
   height:5600px;
-  transform:translate3d(-50%,0,0) scale(var(--preview-scale));
+  transform:scale(var(--preview-scale));
   transform-origin:top center;
   will-change:transform;
 }
@@ -2136,7 +2151,7 @@ footer{
   }
 
   .pcard-preview{
-    --preview-scale:.38;
+    --preview-scale:.28;
     height:430px;
   }
 }
@@ -2158,7 +2173,7 @@ footer{
   }
 
   .pcard-preview{
-    --preview-scale:.285;
+    --preview-scale:.22;
     height:390px;
     border-radius:18px;
   }
