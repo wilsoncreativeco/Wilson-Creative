@@ -1250,118 +1250,80 @@ body::before{
    ║  PORTFOLIO                   ║
    ╚══════════════════════════════╝ */
 
-.port{ padding:100px 0 100px 52px; }
+.port{ padding:120px 0 120px 52px; }
 
 .port-hd{
   display:flex;
   justify-content:space-between;
   align-items:flex-end;
   padding-right:52px;
-  margin-bottom:48px;
+  margin-bottom:52px;
   flex-wrap:wrap;
-  gap:16px;
+  gap:18px;
 }
-
-.view-all{
-  display:flex;
-  align-items:center;
-  gap:8px;
-  font-size:10px;
-  letter-spacing:.22em;
-  text-transform:uppercase;
-  color:var(--g);
-  transition:gap .3s;
-}
-
-.view-all:hover{ gap:16px; }
 
 .port-track{
   display:flex;
-  gap:18px;
+  gap:28px;
   overflow-x:auto;
-  scroll-snap-type:x mandatory;
+  scroll-snap-type:x proximity;
   -webkit-overflow-scrolling:touch;
   scrollbar-width:none;
-  padding-right:52px;
+  padding:4px 52px 18px 0;
   cursor:grab;
 }
 
-.port-track:active{ cursor:grabbing; }
 .port-track::-webkit-scrollbar{ display:none; }
 
-/* ── Card shell ── */
-
 .pcard{
-  flex:0 0 420px;
+  flex:0 0 clamp(580px,58vw,760px);
   scroll-snap-align:start;
-  height:580px;
-  border:1px solid var(--bd);
-  background:#07060a;
-  position:relative;
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:30px;
+  background:linear-gradient(145deg, rgba(255,255,255,.055), rgba(255,255,255,.018));
+  padding:12px;
   overflow:hidden;
   display:flex;
   flex-direction:column;
-  transition:border-color .35s, transform .35s var(--ease), box-shadow .4s;
-}
-
-.pcard::before{
-  content:'';
-  position:absolute;
-  inset:0;
-  z-index:6;
-  pointer-events:none;
-  background:linear-gradient(
-    to top,
-    rgba(7,6,10,.98) 0%,
-    rgba(7,6,10,.82) 22%,
-    rgba(7,6,10,.18) 52%,
-    rgba(7,6,10,.04) 76%,
-    transparent 100%
-  );
+  box-shadow:0 24px 80px rgba(0,0,0,.34);
+  transition:border-color .35s, transform .35s var(--ease), box-shadow .35s;
 }
 
 .pcard:hover{
-  border-color:var(--bdg);
-  transform:translateY(-8px);
-  box-shadow:0 32px 72px rgba(0,0,0,.6), 0 0 0 1px rgba(197,164,74,.12);
+  border-color:rgba(197,164,74,.26);
+  transform:translate3d(0,-5px,0) scale(1.006);
+  box-shadow:0 38px 100px rgba(0,0,0,.48), 0 0 0 1px rgba(197,164,74,.08);
 }
-
-/* ── Preview layer ── */
 
 .pcard-preview{
-  --scroll-distance:4000px;
-  position:absolute;
-  inset:0;
-  z-index:0;
+  --preview-scroll:4200px;
+  --preview-duration:40s;
+  --preview-scale:.44;
+  position:relative;
+  height:clamp(430px,38vw,560px);
+  border-radius:22px;
+  overflow:hidden;
+  background:#060609;
+  border:1px solid rgba(255,255,255,.075);
+  transform:translateZ(0);
+  isolation:isolate;
 }
-
-/* ── Still image fallback ── */
 
 .pcard-still{
   position:absolute;
   inset:0;
-  z-index:1;
+  z-index:5;
   background-size:cover;
   background-position:top center;
-  filter:saturate(.72) brightness(.58);
-  transition:opacity .9s .1s var(--ease), transform 1.1s var(--ease);
+  filter:saturate(.78) brightness(.62);
+  transition:opacity .7s ease, transform 1.1s var(--ease);
+  pointer-events:none;
 }
 
-.pcard-still::after{
-  content:'';
-  position:absolute;
-  inset:0;
-  background:
-    linear-gradient(to bottom, rgba(7,6,10,.12) 0%, rgba(7,6,10,.52) 100%),
-    repeating-linear-gradient(90deg, rgba(255,255,255,.022) 0 1px, transparent 1px 28px);
-}
-
-.pcard-preview.is-live .pcard-still{
+.pcard-preview.is-ready .pcard-still{
   opacity:0;
-  transform:scale(1.03);
+  transform:scale(1.015);
 }
-
-/* ── Browser chrome ── */
 
 .pcard-browser{
   position:absolute;
@@ -1370,111 +1332,39 @@ body::before{
   display:flex;
   flex-direction:column;
   opacity:0;
-  transition:opacity .45s var(--ease);
+  transition:opacity .45s ease;
 }
 
 .pcard-preview.is-live .pcard-browser{ opacity:1; }
 
-/* ── Browser bar ── */
-
 .pcard-bbar{
-  height:36px;
+  height:42px;
   flex-shrink:0;
-  background:#111010;
-  border-bottom:1px solid rgba(255,255,255,.07);
+  background:rgba(17,16,16,.96);
+  border-bottom:1px solid rgba(255,255,255,.075);
   display:flex;
   align-items:center;
-  gap:8px;
-  padding:0 10px;
+  gap:10px;
+  padding:0 12px;
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
 }
-
-.pcard-dots{
-  display:flex;
-  gap:5px;
-  align-items:center;
-  flex-shrink:0;
-}
-
-.pcard-dots span{
-  width:9px;
-  height:9px;
-  border-radius:50%;
-  transition:filter .25s;
-}
-
-.pcard-dots span:nth-child(1){ background:#ff5f57; }
-.pcard-dots span:nth-child(2){ background:#febc2e; }
-.pcard-dots span:nth-child(3){ background:#28c840; }
-
-.pcard:hover .pcard-dots span{ filter:brightness(1.18) saturate(1.1); }
-
-.pcard-url-bar{
-  flex:1;
-  height:20px;
-  background:rgba(255,255,255,.05);
-  border:1px solid rgba(255,255,255,.07);
-  border-radius:4px;
-  display:flex;
-  align-items:center;
-  gap:5px;
-  padding:0 7px;
-  overflow:hidden;
-  color:rgba(245,242,236,.36);
-  min-width:0;
-}
-
-.pcard-url-bar svg{
-  flex-shrink:0;
-  color:rgba(40,200,64,.72);
-}
-
-.pcard-url-bar span{
-  font-size:8.5px;
-  letter-spacing:.01em;
-  white-space:nowrap;
-  overflow:hidden;
-  text-overflow:ellipsis;
-}
-
-.pcard-launch{
-  flex-shrink:0;
-  width:22px;
-  height:22px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  color:rgba(245,242,236,.22);
-  border:1px solid rgba(255,255,255,.07);
-  border-radius:3px;
-  transition:color .2s, border-color .2s, background .2s;
-  position:relative;
-  z-index:10;
-}
-
-.pcard-launch:hover{
-  color:var(--g);
-  border-color:var(--bdg);
-  background:var(--gdim);
-}
-
-/* ── Screen area ── */
 
 .pcard-screen{
   flex:1;
   position:relative;
   overflow:hidden;
-  background:#060505;
+  background:#07070a;
+  contain:layout paint;
 }
-
-/* ── Shimmer skeleton ── */
 
 .pcard-shimmer{
   position:absolute;
   inset:0;
   z-index:3;
-  background:#0c0b0f;
+  background:#0b0a0d;
   overflow:hidden;
-  transition:opacity .6s var(--ease);
+  transition:opacity .45s ease;
 }
 
 .pcard-preview.is-ready .pcard-shimmer{
@@ -1482,94 +1372,66 @@ body::before{
   pointer-events:none;
 }
 
-.pcard-shimmer::after{
-  content:'';
-  position:absolute;
-  inset:0;
-  background:linear-gradient(
-    108deg,
-    transparent 28%,
-    rgba(197,164,74,.055) 50%,
-    transparent 72%
-  );
-  background-size:200% 100%;
-  animation:pShimmer 1.8s ease-in-out infinite;
-}
-
-.psh-nav{
-  position:absolute;
-  top:0;
-  left:0;
-  right:0;
-  height:26px;
-  background:rgba(255,255,255,.024);
-  border-bottom:1px solid rgba(255,255,255,.032);
-}
-
-.psh-hero{
-  position:absolute;
-  top:26px;
-  left:0;
-  right:0;
-  height:46%;
-  background:rgba(255,255,255,.018);
-}
-
-.psh-lines{
-  position:absolute;
-  bottom:0;
-  left:0;
-  right:0;
-  padding:18px 18px 22px;
-  display:flex;
-  flex-direction:column;
-  gap:10px;
-}
-
-.psh-lines span{
-  display:block;
-  height:7px;
-  border-radius:3px;
-  background:rgba(255,255,255,.036);
-}
-
-.psh-lines span:nth-child(1){ width:58%; }
-.psh-lines span:nth-child(2){ width:80%; }
-.psh-lines span:nth-child(3){ width:40%; }
-.psh-lines span:nth-child(4){ width:68%; }
-
-/* ── Live iframe ── */
-
 .pcard-frame{
   position:absolute;
   inset:0;
   z-index:1;
   opacity:0;
-  transition:opacity .65s var(--ease);
+  overflow:hidden;
+  transition:opacity .55s ease;
+  transform:translateZ(0);
 }
 
 .pcard-preview.is-ready .pcard-frame{ opacity:1; }
 
-/* 1440px desktop viewport scaled down to fit 420px card */
-.pcard-frame iframe{
+.pcard-viewport{
   position:absolute;
   top:0;
-  left:0;
+  left:50%;
   width:1440px;
-  height:6400px;
-  border:0;
-  display:block;
-  pointer-events:none;
-  transform:scale(.2917) translateY(0);
-  transform-origin:top left;
-  filter:saturate(.92) brightness(.84);
+  height:5600px;
+  transform:translate3d(-50%,0,0) scale(var(--preview-scale));
+  transform-origin:top center;
   will-change:transform;
 }
 
-.pcard:hover .pcard-preview.is-ready .pcard-frame iframe{
-  animation:pcardScroll 12s .18s cubic-bezier(.45,0,.55,1) forwards;
+.pcard-page{
+  width:1440px;
+  height:5600px;
+  will-change:transform;
+  transform:translate3d(0,0,0);
+}
+
+.pcard-preview.is-ready .pcard-page{
+  animation:pcardCinematicScroll var(--preview-duration) linear infinite alternate;
+}
+
+.pcard-frame iframe{
+  width:1440px;
+  height:5600px;
+  border:0;
+  display:block;
+  pointer-events:none;
+  background:#fff;
+  filter:saturate(.94) brightness(.9);
+  transform:translateZ(0);
+}
+
+.pcard:hover .pcard-frame iframe{
   filter:saturate(1) brightness(.98);
 }
+
+.pcard-info{
+  position:relative;
+  z-index:2;
+  padding:22px 12px 8px;
+}
+
+@keyframes pcardCinematicScroll{
+  from{ transform:translate3d(0,0,0); }
+  to{ transform:translate3d(0,calc(var(--preview-scroll) * -1),0); }
+}
+
 
 /* ── Card text ── */
 
