@@ -755,7 +755,8 @@ style={{
           })}
         </div>
 
-        <div className="port-hint rv">Previews load in sequence · Hover to scroll</div>
+<div className="port-hint rv">Previews load in sequence · Smooth auto-scroll showcase</div>
+
       </section>
 
       <section id="process" className="secpad" aria-labelledby="proc-h2">
