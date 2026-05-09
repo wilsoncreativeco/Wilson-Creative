@@ -748,18 +748,14 @@ export default function App() {
                           </div>
                         </div>
 
-                        <div className="pcard-frame">
-                          <div className="pcard-viewport">
-                            <div className="pcard-page">
-                              <iframe
-                                src={w.src}
-                                title={w.title}
-                                loading="lazy"
-                                tabIndex="-1"
-                                onLoad={() => markPreviewReady(w.src)}
-                              />
-                            </div>
-                          </div>
+                        <div className="pcard-page">
+                          <iframe
+                            src={w.src}
+                            title={w.title}
+                            loading="lazy"
+                            tabIndex="-1"
+                            onLoad={() => markPreviewReady(w.src)}
+                          />
                         </div>
                       </div>
                     </div>
