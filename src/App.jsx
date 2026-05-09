@@ -858,15 +858,7 @@ const goNext = () => {
 </article>
 
 </div>
-  <div className="recent-builds-btn">
-    <a
-      href="#contact"
-      className="btn-o"
-      onClick={e => handleNav(e, '#contact')}
-    >
-      View All Projects →
-    </a>
-  </div>
+  
 </section>
       <section id="process" className="secpad" aria-labelledby="proc-h2">
         <p className="stag rv">How It Works</p>
