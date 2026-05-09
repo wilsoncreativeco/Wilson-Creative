@@ -70,7 +70,7 @@ const workItems = [
   {
     src: 'https://detailing-ashen.vercel.app',
     preview: '/work-detailing.jpg',
-    displayUrl: 'elitedetailing.com.au',
+    displayUrl: 'phantomdetailing.com.au',
     tag: 'Automotive',
     industry: 'Sample Build — Phantom Detailing',
     title: 'Precision · Protection · Perfection',
