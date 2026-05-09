@@ -1421,12 +1421,10 @@ body::before{
   filter:saturate(1) brightness(.98);
 }
 
-
 @keyframes pcardCinematicScroll{
   from{ transform:translate3d(0,0,0); }
   to{ transform:translate3d(0,calc(var(--preview-scroll) * -1),0); }
 }
-
 
 /* ── Card text ── */
 
@@ -1490,9 +1488,6 @@ body::before{
   font-size:13px;
   animation:aPR 1.6s ease-in-out infinite;
 }
-
-/* ── Keyframes ── */
-
 
 @keyframes pShimmer{
   from{ background-position:200% 0; }
@@ -1726,7 +1721,6 @@ body::before{
 
 /* ╔══════════════════════════════╗
    ║  FAQ                         ║
-   ╚══════════════
    ╚══════════════════════════════╝ */
 
 .faq-list{
@@ -1964,7 +1958,7 @@ body::before{
   left:50%;
   transform:translateX(-50%) translateY(100px);
   z-index:480;
-  display:none;
+  display:block;
   background:var(--g);
   color:var(--bg);
   padding:14px 32px;
@@ -1979,11 +1973,13 @@ body::before{
   white-space:nowrap;
   border:none;
   cursor:pointer;
+  pointer-events:none;
 }
 
 #fcta.show{
   transform:translateX(-50%) translateY(0);
   opacity:1;
+  pointer-events:auto;
 }
 
 /* ╔══════════════════════════════╗
