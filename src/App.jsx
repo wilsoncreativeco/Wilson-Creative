@@ -90,9 +90,9 @@ const workItems = [
   {
     src: 'https://n-two-theta-61.vercel.app',
     preview: '/work-gym.jpg',
-    displayUrl: 'phantomgym.com.au',
+    displayUrl: 'Apexgym.com.au',
     tag: 'Gym',
-    industry: 'Sample Build — Premium Gym',
+    industry: 'Sample Build — Apex Gym',
     title: 'Strength · Performance · Recovery',
     sub: 'High-impact fitness brand & lead-generation site',
     scroll: 4400,
