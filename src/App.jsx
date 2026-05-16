@@ -211,25 +211,6 @@ const faqItems = [
   },
 ]
 
-const marqueeRow1 = [
-  'Web Design & Development',
-  'Aerial Cinematography',
-  'Brand Strategy',
-  'Social Media Content',
-  'Photography',
-  'Custom Code — No Templates',
-  'Brisbane Based — Global Reach',
-]
-
-const marqueeRow2 = [
-  'Conversion Focused',
-  'Mobile First',
-  'Premium Animations',
-  'Lightning Fast',
-  'SEO Optimised',
-  'Built to Convert',
-  '100% Custom Code',
-]
 
 export default function App() {
   const [loadPct, setLoadPct] = useState(0)
@@ -541,8 +522,8 @@ const goNext = () => {
           <div className="ae-noise" aria-hidden="true" />
           <div className="ae-scan" aria-hidden="true" />
           <div className="ae-core">
-            <div className="ae-code" aria-hidden="true">
-              <span>build_attention()</span>
+            <div className="ae-pct" aria-hidden="true">
+              {String(loadPct).padStart(2, '0')}
             </div>
             <div className="ae-lock" aria-hidden="true">
               <span /><span /><span /><span />
@@ -556,7 +537,7 @@ const goNext = () => {
               <span style={{ width: `${loadPct}%` }} />
             </div>
             <div className="loader-status">
-              {loadPct < 35 ? 'Compiling attention' : loadPct < 70 ? 'Calibrating brand signal' : loadPct < 96 ? 'Preparing reveal' : 'Ready'}
+              {loadPct < 100 ? `Brisbane · Australia` : 'Ready'}
             </div>
           </div>
         </div>
@@ -633,18 +614,6 @@ const goNext = () => {
         </div>
       </section>
 
-      <div className="mqs" aria-hidden="true">
-        <div className="mqr">
-          {[...marqueeRow1, ...marqueeRow1].map((t, i) => (
-            <span className="mqi" key={i}>{t}<span className="mqd" /></span>
-          ))}
-        </div>
-        <div className="mqr">
-          {[...marqueeRow2, ...marqueeRow2].map((t, i) => (
-            <span className="mqi" key={i}>{t}<span className="mqd" /></span>
-          ))}
-        </div>
-      </div>
 
       <section id="services" className="secpad" aria-labelledby="svc-h2">
         <div className="svc-intro">
