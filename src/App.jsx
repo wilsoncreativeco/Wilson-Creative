@@ -250,7 +250,6 @@ const [activeBuild, setActiveBuild] = useState(1)
   const heroInnerRef = useRef(null)
   const portTrackRef = useRef(null)
   const portfolioRef = useRef(null)
-  const videoRef = useRef(null)
 
   useEffect(() => {
     const duration = 3200
@@ -274,16 +273,69 @@ const [activeBuild, setActiveBuild] = useState(1)
   }, [])
 
   useEffect(() => {
-    const v = videoRef.current
-    if (!v) return
-    v.muted = true
-    const tryPlay = () => v.play().catch(() => {})
-    if (v.readyState >= 2) {
-      tryPlay()
-    } else {
-      v.addEventListener('loadeddata', tryPlay, { once: true })
+    const canvas = canvasRef.current
+    if (!canvas) return
+    const ctx = canvas.getContext('2d')
+
+    const resize = () => {
+      canvas.width = canvas.offsetWidth
+      canvas.height = canvas.offsetHeight
     }
-    return () => v.removeEventListener('loadeddata', tryPlay)
+    resize()
+    window.addEventListener('resize', resize)
+
+    const COUNT = 70
+    const particles = Array.from({ length: COUNT }, () => ({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      vx: (Math.random() - 0.5) * 0.25,
+      vy: (Math.random() - 0.5) * 0.25,
+      r: Math.random() * 1.2 + 0.4,
+    }))
+
+    const LINK_DIST = 130
+    let raf
+
+    const draw = () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height)
+
+      for (let i = 0; i < particles.length; i++) {
+        const p = particles[i]
+        p.x += p.vx
+        p.y += p.vy
+        if (p.x < 0 || p.x > canvas.width) p.vx *= -1
+        if (p.y < 0 || p.y > canvas.height) p.vy *= -1
+
+        ctx.beginPath()
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2)
+        ctx.fillStyle = 'rgba(197,164,74,0.45)'
+        ctx.fill()
+
+        for (let j = i + 1; j < particles.length; j++) {
+          const q = particles[j]
+          const dx = p.x - q.x
+          const dy = p.y - q.y
+          const dist = Math.sqrt(dx * dx + dy * dy)
+          if (dist < LINK_DIST) {
+            ctx.beginPath()
+            ctx.moveTo(p.x, p.y)
+            ctx.lineTo(q.x, q.y)
+            ctx.strokeStyle = `rgba(197,164,74,${0.09 * (1 - dist / LINK_DIST)})`
+            ctx.lineWidth = 0.6
+            ctx.stroke()
+          }
+        }
+      }
+
+      raf = requestAnimationFrame(draw)
+    }
+
+    draw()
+
+    return () => {
+      cancelAnimationFrame(raf)
+      window.removeEventListener('resize', resize)
+    }
   }, [])
 
   useEffect(() => {
@@ -442,6 +494,11 @@ const [activeBuild, setActiveBuild] = useState(1)
           name: fd.get('name'),
           email: fd.get('email'),
           phone: fd.get('phone'),
+          business: fd.get('business'),
+          type: fd.get('type'),
+          package: fd.get('package'),
+          style: fd.get('style'),
+          timeline: fd.get('timeline'),
           message: fd.get('message'),
         }),
       })
@@ -548,15 +605,6 @@ const goNext = () => {
 
       <section className="hero" id="top" ref={heroRef} aria-label="Hero">
         <canvas id="hcanvas" ref={canvasRef} aria-hidden="true" />
-        <video
-          ref={videoRef}
-          className="hero-video"
-          autoPlay muted loop playsInline preload="auto"
-          poster="/fallback.jpg"
-          aria-hidden="true"
-        >
-          <source src="/hero.mp4" type="video/mp4" />
-        </video>
         <div className="h-orb h-orb-1" aria-hidden="true" />
         <div className="h-orb h-orb-2" aria-hidden="true" />
         <div className="h-orb h-orb-3" aria-hidden="true" />
@@ -956,17 +1004,64 @@ const goNext = () => {
               <form onSubmit={handleSubmit} noValidate>
                 <div className="f-row">
                   <div className="f-fld">
-                    <input type="text" name="name" placeholder="Your Name" required autoComplete="name" aria-label="Your Name" />
+                    <input type="text" name="name" placeholder="Your Name *" required autoComplete="name" aria-label="Your Name" />
                   </div>
                   <div className="f-fld">
-                    <input type="email" name="email" placeholder="Email Address" required autoComplete="email" aria-label="Email Address" />
+                    <input type="text" name="business" placeholder="Business Name" autoComplete="organization" aria-label="Business Name" />
+                  </div>
+                </div>
+                <div className="f-row">
+                  <div className="f-fld">
+                    <input type="email" name="email" placeholder="Email Address *" required autoComplete="email" aria-label="Email Address" />
+                  </div>
+                  <div className="f-fld">
+                    <input type="tel" name="phone" placeholder="Phone Number" autoComplete="tel" aria-label="Phone Number" />
+                  </div>
+                </div>
+                <div className="f-row">
+                  <div className="f-fld">
+                    <select name="type" aria-label="Website Type" onChange={e => e.target.style.color = e.target.value ? 'var(--w)' : ''}>
+                      <option value="">Website Type</option>
+                      <option value="New Website">New Website</option>
+                      <option value="Redesign">Redesign Existing Site</option>
+                      <option value="Landing Page">Landing Page</option>
+                      <option value="E-commerce">E-commerce</option>
+                      <option value="Not sure">Not Sure Yet</option>
+                    </select>
+                  </div>
+                  <div className="f-fld">
+                    <select name="package" aria-label="Package Interest" onChange={e => e.target.style.color = e.target.value ? 'var(--w)' : ''}>
+                      <option value="">Package Interest</option>
+                      <option value="Starter">Starter — From $600</option>
+                      <option value="Growth">Growth — From $1,000</option>
+                      <option value="Premium">Premium — From $2,000</option>
+                      <option value="Not sure">Not Sure Yet</option>
+                    </select>
+                  </div>
+                </div>
+                <div className="f-row">
+                  <div className="f-fld">
+                    <select name="style" aria-label="Style Preference" onChange={e => e.target.style.color = e.target.value ? 'var(--w)' : ''}>
+                      <option value="">Style Preference</option>
+                      <option value="Minimal & Clean">Minimal &amp; Clean</option>
+                      <option value="Bold & Striking">Bold &amp; Striking</option>
+                      <option value="Luxury & Premium">Luxury &amp; Premium</option>
+                      <option value="Playful & Creative">Playful &amp; Creative</option>
+                      <option value="Open to direction">Open to Direction</option>
+                    </select>
+                  </div>
+                  <div className="f-fld">
+                    <select name="timeline" aria-label="Timeline" onChange={e => e.target.style.color = e.target.value ? 'var(--w)' : ''}>
+                      <option value="">Timeline</option>
+                      <option value="ASAP">ASAP</option>
+                      <option value="Within 1 month">Within 1 Month</option>
+                      <option value="1–3 months">1–3 Months</option>
+                      <option value="Flexible">Flexible</option>
+                    </select>
                   </div>
                 </div>
                 <div className="f-fld">
-                  <input type="tel" name="phone" placeholder="Phone Number (optional)" autoComplete="tel" aria-label="Phone Number" />
-                </div>
-                <div className="f-fld">
-                  <textarea name="message" placeholder="Tell us about your project — what do you need, what's your vision?" required aria-label="Project details" />
+                  <textarea name="message" placeholder="Anything else you'd like us to know about your project?" aria-label="Additional details" />
                 </div>
                 <button type="submit" className="f-sub" disabled={formStatus === 'sending'}>
                   {formStatus === 'sending' ? 'Sending…' : 'Send Message →'}

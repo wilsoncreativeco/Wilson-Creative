@@ -1846,8 +1846,10 @@ iframe::-webkit-scrollbar{
 
 .cta-h2 span{
   display:block;
-  color:transparent;
-  -webkit-text-stroke:1px rgba(245,242,236,.18);
+  background:linear-gradient(135deg,#7A6422 0%,#B8A050 38%,#E8C97A 52%,#B8A050 66%,#7A6422 100%);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
 }
 
 .cta-sub{
@@ -1859,7 +1861,7 @@ iframe::-webkit-scrollbar{
 }
 
 .contact-form{
-  max-width:540px;
+  max-width:640px;
   margin:0 auto;
   text-align:left;
 }
@@ -1867,6 +1869,7 @@ iframe::-webkit-scrollbar{
 .f-row{ display:flex; gap:12px; }
 .f-fld{ flex:1; margin-bottom:12px; }
 
+.f-fld select,
 .f-fld input,
 .f-fld textarea{
   width:100%;
@@ -1884,10 +1887,29 @@ iframe::-webkit-scrollbar{
 
 .f-fld textarea{ min-height:120px; resize:vertical; }
 
+.f-fld select{
+  appearance:none;
+  -webkit-appearance:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='rgba(245,242,236,.35)' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;
+  background-position:right 16px center;
+  cursor:pointer;
+}
+
+.f-fld select option{
+  background:#111;
+  color:var(--w);
+}
+
 .f-fld input::placeholder,
 .f-fld textarea::placeholder{ color:var(--w3); }
 
+.f-fld select{ color:var(--w3); }
+.f-fld select.has-value,
+.f-fld select:not([value='']){ color:var(--w); }
+
 .f-fld input:focus,
+.f-fld select:focus,
 .f-fld textarea:focus{
   border-color:var(--bdg);
   background:rgba(255,255,255,.055);
