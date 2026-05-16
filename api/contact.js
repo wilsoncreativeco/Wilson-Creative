@@ -20,27 +20,34 @@ export default async function handler(req, res) {
       replyTo: email,
       subject: `New enquiry from ${name}`,
       html: `
-        <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; padding: 32px; background: #0d0d0d; color: #f5f2ec; border-radius: 8px;">
-          <h2 style="margin: 0 0 24px; font-size: 22px; color: #c9a84c;">New Project Enquiry</h2>
-          <table style="width: 100%; border-collapse: collapse;">
-            <tr>
-              <td style="padding: 10px 0; border-bottom: 1px solid #222; color: #888; width: 100px;">Name</td>
-              <td style="padding: 10px 0; border-bottom: 1px solid #222;">${name}</td>
-            </tr>
-            <tr>
-              <td style="padding: 10px 0; border-bottom: 1px solid #222; color: #888;">Email</td>
-              <td style="padding: 10px 0; border-bottom: 1px solid #222;"><a href="mailto:${email}" style="color: #c9a84c;">${email}</a></td>
-            </tr>
-            <tr>
-              <td style="padding: 10px 0; border-bottom: 1px solid #222; color: #888;">Phone</td>
-              <td style="padding: 10px 0; border-bottom: 1px solid #222;">${phone || '—'}</td>
-            </tr>
-            <tr>
-              <td style="padding: 10px 16px 10px 0; color: #888; vertical-align: top;">Message</td>
-              <td style="padding: 10px 0; white-space: pre-wrap;">${message}</td>
-            </tr>
-          </table>
-          <p style="margin: 24px 0 0; font-size: 12px; color: #555;">Sent via wilsoncreativeco.com.au contact form</p>
+        <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; background: #ffffff;">
+          <div style="background: #0d0d0d; padding: 28px 32px;">
+            <p style="margin: 0; font-size: 18px; font-weight: 600; color: #ffffff; letter-spacing: 0.5px;">Wilson <span style="color: #c9a84c;">Creative</span> Co.</p>
+          </div>
+          <div style="padding: 32px;">
+            <h2 style="margin: 0 0 24px; font-size: 20px; color: #0d0d0d;">New Project Enquiry</h2>
+            <table style="width: 100%; border-collapse: collapse;">
+              <tr>
+                <td style="padding: 12px 0; border-bottom: 1px solid #eeeeee; color: #888888; width: 90px; font-size: 13px;">Name</td>
+                <td style="padding: 12px 0; border-bottom: 1px solid #eeeeee; color: #0d0d0d; font-size: 14px;">${name}</td>
+              </tr>
+              <tr>
+                <td style="padding: 12px 0; border-bottom: 1px solid #eeeeee; color: #888888; font-size: 13px;">Email</td>
+                <td style="padding: 12px 0; border-bottom: 1px solid #eeeeee; font-size: 14px;"><a href="mailto:${email}" style="color: #c9a84c; text-decoration: none;">${email}</a></td>
+              </tr>
+              <tr>
+                <td style="padding: 12px 0; border-bottom: 1px solid #eeeeee; color: #888888; font-size: 13px;">Phone</td>
+                <td style="padding: 12px 0; border-bottom: 1px solid #eeeeee; color: #0d0d0d; font-size: 14px;">${phone || '—'}</td>
+              </tr>
+              <tr>
+                <td style="padding: 12px 0; color: #888888; vertical-align: top; font-size: 13px;">Message</td>
+                <td style="padding: 12px 0; color: #0d0d0d; font-size: 14px; line-height: 1.6; white-space: pre-wrap;">${message}</td>
+              </tr>
+            </table>
+          </div>
+          <div style="background: #f7f7f7; padding: 16px 32px;">
+            <p style="margin: 0; font-size: 12px; color: #aaaaaa;">Sent via wilsoncreativeco.au contact form</p>
+          </div>
         </div>
       `,
     })
