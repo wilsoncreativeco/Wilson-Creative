@@ -5,7 +5,6 @@ const navItems = [
   { label: 'Services', href: '#services' },
   { label: 'Work', href: '#work' },
   { label: 'About', href: '#about' },
-  { label: 'Process', href: '#process' },
   { label: 'Pricing', href: '#pricing' },
   { label: 'Contact', href: '#contact' },
 ]
@@ -631,34 +630,6 @@ const goNext = () => {
         </div>
       </section>
 
-      <section id="about" className="secpad" aria-labelledby="about-h2">
-        <div className="about">
-          <div className="about-vis rl" aria-hidden="true">
-            <div className="av-frame">
-              <div className="av-inner">
-                <div className="av-bg">WC</div>
-                <p className="av-tagline">Built to<br /><span>dominate</span><br />your market.</p>
-                <div className="av-c"><span /><span /><span /><span /></div>
-              </div>
-            </div>
-          </div>
-          <div className="about-text">
-            <p className="stag rv">Why Creative Co.</p>
-            <h2 className="sh2 rv d1" id="about-h2">The studio that<br /><em>does the work</em></h2>
-            <p className="rv d2">We&apos;re a Brisbane-based creative studio delivering high-performance content and fully custom-coded websites for brands that want to stand out. Every project is built from the ground up — no templates, no limitations — giving you complete control, faster performance, and a solution tailored exactly to your business.</p>
-            <p className="rv d3">Whether you&apos;re local or operating globally, we work with clients anywhere to create digital experiences that not only look premium, but drive real results.</p>
-            <div className="about-pills rv d3">
-              {aboutPills.map(p => <span className="pill" key={p}>{p}</span>)}
-            </div>
-            <div className="about-sts rv d4">
-              <div><span className="as-val cnt" data-t="47" data-s="+">0</span><span className="as-lbl">Projects Done</span></div>
-              <div><span className="as-val cnt" data-t="100" data-s="%">0</span><span className="as-lbl">Satisfaction</span></div>
-              <div><span className="as-val cnt" data-t="3" data-s="+">0</span><span className="as-lbl">Years Active</span></div>
-            </div>
-          </div>
-        </div>
-      </section>
-
 <section id="work" className="port recent-builds" aria-labelledby="work-h2" ref={portfolioRef}>
   <div className="port-hd recent-builds-hd">
     <div>
@@ -850,16 +821,48 @@ const goNext = () => {
 </div>
   
 </section>
-      <section id="process" className="secpad" aria-labelledby="proc-h2">
-        <p className="stag rv">How It Works</p>
-        <h2 className="sh2 rv d1" id="proc-h2">A process built<br />for <em>results</em></h2>
-        <div className="proc-steps">
-          {processSteps.map((s, i) => (
-            <div className={`ps rv d${i + 1}`} key={s.num}>
-              <div className="ps-num" aria-hidden="true">{s.num}</div>
-              <div>
-                <h3 className="ps-ttl">{s.title}</h3>
-                <p className="ps-desc">{s.desc}</p>
+      <section id="about" className="secpad" aria-labelledby="about-h2">
+        <div className="about">
+          <div className="about-vis rl" aria-hidden="true">
+            <div className="av-frame">
+              <div className="av-inner">
+                <div className="av-bg">WC</div>
+                <p className="av-tagline">Built to<br /><span>dominate</span><br />your market.</p>
+                <div className="av-c"><span /><span /><span /><span /></div>
+              </div>
+            </div>
+          </div>
+          <div className="about-text">
+            <p className="stag rv">Why Creative Co.</p>
+            <h2 className="sh2 rv d1" id="about-h2">The studio that<br /><em>does the work</em></h2>
+            <p className="rv d2">We&apos;re a Brisbane-based creative studio delivering high-performance content and fully custom-coded websites for brands that want to stand out. Every project is built from the ground up — no templates, no limitations — giving you complete control, faster performance, and a solution tailored exactly to your business.</p>
+            <p className="rv d3">Whether you&apos;re local or operating globally, we work with clients anywhere to create digital experiences that not only look premium, but drive real results.</p>
+            <div className="about-pills rv d3">
+              {aboutPills.map(p => <span className="pill" key={p}>{p}</span>)}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Testimonials — add real reviews here when ready ────────────── */}
+      <section id="testimonials" className="secpad testi-section" aria-labelledby="testi-h2">
+        <p className="stag rv" style={{ justifyContent: 'center' }}>Client Results</p>
+        <h2 className="sh2 rv d1 testi-h2" id="testi-h2">What our clients<br />are <em>saying</em></h2>
+        <div className="testi-grid rv d2">
+          {[
+            { initials: 'JM', name: 'James M.', biz: 'Phantom Detailing, Brisbane', quote: 'Add your first client review here — even a Google review or a message from a happy customer works perfectly.' },
+            { initials: 'SC', name: 'Sarah C.', biz: 'Verdant Landscaping, QLD', quote: 'Replace this with your second client testimonial. Focus on the result they got, not just what you built.' },
+            { initials: 'AK', name: 'Alex K.', biz: 'Apex Gym, Brisbane', quote: 'A third testimonial here. Three is the ideal number — enough to build trust without overwhelming the page.' },
+          ].map((t, i) => (
+            <div className="testi-card rv" style={{ '--d': `${i * 0.12}s` }} key={i}>
+              <div className="testi-stars" aria-label="5 stars">{'★'.repeat(5)}</div>
+              <p className="testi-quote">&ldquo;{t.quote}&rdquo;</p>
+              <div className="testi-author">
+                <div className="testi-av" aria-hidden="true">{t.initials}</div>
+                <div>
+                  <p className="testi-name">{t.name}</p>
+                  <p className="testi-biz">{t.biz}</p>
+                </div>
               </div>
             </div>
           ))}
@@ -908,7 +911,23 @@ const goNext = () => {
         </div>
       </section>
 
-      <section className="secpad" aria-labelledby="faq-h2">
+      <section id="process" className="secpad" aria-labelledby="proc-h2">
+        <p className="stag rv">How It Works</p>
+        <h2 className="sh2 rv d1" id="proc-h2">A process built<br />for <em>results</em></h2>
+        <div className="proc-steps">
+          {processSteps.map((s, i) => (
+            <div className={`ps rv d${i + 1}`} key={s.num}>
+              <div className="ps-num" aria-hidden="true">{s.num}</div>
+              <div>
+                <h3 className="ps-ttl">{s.title}</h3>
+                <p className="ps-desc">{s.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section id="faq" className="secpad" aria-labelledby="faq-h2">
         <p className="stag rv">Common Questions</p>
         <h2 className="sh2 rv d1" id="faq-h2">Everything you need<br />to <em>know</em></h2>
         <div className="faq-list rv d2">
