@@ -212,6 +212,8 @@ const faqItems = [
 
 
 export default function App() {
+  const [typed, setTyped] = useState('')
+  const [showTagline, setShowTagline] = useState(false)
   const [loaderOut, setLoaderOut] = useState(false)
   const [loaderHidden, setLoaderHidden] = useState(false)
   const [navScrolled, setNavScrolled] = useState(false)
@@ -231,9 +233,19 @@ const [activeBuild, setActiveBuild] = useState(1)
   const portfolioRef = useRef(null)
 
   useEffect(() => {
-    const t1 = setTimeout(() => setLoaderOut(true), 950)
-    const t2 = setTimeout(() => setLoaderHidden(true), 1550)
-    return () => { clearTimeout(t1); clearTimeout(t2) }
+    const FULL = 'Wilson Creative Co.'
+    let i = 0
+    const iv = setInterval(() => {
+      i++
+      setTyped(FULL.slice(0, i))
+      if (i === FULL.length) {
+        clearInterval(iv)
+        setTimeout(() => setShowTagline(true), 320)
+        setTimeout(() => setLoaderOut(true), 820)
+        setTimeout(() => setLoaderHidden(true), 1450)
+      }
+    }, 48)
+    return () => clearInterval(iv)
   }, [])
 
   useEffect(() => {
@@ -500,13 +512,19 @@ const goNext = () => {
       <div id="spb" style={{ width: `${scrollProg}%` }} />
 
       {!loaderHidden && (
-        <div id="loader" className={loaderOut ? 'out' : ''}>
+        <div id="loader" className={loaderOut ? 'out' : ''} aria-label="Wilson Creative Co.">
           <div className="ld-card">
-            <div className="ld-line" aria-hidden="true" />
-            <p className="ld-name" aria-label="Wilson Creative Co.">
-              Wilson <span>Creative</span> Co.
+            <p className="ld-name">
+              {(() => {
+                const t = typed
+                const p1 = t.slice(0, Math.min(t.length, 7))
+                const p2 = t.length > 7 ? t.slice(7, Math.min(t.length, 15)) : ''
+                const p3 = t.length > 15 ? t.slice(15) : ''
+                return <>{p1}{p2 && <span>{p2}</span>}{p3}</>
+              })()}
+              {!loaderOut && <span className="ld-cursor" aria-hidden="true" />}
             </p>
-            <p className="ld-loc">Brisbane · Australia</p>
+            <p className={`ld-loc${showTagline ? ' vis' : ''}`}>Brisbane · Australia</p>
           </div>
         </div>
       )}
