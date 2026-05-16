@@ -216,6 +216,7 @@ export default function App() {
   const [loadPct, setLoadPct] = useState(0)
   const [loaderOut, setLoaderOut] = useState(false)
   const [loaderHidden, setLoaderHidden] = useState(false)
+  const [irisOpen, setIrisOpen] = useState(false)
   const [navScrolled, setNavScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
   const [scrollProg, setScrollProg] = useState(0)
@@ -227,6 +228,7 @@ export default function App() {
   const [readyPreviews, setReadyPreviews] = useState([])
 const [activeBuild, setActiveBuild] = useState(1)
   const canvasRef = useRef(null)
+  const irisRef = useRef(null)
   const heroRef = useRef(null)
   const heroInnerRef = useRef(null)
   const portTrackRef = useRef(null)
@@ -244,14 +246,86 @@ const [activeBuild, setActiveBuild] = useState(1)
       if (t < 1) {
         raf = requestAnimationFrame(tick)
       } else {
-        setTimeout(() => setLoaderOut(true), 260)
-        setTimeout(() => setLoaderHidden(true), 980)
+        setTimeout(() => setIrisOpen(true), 400)
+        setTimeout(() => setLoaderOut(true), 2200)
+        setTimeout(() => setLoaderHidden(true), 3000)
       }
     }
 
     raf = requestAnimationFrame(tick)
     return () => cancelAnimationFrame(raf)
   }, [])
+
+  useEffect(() => {
+    if (!irisOpen) return
+    const canvas = irisRef.current
+    if (!canvas) return
+
+    const W = canvas.width = window.innerWidth
+    const H = canvas.height = window.innerHeight
+    const ctx = canvas.getContext('2d')
+    const cx = W / 2, cy = H / 2
+    const maxR = Math.sqrt(cx * cx + cy * cy) * 1.06
+    const BLADES = 8
+    const DURATION = 1600
+    let raf
+
+    // Draw solid black immediately before making canvas visible — no flash
+    ctx.fillStyle = '#030303'
+    ctx.fillRect(0, 0, W, H)
+    canvas.style.opacity = '1'
+
+    const startTime = performance.now()
+
+    const tick = now => {
+      const t = Math.min((now - startTime) / DURATION, 1)
+      const eased = 1 - Math.pow(1 - t, 3)
+
+      ctx.clearRect(0, 0, W, H)
+      ctx.fillStyle = '#030303'
+      ctx.fillRect(0, 0, W, H)
+
+      // Rotating gold blade lines
+      const spin = eased * (Math.PI / BLADES)
+      for (let i = 0; i < BLADES; i++) {
+        const angle = (i / BLADES) * Math.PI * 2 + spin
+        const lineOpacity = Math.max(0, 0.55 - eased * 0.7)
+        ctx.strokeStyle = `rgba(197,164,74,${lineOpacity})`
+        ctx.lineWidth = 0.8
+        ctx.beginPath()
+        ctx.moveTo(cx, cy)
+        ctx.lineTo(cx + maxR * Math.cos(angle), cy + maxR * Math.sin(angle))
+        ctx.stroke()
+      }
+
+      // Gold aperture ring at the edge of the growing hole
+      const holeR = Math.pow(eased, 0.75) * maxR * 1.08
+      const ringOpacity = Math.max(0, 0.7 - eased * 0.9)
+      ctx.strokeStyle = `rgba(197,164,74,${ringOpacity})`
+      ctx.lineWidth = 1.5
+      ctx.beginPath()
+      ctx.arc(cx, cy, holeR, 0, Math.PI * 2)
+      ctx.stroke()
+
+      // Cut the expanding iris aperture
+      ctx.globalCompositeOperation = 'destination-out'
+      ctx.fillStyle = '#000'
+      ctx.beginPath()
+      ctx.arc(cx, cy, holeR, 0, Math.PI * 2)
+      ctx.fill()
+      ctx.globalCompositeOperation = 'source-over'
+
+      if (t < 1) {
+        raf = requestAnimationFrame(tick)
+      } else {
+        canvas.style.transition = 'opacity 0.7s ease'
+        canvas.style.opacity = '0'
+      }
+    }
+
+    raf = requestAnimationFrame(tick)
+    return () => cancelAnimationFrame(raf)
+  }, [irisOpen])
 
   useEffect(() => {
     const canvas = canvasRef.current
@@ -517,7 +591,7 @@ const goNext = () => {
       <div id="spb" style={{ width: `${scrollProg}%` }} />
 
       {!loaderHidden && (
-        <div id="loader" className={loaderOut ? 'out' : ''}>
+        <div id="loader" className={[loaderOut ? 'out' : '', irisOpen ? 'iris' : ''].join(' ')}>
           <div className="ae-grid" aria-hidden="true" />
           <div className="ae-noise" aria-hidden="true" />
           <div className="ae-scan" aria-hidden="true" />
@@ -537,9 +611,10 @@ const goNext = () => {
               <span style={{ width: `${loadPct}%` }} />
             </div>
             <div className="loader-status">
-              {loadPct < 100 ? `Brisbane · Australia` : 'Ready'}
+              {loadPct < 100 ? 'Brisbane · Australia' : 'Ready'}
             </div>
           </div>
+          <canvas ref={irisRef} className="ae-iris" aria-hidden="true" />
         </div>
       )}
 
@@ -586,9 +661,7 @@ const goNext = () => {
 
       <section className="hero" id="top" ref={heroRef} aria-label="Hero">
         <canvas id="hcanvas" ref={canvasRef} aria-hidden="true" />
-        <div className="h-orb h-orb-1" aria-hidden="true" />
-        <div className="h-orb h-orb-2" aria-hidden="true" />
-        <div className="h-orb h-orb-3" aria-hidden="true" />
+        <div className="hero-photo" aria-hidden="true" />
         <div className="h-ov" aria-hidden="true" />
         <div className="h-inner" ref={heroInnerRef}>
           <p className="h-eye">Brisbane Based — Global Reach</p>

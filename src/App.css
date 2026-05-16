@@ -114,6 +114,10 @@ body::before{
   visibility:hidden;
 }
 
+#loader.iris{
+  background:transparent;
+}
+
 .ae-grid{
   position:absolute;
   inset:-30%;
@@ -213,6 +217,16 @@ body::before{
   text-shadow:
     0 0 26px rgba(197,164,74,.36),
     0 0 72px rgba(197,164,74,.18);
+}
+
+.ae-iris{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  z-index:5;
+  pointer-events:none;
+  opacity:0;
 }
 
 .ae-lock{
@@ -613,41 +627,15 @@ body::before{
   pointer-events:none;
 }
 
-.h-orb{
+.hero-photo{
   position:absolute;
-  border-radius:50%;
-  pointer-events:none;
-  z-index:1;
-}
-
-.h-orb-1{
-  width:560px;
-  height:560px;
-  top:-10%;
-  left:-8%;
-  background:radial-gradient(circle, rgba(197,164,74,.09) 0%, transparent 65%);
-  filter:blur(55px);
-  animation:aOrb1 14s ease-in-out infinite;
-}
-
-.h-orb-2{
-  width:420px;
-  height:420px;
-  top:15%;
-  right:-5%;
-  background:radial-gradient(circle, rgba(197,164,74,.06) 0%, transparent 65%);
-  filter:blur(45px);
-  animation:aOrb2 18s ease-in-out infinite;
-}
-
-.h-orb-3{
-  width:340px;
-  height:340px;
-  bottom:-8%;
-  left:38%;
-  background:radial-gradient(circle, rgba(130,105,42,.07) 0%, transparent 65%);
-  filter:blur(40px);
-  animation:aOrb3 22s ease-in-out infinite;
+  inset:0;
+  background-image:url('/brisbane.jpg');
+  background-size:cover;
+  background-position:center 38%;
+  z-index:0;
+  opacity:.32;
+  filter:saturate(.75) brightness(.85);
 }
 
 .hero::after{
@@ -664,9 +652,6 @@ body::before{
   -webkit-mask-image:radial-gradient(ellipse 70% 60% at 50% 40%, black 0%, transparent 100%);
 }
 
-@keyframes aOrb1{ 0%,100%{ transform:translate(0,0) } 50%{ transform:translate(40px,30px) } }
-@keyframes aOrb2{ 0%,100%{ transform:translate(0,0) } 50%{ transform:translate(-30px,40px) } }
-@keyframes aOrb3{ 0%,100%{ transform:translate(0,0) } 50%{ transform:translate(20px,-30px) } }
 
 .h-ov{
   position:absolute;
@@ -674,8 +659,8 @@ body::before{
   z-index:2;
   pointer-events:none;
   background:
-    linear-gradient(135deg, rgba(7,6,10,.72) 0%, rgba(7,6,10,.35) 50%, rgba(7,6,10,.62) 100%),
-    linear-gradient(to bottom, rgba(7,6,10,0) 60%, rgba(7,6,10,1) 100%);
+    linear-gradient(135deg, rgba(3,2,8,.82) 0%, rgba(3,2,8,.48) 50%, rgba(3,2,8,.72) 100%),
+    linear-gradient(to bottom, rgba(3,2,8,.1) 40%, rgba(3,2,8,1) 100%);
 }
 
 .h-inner{
@@ -2221,7 +2206,6 @@ footer{
   .h-scroll,
   .h-stats{ opacity:1; transform:none; }
 
-  .h-orb{ animation:none; }
   .sc-flipper{ transition:none; }
 
   .pcard-frame iframe{ animation:none !important; transition:none !important; }
