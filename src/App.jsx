@@ -433,11 +433,17 @@ const [activeBuild, setActiveBuild] = useState(1)
   const handleSubmit = async e => {
     e.preventDefault()
     setFormStatus('sending')
+    const fd = new FormData(e.target)
     try {
-      const res = await fetch(e.target.action, {
+      const res = await fetch('/api/contact', {
         method: 'POST',
-        body: new FormData(e.target),
-        headers: { Accept: 'application/json' },
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: fd.get('name'),
+          email: fd.get('email'),
+          phone: fd.get('phone'),
+          message: fd.get('message'),
+        }),
       })
       setFormStatus(res.ok ? 'sent' : 'idle')
       if (res.ok) e.target.reset()
@@ -947,7 +953,7 @@ const goNext = () => {
             </div>
           ) : (
             <>
-              <form action="https://formspree.io/f/xojywkwo" method="POST" onSubmit={handleSubmit} noValidate>
+              <form onSubmit={handleSubmit} noValidate>
                 <div className="f-row">
                   <div className="f-fld">
                     <input type="text" name="name" placeholder="Your Name" required autoComplete="name" aria-label="Your Name" />
