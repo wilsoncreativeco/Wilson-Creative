@@ -213,7 +213,6 @@ const faqItems = [
 
 
 export default function App() {
-  const [loadPct, setLoadPct] = useState(0)
   const [loaderOut, setLoaderOut] = useState(false)
   const [loaderHidden, setLoaderHidden] = useState(false)
   const [navScrolled, setNavScrolled] = useState(false)
@@ -233,24 +232,9 @@ const [activeBuild, setActiveBuild] = useState(1)
   const portfolioRef = useRef(null)
 
   useEffect(() => {
-    const duration = 3200
-    const start = performance.now()
-    let raf
-
-    const tick = now => {
-      const t = Math.min((now - start) / duration, 1)
-      const eased = 1 - Math.pow(1 - t, 3)
-      setLoadPct(Math.floor(eased * 100))
-      if (t < 1) {
-        raf = requestAnimationFrame(tick)
-      } else {
-        setTimeout(() => setLoaderOut(true), 3000)
-        setTimeout(() => setLoaderHidden(true), 3900)
-      }
-    }
-
-    raf = requestAnimationFrame(tick)
-    return () => cancelAnimationFrame(raf)
+    const t1 = setTimeout(() => setLoaderOut(true), 950)
+    const t2 = setTimeout(() => setLoaderHidden(true), 1550)
+    return () => { clearTimeout(t1); clearTimeout(t2) }
   }, [])
 
   useEffect(() => {
@@ -518,14 +502,11 @@ const goNext = () => {
 
       {!loaderHidden && (
         <div id="loader" className={loaderOut ? 'out' : ''}>
-          <div className="ld-inner">
-            <div className="ld-rule" aria-hidden="true" />
-            <div className="ld-title" aria-label="Wilson Creative Co.">
-              <span>Wilson</span>
-              <span className="ld-gold">Creative</span>
-              <span>Co.</span>
-            </div>
-            <div className="ld-rule ld-rule-b" aria-hidden="true" />
+          <div className="ld-card">
+            <div className="ld-line" aria-hidden="true" />
+            <p className="ld-name" aria-label="Wilson Creative Co.">
+              Wilson <span>Creative</span> Co.
+            </p>
             <p className="ld-loc">Brisbane · Australia</p>
           </div>
         </div>
