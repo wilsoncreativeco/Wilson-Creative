@@ -211,6 +211,16 @@ const faqItems = [
 ]
 
 
+// Generated once at module load — stable across re-renders, no canvas needed
+const HERO_STARS = Array.from({ length: 65 }, () => ({
+  x: Math.random() * 100,
+  y: Math.random() * 100,
+  r: Math.random() * 1.4 + 0.4,
+  a: Math.random() * 0.28 + 0.08,
+  delay: Math.random() * 6,
+  dur: Math.random() * 4 + 2.5,
+}))
+
 export default function App() {
   const [typed, setTyped] = useState('')
   const [showTagline, setShowTagline] = useState(false)
@@ -226,7 +236,6 @@ export default function App() {
   const [livePreviews, setLivePreviews] = useState([])
   const [readyPreviews, setReadyPreviews] = useState([])
 const [activeBuild, setActiveBuild] = useState(1)
-  const canvasRef = useRef(null)
   const heroRef = useRef(null)
   const heroInnerRef = useRef(null)
   const portTrackRef = useRef(null)
@@ -248,61 +257,6 @@ const [activeBuild, setActiveBuild] = useState(1)
     return () => clearInterval(iv)
   }, [])
 
-  // ── Hero star field ────────────────────────────────────────────
-  useEffect(() => {
-    const canvas = canvasRef.current
-    if (!canvas) return
-    const ctx = canvas.getContext('2d')
-
-    let raf
-    let debounce
-
-    const resize = () => {
-      clearTimeout(debounce)
-      debounce = setTimeout(() => {
-        canvas.width = canvas.offsetWidth
-        canvas.height = canvas.offsetHeight
-      }, 120)
-    }
-
-    canvas.width = canvas.offsetWidth
-    canvas.height = canvas.offsetHeight
-    window.addEventListener('resize', resize)
-
-    const COUNT = 90
-    const stars = Array.from({ length: COUNT }, () => ({
-      x: Math.random(),
-      y: Math.random(),
-      r: Math.random() * 0.9 + 0.2,
-      a: Math.random() * 0.35 + 0.1,
-      speed: Math.random() * 0.00008 + 0.00003,
-      phase: Math.random() * Math.PI * 2,
-    }))
-
-    const draw = (t) => {
-      const w = canvas.width
-      const h = canvas.height
-      ctx.clearRect(0, 0, w, h)
-
-      for (const s of stars) {
-        const alpha = s.a * (0.6 + 0.4 * Math.sin(t * s.speed * 1000 + s.phase))
-        ctx.beginPath()
-        ctx.arc(s.x * w, s.y * h, s.r, 0, Math.PI * 2)
-        ctx.fillStyle = `rgba(197,164,74,${alpha.toFixed(3)})`
-        ctx.fill()
-      }
-
-      raf = requestAnimationFrame(draw)
-    }
-
-    raf = requestAnimationFrame(draw)
-
-    return () => {
-      cancelAnimationFrame(raf)
-      clearTimeout(debounce)
-      window.removeEventListener('resize', resize)
-    }
-  }, [])
 
   useEffect(() => {
     const onScroll = () => {
@@ -563,7 +517,19 @@ const goNext = () => {
 
       <section className="hero" id="top" ref={heroRef} aria-label="Hero">
         <div className="hero-photo" aria-hidden="true" />
-        <canvas id="hcanvas" ref={canvasRef} aria-hidden="true" />
+        <div className="hero-stars" aria-hidden="true">
+          {HERO_STARS.map((s, i) => (
+            <span key={i} className="h-star" style={{
+              left: `${s.x}%`,
+              top: `${s.y}%`,
+              width: `${s.r * 2}px`,
+              height: `${s.r * 2}px`,
+              '--a': s.a,
+              '--delay': `${s.delay}s`,
+              '--dur': `${s.dur}s`,
+            }} />
+          ))}
+        </div>
         <div className="h-ov" aria-hidden="true" />
         <div className="h-inner" ref={heroInnerRef}>
           <p className="h-eye">Brisbane Based — Global Reach</p>
