@@ -402,26 +402,6 @@ body::before{
   background:radial-gradient(ellipse 120% 90% at 50% 0%, #0e0c14 0%, #06050a 55%, #030208 100%);
 }
 
-.hero-video{
-  position:absolute;
-  inset:0;
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  z-index:0;
-  opacity:.18;
-  pointer-events:none;
-}
-
-#hcanvas{
-  position:absolute;
-  inset:0;
-  width:100%;
-  height:100%;
-  z-index:1;
-  pointer-events:none;
-}
-
 .hero-photo{
   position:absolute;
   inset:0;
@@ -1933,7 +1913,6 @@ footer{
   .ham{ display:flex; }
 
   .hero{ padding:0 24px; min-height:100svh; }
-  .hero-video{ opacity:.12; }
   .h-stats{ display:none; }
   .h-scroll{ left:24px; bottom:28px; }
   .h-btns{ flex-direction:column; width:100%; }
