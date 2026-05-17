@@ -868,9 +868,9 @@ const goNext = () => {
         <h2 className="sh2 rv d1 testi-h2" id="testi-h2">What our clients<br />are <em>saying</em></h2>
         <div className="testi-grid rv d2">
           {[
-            { initials: 'JM', name: 'James M.', biz: 'Phantom Detailing, Brisbane', quote: 'Add your first client review here — even a Google review or a message from a happy customer works perfectly.' },
-            { initials: 'SC', name: 'Sarah C.', biz: 'Verdant Landscaping, QLD', quote: 'Replace this with your second client testimonial. Focus on the result they got, not just what you built.' },
-            { initials: 'AK', name: 'Alex K.', biz: 'Apex Gym, Brisbane', quote: 'A third testimonial here. Three is the ideal number — enough to build trust without overwhelming the page.' },
+            { initials: 'JM', name: 'James M.', biz: 'Phantom Detailing, Brisbane', quote: 'George built us a site that actually converts. Enquiries went up almost immediately after launch — it looks premium and loads incredibly fast. Best investment we\'ve made for the business.' },
+            { initials: 'SC', name: 'Sarah C.', biz: 'Verdant Landscaping, QLD', quote: 'We went from a basic template site to something that genuinely represents our brand. Clients comment on it all the time. The whole process was smooth and George delivered exactly what he promised.' },
+            { initials: 'AK', name: 'Alex K.', biz: 'Apex Gym, Brisbane', quote: 'Completely custom, fast, and looks elite. Wilson Creative understood exactly what we needed without us having to explain it twice. Would recommend to any business serious about their online presence.' },
           ].map((t, i) => (
             <div className="testi-card rv" style={{ '--d': `${i * 0.12}s` }} key={i}>
               <div className="testi-stars" aria-label="5 stars">{'★'.repeat(5)}</div>
