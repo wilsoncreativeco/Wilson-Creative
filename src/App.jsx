@@ -240,6 +240,9 @@ export default function App() {
   const [showFCta, setShowFCta] = useState(false)
   const [openFaq, setOpenFaq] = useState(null)
   const [formStatus, setFormStatus] = useState('idle')
+  const [modal, setModal] = useState(null) // null | 'demo' | 'hosting'
+  const [modalForm, setModalForm] = useState({ name: '', email: '', business: '', field: '', note: '' })
+  const [modalStatus, setModalStatus] = useState('idle')
   const [flippedCard, setFlippedCard] = useState(null)
   const [livePreviews, setLivePreviews] = useState([])
   const [readyPreviews, setReadyPreviews] = useState([])
@@ -437,6 +440,39 @@ const [activeBuild, setActiveBuild] = useState(1)
     }
   }
 
+  const openModal = (type) => {
+    setModal(type)
+    setModalStatus('idle')
+    setModalForm({
+      name: '', email: '', business: '', field: '',
+      note: type === 'hosting' ? "Hi, I'm interested in your $25/month hosting — can you tell me more about what's included?" : '',
+    })
+    document.body.style.overflow = 'hidden'
+  }
+
+  const closeModal = () => {
+    setModal(null)
+    document.body.style.overflow = ''
+  }
+
+  const handleModalSubmit = async e => {
+    e.preventDefault()
+    setModalStatus('sending')
+    try {
+      const body = modal === 'demo'
+        ? { name: modalForm.name, email: modalForm.email, business: modalForm.business, type: modalForm.field, message: 'Free Demo Request' }
+        : { name: modalForm.name, email: modalForm.email, message: modalForm.note }
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body),
+      })
+      setModalStatus(res.ok ? 'sent' : 'error')
+    } catch {
+      setModalStatus('error')
+    }
+  }
+
   const markPreviewReady = src => {
     setReadyPreviews(prev => prev.includes(src) ? prev : [...prev, src])
   }
@@ -517,9 +553,9 @@ const goNext = () => {
             <a href="tel:+61401609118">📞 0401 609 118</a>
             <a href="mailto:wilsoncreativeco.au@gmail.com">✉️ wilsoncreativeco.au@gmail.com</a>
           </div>
-          <a href="#contact" className="mn-cta" onClick={e => handleNav(e, '#contact')}>
+          <button className="mn-cta" onClick={() => { setMenuOpen(false); openModal('demo') }}>
             Get a Free Demo →
-          </a>
+          </button>
         </div>
       </nav>
 
@@ -572,7 +608,7 @@ const goNext = () => {
           </div>
           <div className="svc-intro-r rv d2">
             <p>We focus on what moves the needle first: a custom website that converts, with cinematic drone content coming next.</p>
-            <a href="#contact" className="btn-g" onClick={e => handleNav(e, '#contact')}>Get a Free Demo</a>
+            <button className="btn-g" onClick={() => openModal('demo')}>Get a Free Demo</button>
           </div>
         </div>
         <div className="svc-grid rv d1">
@@ -884,9 +920,9 @@ const goNext = () => {
             <div className="h-price">$25 / month</div>
             <p className="h-desc">We look after the technical side of keeping your site live. Completely optional — host yourself or let us manage everything.</p>
             <br />
-            <a href="#contact" className="btn-o" onClick={e => handleNav(e, '#contact')} style={{ display: 'inline-block', marginTop: 8 }}>
+            <button className="btn-o" onClick={() => openModal('hosting')} style={{ marginTop: 8 }}>
               Ask About Hosting
-            </a>
+            </button>
           </div>
           <ul className="h-feats">
             {hostingFeatures.map(f => <li key={f}>{f}</li>)}
@@ -1081,6 +1117,73 @@ const goNext = () => {
       <button id="fcta" className={showFCta ? 'show' : ''} onClick={() => scrollTo('#contact')} aria-label="Start a project">
         Start a Project ✦
       </button>
+
+      {/* ── Quick modals ── */}
+      {modal && (
+        <div className="modal-overlay" onClick={closeModal} role="dialog" aria-modal="true" aria-label={modal === 'demo' ? 'Free demo request' : 'Hosting enquiry'}>
+          <div className="modal-box" onClick={e => e.stopPropagation()}>
+            <button className="modal-close" onClick={closeModal} aria-label="Close">✕</button>
+
+            {modal === 'demo' && (
+              <>
+                <p className="modal-tag">Free Demo</p>
+                <h3 className="modal-title">See your site<br /><em>before you pay</em></h3>
+                <p className="modal-sub">Tell us a bit about your business and we'll put together a free demo tailored to your industry — no commitment required.</p>
+                {modalStatus === 'sent' ? (
+                  <p className="modal-success">✓ Done — we'll have your demo ready shortly.</p>
+                ) : (
+                  <form className="modal-form" onSubmit={handleModalSubmit} noValidate>
+                    <div className="modal-row">
+                      <input className="modal-input" type="text" placeholder="Your Name *" required value={modalForm.name} onChange={e => setModalForm(f => ({ ...f, name: e.target.value }))} />
+                      <input className="modal-input" type="email" placeholder="Email Address *" required value={modalForm.email} onChange={e => setModalForm(f => ({ ...f, email: e.target.value }))} />
+                    </div>
+                    <input className="modal-input" type="text" placeholder="Business Name" value={modalForm.business} onChange={e => setModalForm(f => ({ ...f, business: e.target.value }))} />
+                    <select className="modal-input modal-select" value={modalForm.field} onChange={e => setModalForm(f => ({ ...f, field: e.target.value }))}>
+                      <option value="">What industry are you in?</option>
+                      <option>Trades &amp; Construction</option>
+                      <option>Health &amp; Wellness</option>
+                      <option>Hospitality &amp; Food</option>
+                      <option>Real Estate &amp; Property</option>
+                      <option>Retail &amp; E-commerce</option>
+                      <option>Professional Services</option>
+                      <option>Fitness &amp; Sport</option>
+                      <option>Beauty &amp; Personal Care</option>
+                      <option>Other</option>
+                    </select>
+                    <button className="btn-g modal-submit" type="submit" disabled={modalStatus === 'sending'}>
+                      {modalStatus === 'sending' ? 'Sending…' : 'Request My Free Demo →'}
+                    </button>
+                    {modalStatus === 'error' && <p className="modal-err">Something went wrong — email us at wilsoncreativeco.au@gmail.com</p>}
+                  </form>
+                )}
+              </>
+            )}
+
+            {modal === 'hosting' && (
+              <>
+                <p className="modal-tag">Hosting Enquiry</p>
+                <h3 className="modal-title">$25 / month<br /><em>Managed Hosting</em></h3>
+                <p className="modal-sub">We'll get back to you within a few hours with everything you need to know.</p>
+                {modalStatus === 'sent' ? (
+                  <p className="modal-success">✓ Got it — we'll be in touch shortly.</p>
+                ) : (
+                  <form className="modal-form" onSubmit={handleModalSubmit} noValidate>
+                    <div className="modal-row">
+                      <input className="modal-input" type="text" placeholder="Your Name *" required value={modalForm.name} onChange={e => setModalForm(f => ({ ...f, name: e.target.value }))} />
+                      <input className="modal-input" type="email" placeholder="Email Address *" required value={modalForm.email} onChange={e => setModalForm(f => ({ ...f, email: e.target.value }))} />
+                    </div>
+                    <textarea className="modal-input modal-textarea" value={modalForm.note} onChange={e => setModalForm(f => ({ ...f, note: e.target.value }))} rows={3} />
+                    <button className="btn-g modal-submit" type="submit" disabled={modalStatus === 'sending'}>
+                      {modalStatus === 'sending' ? 'Sending…' : 'Send Enquiry →'}
+                    </button>
+                    {modalStatus === 'error' && <p className="modal-err">Something went wrong — email us at wilsoncreativeco.au@gmail.com</p>}
+                  </form>
+                )}
+              </>
+            )}
+          </div>
+        </div>
+      )}
     </>
   )
 }
