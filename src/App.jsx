@@ -190,23 +190,31 @@ const hostingFeatures = [
 const faqItems = [
   {
     q: 'How much does a custom website cost in Brisbane?',
-    a: 'Wilson Creative Co. websites start from $600 for a single-page Starter site, $1,000 for a multi-page Growth site, and from $2,000 for a full Premium build including e-commerce or booking systems. Optional hosting is available at $25/month.',
+    a: "Wilson Creative Co. websites start from $600 for a single-page Starter site, $1,000 for a multi-page Growth site, and from $2,000 for a full Premium build including e-commerce or booking systems. Optional managed hosting is available at $25/month — that covers your domain connection, SSL certificate, uptime monitoring and full hosting management. To put that in perspective, most Brisbane web agencies charge $3,000–$8,000+ for a comparable custom build, and many lock you into ongoing retainers on top. We keep our pricing straightforward so quality isn't out of reach for growing businesses.",
   },
   {
     q: 'How long does it take to build a website?',
-    a: 'Starter sites are delivered in 5–7 days. Growth sites take 10–14 days. Premium builds are completed in 2–3 weeks. All timelines include your revision rounds.',
+    a: "Starter sites are delivered in 5–7 business days. Growth sites take 10–14 days. Premium builds — including e-commerce, booking systems or complex integrations — are completed in 2–3 weeks. Every timeline includes revision rounds, so you're not being rushed through feedback. Compare that to most agencies who quote 6–12 weeks for a similar scope. We move fast without cutting corners because we're not juggling 30 projects at once.",
   },
   {
     q: 'Do you use templates or page builders like Wix?',
-    a: 'Never. Every Wilson Creative Co. website is fully custom-coded from scratch. No Wix, no Squarespace, no Webflow templates — just clean, fast, custom code built specifically for your business.',
+    a: "Never. Every Wilson Creative Co. website is written from scratch in clean, custom code — no Wix, no Squarespace, no Webflow templates, no WordPress page builders. Template-based sites look like every other business in your industry, load slower, and limit what you can actually do. Custom code means your site is built exactly for your business, loads faster, ranks better in Google, and gives you complete flexibility as you grow. It's the difference between a suit off the rack and one made for you.",
   },
   {
     q: 'Do you work with clients outside of Brisbane?',
-    a: "Absolutely. While we're based in Brisbane, we work with clients across Australia and globally. The entire process is handled remotely with clear communication at every stage.",
+    a: "Absolutely. While we're based in Brisbane, we work with clients across Australia and internationally. Everything is handled remotely — discovery, design, development, feedback and launch — with clear communication at every stage. If you're local and want to meet in person, we're happy to arrange that too. Location has never been a barrier for delivering great work.",
   },
   {
     q: 'What do I need to provide to get started?',
-    a: "Not much. If you have a logo, brand colours, and some idea of what you want — great. If you're starting from scratch, we'll guide you through everything during the Discovery phase.",
+    a: "Less than you'd think. If you have a logo, brand colours and a rough idea of what you want — perfect, we'll take it from there. If you're starting from scratch with nothing, that's completely fine too. We'll walk you through a short discovery process to understand your business, your customers and your goals, then handle the rest. You don't need to know anything about web design or code — that's our job.",
+  },
+  {
+    q: 'Will my website show up on Google?',
+    a: "Every website we build includes solid SEO foundations — semantic HTML structure, fast page speed, mobile optimisation, meta tags, Open Graph, structured data (schema markup), an XML sitemap and a robots.txt. These are the technical foundations that Google needs to properly index and rank your site. We also connect your site to Google Search Console so you can track performance from day one. Full SEO content strategy and ongoing ranking campaigns are available as an add-on.",
+  },
+  {
+    q: 'What happens after my site goes live?',
+    a: "You own everything — the code, the domain, the content. Nothing is locked to us. If you want to take your site to another developer down the track, you can. We offer optional ongoing support at $25/month which covers hosting, SSL, uptime monitoring and minor content updates. For larger changes or new features, we quote those separately so you only pay for what you actually need. No surprise invoices, no lock-in contracts.",
   },
 ]
 
