@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Daves Plumbing Brisbane - BEST PLUMBER IN BRISBANE!!!</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #e8f4f8;
+      color: #333;
+    }
+
+    /* ── MARQUEE STRIP ── */
+    .marquee-bar {
+      background: #ff6600;
+      color: #fff;
+      padding: 7px 0;
+      font-size: 13px;
+      font-weight: bold;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+    .marquee-inner {
+      display: inline-block;
+      animation: scroll 18s linear infinite;
+    }
+    @keyframes scroll {
+      from { transform: translateX(100vw); }
+      to   { transform: translateX(-100%); }
+    }
+
+    /* ── HEADER ── */
+    .header {
+      background: linear-gradient(180deg, #003399 0%, #0055cc 100%);
+      padding: 18px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .logo-block h1 {
+      font-size: 26px;
+      color: #ffdd00;
+      text-shadow: 2px 2px 0 #cc0000;
+      font-family: 'Comic Sans MS', 'Chalkboard SE', cursive;
+    }
+    .logo-block p {
+      color: #aaddff;
+      font-size: 12px;
+      margin-top: 3px;
+    }
+    .header-phone {
+      text-align: right;
+    }
+    .header-phone .ph-num {
+      font-size: 22px;
+      font-weight: bold;
+      color: #ffdd00;
+    }
+    .header-phone .ph-label {
+      font-size: 11px;
+      color: #aaddff;
+    }
+
+    /* ── NAV ── */
+    nav {
+      background: #336699;
+      display: flex;
+      border-bottom: 3px solid #ff6600;
+    }
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      padding: 10px 18px;
+      font-size: 13px;
+      font-weight: bold;
+      border-right: 1px solid #4477aa;
+      transition: background .15s;
+    }
+    nav a:hover { background: #ff6600; }
+    nav a.active { background: #ff6600; }
+
+    /* ── HERO BANNER ── */
+    .hero-banner {
+      background: #cce0f0;
+      border-bottom: 3px dashed #336699;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      padding: 20px 24px;
+    }
+    .hero-text h2 {
+      font-size: 22px;
+      color: #003399;
+      font-family: 'Comic Sans MS', cursive;
+    }
+    .hero-text p {
+      font-size: 13px;
+      color: #555;
+      margin: 6px 0 12px;
+      max-width: 480px;
+      line-height: 1.5;
+    }
+    .blink {
+      color: #cc0000;
+      font-weight: bold;
+      animation: blink 1s step-end infinite;
+    }
+    @keyframes blink { 0%,100%{ opacity:1 } 50%{ opacity:0 } }
+
+    .cta-btn {
+      display: inline-block;
+      background: #ff6600;
+      color: #fff;
+      font-size: 15px;
+      font-weight: bold;
+      padding: 10px 22px;
+      text-decoration: none;
+      border: 2px solid #cc4400;
+      border-radius: 4px;
+      text-transform: uppercase;
+      box-shadow: 3px 3px 0 #cc4400;
+    }
+    .hero-img-placeholder {
+      width: 260px;
+      min-width: 260px;
+      height: 160px;
+      background: #aac8e0;
+      border: 3px solid #336699;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      color: #555;
+      text-align: center;
+      flex-direction: column;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+
+    /* ── MAIN LAYOUT ── */
+    .main-layout {
+      display: flex;
+      gap: 0;
+      padding: 20px 24px;
+      align-items: flex-start;
+    }
+    .content { flex: 1; padding-right: 24px; }
+    .sidebar { width: 220px; flex-shrink: 0; }
+
+    /* ── CONTENT BOXES ── */
+    .content h3 {
+      font-size: 17px;
+      color: #003399;
+      border-bottom: 2px dashed #ff6600;
+      padding-bottom: 5px;
+      margin: 18px 0 10px;
+      font-family: 'Comic Sans MS', cursive;
+    }
+    .content p {
+      font-size: 13px;
+      line-height: 1.55;
+      color: #444;
+      margin-bottom: 10px;
+    }
+    .services-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+      margin: 10px 0;
+    }
+    .services-table th {
+      background: #003399;
+      color: #fff;
+      padding: 7px 10px;
+      text-align: left;
+    }
+    .services-table td {
+      border: 1px solid #ccc;
+      padding: 6px 10px;
+      background: #fff;
+    }
+    .services-table tr:nth-child(even) td { background: #e8f4f8; }
+    .tick { color: green; font-weight: bold; }
+
+    /* ── SIDEBAR ── */
+    .sidebar-box {
+      background: #ffffcc;
+      border: 2px solid #ff6600;
+      padding: 12px;
+      margin-bottom: 14px;
+      border-radius: 2px;
+    }
+    .sidebar-box h4 {
+      color: #cc0000;
+      font-size: 13px;
+      font-weight: bold;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      border-bottom: 1px solid #ff6600;
+      padding-bottom: 4px;
+    }
+    .sidebar-box p, .sidebar-box li {
+      font-size: 12px;
+      color: #444;
+      line-height: 1.6;
+    }
+    .sidebar-box ul { padding-left: 16px; }
+    .sidebar-box .big-num {
+      font-size: 28px;
+      font-weight: bold;
+      color: #003399;
+      display: block;
+      text-align: center;
+      margin: 4px 0;
+    }
+    .star-rating { color: #ff9900; font-size: 18px; text-align: center; }
+    .counter-box {
+      background: #003399;
+      color: #fff;
+      text-align: center;
+      padding: 12px;
+      margin-bottom: 14px;
+      border: 2px solid #ff6600;
+    }
+    .counter-box .cnt { font-size: 30px; font-weight: bold; color: #ffdd00; display: block; }
+    .counter-box .cnt-lbl { font-size: 11px; }
+
+    /* ── TESTIMONIALS ── */
+    .testimonial {
+      background: #fff;
+      border-left: 4px solid #ff6600;
+      padding: 10px 14px;
+      margin-bottom: 12px;
+      font-size: 12px;
+      color: #444;
+      line-height: 1.5;
+    }
+    .testimonial .author { font-weight: bold; color: #003399; margin-top: 5px; font-size: 11px; }
+
+    /* ── FOOTER ── */
+    .footer {
+      background: #003399;
+      color: #aaddff;
+      font-size: 11px;
+      text-align: center;
+      padding: 16px;
+      border-top: 4px solid #ff6600;
+      margin-top: 24px;
+    }
+    .footer a { color: #ffdd00; text-decoration: underline; }
+    .footer .footer-copy { margin-top: 6px; color: #6699cc; }
+
+    /* ── BADGES ROW ── */
+    .badges {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin: 10px 0;
+    }
+    .badge {
+      background: #003399;
+      color: #ffdd00;
+      font-size: 10px;
+      font-weight: bold;
+      padding: 5px 10px;
+      border: 2px solid #ffdd00;
+      border-radius: 3px;
+      text-transform: uppercase;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- MARQUEE -->
+  <div class="marquee-bar">
+    <span class="marquee-inner">
+      ⭐ CALL NOW: 0400 000 000 &nbsp;&nbsp;|&nbsp;&nbsp; 24/7 EMERGENCY PLUMBING &nbsp;&nbsp;|&nbsp;&nbsp; FREE QUOTES &nbsp;&nbsp;|&nbsp;&nbsp; ALL BRISBANE AREAS &nbsp;&nbsp;|&nbsp;&nbsp; BEST PRICES GUARANTEED &nbsp;&nbsp;|&nbsp;&nbsp; LICENSED &amp; INSURED &nbsp;&nbsp;|&nbsp;&nbsp; NO CALL OUT FEE* &nbsp;&nbsp;|&nbsp;&nbsp; ⭐ CALL NOW: 0400 000 000 &nbsp;&nbsp;
+    </span>
+  </div>
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="logo-block">
+      <h1>🔧 Dave's Plumbing Brisbane</h1>
+      <p>Your Local Trusted Plumber Since 2003 &nbsp;|&nbsp; Fully Licensed &amp; Insured &nbsp;|&nbsp; All Suburbs</p>
+    </div>
+    <div class="header-phone">
+      <div class="ph-num">📞 0400 000 000</div>
+      <div class="ph-label">CALL US ANYTIME — 24 HOURS A DAY</div>
+    </div>
+  </div>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="active">Home</a>
+    <a href="#">About Us</a>
+    <a href="#">Services</a>
+    <a href="#">Testimonials</a>
+    <a href="#">Gallery</a>
+    <a href="#">Contact Us</a>
+    <a href="#">Specials!!!</a>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero-banner">
+    <div class="hero-text">
+      <h2>Welcome to Dave's Plumbing Brisbane!!!</h2>
+      <p>Are you looking for a <strong>reliable, affordable and professional plumber in Brisbane?</strong> Look no further! Dave's Plumbing has been serving the Brisbane community for over 20 years. We offer <span class="blink">★ GUARANTEED LOWEST PRICES ★</span> on all plumbing services!</p>
+      <a href="#" class="cta-btn">📞 Get a FREE Quote Now!</a>
+    </div>
+    <div class="hero-img-placeholder">
+      🖼️<br/>[ PHOTO GOES HERE ]<br/><span style="font-size:10px;color:#888">image001_final_v3.jpg</span>
+    </div>
+  </div>
+
+  <!-- MAIN -->
+  <div class="main-layout">
+
+    <!-- CONTENT -->
+    <div class="content">
+
+      <div class="badges">
+        <span class="badge">✅ Licensed</span>
+        <span class="badge">✅ Insured</span>
+        <span class="badge">✅ Local</span>
+        <span class="badge">✅ Affordable</span>
+        <span class="badge">✅ Fast</span>
+        <span class="badge">✅ Reliable</span>
+      </div>
+
+      <h3>🔧 About Dave's Plumbing Brisbane</h3>
+      <p>Hi my name is Dave and I have been a plumber for over 20 years. I am fully licensed and insured and I pride myself on providing the best plumbing service in Brisbane at the most affordable prices. I service all Brisbane suburbs including the Northside, Southside, Western Suburbs, Eastern Suburbs and everything in between!!!</p>
+      <p>At Dave's Plumbing we believe that every customer deserves the best service at a fair and honest price. We are not like the big companies that overcharge you!! We are a family owned and operated business and we treat every customer like family.</p>
+
+      <h3>🛠️ Our Services</h3>
+      <table class="services-table">
+        <tr><th>Service</th><th>Available</th><th>Emergency</th></tr>
+        <tr><td>Blocked Drains</td><td class="tick">✔</td><td class="tick">✔</td></tr>
+        <tr><td>Hot Water Systems</td><td class="tick">✔</td><td class="tick">✔</td></tr>
+        <tr><td>Leaking Taps</td><td class="tick">✔</td><td>-</td></tr>
+        <tr><td>Toilet Repairs</td><td class="tick">✔</td><td class="tick">✔</td></tr>
+        <tr><td>Gas Fitting</td><td class="tick">✔</td><td>-</td></tr>
+        <tr><td>Pipe Replacement</td><td class="tick">✔</td><td>-</td></tr>
+        <tr><td>Bathroom Renovations</td><td class="tick">✔</td><td>-</td></tr>
+      </table>
+
+      <h3>💬 What Our Customers Are Saying</h3>
+      <div class="testimonial">
+        "Dave was fantastic!! He came out the same day and fixed our blocked drain in no time. Very professional and the price was very reasonable. Would highly recommend to anyone!!!"
+        <div class="author">— Sandra M., Chermside ⭐⭐⭐⭐⭐</div>
+      </div>
+      <div class="testimonial">
+        "Called Dave at 9pm for an emergency and he was here within the hour. Saved us from a massive flood situation. Absolute legend. Will definitely use again."
+        <div class="author">— Brad T., Wynnum ⭐⭐⭐⭐⭐</div>
+      </div>
+
+    </div>
+
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+
+      <div class="counter-box">
+        <span class="cnt">847</span>
+        <span class="cnt-lbl">HAPPY CUSTOMERS SERVED!</span>
+      </div>
+
+      <div class="sidebar-box">
+        <h4>📞 Contact Us Now!</h4>
+        <p><strong>Phone:</strong> 0400 000 000</p>
+        <p><strong>Email:</strong> dave@davesplumbing.com.au</p>
+        <p><strong>Hours:</strong> Mon–Sat 7am–6pm<br/>Emergency: 24/7</p>
+        <br/>
+        <a href="#" class="cta-btn" style="font-size:12px;padding:8px 14px;display:block;text-align:center;">CALL NOW!</a>
+      </div>
+
+      <div class="sidebar-box">
+        <h4>⭐ Our Guarantee</h4>
+        <ul>
+          <li>Upfront pricing</li>
+          <li>No hidden fees*</li>
+          <li>On time or its FREE</li>
+          <li>Satisfaction guaranteed</li>
+          <li>Clean &amp; tidy workmanship</li>
+        </ul>
+      </div>
+
+      <div class="sidebar-box">
+        <h4>🏆 Google Rating</h4>
+        <span class="big-num">4.9</span>
+        <div class="star-rating">★★★★★</div>
+        <p style="text-align:center;margin-top:6px;">Based on 127 reviews</p>
+      </div>
+
+      <div class="sidebar-box">
+        <h4>📍 Areas We Service</h4>
+        <p>Brisbane CBD, Northside, Southside, Eastern Suburbs, Western Suburbs, Ipswich, Redlands, Moreton Bay and MORE!!!</p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div>
+      <strong style="color:#fff;">Dave's Plumbing Brisbane</strong> &nbsp;|&nbsp;
+      📞 0400 000 000 &nbsp;|&nbsp;
+      ✉️ <a href="#">dave@davesplumbing.com.au</a> &nbsp;|&nbsp;
+      All Brisbane Suburbs
+    </div>
+    <div class="footer-copy">
+      © Copyright 2009 Dave's Plumbing Brisbane. All Rights Reserved. &nbsp;|&nbsp;
+      <a href="#">Privacy Policy</a> &nbsp;|&nbsp;
+      <a href="#">Sitemap</a> &nbsp;|&nbsp;
+      Website designed by <a href="#">WebsBySteve.com.au</a>
+    </div>
+  </div>
+
+</body>
+</html>
