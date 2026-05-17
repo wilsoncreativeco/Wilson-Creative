@@ -429,8 +429,8 @@ body::before{
   background-size:cover;
   background-position:center 38%;
   z-index:0;
-  opacity:.32;
-  filter:saturate(.75) brightness(.85);
+  opacity:.42;
+  filter:saturate(.8) brightness(.95);
 }
 
 .hero::after{
