@@ -187,14 +187,27 @@ body::before{
 }
 
 .n-logo{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  white-space:nowrap;
+}
+
+.n-logo-img{
+  height:38px;
+  width:auto;
+  display:block;
+  filter:drop-shadow(0 0 6px rgba(197,164,74,.25));
+}
+
+.n-logo-text{
   font-family:'Cormorant Garamond',serif;
   font-size:12.5px;
   letter-spacing:.4em;
   text-transform:uppercase;
-  white-space:nowrap;
 }
 
-.n-logo span{ color:var(--g); }
+.n-logo-text span{ color:var(--g); }
 
 .n-links{
   display:flex;

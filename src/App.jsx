@@ -521,7 +521,8 @@ const goNext = () => {
 
       <nav id="nav" className={navScrolled ? 'sc' : ''} aria-label="Main navigation">
         <a href="/" className="n-logo" aria-label="Wilson Creative Co. Home">
-          Wilson <span>Creative</span> Co.
+          <img src="/wlogo.png" alt="Wilson Creative Co." className="n-logo-img" />
+          <span className="n-logo-text">Wilson <span>Creative</span> Co.</span>
         </a>
         <ul className="n-links">
           {navItems.map(item => (
