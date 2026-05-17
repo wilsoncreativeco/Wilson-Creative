@@ -1939,8 +1939,8 @@ footer{
 }
 
 @media(max-width:768px){
-  #nav{ padding:16px 24px; background:rgba(7,6,10,.97); backdrop-filter:blur(18px); -webkit-backdrop-filter:blur(18px); }
-  #nav.sc{ padding:11px 24px; background:rgba(7,6,10,1); }
+  #nav{ padding:16px 24px; }
+  #nav.sc{ padding:11px 24px; }
   .n-links, .n-cta{ display:none; }
   .ham{ display:flex; }
 
