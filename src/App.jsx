@@ -219,6 +219,8 @@ const faqItems = [
 ]
 
 
+const LOADER_TEXT = 'WILSON CREATIVE CO.'
+
 // Generated once at module load — stable across re-renders, no canvas needed
 const HERO_STARS = Array.from({ length: 65 }, () => ({
   x: Math.random() * 100,
@@ -230,6 +232,7 @@ const HERO_STARS = Array.from({ length: 65 }, () => ({
 }))
 
 export default function App() {
+  const [scrambled, setScrambled] = useState(LOADER_TEXT)
   const [loaderOut, setLoaderOut] = useState(false)
   const [loaderHidden, setLoaderHidden] = useState(false)
   const [navScrolled, setNavScrolled] = useState(false)
@@ -252,9 +255,31 @@ const [activeBuild, setActiveBuild] = useState(1)
   const ptclRef = useRef(null)
 
   useEffect(() => {
-    const t1 = setTimeout(() => setLoaderOut(true), 2500)
-    const t2 = setTimeout(() => setLoaderHidden(true), 3200)
-    return () => { clearTimeout(t1); clearTimeout(t2) }
+    const POOL = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ#$@!%&*'
+    const NON_SPACES = [...LOADER_TEXT].reduce((a, c, i) => c !== ' ' ? [...a, i] : a, [])
+    const start = Date.now()
+
+    const iv = setInterval(() => {
+      const locked = new Set(NON_SPACES.slice(0, Math.min(
+        Math.floor((Date.now() - start) / 62),
+        NON_SPACES.length
+      )))
+      setScrambled(
+        [...LOADER_TEXT].map((c, i) => {
+          if (c === ' ') return ' '
+          if (locked.has(i)) return c
+          return POOL[Math.floor(Math.random() * POOL.length)]
+        }).join('')
+      )
+      if (locked.size >= NON_SPACES.length) {
+        clearInterval(iv)
+        setScrambled(LOADER_TEXT)
+      }
+    }, 30)
+
+    const t1 = setTimeout(() => setLoaderOut(true), 2600)
+    const t2 = setTimeout(() => setLoaderHidden(true), 3300)
+    return () => { clearInterval(iv); clearTimeout(t1); clearTimeout(t2) }
   }, [])
 
 
@@ -360,36 +385,35 @@ const [activeBuild, setActiveBuild] = useState(1)
     const canvas = ptclRef.current
     if (!canvas) return
     const ctx = canvas.getContext('2d')
-    let W, H, frame
-    const particles = []
+    let W, H, frame, nodes = []
+
+    // 5 large drifting orbs — each orbits a base position sinusoidally
+    const CFG = [
+      { xf: 0.12, yf: 0.88, r: 600, c: '197,164,74',  a: 0.058 },
+      { xf: 0.82, yf: 0.72, r: 480, c: '178,122,42',  a: 0.050 },
+      { xf: 0.50, yf: 0.96, r: 660, c: '215,182,88',  a: 0.042 },
+      { xf: 0.88, yf: 0.50, r: 420, c: '145,95,25',   a: 0.036 },
+      { xf: 0.28, yf: 0.68, r: 540, c: '200,152,58',  a: 0.046 },
+    ]
 
     const init = () => {
       W = window.innerWidth
       H = window.innerHeight
       canvas.width = W
       canvas.height = H
-      particles.length = 0
-      // Bokeh: large soft ambient orbs, weighted toward lower half
-      for (let i = 0; i < 18; i++) {
-        const y = Math.random() < 0.72
-          ? H * 0.35 + Math.random() * H * 0.65
-          : Math.random() * H * 0.35
-        particles.push({
-          x: Math.random() * W,
-          y,
-          r: Math.random() * 58 + 28,       // 28–86px radius — large soft orbs
-          vx: (Math.random() - 0.5) * 0.07,  // very slow drift
-          vy: -(Math.random() * 0.1 + 0.025), // very slow rise
-          baseA: Math.random() * 0.038 + 0.01, // 0.01–0.048 — very subtle
-          phase: Math.random() * Math.PI * 2,
-        })
-      }
+      nodes = CFG.map((n, i) => ({
+        bx: W * n.xf,
+        by: H * n.yf,
+        phase: (i / CFG.length) * Math.PI * 2,
+        orb: 80 + Math.random() * 110,
+        spd: 0.00008 + Math.random() * 0.00018,
+        r: n.r, c: n.c, a: n.a,
+      }))
     }
 
     init()
     window.addEventListener('resize', init)
 
-    // Show only after hero, hide when back in hero
     const onScroll = () => {
       canvas.style.opacity = window.scrollY > window.innerHeight * 0.75 ? '1' : '0'
     }
@@ -399,22 +423,16 @@ const [activeBuild, setActiveBuild] = useState(1)
     let t = 0
     const draw = () => {
       ctx.clearRect(0, 0, W, H)
-      t += 0.007
-      for (const p of particles) {
-        p.x += p.vx + Math.sin(t + p.phase) * 0.15
-        p.y += p.vy
-        if (p.y < -6) { p.y = H + 6; p.x = Math.random() * W }
-        // Lava lamp: full glow at bottom, fades to nothing at top
-        const yFade = Math.max(0, Math.min(1, p.y / (H * 0.65)))
-        const alpha = p.baseA * yFade
-        if (alpha < 0.003) continue
-        // Soft radial glow instead of hard dot
-        const glow = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.r * 4)
-        glow.addColorStop(0, `rgba(197,164,74,${alpha})`)
-        glow.addColorStop(1, `rgba(197,164,74,0)`)
+      t++
+      for (const n of nodes) {
+        const x = n.bx + Math.sin(t * n.spd + n.phase) * n.orb
+        const y = n.by + Math.cos(t * n.spd * 0.7 + n.phase) * n.orb * 0.6
+        const g = ctx.createRadialGradient(x, y, 0, x, y, n.r)
+        g.addColorStop(0, `rgba(${n.c},${n.a})`)
+        g.addColorStop(1, `rgba(${n.c},0)`)
         ctx.beginPath()
-        ctx.arc(p.x, p.y, p.r * 4, 0, Math.PI * 2)
-        ctx.fillStyle = glow
+        ctx.arc(x, y, n.r, 0, Math.PI * 2)
+        ctx.fillStyle = g
         ctx.fill()
       }
       frame = requestAnimationFrame(draw)
@@ -583,7 +601,13 @@ const goNext = () => {
       {!loaderHidden && (
         <div id="loader" className={loaderOut ? 'out' : ''} aria-label="Wilson Creative Co.">
           <div className="ld-card">
-            <p className="ld-name">Wilson <span>Creative</span> Co.</p>
+            <p className="ld-name">
+              {[...scrambled].map((char, i) => (
+                <span key={i} className={i >= 7 && i <= 14 && char === LOADER_TEXT[i] ? 'gold' : undefined}>
+                  {char === ' ' ? ' ' : char}
+                </span>
+              ))}
+            </p>
             <div className="ld-line" aria-hidden="true" />
             <p className="ld-loc">Brisbane · Australia</p>
           </div>
