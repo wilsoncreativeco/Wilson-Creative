@@ -381,14 +381,18 @@ const [activeBuild, setActiveBuild] = useState(1)
       canvas.width = W
       canvas.height = H
       particles.length = 0
-      for (let i = 0; i < 62; i++) {
+      for (let i = 0; i < 65; i++) {
+        // Weight initial y toward bottom two-thirds (lava lamp: rise from below)
+        const y = Math.random() < 0.7
+          ? H * 0.4 + Math.random() * H * 0.6
+          : Math.random() * H * 0.4
         particles.push({
           x: Math.random() * W,
-          y: Math.random() * H,
-          r: Math.random() * 1.3 + 0.3,
-          vx: (Math.random() - 0.5) * 0.22,
-          vy: -(Math.random() * 0.42 + 0.08),
-          a: Math.random() * 0.3 + 0.07,
+          y,
+          r: Math.random() * 1.6 + 0.4,
+          vx: (Math.random() - 0.5) * 0.2,
+          vy: -(Math.random() * 0.38 + 0.07),
+          baseA: Math.random() * 0.22 + 0.05,
           phase: Math.random() * Math.PI * 2,
         })
       }
@@ -397,17 +401,32 @@ const [activeBuild, setActiveBuild] = useState(1)
     init()
     window.addEventListener('resize', init)
 
+    // Show only after hero, hide when back in hero
+    const onScroll = () => {
+      canvas.style.opacity = window.scrollY > window.innerHeight * 0.75 ? '1' : '0'
+    }
+    window.addEventListener('scroll', onScroll, { passive: true })
+    onScroll()
+
     let t = 0
     const draw = () => {
       ctx.clearRect(0, 0, W, H)
       t += 0.007
       for (const p of particles) {
-        p.x += p.vx + Math.sin(t + p.phase) * 0.16
+        p.x += p.vx + Math.sin(t + p.phase) * 0.15
         p.y += p.vy
-        if (p.y < -4) { p.y = H + 4; p.x = Math.random() * W }
+        if (p.y < -6) { p.y = H + 6; p.x = Math.random() * W }
+        // Lava lamp: full glow at bottom, fades to nothing at top
+        const yFade = Math.max(0, Math.min(1, p.y / (H * 0.65)))
+        const alpha = p.baseA * yFade
+        if (alpha < 0.003) continue
+        // Soft radial glow instead of hard dot
+        const glow = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.r * 4)
+        glow.addColorStop(0, `rgba(197,164,74,${alpha})`)
+        glow.addColorStop(1, `rgba(197,164,74,0)`)
         ctx.beginPath()
-        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2)
-        ctx.fillStyle = `rgba(197,164,74,${p.a})`
+        ctx.arc(p.x, p.y, p.r * 4, 0, Math.PI * 2)
+        ctx.fillStyle = glow
         ctx.fill()
       }
       frame = requestAnimationFrame(draw)
@@ -417,6 +436,7 @@ const [activeBuild, setActiveBuild] = useState(1)
     return () => {
       cancelAnimationFrame(frame)
       window.removeEventListener('resize', init)
+      window.removeEventListener('scroll', onScroll)
     }
   }, [])
 

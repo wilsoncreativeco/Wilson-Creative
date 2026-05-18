@@ -261,6 +261,7 @@ body::before{
   align-items:center;
   justify-content:center;
   border:1px solid var(--bd);
+  border-radius:12px;
   background:rgba(7,6,10,.5);
   backdrop-filter:blur(10px);
   transition:border-color .25s;
@@ -344,6 +345,7 @@ body::before{
   text-transform:uppercase;
   text-align:center;
   font-family:'DM Sans',sans-serif;
+  border-radius:99px;
   transition:background .25s;
 }
 
@@ -364,6 +366,7 @@ body::before{
   font-family:'DM Sans',sans-serif;
   font-weight:500;
   cursor:pointer;
+  border-radius:99px;
   transition:background .3s, transform .25s, box-shadow .3s;
   position:relative;
   overflow:hidden;
@@ -399,6 +402,7 @@ body::before{
   text-transform:uppercase;
   font-family:'DM Sans',sans-serif;
   cursor:pointer;
+  border-radius:99px;
   transition:border-color .3s, color .3s, transform .25s, background .3s;
 }
 
@@ -1686,6 +1690,7 @@ iframe::-webkit-scrollbar{
   text-transform:uppercase;
   font-weight:500;
   border:none;
+  border-radius:99px;
   cursor:pointer;
   transition:background .3s, transform .25s, box-shadow .3s;
   margin-top:4px;
@@ -1775,6 +1780,7 @@ iframe::-webkit-scrollbar{
   text-transform:uppercase;
   font-family:'DM Sans',sans-serif;
   font-weight:500;
+  border-radius:99px;
   box-shadow:0 8px 36px rgba(197,164,74,.35);
   transition:transform .4s var(--ease), opacity .4s;
   opacity:0;
@@ -2097,6 +2103,8 @@ iframe{
   z-index:9991;
   pointer-events:none;
   mix-blend-mode:screen;
+  opacity:0;
+  transition:opacity 1.4s ease;
 }
 
 /* ===== MOBILE RECENT BUILDS FIX ===== */
