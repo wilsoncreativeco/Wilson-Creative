@@ -389,11 +389,12 @@ const [activeBuild, setActiveBuild] = useState(1)
 
     // 5 large drifting orbs — each orbits a base position sinusoidally
     const CFG = [
-      { xf: 0.12, yf: 0.88, r: 600, c: '197,164,74',  a: 0.058 },
-      { xf: 0.82, yf: 0.72, r: 480, c: '178,122,42',  a: 0.050 },
-      { xf: 0.50, yf: 0.96, r: 660, c: '215,182,88',  a: 0.042 },
-      { xf: 0.88, yf: 0.50, r: 420, c: '145,95,25',   a: 0.036 },
-      { xf: 0.28, yf: 0.68, r: 540, c: '200,152,58',  a: 0.046 },
+      { xf: 0.15, yf: 0.82, r: 720, c: '197,164,74',  a: 0.030 },
+      { xf: 0.85, yf: 0.70, r: 580, c: '178,122,42',  a: 0.024 },
+      { xf: 0.50, yf: 0.96, r: 800, c: '215,182,88',  a: 0.020 },
+      { xf: 0.90, yf: 0.44, r: 500, c: '145,95,25',   a: 0.016 },
+      { xf: 0.22, yf: 0.64, r: 640, c: '200,152,58',  a: 0.022 },
+      { xf: 0.62, yf: 0.26, r: 520, c: '197,164,74',  a: 0.012 },
     ]
 
     const init = () => {
@@ -406,7 +407,7 @@ const [activeBuild, setActiveBuild] = useState(1)
         by: H * n.yf,
         phase: (i / CFG.length) * Math.PI * 2,
         orb: 80 + Math.random() * 110,
-        spd: 0.00008 + Math.random() * 0.00018,
+        spd: 0.00005 + Math.random() * 0.00012,
         r: n.r, c: n.c, a: n.a,
       }))
     }
@@ -415,7 +416,7 @@ const [activeBuild, setActiveBuild] = useState(1)
     window.addEventListener('resize', init)
 
     const onScroll = () => {
-      canvas.style.opacity = window.scrollY > window.innerHeight * 0.75 ? '1' : '0'
+      canvas.style.opacity = window.scrollY > window.innerHeight * 0.38 ? '1' : '0'
     }
     window.addEventListener('scroll', onScroll, { passive: true })
     onScroll()
@@ -601,13 +602,18 @@ const goNext = () => {
       {!loaderHidden && (
         <div id="loader" className={loaderOut ? 'out' : ''} aria-label="Wilson Creative Co.">
           <div className="ld-card">
-            <p className="ld-name">
+            <p className="ld-name ld-desktop">
               {[...scrambled].map((char, i) => (
                 <span key={i} className={i >= 7 && i <= 14 && char === LOADER_TEXT[i] ? 'gold' : undefined}>
                   {char === ' ' ? ' ' : char}
                 </span>
               ))}
             </p>
+            <div className="ld-mobile" aria-hidden="true">
+              <span className="ld-w ld-w1">Wilson</span>
+              <span className="ld-w ld-w2 ld-gold">Creative</span>
+              <span className="ld-w ld-w3">Co.</span>
+            </div>
             <div className="ld-line" aria-hidden="true" />
             <p className="ld-loc">Brisbane · Australia</p>
           </div>

@@ -132,6 +132,39 @@ body::before{
   line-height:1;
 }
 
+.ld-mobile{
+  display:none;
+  flex-direction:column;
+  align-items:center;
+  text-align:center;
+  gap:0;
+}
+
+.ld-w{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(56px,15vw,82px);
+  letter-spacing:.1em;
+  line-height:.95;
+  opacity:0;
+  transform:translateY(18px);
+  display:block;
+}
+
+.ld-gold{ color:var(--g); }
+
+.ld-w1{ animation:ldWrdIn .55s .22s var(--ease) forwards; }
+.ld-w2{ animation:ldWrdIn .55s .46s var(--ease) forwards; }
+.ld-w3{ animation:ldWrdIn .55s .68s var(--ease) forwards; }
+
+@keyframes ldWrdIn{
+  to{ opacity:1; transform:translateY(0); }
+}
+
+@media(max-width:768px){
+  .ld-desktop{ display:none; }
+  .ld-mobile{ display:flex; }
+}
+
 .ld-name .gold{ color:var(--g); }
 
 .ld-line{
@@ -1952,7 +1985,13 @@ footer{
 }
 
 @media(max-width:768px){
-  #nav{ padding:16px 24px; }
+  #nav{
+    padding:16px 24px;
+    background:rgba(7,6,10,.88);
+    backdrop-filter:blur(20px);
+    -webkit-backdrop-filter:blur(20px);
+    border-bottom:1px solid var(--bd);
+  }
   #nav.sc{ padding:11px 24px; }
   .n-links, .n-cta{ display:none; }
   .ham{ display:flex; }
