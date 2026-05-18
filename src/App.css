@@ -1987,9 +1987,7 @@ footer{
 @media(max-width:768px){
   #nav{
     padding:16px 24px;
-    background:rgba(7,6,10,.88);
-    backdrop-filter:blur(20px);
-    -webkit-backdrop-filter:blur(20px);
+    background:var(--bg);
     border-bottom:1px solid var(--bd);
   }
   #nav.sc{ padding:11px 24px; }
