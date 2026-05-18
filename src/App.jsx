@@ -251,6 +251,7 @@ const [activeBuild, setActiveBuild] = useState(1)
   const heroInnerRef = useRef(null)
   const portTrackRef = useRef(null)
   const portfolioRef = useRef(null)
+  const ptclRef = useRef(null)
 
   useEffect(() => {
     const FULL = 'Wilson Creative Co.'
@@ -283,8 +284,26 @@ const [activeBuild, setActiveBuild] = useState(1)
   }, [])
 
   useEffect(() => {
-    document.body.style.overflow = menuOpen ? 'hidden' : ''
-    return () => { document.body.style.overflow = '' }
+    if (menuOpen) {
+      const y = window.scrollY
+      document.body.style.position = 'fixed'
+      document.body.style.top = `-${y}px`
+      document.body.style.width = '100%'
+      document.body.style.overflow = 'hidden'
+    } else {
+      const top = document.body.style.top
+      document.body.style.position = ''
+      document.body.style.top = ''
+      document.body.style.width = ''
+      document.body.style.overflow = ''
+      if (top) window.scrollTo(0, parseInt(top) * -1)
+    }
+    return () => {
+      document.body.style.position = ''
+      document.body.style.top = ''
+      document.body.style.width = ''
+      document.body.style.overflow = ''
+    }
   }, [menuOpen])
 
   useEffect(() => {
@@ -345,6 +364,59 @@ const [activeBuild, setActiveBuild] = useState(1)
         el.removeEventListener('mousemove', onMove)
         el.removeEventListener('mouseleave', onLeave)
       })
+    }
+  }, [])
+
+  useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+    const canvas = ptclRef.current
+    if (!canvas) return
+    const ctx = canvas.getContext('2d')
+    let W, H, frame
+    const particles = []
+
+    const init = () => {
+      W = window.innerWidth
+      H = window.innerHeight
+      canvas.width = W
+      canvas.height = H
+      particles.length = 0
+      for (let i = 0; i < 62; i++) {
+        particles.push({
+          x: Math.random() * W,
+          y: Math.random() * H,
+          r: Math.random() * 1.3 + 0.3,
+          vx: (Math.random() - 0.5) * 0.22,
+          vy: -(Math.random() * 0.42 + 0.08),
+          a: Math.random() * 0.3 + 0.07,
+          phase: Math.random() * Math.PI * 2,
+        })
+      }
+    }
+
+    init()
+    window.addEventListener('resize', init)
+
+    let t = 0
+    const draw = () => {
+      ctx.clearRect(0, 0, W, H)
+      t += 0.007
+      for (const p of particles) {
+        p.x += p.vx + Math.sin(t + p.phase) * 0.16
+        p.y += p.vy
+        if (p.y < -4) { p.y = H + 4; p.x = Math.random() * W }
+        ctx.beginPath()
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2)
+        ctx.fillStyle = `rgba(197,164,74,${p.a})`
+        ctx.fill()
+      }
+      frame = requestAnimationFrame(draw)
+    }
+    draw()
+
+    return () => {
+      cancelAnimationFrame(frame)
+      window.removeEventListener('resize', init)
     }
   }, [])
 
@@ -497,6 +569,7 @@ const goNext = () => {
 
   return (
     <>
+      <canvas ref={ptclRef} id="ptcl" aria-hidden="true" />
       <div id="spb" style={{ width: `${scrollProg}%` }} />
 
       {!loaderHidden && (

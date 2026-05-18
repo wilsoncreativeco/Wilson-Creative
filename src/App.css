@@ -220,11 +220,19 @@ body::before{
   letter-spacing:.22em;
   text-transform:uppercase;
   color:var(--w3);
-  transition:color .25s;
+  transition:color .25s, background .25s, border-color .25s;
   white-space:nowrap;
+  padding:7px 18px;
+  border-radius:99px;
+  border:1px solid rgba(255,255,255,.07);
+  background:rgba(255,255,255,.04);
 }
 
-.n-links a:hover{ color:var(--w); }
+.n-links a:hover{
+  color:var(--w);
+  background:rgba(197,164,74,.1);
+  border-color:rgba(197,164,74,.25);
+}
 
 .n-cta{
   font-size:10px;
@@ -234,6 +242,7 @@ body::before{
   background:var(--g);
   padding:10px 22px;
   white-space:nowrap;
+  border-radius:99px;
   transition:background .25s, transform .2s, box-shadow .25s;
 }
 
@@ -2077,6 +2086,19 @@ iframe{
 }
 
 @media(prefers-reduced-motion:reduce){}
+
+/* ╔══════════════════════════════╗
+   ║  GOLD PARTICLE CANVAS        ║
+   ╚══════════════════════════════╝ */
+
+#ptcl{
+  position:fixed;
+  inset:0;
+  z-index:9991;
+  pointer-events:none;
+  mix-blend-mode:screen;
+}
+
 /* ===== MOBILE RECENT BUILDS FIX ===== */
 
 @media (max-width: 768px){
