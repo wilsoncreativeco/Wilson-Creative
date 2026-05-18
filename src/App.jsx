@@ -230,8 +230,6 @@ const HERO_STARS = Array.from({ length: 65 }, () => ({
 }))
 
 export default function App() {
-  const [typed, setTyped] = useState('')
-  const [showTagline, setShowTagline] = useState(false)
   const [loaderOut, setLoaderOut] = useState(false)
   const [loaderHidden, setLoaderHidden] = useState(false)
   const [navScrolled, setNavScrolled] = useState(false)
@@ -254,19 +252,9 @@ const [activeBuild, setActiveBuild] = useState(1)
   const ptclRef = useRef(null)
 
   useEffect(() => {
-    const FULL = 'Wilson Creative Co.'
-    let i = 0
-    const iv = setInterval(() => {
-      i++
-      setTyped(FULL.slice(0, i))
-      if (i === FULL.length) {
-        clearInterval(iv)
-        setTimeout(() => setShowTagline(true), 320)
-        setTimeout(() => setLoaderOut(true), 820)
-        setTimeout(() => setLoaderHidden(true), 1450)
-      }
-    }, 48)
-    return () => clearInterval(iv)
+    const t1 = setTimeout(() => setLoaderOut(true), 2500)
+    const t2 = setTimeout(() => setLoaderHidden(true), 3200)
+    return () => { clearTimeout(t1); clearTimeout(t2) }
   }, [])
 
 
@@ -381,18 +369,18 @@ const [activeBuild, setActiveBuild] = useState(1)
       canvas.width = W
       canvas.height = H
       particles.length = 0
-      for (let i = 0; i < 65; i++) {
-        // Weight initial y toward bottom two-thirds (lava lamp: rise from below)
-        const y = Math.random() < 0.7
-          ? H * 0.4 + Math.random() * H * 0.6
-          : Math.random() * H * 0.4
+      // Bokeh: large soft ambient orbs, weighted toward lower half
+      for (let i = 0; i < 18; i++) {
+        const y = Math.random() < 0.72
+          ? H * 0.35 + Math.random() * H * 0.65
+          : Math.random() * H * 0.35
         particles.push({
           x: Math.random() * W,
           y,
-          r: Math.random() * 1.6 + 0.4,
-          vx: (Math.random() - 0.5) * 0.2,
-          vy: -(Math.random() * 0.38 + 0.07),
-          baseA: Math.random() * 0.22 + 0.05,
+          r: Math.random() * 58 + 28,       // 28–86px radius — large soft orbs
+          vx: (Math.random() - 0.5) * 0.07,  // very slow drift
+          vy: -(Math.random() * 0.1 + 0.025), // very slow rise
+          baseA: Math.random() * 0.038 + 0.01, // 0.01–0.048 — very subtle
           phase: Math.random() * Math.PI * 2,
         })
       }
@@ -595,17 +583,9 @@ const goNext = () => {
       {!loaderHidden && (
         <div id="loader" className={loaderOut ? 'out' : ''} aria-label="Wilson Creative Co.">
           <div className="ld-card">
-            <p className="ld-name">
-              {(() => {
-                const t = typed
-                const p1 = t.slice(0, Math.min(t.length, 7))
-                const p2 = t.length > 7 ? t.slice(7, Math.min(t.length, 15)) : ''
-                const p3 = t.length > 15 ? t.slice(15) : ''
-                return <>{p1}{p2 && <span>{p2}</span>}{p3}</>
-              })()}
-              {!loaderOut && <span className="ld-cursor" aria-hidden="true" />}
-            </p>
-            <p className={`ld-loc${showTagline ? ' vis' : ''}`}>Brisbane · Australia</p>
+            <p className="ld-name">Wilson <span>Creative</span> Co.</p>
+            <div className="ld-line" aria-hidden="true" />
+            <p className="ld-loc">Brisbane · Australia</p>
           </div>
         </div>
       )}
