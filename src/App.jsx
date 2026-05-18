@@ -29,19 +29,24 @@ const services = [
   },
   {
     num: '02',
-    icon: '🚁',
-    name: 'Drone Videography',
-    desc: 'Cinematic aerial footage for brands, properties, events, and campaigns. Built to add scale, movement, and premium production value to your online presence.',
+    icon: '📸',
+    name: 'Full-Service Media Production',
+    desc: 'Full-scale media production including cinematic filming, drone coverage, photography, reels, and promotional content built to elevate your brand.',
     statusType: 'soon',
     statusLabel: 'Coming Soon',
     backTitle: "What's coming",
     backPoints: [
-      'Cinematic aerial footage',
-      'Property, brand and event shoots',
-      'Hero video content for websites',
-      'Social media-ready edits',
-      'Colour grading and delivery included',
-      'Brisbane and surrounding areas',
+  'Premium video production',
+
+  'Aerial cinematography',
+
+  'Brand & commercial photography',
+
+  'Short-form social content',
+
+  'Professional post-production',
+
+  'Campaign-ready creative assets',
     ],
   },
 ]
