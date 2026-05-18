@@ -466,8 +466,8 @@ body::before{
   background-size:cover;
   background-position:center 38%;
   z-index:0;
-  opacity:.42;
-  filter:saturate(.8) brightness(.95);
+  opacity:.58;
+  filter:saturate(.9) brightness(1);
 }
 
 .hero::after{
@@ -510,8 +510,8 @@ body::before{
   z-index:3;
   pointer-events:none;
   background:
-    linear-gradient(135deg, rgba(3,2,8,.82) 0%, rgba(3,2,8,.48) 50%, rgba(3,2,8,.72) 100%),
-    linear-gradient(to bottom, rgba(3,2,8,.1) 40%, rgba(3,2,8,1) 100%);
+    linear-gradient(135deg, rgba(3,2,8,.65) 0%, rgba(3,2,8,.32) 50%, rgba(3,2,8,.55) 100%),
+    linear-gradient(to bottom, rgba(3,2,8,.05) 40%, rgba(3,2,8,1) 100%);
 }
 
 .h-inner{
