@@ -2639,3 +2639,43 @@ iframe{
   .lp-industries{ grid-template-columns:1fr; }
   .lp-hero{ padding:120px 20px 60px; }
 }
+
+/* ╔══════════════════════════════╗
+   ║  BLOG                        ║
+   ╚══════════════════════════════╝ */
+
+.blog-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:28px;max-width:1200px;margin:0 auto;}
+.blog-grid-sm{grid-template-columns:repeat(auto-fill,minmax(280px,1fr));}
+.blog-card{text-decoration:none;display:block;background:var(--w1);border:1px solid var(--w2);border-radius:8px;transition:border-color .2s,transform .2s;}
+.blog-card:hover{border-color:var(--gold);transform:translateY(-3px);}
+.blog-card-inner{padding:28px 28px 24px;}
+.blog-meta{display:flex;gap:12px;margin-bottom:12px;}
+.blog-date{color:var(--w5);font-size:13px;}
+.blog-read{color:var(--gold);font-size:13px;}
+.blog-title{color:var(--w8);font-size:1.15rem;font-weight:600;line-height:1.4;margin:0 0 10px;}
+.blog-card h3.blog-title{font-size:1.05rem;}
+.blog-excerpt{color:var(--w6);font-size:14px;line-height:1.7;margin:0 0 16px;}
+.blog-cta{color:var(--gold);font-size:13px;font-weight:500;}
+
+/* Blog post */
+.bp-wrap{max-width:760px;margin:0 auto;padding:120px 24px 64px;}
+.bp-header{margin-bottom:48px;}
+.bp-breadcrumb{font-size:13px;color:var(--w5);margin-bottom:20px;}
+.bp-breadcrumb a{color:var(--w5);text-decoration:none;}
+.bp-breadcrumb a:hover{color:var(--gold);}
+.bp-meta{display:flex;gap:14px;margin-bottom:16px;}
+.bp-title{font-size:clamp(1.8rem,4vw,2.6rem);font-weight:700;line-height:1.25;color:var(--w9);margin:0 0 12px;}
+.bp-byline{color:var(--w5);font-size:13px;margin:0;}
+.bp-body{border-top:1px solid var(--w2);padding-top:40px;}
+.bp-h2{font-size:1.35rem;font-weight:600;color:var(--w9);margin:40px 0 12px;}
+.bp-p{color:var(--w7);font-size:1rem;line-height:1.85;margin:0 0 20px;}
+.bp-ul{color:var(--w7);font-size:1rem;line-height:1.85;margin:0 0 20px;padding-left:20px;}
+.bp-ul li{margin-bottom:8px;}
+.bp-cta-box{background:var(--w1);border:1px solid var(--w2);border-radius:8px;padding:36px;margin-top:56px;text-align:center;}
+.bp-cta-lead{font-size:1.2rem;font-weight:600;color:var(--w9);margin:0 0 8px;}
+.bp-cta-sub{color:var(--w6);font-size:0.95rem;margin:0;}
+
+@media(max-width:600px){
+  .blog-grid{grid-template-columns:1fr;}
+  .bp-wrap{padding:100px 20px 48px;}
+}
