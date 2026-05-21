@@ -236,6 +236,35 @@ const HERO_STARS = Array.from({ length: 65 }, () => ({
   dur: Math.random() * 4 + 2.5,
 }))
 
+const StatCounter = ({ target, label, suffix = '' }) => {
+  const [display, setDisplay] = useState(target)
+  const ref = useRef(null)
+
+  useEffect(() => {
+    setDisplay(0)
+    const step = target / 55
+    const io = new IntersectionObserver(entries => {
+      if (!entries[0].isIntersecting) return
+      io.disconnect()
+      let current = 0
+      const timer = setInterval(() => {
+        current = Math.min(current + step, target)
+        setDisplay(Math.round(current))
+        if (current >= target) clearInterval(timer)
+      }, 22)
+    }, { threshold: 0.5 })
+    if (ref.current) io.observe(ref.current)
+    return () => io.disconnect()
+  }, [target])
+
+  return (
+    <div ref={ref}>
+      <span className="hs-val">{display}{suffix}</span>
+      <span className="hs-lbl">{label}</span>
+    </div>
+  )
+}
+
 export default function App() {
   const [scrambled, setScrambled] = useState(LOADER_TEXT)
   const [loaderOut, setLoaderOut] = useState(false)
@@ -336,28 +365,6 @@ const [activeBuild, setActiveBuild] = useState(1)
     return () => io.disconnect()
   }, [])
 
-  useEffect(() => {
-    const animateCounter = el => {
-      const target = +el.dataset.t
-      const suffix = el.dataset.s || ''
-      const step = target / 55
-      let current = 0
-      const timer = setInterval(() => {
-        current = Math.min(current + step, target)
-        el.textContent = Math.floor(current) + suffix
-        if (current >= target) clearInterval(timer)
-      }, 22)
-    }
-    const io = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if (!e.isIntersecting) return
-        animateCounter(e.target)
-        io.unobserve(e.target)
-      })
-    }, { threshold: 0.5 })
-    document.querySelectorAll('.cnt').forEach(el => io.observe(el))
-    return () => io.disconnect()
-  }, [])
 
   useEffect(() => {
     const handlers = []
@@ -701,9 +708,9 @@ const goNext = () => {
           <span className="h-sl" /> Scroll to Explore
         </div>
         <div className="h-stats" aria-label="Key stats">
-          <div><span className="hs-val cnt" data-t="47" data-s="+">0</span><span className="hs-lbl">Projects Delivered</span></div>
-          <div><span className="hs-val cnt" data-t="100" data-s="%">0</span><span className="hs-lbl">Client Satisfaction</span></div>
-          <div><span className="hs-val cnt" data-t="3" data-s="+">0</span><span className="hs-lbl">Years Building</span></div>
+          <StatCounter target={47} label="Projects Delivered" suffix="+" />
+          <StatCounter target={100} label="Client Satisfaction" suffix="%" />
+          <StatCounter target={3} label="Years Building" suffix="+" />
         </div>
       </section>
 
