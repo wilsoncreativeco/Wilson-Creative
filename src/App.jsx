@@ -675,7 +675,9 @@ const goNext = () => {
       </nav>
 
       <section className="hero" id="top" ref={heroRef} aria-label="Hero">
-        <div className="hero-photo" aria-hidden="true" />
+        <div className="hero-photo">
+          <img src="/brisbane.jpg" alt="Brisbane city skyline — Wilson Creative Co. web design studio based in Brisbane, QLD" className="hero-photo-img" width="3024" height="4032" fetchPriority="high" />
+        </div>
         <div className="hero-stars" aria-hidden="true">
           {HERO_STARS.map((s, i) => (
             <span key={i} className="h-star" style={{
