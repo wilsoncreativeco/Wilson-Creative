@@ -692,12 +692,13 @@ const goNext = () => {
         <div className="h-ov" aria-hidden="true" />
         <div className="h-inner" ref={heroInnerRef}>
           <p className="h-eye">Brisbane Based — Global Reach</p>
-          <h1 className="h1" aria-label="We Don't Just Build Websites. We Build Attention.">
+          <h1 className="sr-only">Custom Web Design in Brisbane — Wilson Creative Co.</h1>
+          <h2 className="h1" aria-label="We Don't Just Build Websites. We Build Attention.">
             <span className="hl"><span className="hw hw1">We Don&apos;t Just</span></span>
             <span className="hl"><span className="hw hw2">Build Websites.</span></span>
             <span className="hl"><span className="hw hw3">We Build</span></span>
             <span className="hl"><span className="hw hw4 gold-line">Attention.</span></span>
-          </h1>
+          </h2>
           <p className="h-sub">And turn it into customers.</p>
           <div className="h-btns">
             <a href="#contact" className="btn-g" onClick={e => handleNav(e, '#contact')}>Start a Project</a>
