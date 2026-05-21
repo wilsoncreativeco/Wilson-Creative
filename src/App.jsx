@@ -634,7 +634,7 @@ const goNext = () => {
 
       <nav id="nav" className={navScrolled ? 'sc' : ''} aria-label="Main navigation">
         <a href="/" className="n-logo" aria-label="Wilson Creative Co. Home">
-          <img src="/wlogo.png" alt="Wilson Creative Co." className="n-logo-img" />
+          <img src="/wlogo.png" alt="Wilson Creative Co." className="n-logo-img" width="1536" height="1024" />
           <span className="n-logo-text">Wilson <span>Creative</span> Co.</span>
         </a>
         <ul className="n-links">
@@ -841,11 +841,11 @@ const goNext = () => {
 {/* CENTER */}
 <article className="build-main">
 
-  <button className="build-nav prev" onClick={goPrev}>
+  <button className="build-nav prev" onClick={goPrev} aria-label="Previous project">
     ←
   </button>
 
-  <button className="build-nav next" onClick={goNext}>
+  <button className="build-nav next" onClick={goNext} aria-label="Next project">
     →
   </button>
 
@@ -907,6 +907,7 @@ const goNext = () => {
         key={i}
         className={`build-dot ${i === activeBuild ? 'active' : ''}`}
         onClick={() => setActiveBuild(i)}
+        aria-label={`View project ${i + 1}: ${workItems[i].industry}`}
       />
 
     ))}
