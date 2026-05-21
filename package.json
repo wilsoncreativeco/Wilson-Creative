@@ -5,14 +5,16 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite-react-ssg build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },
   "dependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "resend": "^6.12.3"
+    "react-router-dom": "^6.30.3",
+    "resend": "^6.12.3",
+    "vite-react-ssg": "^0.9.1-beta.1"
   },
   "devDependencies": {
     "@types/react": "^18.2.15",
