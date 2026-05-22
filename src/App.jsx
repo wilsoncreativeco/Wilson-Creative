@@ -1209,7 +1209,7 @@ const goNext = () => {
           </div>
         </div>
         <div className="fb-bot">
-          <p className="f-copy">© {year} Wilson Creative Co. All rights reserved. | Brisbane, QLD, Australia</p>
+          <p className="f-copy">© {year} Wilson Creative Co. All rights reserved. | Brisbane, QLD, Australia | ABN 99 664 433 447</p>
           <div className="f-soc">
             <a href="https://instagram.com/wilsoncreativeco.au" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
