@@ -465,8 +465,8 @@ body::before{
   position:absolute;
   inset:0;
   z-index:0;
-  opacity:.58;
-  filter:saturate(.9) brightness(1);
+  opacity:.68;
+  filter:saturate(1) brightness(1.12);
   overflow:hidden;
 }
 .hero-photo-img{
