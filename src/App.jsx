@@ -83,7 +83,7 @@ const workItems = [
   },
   {
     src: 'https://landscaping-azure.vercel.app',
-    preview: '/work-landscaping.jpg',
+    preview: '/work-verdant.jpg',
     displayUrl: 'verdantlandscaping.com.au',
     tag: 'Landscaping',
     industry: 'Sample Build — Verdant Landscaping',
@@ -93,7 +93,7 @@ const workItems = [
   },
   {
     src: 'https://n-two-theta-61.vercel.app',
-    preview: '/work-gym.jpg',
+    preview: null,
     displayUrl: 'Apexgym.com.au',
     tag: 'Gym',
     industry: 'Sample Build — Apex Gym',
@@ -103,7 +103,7 @@ const workItems = [
   },
   {
     src: '/meridian.html',
-    preview: '/work-meridian.jpg',
+    preview: null,
     displayUrl: 'meridianproperty.com.au',
     tag: 'Real Estate',
     industry: 'Sample Build — Luxury Property',
@@ -827,12 +827,10 @@ const goNext = () => {
 
     <div className="build-iframe-wrap side-wrap">
 
-      <iframe
-        src={workItems[prevBuild].src}
-        title={workItems[prevBuild].title}
-        loading="lazy"
-        scrolling="no"
-      />
+      {workItems[prevBuild].preview
+        ? <img src={workItems[prevBuild].preview} alt={workItems[prevBuild].title} className="side-preview-img" />
+        : <iframe src={workItems[prevBuild].src} title={workItems[prevBuild].title} loading="lazy" scrolling="no" />
+      }
 
     </div>
 
@@ -943,12 +941,10 @@ const goNext = () => {
 
     <div className="build-iframe-wrap side-wrap">
 
-      <iframe
-        src={workItems[nextBuild].src}
-        title={workItems[nextBuild].title}
-        loading="lazy"
-        scrolling="no"
-      />
+      {workItems[nextBuild].preview
+        ? <img src={workItems[nextBuild].preview} alt={workItems[nextBuild].title} className="side-preview-img" />
+        : <iframe src={workItems[nextBuild].src} title={workItems[nextBuild].title} loading="lazy" scrolling="no" />
+      }
 
     </div>
 
