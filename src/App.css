@@ -718,7 +718,7 @@ body::before{
 .sc-wrapper{
   perspective:1200px;
   background:var(--bg);
-  min-height:320px;
+  min-height:400px;
 }
 
 .sc-flipper{
@@ -727,7 +727,7 @@ body::before{
   height:100%;
   transform-style:preserve-3d;
   transition:transform .65s var(--ease);
-  min-height:320px;
+  min-height:400px;
 }
 
 .sc-flipper.flipped{ transform:rotateY(180deg); }
@@ -774,7 +774,7 @@ body::before{
 }
 
 .sc-back .sc-ico{
-  margin-bottom:10px;
+  display:none;
 }
 
 .sc-num{
