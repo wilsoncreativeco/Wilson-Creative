@@ -827,11 +827,10 @@ const goNext = () => {
 
     <div className="build-iframe-wrap side-wrap">
 
-      <iframe
-        src={workItems[prevBuild].src}
-        title={workItems[prevBuild].title}
-        loading="lazy"
-        scrolling="no"
+      <img
+        src={workItems[prevBuild].preview}
+        alt={workItems[prevBuild].title}
+        className="side-preview-img"
       />
 
     </div>
@@ -875,9 +874,9 @@ const goNext = () => {
     <div className="build-iframe-wrap main-wrap">
 
       <iframe
+        key={activeBuild}
         src={workItems[activeBuild].src}
         title={workItems[activeBuild].title}
-        loading="lazy"
         scrolling="no"
       />
 
@@ -943,11 +942,10 @@ const goNext = () => {
 
     <div className="build-iframe-wrap side-wrap">
 
-      <iframe
-        src={workItems[nextBuild].src}
-        title={workItems[nextBuild].title}
-        loading="lazy"
-        scrolling="no"
+      <img
+        src={workItems[nextBuild].preview}
+        alt={workItems[nextBuild].title}
+        className="side-preview-img"
       />
 
     </div>
