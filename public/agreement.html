@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Client Agreement — Wilson Creative Co.</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,600&family=Bebas+Neue&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+<style>
+
+  /* ── TOKENS ── */
+  :root {
+    --g: #C5A44A;
+    --gl: #E8C97A;
+    --gd: #8C7330;
+    --bg: #07060A;
+    --w: #F5F2EC;
+    --w6: rgba(245,242,236,.65);
+    --bd: rgba(245,242,236,.1);
+  }
+
+  /* ── RESET ── */
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #fff;
+    color: #1a1a1a;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    font-size: 13px;
+    line-height: 1.75;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── PAGE ── */
+  .page {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 60px 52px 80px;
+  }
+
+  /* ── HEADER ── */
+  .hd {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding-bottom: 32px;
+    border-bottom: 2px solid #1a1a1a;
+    margin-bottom: 40px;
+  }
+
+  .hd-brand {}
+
+  .hd-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 13px;
+    letter-spacing: .38em;
+    text-transform: uppercase;
+    color: #1a1a1a;
+    margin-bottom: 4px;
+  }
+
+  .hd-name span { color: var(--gd); }
+
+  .hd-sub {
+    font-size: 10px;
+    letter-spacing: .22em;
+    text-transform: uppercase;
+    color: #888;
+  }
+
+  .hd-doc {}
+
+  .hd-doc-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    letter-spacing: .06em;
+    color: #1a1a1a;
+    line-height: 1;
+    text-align: right;
+  }
+
+  .hd-doc-ref {
+    font-size: 10px;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: #888;
+    text-align: right;
+    margin-top: 5px;
+  }
+
+  /* ── GOLD RULE ── */
+  .gold-rule {
+    height: 1px;
+    background: linear-gradient(90deg, var(--gd), var(--g) 40%, var(--gl) 60%, transparent);
+    margin: 0 0 36px;
+  }
+
+  /* ── PARTIES ── */
+  .parties {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    margin-bottom: 36px;
+    padding: 24px;
+    border: 1px solid #e0e0e0;
+    background: #fafafa;
+  }
+
+  .party-label {
+    font-size: 9px;
+    letter-spacing: .36em;
+    text-transform: uppercase;
+    color: var(--gd);
+    margin-bottom: 10px;
+    font-weight: 500;
+  }
+
+  .party-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-weight: 400;
+    color: #1a1a1a;
+    margin-bottom: 4px;
+  }
+
+  .party-detail {
+    font-size: 12px;
+    color: #555;
+    line-height: 1.65;
+  }
+
+  /* ── FIELD (editable before printing) ── */
+  .field {
+    display: inline-block;
+    min-width: 180px;
+    border-bottom: 1px solid #bbb;
+    padding: 1px 4px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    color: #1a1a1a;
+    background: transparent;
+    outline: none;
+    transition: border-color .2s;
+  }
+
+  .field:focus { border-color: var(--g); }
+  .field::placeholder { color: #bbb; }
+
+  .field-sm { min-width: 100px; }
+  .field-lg { min-width: 260px; }
+
+  /* ── PROJECT SUMMARY ── */
+  .summary {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: #e0e0e0;
+    border: 1px solid #e0e0e0;
+    margin-bottom: 36px;
+  }
+
+  .sum-cell {
+    background: #fff;
+    padding: 16px 18px;
+  }
+
+  .sum-label {
+    font-size: 9px;
+    letter-spacing: .32em;
+    text-transform: uppercase;
+    color: #888;
+    margin-bottom: 6px;
+  }
+
+  .sum-val {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px;
+    color: #1a1a1a;
+  }
+
+  /* ── SECTION ── */
+  .sec {
+    margin-bottom: 28px;
+  }
+
+  .sec-num {
+    font-size: 9px;
+    letter-spacing: .3em;
+    text-transform: uppercase;
+    color: var(--gd);
+    margin-bottom: 6px;
+    font-weight: 500;
+  }
+
+  .sec-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px;
+    font-weight: 400;
+    color: #1a1a1a;
+    margin-bottom: 10px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #e8e8e8;
+  }
+
+  .sec p {
+    font-size: 12.5px;
+    color: #333;
+    line-height: 1.82;
+    margin-bottom: 8px;
+  }
+
+  .sec p:last-child { margin-bottom: 0; }
+
+  .sec ul {
+    list-style: none;
+    margin: 6px 0;
+  }
+
+  .sec ul li {
+    font-size: 12.5px;
+    color: #333;
+    line-height: 1.75;
+    padding: 4px 0 4px 18px;
+    position: relative;
+    border-bottom: 1px solid #f0f0f0;
+  }
+
+  .sec ul li:last-child { border-bottom: none; }
+
+  .sec ul li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--gd);
+    font-size: 10px;
+  }
+
+  .highlight {
+    background: #fffbf0;
+    border-left: 2px solid var(--g);
+    padding: 10px 14px;
+    margin: 10px 0;
+    font-size: 12px;
+    color: #444;
+    line-height: 1.72;
+  }
+
+  /* ── PAYMENT TABLE ── */
+  .pay-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 10px 0;
+  }
+
+  .pay-table th {
+    font-size: 9px;
+    letter-spacing: .24em;
+    text-transform: uppercase;
+    color: #888;
+    text-align: left;
+    padding: 8px 12px;
+    border-bottom: 1px solid #e0e0e0;
+    font-weight: 500;
+  }
+
+  .pay-table td {
+    font-size: 12.5px;
+    color: #333;
+    padding: 9px 12px;
+    border-bottom: 1px solid #f0f0f0;
+  }
+
+  .pay-table tr:last-child td { border-bottom: none; font-weight: 500; color: #1a1a1a; }
+
+  .pay-table .amt { text-align: right; font-family: 'Cormorant Garamond', serif; font-size: 15px; }
+
+  /* ── REVISIONS BOX ── */
+  .rev-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: #e0e0e0;
+    border: 1px solid #e0e0e0;
+    margin: 10px 0;
+  }
+
+  .rev-cell {
+    background: #fff;
+    padding: 14px 16px;
+    text-align: center;
+  }
+
+  .rev-cell.active { background: #fffbf0; }
+
+  .rev-pkg {
+    font-size: 9px;
+    letter-spacing: .28em;
+    text-transform: uppercase;
+    color: #888;
+    margin-bottom: 5px;
+  }
+
+  .rev-count {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    color: var(--gd);
+    line-height: 1;
+  }
+
+  .rev-note {
+    font-size: 10px;
+    color: #999;
+    margin-top: 3px;
+  }
+
+  /* ── CHECKBOXES ── */
+  .checks {
+    border: 1px solid #e0e0e0;
+    padding: 20px 22px;
+    margin-bottom: 32px;
+    background: #fafafa;
+  }
+
+  .checks-title {
+    font-size: 9px;
+    letter-spacing: .36em;
+    text-transform: uppercase;
+    color: var(--gd);
+    margin-bottom: 14px;
+    font-weight: 500;
+  }
+
+  .check-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 10px;
+    cursor: pointer;
+  }
+
+  .check-row:last-child { margin-bottom: 0; }
+
+  .check-box {
+    width: 15px;
+    height: 15px;
+    border: 1.5px solid #bbb;
+    flex-shrink: 0;
+    margin-top: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: border-color .2s, background .2s;
+  }
+
+  .check-box.checked {
+    border-color: var(--gd);
+    background: var(--gd);
+  }
+
+  .check-box.checked::after {
+    content: '✓';
+    color: #fff;
+    font-size: 9px;
+    line-height: 1;
+  }
+
+  .check-text {
+    font-size: 12px;
+    color: #333;
+    line-height: 1.65;
+  }
+
+  /* ── SIGNATURE ── */
+  .sig-block {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    margin-bottom: 40px;
+  }
+
+  .sig-party {
+    border-top: 1px solid #1a1a1a;
+    padding-top: 16px;
+  }
+
+  .sig-label {
+    font-size: 9px;
+    letter-spacing: .3em;
+    text-transform: uppercase;
+    color: #888;
+    margin-bottom: 20px;
+  }
+
+  .sig-line {
+    border-bottom: 1px solid #bbb;
+    height: 36px;
+    margin-bottom: 8px;
+    position: relative;
+  }
+
+  .sig-line input {
+    position: absolute;
+    inset: 0;
+    border: none;
+    background: transparent;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-style: italic;
+    color: #1a1a1a;
+    outline: none;
+    padding: 4px 6px;
+    width: 100%;
+  }
+
+  .sig-name-label {
+    font-size: 10px;
+    color: #aaa;
+    letter-spacing: .1em;
+  }
+
+  .sig-date-row {
+    margin-top: 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .sig-date-label {
+    font-size: 10px;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: #888;
+    flex-shrink: 0;
+  }
+
+  /* ── FOOTER ── */
+  .doc-footer {
+    border-top: 1px solid #e0e0e0;
+    padding-top: 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .doc-footer-l {
+    font-size: 10px;
+    color: #bbb;
+    letter-spacing: .08em;
+  }
+
+  .doc-footer-r {
+    font-size: 10px;
+    color: #bbb;
+    letter-spacing: .08em;
+  }
+
+  /* ── DIVIDER ── */
+  .divider {
+    height: 1px;
+    background: #e8e8e8;
+    margin: 28px 0;
+  }
+
+  /* ── PRINT ── */
+  @media print {
+    body { background: #fff; font-size: 12px; }
+    .page { padding: 0; max-width: 100%; }
+    .hd { padding-bottom: 20px; margin-bottom: 26px; }
+    .no-print { display: none !important; }
+    .check-box { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+    .highlight { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+    .field { border-bottom: 1px solid #999; }
+  }
+
+  /* ── PRINT BUTTON ── */
+  .print-bar {
+    position: fixed;
+    bottom: 28px;
+    right: 28px;
+    display: flex;
+    gap: 10px;
+    z-index: 99;
+  }
+
+  .btn-print {
+    padding: 11px 24px;
+    background: #1a1a1a;
+    color: #fff;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    border: none;
+    cursor: pointer;
+    transition: background .2s;
+  }
+
+  .btn-print:hover { background: var(--gd); }
+
+  .btn-reset {
+    padding: 11px 20px;
+    background: transparent;
+    color: #888;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    border: 1px solid #ddd;
+    cursor: pointer;
+    transition: border-color .2s, color .2s;
+  }
+
+  .btn-reset:hover { border-color: #999; color: #333; }
+
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="hd">
+    <div class="hd-brand">
+      <p class="hd-name">Wilson <span>Creative</span> Co.</p>
+      <p class="hd-sub">ABN 99 664 433 447 &nbsp;·&nbsp; Brisbane, QLD, Australia</p>
+    </div>
+    <div class="hd-doc">
+      <p class="hd-doc-title">Client Agreement</p>
+      <p class="hd-doc-ref">Ref: WCC–<span id="ref-year"></span>–<input class="field field-sm" id="ref-num" placeholder="001" style="min-width:48px;font-size:12px;" /></p>
+    </div>
+  </div>
+
+  <div class="gold-rule"></div>
+
+  <!-- PARTIES -->
+  <div class="parties">
+    <div>
+      <p class="party-label">Service Provider</p>
+      <p class="party-name">Wilson Creative Co.</p>
+      <p class="party-detail">
+        ABN 99 664 433 447<br>
+        Brisbane, Queensland, Australia<br>
+        wilsoncreativeco.au@gmail.com<br>
+        +61 401 609 118
+      </p>
+    </div>
+    <div>
+      <p class="party-label">Client</p>
+      <p class="party-name"><input class="field field-lg" placeholder="Client / Business Name" /></p>
+      <p class="party-detail">
+        <input class="field field-lg" placeholder="ABN (if applicable)" style="margin-bottom:4px;" /><br>
+        <input class="field field-lg" placeholder="Email address" style="margin-bottom:4px;" /><br>
+        <input class="field field-lg" placeholder="Phone number" />
+      </p>
+    </div>
+  </div>
+
+  <!-- PROJECT SUMMARY -->
+  <div class="summary">
+    <div class="sum-cell">
+      <p class="sum-label">Package</p>
+      <p class="sum-val"><input class="field" placeholder="Starter / Growth / Premium" style="font-family:'Cormorant Garamond',serif;font-size:16px;" /></p>
+    </div>
+    <div class="sum-cell">
+      <p class="sum-label">Project Total</p>
+      <p class="sum-val">$<input class="field field-sm" id="total-field" placeholder="0.00" oninput="calcPayments()" style="font-family:'Cormorant Garamond',serif;font-size:16px;" /></p>
+    </div>
+    <div class="sum-cell">
+      <p class="sum-label">Agreement Date</p>
+      <p class="sum-val"><input class="field" id="date-field" placeholder="DD / MM / YYYY" style="font-family:'Cormorant Garamond',serif;font-size:16px;" /></p>
+    </div>
+  </div>
+
+  <!-- 1. SCOPE -->
+  <div class="sec">
+    <p class="sec-num">Clause 01</p>
+    <p class="sec-title">Scope of Work</p>
+    <p>Wilson Creative Co. agrees to design and develop a custom website for the Client as described below. All work is custom-coded from scratch — no templates, page builders, or drag-and-drop platforms are used.</p>
+    <p><strong>Project description:</strong></p>
+    <textarea class="field field-lg" placeholder="Brief description of the project, pages, features..." style="min-width:100%;height:72px;resize:vertical;border:1px solid #ddd;padding:8px 10px;font-size:12.5px;line-height:1.7;margin-top:6px;"></textarea>
+    <p style="margin-top:10px;">Any features, pages, or functionality not listed above constitute additional work and will be quoted separately prior to commencement. Wilson Creative Co. reserves the right to decline additions that fall outside the agreed scope.</p>
+  </div>
+
+  <!-- 2. PAYMENT -->
+  <div class="sec">
+    <p class="sec-num">Clause 02</p>
+    <p class="sec-title">Payment Terms</p>
+    <p>The total project fee is as set out in the Project Summary above. Payment is structured as follows:</p>
+
+    <table class="pay-table">
+      <thead>
+        <tr>
+          <th>Milestone</th>
+          <th>When Due</th>
+          <th class="amt">Amount</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Deposit (20%)</td>
+          <td>Upon signing — required before work commences</td>
+          <td class="amt" id="dep-amt">$—</td>
+        </tr>
+        <tr>
+          <td>Balance (80%)</td>
+          <td>Prior to site launch &amp; handover</td>
+          <td class="amt" id="bal-amt">$—</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="highlight">
+      Work will not commence until the deposit has been received and cleared. The site will not be launched or transferred to the Client until the full balance has been paid.
+    </div>
+
+    <p>All amounts are in Australian Dollars (AUD) and are inclusive of GST where applicable. Payment may be made via bank transfer (details provided on invoice). Wilson Creative Co. issues invoices at each payment milestone.</p>
+  </div>
+
+  <!-- 3. REVISIONS -->
+  <div class="sec">
+    <p class="sec-num">Clause 03</p>
+    <p class="sec-title">Revisions & Amendments</p>
+    <p>The Client is entitled to the following number of revision rounds based on their selected package. A revision round is defined as a single consolidated set of change requests submitted in writing.</p>
+
+    <div class="rev-grid">
+      <div class="rev-cell">
+        <p class="rev-pkg">Starter</p>
+        <p class="rev-count">1</p>
+        <p class="rev-note">Revision round</p>
+      </div>
+      <div class="rev-cell">
+        <p class="rev-pkg">Growth</p>
+        <p class="rev-count">3</p>
+        <p class="rev-note">Revision rounds</p>
+      </div>
+      <div class="rev-cell">
+        <p class="rev-pkg">Premium</p>
+        <p class="rev-count">∞</p>
+        <p class="rev-note">Unlimited rounds</p>
+      </div>
+    </div>
+
+    <p style="margin-top:10px;">Revisions must be submitted as a single consolidated list per round. Piecemeal requests submitted across multiple messages may be treated as separate rounds. Requests that alter the agreed scope, add new pages, or change the fundamental design direction may be quoted as additional work.</p>
+  </div>
+
+  <!-- 4. TIMELINE -->
+  <div class="sec">
+    <p class="sec-num">Clause 04</p>
+    <p class="sec-title">Timeline & Delivery</p>
+    <p>Indicative delivery timelines from receipt of deposit and all required Client content:</p>
+    <ul>
+      <li><strong>Starter</strong> — 5 to 7 business days</li>
+      <li><strong>Growth</strong> — 10 to 14 business days</li>
+      <li><strong>Premium</strong> — 2 to 3 weeks (complex builds may vary)</li>
+    </ul>
+    <p>These timelines are estimates and assume timely provision of content, images, copy, and feedback by the Client. Wilson Creative Co. will not be held liable for delays caused by late or incomplete Client-provided materials.</p>
+  </div>
+
+  <!-- 5. CLIENT RESPONSIBILITIES -->
+  <div class="sec">
+    <p class="sec-num">Clause 05</p>
+    <p class="sec-title">Client Responsibilities</p>
+    <p>The Client agrees to:</p>
+    <ul>
+      <li>Provide all required content (text, images, logos, branding, links) within 5 business days of signing</li>
+      <li>Respond to queries and review requests within 3 business days to avoid project delays</li>
+      <li>Ensure all supplied materials are owned by or properly licensed to the Client</li>
+      <li>Obtain any third-party permissions required for content included on the site</li>
+      <li>Review and approve design proofs in a timely manner</li>
+    </ul>
+    <p>Wilson Creative Co. accepts no responsibility for any legal issues arising from Client-supplied content, including but not limited to copyright infringement, defamation, or misleading claims.</p>
+  </div>
+
+  <!-- 6. CANCELLATION & KILL FEE -->
+  <div class="sec">
+    <p class="sec-num">Clause 06</p>
+    <p class="sec-title">Cancellation & Non-Refundable Deposit</p>
+    <div class="highlight">
+      The deposit is strictly non-refundable under all circumstances. By paying the deposit, the Client secures Wilson Creative Co.'s time and resources, which cannot be recovered upon cancellation.
+    </div>
+    <p>If the Client cancels the project after work has commenced:</p>
+    <ul>
+      <li>The deposit is forfeited in full — this is the kill fee</li>
+      <li>Any work completed beyond the deposit value may be invoiced at a pro-rata hourly rate of $110/hr AUD</li>
+      <li>All work product remains the property of Wilson Creative Co. until full payment has been received</li>
+    </ul>
+    <p>Wilson Creative Co. reserves the right to cancel the agreement if the Client is unresponsive for more than 14 consecutive business days. In this event, the deposit is forfeited and no further obligation exists on either party.</p>
+  </div>
+
+  <!-- 7. IP & OWNERSHIP -->
+  <div class="sec">
+    <p class="sec-num">Clause 07</p>
+    <p class="sec-title">Intellectual Property & Ownership</p>
+    <p>Upon receipt of full and final payment, the Client is granted full ownership of the completed website, including all custom code and design assets produced specifically for this project.</p>
+    <p>Wilson Creative Co. retains the right to:</p>
+    <ul>
+      <li>Display the completed work in its portfolio and marketing materials</li>
+      <li>Include a discreet "Designed by Wilson Creative Co." credit in the site footer (optional — can be removed on request)</li>
+      <li>Use project imagery and screenshots for promotional purposes</li>
+    </ul>
+    <p>Third-party assets used in the project (fonts, stock images, plugins, frameworks) remain subject to their respective licences. Wilson Creative Co. does not warrant ongoing licence coverage for third-party assets beyond the project handover date.</p>
+  </div>
+
+  <!-- 8. HOSTING & MAINTENANCE -->
+  <div class="sec">
+    <p class="sec-num">Clause 08</p>
+    <p class="sec-title">Hosting & Ongoing Support</p>
+    <p>Hosting and ongoing maintenance are not included in the project fee unless explicitly agreed in writing. Wilson Creative Co. offers an optional hosting and support plan at $25/month (AUD), covering hosting, SSL, uptime monitoring, and minor content updates. This plan is month-to-month with no lock-in contract.</p>
+    <p>If the Client elects to self-host or use a third-party hosting provider, Wilson Creative Co. accepts no responsibility for performance, security, or downtime following the handover.</p>
+  </div>
+
+  <!-- 9. LIABILITY -->
+  <div class="sec">
+    <p class="sec-num">Clause 09</p>
+    <p class="sec-title">Limitation of Liability</p>
+    <p>Wilson Creative Co.'s total liability to the Client under this agreement shall not exceed the total project fee paid. Wilson Creative Co. is not liable for any indirect, consequential, or incidental loss including loss of revenue, data, or business opportunity arising from use of or inability to use the delivered website.</p>
+    <p>Wilson Creative Co. does not guarantee specific search engine rankings, traffic volumes, or conversion rates. SEO foundations are included as a best-practice deliverable but do not constitute a guarantee of performance.</p>
+  </div>
+
+  <!-- 10. GOVERNING LAW -->
+  <div class="sec">
+    <p class="sec-num">Clause 10</p>
+    <p class="sec-title">Governing Law</p>
+    <p>This agreement is governed by the laws of Queensland, Australia. Any dispute arising from this agreement shall first be pursued via good-faith negotiation. If unresolved, disputes shall be subject to the jurisdiction of the courts of Queensland, Australia.</p>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ACKNOWLEDGEMENTS -->
+  <div class="checks">
+    <p class="checks-title">Client Acknowledgements — please confirm each item</p>
+
+    <label class="check-row" onclick="toggleCheck(this)">
+      <div class="check-box"></div>
+      <span class="check-text">I have read and understood this agreement in full and agree to be bound by its terms.</span>
+    </label>
+
+    <label class="check-row" onclick="toggleCheck(this)">
+      <div class="check-box"></div>
+      <span class="check-text">I understand the 20% deposit is non-refundable and serves as the kill fee if I cancel after work commences.</span>
+    </label>
+
+    <label class="check-row" onclick="toggleCheck(this)">
+      <div class="check-box"></div>
+      <span class="check-text">I understand the balance (80%) must be paid in full before the website is launched or transferred to me.</span>
+    </label>
+
+    <label class="check-row" onclick="toggleCheck(this)">
+      <div class="check-box"></div>
+      <span class="check-text">I understand the number of revision rounds included in my package and that additional requests outside scope may be quoted separately.</span>
+    </label>
+
+    <label class="check-row" onclick="toggleCheck(this)">
+      <div class="check-box"></div>
+      <span class="check-text">I confirm that all content I supply (text, images, logos) is owned by me or properly licensed, and I accept full responsibility for it.</span>
+    </label>
+
+    <label class="check-row" onclick="toggleCheck(this)">
+      <div class="check-box"></div>
+      <span class="check-text">I understand that Wilson Creative Co. may use the completed work in its portfolio and marketing materials.</span>
+    </label>
+
+  </div>
+
+  <!-- SIGNATURES -->
+  <div class="sig-block">
+
+    <div class="sig-party">
+      <p class="sig-label">Service Provider — Wilson Creative Co.</p>
+      <div class="sig-line">
+        <input type="text" placeholder="Signature" style="font-style:italic;" />
+      </div>
+      <p class="sig-name-label">George Wilson</p>
+      <div class="sig-date-row">
+        <span class="sig-date-label">Date</span>
+        <input class="field" placeholder="DD / MM / YYYY" />
+      </div>
+    </div>
+
+    <div class="sig-party">
+      <p class="sig-label">Client</p>
+      <div class="sig-line">
+        <input type="text" placeholder="Signature" style="font-style:italic;" />
+      </div>
+      <p class="sig-name-label"><input class="field" placeholder="Full name" style="min-width:160px;" /></p>
+      <div class="sig-date-row">
+        <span class="sig-date-label">Date</span>
+        <input class="field" placeholder="DD / MM / YYYY" />
+      </div>
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <div class="doc-footer">
+    <span class="doc-footer-l">Wilson Creative Co. &nbsp;·&nbsp; ABN 99 664 433 447 &nbsp;·&nbsp; Brisbane, QLD</span>
+    <span class="doc-footer-r">wilsoncreativeco.au &nbsp;·&nbsp; Confidential</span>
+  </div>
+
+</div>
+
+<!-- PRINT BUTTON -->
+<div class="print-bar no-print">
+  <button class="btn-reset" onclick="resetForm()">Clear Form</button>
+  <button class="btn-print" onclick="window.print()">Save as PDF</button>
+</div>
+
+<script>
+  // Auto-set year in ref
+  document.getElementById('ref-year').textContent = new Date().getFullYear()
+
+  // Auto-set today's date
+  const today = new Date()
+  const d = String(today.getDate()).padStart(2,'0')
+  const m = String(today.getMonth()+1).padStart(2,'0')
+  const y = today.getFullYear()
+  document.getElementById('date-field').value = `${d} / ${m} / ${y}`
+
+  // Calculate payment splits
+  function calcPayments() {
+    const raw = document.getElementById('total-field').value.replace(/[^0-9.]/g,'')
+    const total = parseFloat(raw)
+    if (isNaN(total) || total <= 0) {
+      document.getElementById('dep-amt').textContent = '$—'
+      document.getElementById('bal-amt').textContent = '$—'
+      return
+    }
+    const dep = (total * 0.20).toFixed(2)
+    const bal = (total * 0.80).toFixed(2)
+    document.getElementById('dep-amt').textContent = '$' + Number(dep).toLocaleString('en-AU', {minimumFractionDigits:2})
+    document.getElementById('bal-amt').textContent = '$' + Number(bal).toLocaleString('en-AU', {minimumFractionDigits:2})
+  }
+
+  // Toggle checkboxes
+  function toggleCheck(label) {
+    const box = label.querySelector('.check-box')
+    box.classList.toggle('checked')
+  }
+
+  // Reset
+  function resetForm() {
+    document.querySelectorAll('input, textarea').forEach(el => {
+      if (el.id !== 'ref-year') el.value = ''
+    })
+    document.querySelectorAll('.check-box').forEach(b => b.classList.remove('checked'))
+    document.getElementById('dep-amt').textContent = '$—'
+    document.getElementById('bal-amt').textContent = '$—'
+    document.getElementById('date-field').value = `${d} / ${m} / ${y}`
+  }
+</script>
+
+</body>
+</html>
