@@ -209,7 +209,7 @@ async function createDepositLink({ you, project }) {
       business:    you.business,
       package:     project.package,
     },
-    expires_at: Math.floor(Date.now() / 1000) + 60 * 60 * 72, // 72 hours
+    expires_at: Math.floor(Date.now() / 1000) + 60 * 60 * 23, // 23 hours (Stripe max is 24)
   })
 
   return session.url
