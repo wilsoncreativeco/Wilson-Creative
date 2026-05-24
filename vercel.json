@@ -1,9 +1,10 @@
 {
   "rewrites": [
-    { "source": "/start",      "destination": "/start.html" },
-    { "source": "/watch",      "destination": "/watch.html" },
-    { "source": "/brief",      "destination": "/brief.html" },
-    { "source": "/api/:path*", "destination": "/api/:path*" },
-    { "source": "/((?!assets|favicon|images|api|start|watch|brief).*)", "destination": "/index.html" }
+    { "source": "/start",      "destination": "/start.html"    },
+    { "source": "/watch",      "destination": "/watch.html"    },
+    { "source": "/brief",      "destination": "/brief.html"    },
+    { "source": "/finalise",   "destination": "/finalise.html" },
+    { "source": "/api/:path*", "destination": "/api/:path*"    },
+    { "source": "/((?!assets|favicon|images|api|start|watch|brief|finalise).*)", "destination": "/index.html" }
   ]
 }

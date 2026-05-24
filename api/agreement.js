@@ -205,6 +205,7 @@ async function createDepositLink({ you, project }) {
     success_url: 'https://wilsoncreativeco.au/start?paid=1',
     cancel_url:  'https://wilsoncreativeco.au/start',
     metadata: {
+      type:        'deposit',
       client_name: you.name,
       business:    you.business,
       package:     project.package,
