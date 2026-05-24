@@ -97,6 +97,13 @@ function buildHandoverPDF({ clientName, business, siteUrl, pages, features }) {
     doc.fillColor(GOLD).font('Helvetica').fontSize(10)
        .text('wilsoncreativeco.au@gmail.com', 56, doc.y)
     doc.fillColor(MUTED).font('Helvetica').fontSize(10).text('0401 609 118', 56, doc.y + 14)
+    doc.moveDown(1.6)
+
+    // Google review
+    section('Leave a Review')
+    bodyText('If you enjoyed working with us, a quick Google review means the world to a small studio and helps other businesses find us.')
+    doc.fillColor(GOLD).font('Helvetica').fontSize(10)
+       .text('https://g.page/r/CaP04YoIyRd1EBM/review', 56, doc.y, { link: 'https://g.page/r/CaP04YoIyRd1EBM/review', underline: true })
     doc.moveDown(1.2)
 
     // Footer
@@ -152,10 +159,14 @@ function buildLaunchEmail({ firstName, business, siteUrl }) {
         <p style="margin:0;font-size:13px;color:#888;line-height:1.6;">New pages, features, seasonal changes — just reach out. We'll quote anything quickly and keep your site fresh.</p>
       </div>
 
-      <!-- Referral -->
+      <!-- Review + Referral -->
       <div style="border-top:1px solid #1e1e1e;padding-top:24px;margin-bottom:28px;">
-        <p style="margin:0 0 8px;font-size:13px;color:#888;line-height:1.7;">
-          <strong style="color:#f0ece2;">One last thing</strong> — if you know any other business owners who could use a site like yours, I'd genuinely appreciate the introduction. A quick text or tag is all it takes, and it means the world to a small studio.
+        <p style="margin:0 0 16px;font-size:13px;color:#888;line-height:1.7;">
+          <strong style="color:#f0ece2;">Enjoyed working with us?</strong> — A Google review takes 30 seconds and genuinely helps more than you'd think. It means a lot to a small studio.
+        </p>
+        <a href="https://g.page/r/CaP04YoIyRd1EBM/review" style="display:inline-block;background:transparent;color:#c5a44a;font-size:13px;font-weight:600;text-decoration:none;padding:10px 20px;border-radius:4px;border:1px solid #c5a44a;letter-spacing:.04em;margin-bottom:20px;">⭐ Leave a Google Review →</a>
+        <p style="margin:0;font-size:13px;color:#888;line-height:1.7;">
+          And if you know any other business owners who could use a site like yours — a quick introduction is always appreciated.
         </p>
       </div>
 
