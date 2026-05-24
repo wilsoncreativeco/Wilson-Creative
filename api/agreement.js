@@ -1,7 +1,9 @@
 import { Resend } from 'resend'
 import PDFDocument from 'pdfkit'
+import Stripe from 'stripe'
 
 const resend = new Resend(process.env.RESEND_API_KEY)
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY)
 
 const PACKAGE_NAMES = {
   starter: 'Starter — $600',
@@ -178,6 +180,41 @@ function buildPDF({ you, project, signature, date }) {
   })
 }
 
+// ── Stripe deposit link ────────────────────────────────────────────────────────
+const DEPOSIT_CENTS = { starter: 12000, growth: 20000 } // in AUD cents
+
+async function createDepositLink({ you, project }) {
+  const amount = DEPOSIT_CENTS[project.package]
+  if (!amount) return null  // Premium — custom quote, skip auto-link
+
+  const session = await stripe.checkout.sessions.create({
+    payment_method_types: ['card'],
+    customer_email: you.email,
+    line_items: [{
+      price_data: {
+        currency: 'aud',
+        product_data: {
+          name: `Website Development Deposit — ${PACKAGE_NAMES[project.package]} Package`,
+          description: `Non-refundable deposit for ${you.business}. Remaining balance due before launch.`,
+        },
+        unit_amount: amount,
+      },
+      quantity: 1,
+    }],
+    mode: 'payment',
+    success_url: 'https://wilsoncreativeco.au/start?paid=1',
+    cancel_url:  'https://wilsoncreativeco.au/start',
+    metadata: {
+      client_name: you.name,
+      business:    you.business,
+      package:     project.package,
+    },
+    expires_at: Math.floor(Date.now() / 1000) + 60 * 60 * 72, // 72 hours
+  })
+
+  return session.url
+}
+
 // ── Email HTML helpers ─────────────────────────────────────────────────────────
 const darkHeader = `
   <div style="background:#07060a;padding:24px 32px;border-bottom:1px solid #1e1e1e;">
@@ -209,17 +246,21 @@ export default async function handler(req, res) {
     return res.status(400).json({ error: 'Missing required fields' })
   }
 
-  // Generate PDF
-  let pdfBuffer
+  // Generate PDF + Stripe deposit link in parallel
+  let pdfBuffer, depositUrl
   try {
-    pdfBuffer = await buildPDF({ you, project, signature, date })
+    ;[pdfBuffer, depositUrl] = await Promise.all([
+      buildPDF({ you, project, signature, date }),
+      createDepositLink({ you, project }),
+    ])
   } catch (err) {
-    console.error('PDF generation error:', err)
-    return res.status(500).json({ error: 'PDF generation failed' })
+    console.error('PDF/Stripe error:', err)
+    return res.status(500).json({ error: 'Failed to prepare agreement' })
   }
 
-  const pdfBase64 = pdfBuffer.toString('base64')
+  const pdfBase64  = pdfBuffer.toString('base64')
   const pdfFilename = `Wilson Creative Co — Agreement (${you.name}).pdf`
+  const depositAmt  = project.package === 'starter' ? '$120' : project.package === 'growth' ? '$200' : '20% of agreed total'
 
   // ── Email to George ──────────────────────────────────────────────────────────
   const georgeHtml = `
@@ -252,7 +293,14 @@ export default async function handler(req, res) {
           ${row('Date',      date)}
         </table>
 
-        <p style="margin:28px 0 0;font-size:13px;color:#888;">The signed agreement PDF is attached to this email.</p>
+        ${depositUrl ? `
+        <div style="background:#0b0a0e;border:1px solid #2a2a2a;border-left:3px solid #c5a44a;border-radius:4px;padding:16px 20px;margin-top:24px;">
+          <p style="margin:0 0 4px;font-size:12px;color:#c5a44a;font-weight:600;text-transform:uppercase;letter-spacing:.08em;">Deposit Payment Link</p>
+          <p style="margin:0 0 10px;font-size:13px;color:#888;">Client deposit link (${depositAmt}) — expires in 72 hours:</p>
+          <a href="${depositUrl}" style="color:#c5a44a;font-size:13px;word-break:break-all;">${depositUrl}</a>
+        </div>` : `
+        <p style="margin:24px 0 0;font-size:13px;color:#888;">Premium package — send a custom deposit invoice once the total is agreed.</p>`}
+        <p style="margin:16px 0 0;font-size:13px;color:#888;">The signed agreement PDF is attached to this email.</p>
       </div>
       ${darkFooter}
     </div>`
@@ -264,8 +312,20 @@ export default async function handler(req, res) {
       <div style="padding:32px;">
         <h2 style="margin:0 0 8px;font-size:22px;color:#f0ece2;font-weight:600;">You're locked in, ${you.name.split(' ')[0]}.</h2>
         <p style="margin:0 0 28px;font-size:14px;color:#888;line-height:1.7;">
-          Thanks for signing your client agreement with Wilson Creative Co. We'll be in touch within 24 hours with your deposit invoice and project kickoff brief.
+          Thanks for signing your client agreement with Wilson Creative Co. To secure your project, please pay your deposit below.
         </p>
+
+        ${depositUrl ? `
+        <div style="text-align:center;margin-bottom:28px;">
+          <p style="margin:0 0 6px;font-size:13px;color:#888;">Your deposit to get started:</p>
+          <p style="margin:0 0 16px;font-size:28px;font-weight:700;color:#f0ece2;">${depositAmt}</p>
+          <a href="${depositUrl}" style="display:inline-block;background:#c5a44a;color:#07060a;font-size:14px;font-weight:700;text-decoration:none;padding:14px 36px;border-radius:4px;letter-spacing:.04em;">Pay Deposit Now →</a>
+          <p style="margin:10px 0 0;font-size:11px;color:#555;">Secure payment via Stripe · Link expires in 72 hours</p>
+        </div>` : `
+        <div style="background:#0b0a0e;border:1px solid #1e1e1e;border-radius:6px;padding:20px 24px;margin-bottom:28px;">
+          <p style="margin:0;font-size:13px;color:#f0ece2;font-weight:600;">Custom deposit invoice coming shortly</p>
+          <p style="margin:6px 0 0;font-size:13px;color:#888;">We'll send your deposit invoice once we've confirmed your project scope. Usually within 24 hours.</p>
+        </div>`}
 
         <div style="background:#0b0a0e;border:1px solid #1e1e1e;border-radius:6px;padding:20px 24px;margin-bottom:28px;">
           <p style="margin:0 0 14px;font-size:12px;color:#c5a44a;letter-spacing:.08em;text-transform:uppercase;font-weight:600;">Agreement Summary</p>
@@ -282,9 +342,8 @@ export default async function handler(req, res) {
           <p style="margin:6px 0 0;font-size:12px;color:#888;">Keep it for your records — it contains all terms, payment details, and your digital signature.</p>
         </div>
 
-        <p style="margin:0 0 6px;font-size:13px;color:#888;line-height:1.7;">
-          <strong style="color:#f0ece2;">What happens next?</strong><br>
-          We'll send your deposit invoice shortly. Once received, we schedule your project kickoff and get moving. Questions? Reply to this email or reach out at
+        <p style="margin:0;font-size:13px;color:#888;line-height:1.7;">
+          Questions? Reply to this email or reach out at
           <a href="mailto:wilsoncreativeco.au@gmail.com" style="color:#c5a44a;text-decoration:none;">wilsoncreativeco.au@gmail.com</a>.
         </p>
       </div>
