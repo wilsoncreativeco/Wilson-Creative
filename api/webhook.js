@@ -31,21 +31,14 @@ const darkFooter = `
   </div>`
 
 function step(num, title, body) {
+  const n = String(num).padStart(2, '0')
   return `
-    <div style="display:flex;gap:16px;margin-bottom:20px;align-items:flex-start;">
-      <div style="min-width:28px;height:28px;background:#c5a44a;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#07060a;text-align:center;line-height:28px;">${num}</div>
-      <div>
-        <p style="margin:0 0 3px;font-size:14px;font-weight:600;color:#f0ece2;">${title}</p>
-        <p style="margin:0;font-size:13px;color:#888;line-height:1.6;">${body}</p>
+    <div style="display:flex;gap:20px;margin-bottom:22px;align-items:flex-start;">
+      <span style="font-size:11px;font-weight:700;color:#c5a44a;letter-spacing:.06em;padding-top:3px;min-width:22px;flex-shrink:0;">${n}</span>
+      <div style="border-left:1px solid #2a2a2a;padding-left:18px;flex:1;">
+        <p style="margin:0 0 4px;font-size:14px;font-weight:600;color:#f0ece2;">${title}</p>
+        <p style="margin:0;font-size:13px;color:#888;line-height:1.65;">${body}</p>
       </div>
-    </div>`
-}
-
-function checkItem(text) {
-  return `
-    <div style="display:flex;gap:12px;align-items:flex-start;margin-bottom:10px;">
-      <span style="color:#c5a44a;font-size:14px;line-height:1.6;">✦</span>
-      <p style="margin:0;font-size:13px;color:#888;line-height:1.6;">${text}</p>
     </div>`
 }
 
@@ -69,31 +62,34 @@ function buildWelcomeEmail({ firstName, business, packageId, timeline }) {
       <!-- Process -->
       <div style="margin-bottom:32px;">
         <p style="margin:0 0 16px;font-size:12px;color:#c5a44a;letter-spacing:.1em;text-transform:uppercase;font-weight:700;">What Happens Next</p>
-        ${step(1, 'Kickoff', 'I\'ll reach out within 24 hours to confirm your project scope, timeline, and any questions before we start.')}
-        ${step(2, 'Design', 'I\'ll put together the initial design concepts based on your brief. You\'ll get to see it before anything is built.')}
-        ${step(3, 'Build', 'Once design is approved, I build the full site — clean code, fast, mobile-perfect.')}
-        ${step(4, 'Review', `You get your ${packageId === 'starter' ? '1 revision round' : packageId === 'growth' ? '3 revision rounds' : 'unlimited revision rounds'} here. We go through it together and dial everything in.`)}
-        ${step(5, 'Launch', 'Balance is paid, domain is pointed, site goes live. I\'ll handle the full launch.')}
+        ${step(1, 'Kickoff', 'I\'ll be in touch as soon as possible to run through your project, confirm the scope, and answer anything before we get moving.')}
+        ${step(2, 'Design', 'I\'ll put together the initial design concepts based on your brief. You\'ll see it and approve it before a single line of code is written.')}
+        ${step(3, 'Build', 'Once design is locked in, I build the full site — clean code, fast load times, perfect on every device.')}
+        ${step(4, 'Review', `You get your ${packageId === 'starter' ? '1 revision round' : packageId === 'growth' ? '3 revision rounds' : 'unlimited revision rounds'} to go through everything. We dial it in together until it\'s exactly right.`)}
+        ${step(5, 'Launch', 'Balance is settled, domain is pointed, site goes live. I handle the full launch — you just share the link.')}
       </div>
 
       <!-- What we need -->
       <div style="background:#0b0a0e;border:1px solid #1e1e1e;border-radius:6px;padding:22px 24px;margin-bottom:32px;">
-        <p style="margin:0 0 16px;font-size:12px;color:#c5a44a;letter-spacing:.1em;text-transform:uppercase;font-weight:700;">What I Need From You</p>
-        <p style="margin:0 0 14px;font-size:13px;color:#888;">Start pulling this together when you can — the faster I have it, the faster we move:</p>
-        ${checkItem('Logo files — PNG or SVG preferred (highest quality you have)')}
-        ${checkItem('Brand colours — hex codes if you know them, otherwise a few reference images')}
-        ${checkItem('Copy / text for each page — don\'t stress if it\'s rough, we can refine it')}
-        ${checkItem('Photos or images — high resolution, or let me know if you need help sourcing')}
-        ${checkItem('2–3 websites you like the look of — gives me a feel for your taste')}
-        ${checkItem('Domain login details — if you already have a domain registered')}
+        <p style="margin:0 0 6px;font-size:12px;color:#c5a44a;letter-spacing:.1em;text-transform:uppercase;font-weight:700;">What I Need From You</p>
+        <p style="margin:0 0 18px;font-size:13px;color:#888;line-height:1.7;">Don't stress about having everything ready right now — I'll guide you through it all in the kickoff. But if you want to get a head start, here's what helps most:</p>
+        <table style="width:100%;border-collapse:collapse;">
+          <tr><td style="padding:10px 0;border-bottom:1px solid #1a1a1a;color:#f0ece2;font-size:13px;font-weight:500;width:40%;">Your logo</td><td style="padding:10px 0;border-bottom:1px solid #1a1a1a;color:#888;font-size:13px;">Any format is fine — we'll work with what you have</td></tr>
+          <tr><td style="padding:10px 0;border-bottom:1px solid #1a1a1a;color:#f0ece2;font-size:13px;font-weight:500;">Photos & images</td><td style="padding:10px 0;border-bottom:1px solid #1a1a1a;color:#888;font-size:13px;">Of your business, team, product — the more the better</td></tr>
+          <tr><td style="padding:10px 0;border-bottom:1px solid #1a1a1a;color:#f0ece2;font-size:13px;font-weight:500;">Sites you love</td><td style="padding:10px 0;border-bottom:1px solid #1a1a1a;color:#888;font-size:13px;">2–3 examples gives me a feel for your taste instantly</td></tr>
+          <tr><td style="padding:10px 0;color:#f0ece2;font-size:13px;font-weight:500;">Domain details</td><td style="padding:10px 0;color:#888;font-size:13px;">Login to wherever your domain is registered, if you have one</td></tr>
+        </table>
+        <p style="margin:16px 0 0;font-size:12px;color:#555;">No logo yet? No copy written? No problem — I can help with all of it.</p>
       </div>
 
       <!-- GitHub -->
       <div style="margin-bottom:32px;">
-        <p style="margin:0 0 6px;font-size:12px;color:#c5a44a;letter-spacing:.1em;text-transform:uppercase;font-weight:700;">GitHub Setup <span style="color:#555;font-weight:400;text-transform:none;letter-spacing:0;">(optional)</span></p>
+        <p style="margin:0 0 6px;font-size:12px;color:#c5a44a;letter-spacing:.1em;text-transform:uppercase;font-weight:700;">GitHub — Your Code, Your Ownership <span style="color:#555;font-weight:400;text-transform:none;letter-spacing:0;">(optional)</span></p>
+        <p style="margin:0 0 10px;font-size:13px;color:#888;line-height:1.7;">
+          Think of GitHub like Google Drive, but for your website's code. It's where everything lives — every page, every update, the full history of your site. Having it under your own account means <strong style="color:#f0ece2;">you own it completely</strong>. You're not tied to us, you can take it anywhere, and nothing gets lost.
+        </p>
         <p style="margin:0 0 16px;font-size:13px;color:#888;line-height:1.7;">
-          If you'd like full ownership of your site's code under your own GitHub account, the video below walks you through setting one up and inviting me as a collaborator.
-          <strong style="color:#f0ece2;">Totally optional</strong> — if you'd prefer I handle it and transfer everything to you later, just say the word.
+          The video below walks you through setting up a free account and inviting me as a collaborator in a few minutes. <strong style="color:#f0ece2;">Totally optional</strong> — if you'd rather skip it and have us handle everything, we can transfer full ownership to you at any point. Just say the word.
         </p>
 
         <!-- Video thumbnail -->
