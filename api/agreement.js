@@ -208,6 +208,8 @@ async function createDepositLink({ you, project }) {
       client_name: you.name,
       business:    you.business,
       package:     project.package,
+      phone:       you.phone,
+      timeline:    project.timeline,
     },
     expires_at: Math.floor(Date.now() / 1000) + 60 * 60 * 23, // 23 hours (Stripe max is 24)
   })

@@ -1,0 +1,144 @@
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg:   #07060a;
+  --bg2:  #0f0e13;
+  --bd:   #1e1e1e;
+  --txt:  #f0ece2;
+  --muted:#888888;
+  --g:    #c5a44a;
+  --ease: cubic-bezier(.22,1,.36,1);
+}
+
+html, body {
+  background: var(--bg);
+  color: var(--txt);
+  font-family: 'DM Sans', sans-serif;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Nav ──────────────────────────────────────────────────────────────────── */
+.w-nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: 60px;
+  background: var(--bg);
+  border-bottom: 1px solid var(--bd);
+  display: flex;
+  align-items: center;
+  padding: 0 32px;
+  z-index: 10;
+}
+
+.w-logo {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: .06em;
+  color: var(--txt);
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.w-logo em {
+  font-style: normal;
+  color: var(--g);
+}
+
+/* ── Main ─────────────────────────────────────────────────────────────────── */
+.w-main {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 120px 24px 80px;
+}
+
+.w-eyebrow {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--g);
+  margin-bottom: 14px;
+}
+
+.w-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(36px, 6vw, 52px);
+  font-weight: 300;
+  line-height: 1.1;
+  color: var(--txt);
+  margin-bottom: 16px;
+}
+
+.w-title em {
+  font-style: italic;
+  color: var(--g);
+}
+
+.w-lead {
+  font-size: 15px;
+  color: var(--muted);
+  line-height: 1.75;
+  max-width: 560px;
+  margin-bottom: 40px;
+}
+
+/* ── Video player ─────────────────────────────────────────────────────────── */
+.w-player {
+  width: 100%;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid var(--bd);
+  background: #000;
+  margin-bottom: 32px;
+  box-shadow: 0 24px 64px rgba(0,0,0,.5);
+}
+
+.w-video {
+  width: 100%;
+  display: block;
+  max-height: 480px;
+  object-fit: contain;
+  background: #000;
+}
+
+/* ── Note ─────────────────────────────────────────────────────────────────── */
+.w-note {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  background: var(--bg2);
+  border: 1px solid var(--bd);
+  border-left: 3px solid var(--g);
+  border-radius: 4px;
+  padding: 18px 20px;
+}
+
+.w-note-icon {
+  color: var(--g);
+  font-size: 14px;
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+
+.w-note p {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.w-note a {
+  color: var(--g);
+  text-decoration: none;
+}
+
+.w-note a:hover {
+  text-decoration: underline;
+}
+
+/* ── Mobile ───────────────────────────────────────────────────────────────── */
+@media (max-width: 600px) {
+  .w-nav  { padding: 0 20px; }
+  .w-main { padding: 100px 20px 60px; }
+}

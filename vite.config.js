@@ -10,6 +10,7 @@ export default defineConfig({
       input: {
         main:  resolve(__dirname, 'index.html'),
         start: resolve(__dirname, 'start.html'),
+        watch: resolve(__dirname, 'watch.html'),
       },
     },
   },
