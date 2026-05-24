@@ -11,6 +11,7 @@ export default defineConfig({
         main:  resolve(__dirname, 'index.html'),
         start: resolve(__dirname, 'start.html'),
         watch: resolve(__dirname, 'watch.html'),
+        brief: resolve(__dirname, 'brief.html'),
       },
     },
   },

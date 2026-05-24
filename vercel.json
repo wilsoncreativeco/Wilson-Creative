@@ -1,8 +1,9 @@
 {
   "rewrites": [
-    { "source": "/start",   "destination": "/start.html" },
-    { "source": "/watch",   "destination": "/watch.html" },
+    { "source": "/start",      "destination": "/start.html" },
+    { "source": "/watch",      "destination": "/watch.html" },
+    { "source": "/brief",      "destination": "/brief.html" },
     { "source": "/api/:path*", "destination": "/api/:path*" },
-    { "source": "/((?!assets|favicon|images|api|start|watch).*)", "destination": "/index.html" }
+    { "source": "/((?!assets|favicon|images|api|start|watch|brief).*)", "destination": "/index.html" }
   ]
 }
