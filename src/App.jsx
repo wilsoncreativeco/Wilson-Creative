@@ -985,7 +985,7 @@ const goNext = () => {
         <div className="testi-grid rv d2">
           {[
             { initials: 'JM', name: 'James M.', biz: 'Phantom Detailing, Brisbane', quote: 'George built us a site that actually converts. Enquiries went up almost immediately after launch — it looks premium and loads incredibly fast. Best investment we\'ve made for the business.' },
-            { initials: 'SC', name: 'Sarah C.', biz: 'Verdant Landscaping, QLD', quote: 'We went from a basic template site to something that genuinely represents our brand. Clients comment on it all the time. The whole process was smooth and George delivered exactly what he promised.' },
+            { initials: 'SC', name: 'Zach', biz: 'Zantara Workforce Solutions, QLD', quote: 'Absolutely loved working with George from Wilson Creative Co. He created an amazing website for us that looks professional, modern, and perfectly suits our brand. Great communication, easy process, and an outstanding final result. Highly recommend!' },
             { initials: 'AK', name: 'Alex K.', biz: 'Apex Gym, Brisbane', quote: 'Completely custom, fast, and looks elite. Wilson Creative understood exactly what we needed without us having to explain it twice. Would recommend to any business serious about their online presence.' },
           ].map((t, i) => (
             <div className="testi-card rv" style={{ '--d': `${i * 0.12}s` }} key={i}>
