@@ -293,14 +293,16 @@ export default async function handler(req, res) {
           ${row('Date',      date)}
         </table>
 
-        ${depositUrl ? `
-        <div style="background:#0b0a0e;border:1px solid #2a2a2a;border-left:3px solid #c5a44a;border-radius:4px;padding:16px 20px;margin-top:24px;">
-          <p style="margin:0 0 4px;font-size:12px;color:#c5a44a;font-weight:600;text-transform:uppercase;letter-spacing:.08em;">Deposit Payment Link</p>
-          <p style="margin:0 0 10px;font-size:13px;color:#888;">Client deposit link (${depositAmt}) — expires in 72 hours:</p>
-          <a href="${depositUrl}" style="color:#c5a44a;font-size:13px;word-break:break-all;">${depositUrl}</a>
-        </div>` : `
-        <p style="margin:24px 0 0;font-size:13px;color:#888;">Premium package — send a custom deposit invoice once the total is agreed.</p>`}
-        <p style="margin:16px 0 0;font-size:13px;color:#888;">The signed agreement PDF is attached to this email.</p>
+        <div style="border-top:1px solid #1e1e1e;margin-top:28px;padding-top:24px;">
+          <p style="margin:0 0 12px;font-size:12px;color:#c5a44a;letter-spacing:.08em;text-transform:uppercase;font-weight:600;">Deposit</p>
+          ${depositUrl ? `
+          <p style="margin:0 0 14px;font-size:13px;color:#888;">Client payment link for ${depositAmt} — sent to their inbox and valid for 23 hours:</p>
+          <a href="${depositUrl}" style="display:inline-block;background:#c5a44a;color:#07060a;font-size:13px;font-weight:700;text-decoration:none;padding:11px 24px;border-radius:4px;letter-spacing:.04em;">View Payment Link →</a>
+          ` : `
+          <p style="margin:0;font-size:13px;color:#888;">Premium package — send a custom deposit invoice once the total is confirmed.</p>
+          `}
+          <p style="margin:16px 0 0;font-size:13px;color:#888;">Signed agreement PDF is attached.</p>
+        </div>
       </div>
       ${darkFooter}
     </div>`
@@ -312,21 +314,10 @@ export default async function handler(req, res) {
       <div style="padding:32px;">
         <h2 style="margin:0 0 8px;font-size:22px;color:#f0ece2;font-weight:600;">You're locked in, ${you.name.split(' ')[0]}.</h2>
         <p style="margin:0 0 28px;font-size:14px;color:#888;line-height:1.7;">
-          Thanks for signing your client agreement with Wilson Creative Co. To secure your project, please pay your deposit below.
+          Thanks for signing your client agreement with Wilson Creative Co. Your signed copy is attached to this email — keep it for your records. To secure your spot, pay your deposit below and we'll get moving.
         </p>
 
-        ${depositUrl ? `
-        <div style="text-align:center;margin-bottom:28px;">
-          <p style="margin:0 0 6px;font-size:13px;color:#888;">Your deposit to get started:</p>
-          <p style="margin:0 0 16px;font-size:28px;font-weight:700;color:#f0ece2;">${depositAmt}</p>
-          <a href="${depositUrl}" style="display:inline-block;background:#c5a44a;color:#07060a;font-size:14px;font-weight:700;text-decoration:none;padding:14px 36px;border-radius:4px;letter-spacing:.04em;">Pay Deposit Now →</a>
-          <p style="margin:10px 0 0;font-size:11px;color:#555;">Secure payment via Stripe · Link expires in 72 hours</p>
-        </div>` : `
-        <div style="background:#0b0a0e;border:1px solid #1e1e1e;border-radius:6px;padding:20px 24px;margin-bottom:28px;">
-          <p style="margin:0;font-size:13px;color:#f0ece2;font-weight:600;">Custom deposit invoice coming shortly</p>
-          <p style="margin:6px 0 0;font-size:13px;color:#888;">We'll send your deposit invoice once we've confirmed your project scope. Usually within 24 hours.</p>
-        </div>`}
-
+        <!-- Agreement summary -->
         <div style="background:#0b0a0e;border:1px solid #1e1e1e;border-radius:6px;padding:20px 24px;margin-bottom:28px;">
           <p style="margin:0 0 14px;font-size:12px;color:#c5a44a;letter-spacing:.08em;text-transform:uppercase;font-weight:600;">Agreement Summary</p>
           <table style="width:100%;border-collapse:collapse;">
@@ -337,9 +328,20 @@ export default async function handler(req, res) {
           </table>
         </div>
 
-        <div style="background:#0b0a0e;border:1px solid #2a2a2a;border-left:3px solid #c5a44a;border-radius:4px;padding:16px 20px;margin-bottom:28px;">
-          <p style="margin:0;font-size:13px;color:#c5a44a;font-weight:600;">📎 Your signed agreement is attached as a PDF</p>
-          <p style="margin:6px 0 0;font-size:12px;color:#888;">Keep it for your records — it contains all terms, payment details, and your digital signature.</p>
+        <!-- Deposit -->
+        <div style="border-top:1px solid #1e1e1e;padding-top:28px;margin-bottom:28px;">
+          <p style="margin:0 0 4px;font-size:12px;color:#c5a44a;letter-spacing:.08em;text-transform:uppercase;font-weight:600;">Deposit Required to Start</p>
+          ${depositUrl ? `
+          <p style="margin:0 0 20px;font-size:14px;color:#888;line-height:1.6;">Your non-refundable deposit secures your project slot and gets work underway. Once paid, Stripe will send you a payment receipt.</p>
+          <div style="text-align:center;background:#0b0a0e;border:1px solid #1e1e1e;border-radius:6px;padding:28px 24px;">
+            <p style="margin:0 0 4px;font-size:13px;color:#888;">Amount due now</p>
+            <p style="margin:0 0 20px;font-size:32px;font-weight:700;color:#f0ece2;letter-spacing:-.5px;">${depositAmt}</p>
+            <a href="${depositUrl}" style="display:inline-block;background:#c5a44a;color:#07060a;font-size:14px;font-weight:700;text-decoration:none;padding:14px 40px;border-radius:4px;letter-spacing:.04em;">Pay Deposit Now →</a>
+            <p style="margin:12px 0 0;font-size:11px;color:#555;">Secure payment via Stripe · Card accepted</p>
+          </div>
+          ` : `
+          <p style="margin:0;font-size:14px;color:#888;line-height:1.6;">We'll send your custom deposit invoice within 24 hours once we've confirmed your project scope.</p>
+          `}
         </div>
 
         <p style="margin:0;font-size:13px;color:#888;line-height:1.7;">
