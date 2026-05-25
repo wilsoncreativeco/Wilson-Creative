@@ -2240,8 +2240,12 @@ iframe{
   }
 
   .recent-builds-wrap{
-    min-height:auto;
-    display:block;
+    min-height:0;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:0;
+    padding-top:20px;
   }
 
   .build-side{
@@ -2313,18 +2317,25 @@ iframe{
   }
 
   .build-nav{
-    width:38px;
-    height:38px;
-    font-size:14px;
-    top:38%;
+    width:44px;
+    height:44px;
+    font-size:16px;
+    top:auto;
+    bottom:-64px;
+    background:rgba(255,255,255,.1);
+    border:1px solid rgba(255,255,255,.2);
   }
 
   .build-nav.prev{
-    left:8px;
+    left:calc(50% - 54px);
   }
 
   .build-nav.next{
-    right:8px;
+    right:calc(50% - 54px);
+  }
+
+  .build-dots-nav{
+    margin-top:80px;
   }
 
   .build-dots-nav{
