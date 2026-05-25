@@ -81,7 +81,9 @@ export default function Brief() {
     cta:          '',
     inspiration:  '',
     logoStatus:   '',
+    logoLink:     '',
     photosStatus: '',
+    assetsLink:   '',
     avoidColors:  '',
     avoidStyles:  '',
     socials:      { instagram: '', facebook: '', linkedin: '', other: '' },
@@ -350,6 +352,17 @@ export default function Brief() {
                       onClick={() => set('logoStatus', s.id)}>{s.label}</div>
                   ))}
                 </div>
+                {(form.logoStatus === 'yes' || form.logoStatus === 'wip') && (
+                  <div className="br-upload-row">
+                    <span className="br-upload-icon">🔗</span>
+                    <input
+                      className="br-input"
+                      value={form.logoLink}
+                      onChange={e => set('logoLink', e.target.value)}
+                      placeholder="Paste a Google Drive or Dropbox link to your logo files"
+                    />
+                  </div>
+                )}
               </div>
 
               <div className="br-section">
@@ -360,6 +373,17 @@ export default function Brief() {
                       onClick={() => set('photosStatus', s.id)}>{s.label}</div>
                   ))}
                 </div>
+                {(form.photosStatus === 'yes' || form.photosStatus === 'some') && (
+                  <div className="br-upload-row">
+                    <span className="br-upload-icon">🔗</span>
+                    <input
+                      className="br-input"
+                      value={form.assetsLink}
+                      onChange={e => set('assetsLink', e.target.value)}
+                      placeholder="Paste a Google Drive or Dropbox link to your photos / images"
+                    />
+                  </div>
+                )}
               </div>
 
               <div className="br-section">

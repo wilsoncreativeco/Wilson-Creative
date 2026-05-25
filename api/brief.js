@@ -32,8 +32,8 @@ export default async function handler(req, res) {
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' })
 
   const { email, aesthetic, vibe, layout, tone, features, headline, subheading,
-          cta, inspiration, logoStatus, photosStatus, avoidColors, avoidStyles,
-          socials, notes } = req.body
+          cta, inspiration, logoStatus, logoLink, photosStatus, assetsLink,
+          avoidColors, avoidStyles, socials, notes } = req.body
 
   if (!email) return res.status(400).json({ error: 'Missing email' })
 
@@ -75,9 +75,11 @@ export default async function handler(req, res) {
 
         <p style="margin:0 0 10px;font-size:12px;color:#c5a44a;letter-spacing:.08em;text-transform:uppercase;font-weight:600;">Assets</p>
         <table style="width:100%;border-collapse:collapse;margin-bottom:24px;">
-          ${row('Logo',   LOGO_LABELS[logoStatus]   || logoStatus)}
-          ${row('Photos', PHOTOS_LABELS[photosStatus] || photosStatus)}
-          ${row('Notes',  (notes || '—').replace(/\n/g, '<br>'))}
+          ${row('Logo',        LOGO_LABELS[logoStatus] || logoStatus)}
+          ${logoLink   ? row('Logo files',  `<a href="${logoLink}" style="color:#c5a44a;text-decoration:none;">${logoLink}</a>`) : ''}
+          ${row('Photos',      PHOTOS_LABELS[photosStatus] || photosStatus)}
+          ${assetsLink ? row('Photo files', `<a href="${assetsLink}" style="color:#c5a44a;text-decoration:none;">${assetsLink}</a>`) : ''}
+          ${row('Notes',       (notes || '—').replace(/\n/g, '<br>'))}
         </table>
       </div>
       ${darkFooter}

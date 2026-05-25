@@ -175,6 +175,41 @@ html, body {
   margin-top: 8px;
 }
 
+.br-upload-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 14px;
+  padding: 14px 16px;
+  background: rgba(197,164,74,.04);
+  border: 1px solid rgba(197,164,74,.2);
+  border-radius: 4px;
+  animation: fadeIn .2s ease;
+}
+
+.br-upload-icon {
+  font-size: 16px;
+  flex-shrink: 0;
+}
+
+.br-upload-row .br-input {
+  margin: 0;
+  border: none;
+  background: transparent;
+  padding: 0;
+  font-size: 13px;
+}
+
+.br-upload-row .br-input:focus {
+  border: none;
+  box-shadow: none;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
 /* ── Grids ────────────────────────────────────────────────────────────────── */
 .br-grid-2 {
   display: grid;
