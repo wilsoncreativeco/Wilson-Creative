@@ -72,6 +72,16 @@ const workItems = [
     scroll: 4200,
   },
   {
+    src: 'https://zantara.com.au',
+    preview: null,
+    displayUrl: 'zantara.com.au',
+    tag: 'Construction',
+    industry: 'Live Client — Zantara Formwork',
+    title: 'Built · To · Last',
+    sub: 'Premium formwork & construction brand, live in Brisbane',
+    scroll: 3800,
+  },
+  {
     src: 'https://detailing-ashen.vercel.app',
     preview: '/work-detailing.jpg',
     displayUrl: 'phantomdetailing.com.au',
