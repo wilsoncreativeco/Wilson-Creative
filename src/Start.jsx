@@ -336,8 +336,8 @@ export default function Start() {
                   </div>
                   <div className="sp-term">
                     <div className="sp-term-label">Out of Scope</div>
-                    <div className="sp-term-val">$150/hr</div>
-                    <div className="sp-term-note">Quoted before work begins</div>
+                    <div className="sp-term-val">Quoted separately</div>
+                    <div className="sp-term-note">Agreed in writing before work begins</div>
                   </div>
                   <div className="sp-term">
                     <div className="sp-term-label">Cancellation</div>
