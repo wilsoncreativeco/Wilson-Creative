@@ -37,9 +37,9 @@ const TIMELINE_LABELS = {
 }
 
 const CHECKS = [
-  'I understand my deposit is non-refundable. If I cancel after work has commenced, my deposit is forfeited. Any work completed beyond the deposit value will be invoiced at $150/hr.',
+  'I understand my deposit is non-refundable. If I cancel after work has commenced, my deposit is forfeited.',
   'I understand the remaining balance is due in full before the site goes live. Wilson Creative Co. will not publish, transfer, or hand over any files until payment is received in full.',
-  'I understand what a revision round means: one consolidated set of written feedback covering all requested changes at that stage. Each revision round must be submitted as a single document or message. My package includes the number of rounds stated; additional rounds are billed at $150/hr.',
+  'I understand what a revision round means: one consolidated set of written feedback covering all requested changes at that stage. Each revision round must be submitted as a single document or message. My package includes the number of rounds stated; additional rounds are billed at $150 per round.',
   'I understand that additions to the agreed scope — new pages, new features, or significant design changes not discussed at the time of this agreement — are not included and will be quoted separately before work begins.',
   'I understand it is my responsibility to supply all content (text, images, logos, brand assets) in a timely manner. Delays caused by late content or feedback from my side extend the project timeline and do not constitute a breach by Wilson Creative Co.',
   'I confirm that all content I provide is owned by me or properly licensed. I accept full liability for any third-party intellectual property claims arising from content I supply. Wilson Creative Co. accepts no liability for unlicensed content provided by the client.',
@@ -156,10 +156,10 @@ function buildPDF({ you, project, signature, date }) {
        'A non-refundable deposit is required to commence work. For Starter and Growth packages the deposit amount is fixed; for Premium it is 20% of the agreed project total. The deposit secures the client\'s place in the production schedule. The remaining balance is due in full before the website is published, transferred, or handed over. Wilson Creative Co. will not release any files, code, or credentials until payment is received in full.'],
 
       ['2. Cancellation',
-       'If the client cancels the project after work has commenced, the deposit is forfeited in full. Any work completed beyond the value of the deposit will be invoiced at Wilson Creative Co.\'s standard hourly rate of $150/hr (AUD) and is due within 14 days of the invoice date.'],
+       'If the client cancels the project after work has commenced, the deposit is forfeited in full. No further charges apply.'],
 
       ['3. Revisions',
-       'Each package includes the number of revision rounds stated at the time of agreement. A revision round is defined as one consolidated set of written feedback submitted in a single communication — not drip-fed across multiple messages or calls. Feedback must be specific and actionable. Wilson Creative Co. will implement changes that fall within the originally agreed scope. Additional revision rounds, or revisions that constitute new scope, are billed at $150/hr and will be quoted before work begins.'],
+       'Each package includes the number of revision rounds stated at the time of agreement. A revision round is defined as one consolidated set of written feedback submitted in a single communication — not drip-fed across multiple messages or calls. Feedback must be specific and actionable. Wilson Creative Co. will implement changes that fall within the originally agreed scope. Additional revision rounds are billed at $150 per round. Revisions that constitute new scope are quoted separately before work begins.'],
 
       ['4. Scope',
        'The scope of the project is defined by the package selected and the project brief provided at the time of this agreement. Additions to scope — including but not limited to new pages, new features, third-party integrations, e-commerce functionality, booking systems, or significant structural redesigns — are not included in the quoted price. Any additions will be quoted separately and must be agreed in writing before work begins.'],

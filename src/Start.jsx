@@ -54,9 +54,9 @@ const TIMELINES = [
 ]
 
 const CHECKS = [
-  'I understand my deposit is non-refundable. If I cancel after work has commenced, my deposit is forfeited. Any work completed beyond the deposit value will be invoiced at the hourly rate of $150/hr.',
+  'I understand my deposit is non-refundable. If I cancel after work has commenced, my deposit is forfeited.',
   'I understand the remaining balance is due in full before the site goes live. Wilson Creative Co. will not publish, transfer, or hand over any files until payment is received in full.',
-  'I understand what a revision round means: one consolidated set of written feedback covering all requested changes at that stage. Each revision round must be submitted as a single document or message — not drip-fed over multiple exchanges. My package includes the number of rounds stated; additional rounds are billed at $150/hr.',
+  'I understand what a revision round means: one consolidated set of written feedback covering all requested changes at that stage. Each revision round must be submitted as a single document or message — not drip-fed over multiple exchanges. My package includes the number of rounds stated; additional rounds are billed at $150 per round.',
   'I understand that additions to the agreed scope — new pages, new features, significant structural or design changes not discussed at the time of this agreement — are not included and will be quoted separately before work begins.',
   'I understand it is my responsibility to supply all content (text, images, logos, brand assets) in a timely manner. Project timelines are estimates. Delays caused by late content or feedback from my side do not constitute a breach by Wilson Creative Co., and the timeline will be extended accordingly.',
   'I confirm that all content I provide is owned by me or properly licensed for use on my website. I accept full liability for any third-party intellectual property claims arising from content I supply. Wilson Creative Co. accepts no liability for unlicensed content provided by the client.',
@@ -342,7 +342,7 @@ export default function Start() {
                   <div className="sp-term">
                     <div className="sp-term-label">Cancellation</div>
                     <div className="sp-term-val">Deposit forfeited</div>
-                    <div className="sp-term-note">Work beyond deposit at $150/hr</div>
+                    <div className="sp-term-note">No further charges</div>
                   </div>
                   <div className="sp-term">
                     <div className="sp-term-label">Jurisdiction</div>
