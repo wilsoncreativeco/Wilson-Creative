@@ -81,9 +81,7 @@ export default function Brief() {
     cta:          '',
     inspiration:  '',
     logoStatus:   '',
-    logoLink:     '',
     photosStatus: '',
-    assetsLink:   '',
     avoidColors:  '',
     avoidStyles:  '',
     socials:      { instagram: '', facebook: '', linkedin: '', other: '' },
@@ -354,13 +352,8 @@ export default function Brief() {
                 </div>
                 {(form.logoStatus === 'yes' || form.logoStatus === 'wip') && (
                   <div className="br-upload-row">
-                    <span className="br-upload-icon">🔗</span>
-                    <input
-                      className="br-input"
-                      value={form.logoLink}
-                      onChange={e => set('logoLink', e.target.value)}
-                      placeholder="Paste a Google Drive or Dropbox link to your logo files"
-                    />
+                    <span className="br-upload-icon">✓</span>
+                    <span className="br-upload-note">Great — just email them through after you submit and we'll get them sorted.</span>
                   </div>
                 )}
               </div>
@@ -375,13 +368,8 @@ export default function Brief() {
                 </div>
                 {(form.photosStatus === 'yes' || form.photosStatus === 'some') && (
                   <div className="br-upload-row">
-                    <span className="br-upload-icon">🔗</span>
-                    <input
-                      className="br-input"
-                      value={form.assetsLink}
-                      onChange={e => set('assetsLink', e.target.value)}
-                      placeholder="Paste a Google Drive or Dropbox link to your photos / images"
-                    />
+                    <span className="br-upload-icon">✓</span>
+                    <span className="br-upload-note">Great — just email them through after you submit and we'll get them sorted.</span>
                   </div>
                 )}
               </div>

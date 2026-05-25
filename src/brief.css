@@ -192,17 +192,10 @@ html, body {
   flex-shrink: 0;
 }
 
-.br-upload-row .br-input {
-  margin: 0;
-  border: none;
-  background: transparent;
-  padding: 0;
+.br-upload-note {
   font-size: 13px;
-}
-
-.br-upload-row .br-input:focus {
-  border: none;
-  box-shadow: none;
+  color: rgba(197,164,74,.9);
+  line-height: 1.5;
 }
 
 @keyframes fadeIn {
