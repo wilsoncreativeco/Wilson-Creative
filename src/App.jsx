@@ -73,7 +73,7 @@ const workItems = [
   },
   {
     src: 'https://zantara.com.au',
-    preview: null,
+    preview: '/work-zantara.jpg',
     displayUrl: 'zantara.com.au',
     tag: 'Construction',
     industry: 'Live Client — Zantara Formwork',

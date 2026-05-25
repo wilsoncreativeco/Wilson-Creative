@@ -1195,15 +1195,12 @@ body::before{
 }
 
 .build-iframe-wrap iframe{
-  position:absolute;
-  top:0;
-  left:50%;
-  margin-left:-720px;
   width:1440px;
   height:900px;
   border:none;
-  transform-origin:top center;
+  transform-origin:top left;
   pointer-events:none;
+  display:block;
 }
 
 .side-preview-img{
