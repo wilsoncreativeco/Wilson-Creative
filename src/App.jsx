@@ -274,7 +274,24 @@ export default function App() {
   const [scrollProg, setScrollProg] = useState(0)
   const [showFCta, setShowFCta] = useState(false)
   const [openFaq, setOpenFaq] = useState(null)
-  // formStatus removed — homepage form replaced with /start CTA (Option B)
+  const [formStatus, setFormStatus] = useState('idle') // idle | sending | sent | error
+  const [form, setForm] = useState({ name: '', email: '', what: '', budget: '' })
+  const setF = k => e => setForm(f => ({ ...f, [k]: e.target.value }))
+
+  const handleContactSubmit = async e => {
+    e.preventDefault()
+    if (!form.name.trim() || !form.email.trim()) return
+    setFormStatus('sending')
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name: form.name, email: form.email, type: form.what, package: form.budget }),
+      })
+      setFormStatus(res.ok ? 'sent' : 'error')
+    } catch { setFormStatus('error') }
+  }
+
   const [modal, setModal] = useState(null) // null | 'demo' | 'hosting'
   const [modalForm, setModalForm] = useState({ name: '', email: '', business: '', field: '', note: '' })
   const [modalStatus, setModalStatus] = useState('idle')
@@ -1051,40 +1068,104 @@ const goNext = () => {
         </div>
       </section>
 
-      <section id="contact" className="cta-sec" aria-labelledby="cta-h2">
+      <section id="contact" className="cta-sec cta-split" aria-labelledby="cta-h2">
         <div className="cta-glow" aria-hidden="true" />
-        <p className="stag rv" style={{ justifyContent: 'center' }}>Ready to Start?</p>
-        <h2 className="cta-h2 rv d1" id="cta-h2">Let&apos;s Build<br /><span>Something</span><br />Unforgettable.</h2>
-        <p className="cta-sub rv d2">Your competitors are using templates. Your customers deserve better. Let&apos;s make something that stops the scroll.</p>
 
-        <div className="rv d3" style={{ textAlign: 'center', margin: '44px 0 0' }}>
-          <a href="/start" className="btn-g" style={{ fontSize: '15px', padding: '16px 44px', letterSpacing: '0.04em' }}>
-            Start a Project →
-          </a>
-          <p style={{ marginTop: '20px', fontSize: '13px', color: 'var(--muted, #888)' }}>
-            Got a question?{' '}
-            <a href="mailto:wilsoncreativeco.au@gmail.com" style={{ color: 'var(--gold, #c5a44a)', textDecoration: 'none' }}>
-              wilsoncreativeco.au@gmail.com
-            </a>
+        {/* ── Left col ── */}
+        <div className="cta-left">
+          <p className="stag rv">Get In Touch</p>
+          <h2 className="cta-h2 rv d1" id="cta-h2">Let&apos;s Build<br /><span>Something</span><br />Unforgettable.</h2>
+          <p className="cta-sub rv d2" style={{ margin: '0 0 52px', textAlign: 'left' }}>
+            Tell us what you&apos;re after. No obligation — just a conversation to see if we&apos;re a good fit.
           </p>
+
+          <div className="cta-ci rv d3" style={{ justifyContent: 'flex-start', marginTop: 0, paddingTop: 0, borderTop: 'none', gap: '36px', flexDirection: 'column', alignItems: 'flex-start' }}>
+            <div className="ci" style={{ textAlign: 'left' }}>
+              <p className="ci-l">Call Us</p>
+              <a href="tel:+61401609118" className="ci-v">0401 609 118</a>
+            </div>
+            <div className="ci" style={{ textAlign: 'left' }}>
+              <p className="ci-l">Email Us</p>
+              <a href="mailto:wilsoncreativeco.au@gmail.com" className="ci-v">wilsoncreativeco.au@gmail.com</a>
+            </div>
+            <div className="ci" style={{ textAlign: 'left' }}>
+              <p className="ci-l">Based In</p>
+              <span className="ci-v">Brisbane, Australia</span>
+            </div>
+          </div>
         </div>
 
-        <div className="cta-ci rv d4">
-          <div className="ci">
-            <p className="ci-l">Call Us</p>
-            <a href="tel:+61401609118" className="ci-v">0401 609 118</a>
-          </div>
-          <div className="ci-div" aria-hidden="true" />
-          <div className="ci">
-            <p className="ci-l">Email Us</p>
-            <a href="mailto:wilsoncreativeco.au@gmail.com" className="ci-v">wilsoncreativeco.au@gmail.com</a>
-          </div>
-          <div className="ci-div" aria-hidden="true" />
-          <div className="ci">
-            <p className="ci-l">Based In</p>
-            <span className="ci-v">Brisbane, Australia</span>
-          </div>
+        {/* ── Right col — form ── */}
+        <div className="cta-right rv d2">
+          {formStatus === 'sent' ? (
+            <div className="f-ok">
+              <div className="f-ok-ico">✦</div>
+              <h3>Message received.</h3>
+              <p>We&apos;ll be in touch within 24 hours.<br />Check your inbox — we reply personally, not with a bot.</p>
+            </div>
+          ) : (
+            <form className="contact-form" onSubmit={handleContactSubmit} noValidate>
+              <div className="f-row">
+                <div className="f-fld">
+                  <input
+                    className="fn-input"
+                    value={form.name}
+                    onChange={setF('name')}
+                    placeholder="Your Name *"
+                    required
+                  />
+                </div>
+                <div className="f-fld">
+                  <input
+                    className="fn-input"
+                    type="email"
+                    value={form.email}
+                    onChange={setF('email')}
+                    placeholder="Email Address *"
+                    required
+                  />
+                </div>
+              </div>
+              <div className="f-fld">
+                <input
+                  className="fn-input"
+                  value={form.what}
+                  onChange={setF('what')}
+                  placeholder="What do you need? (new site, redesign, landing page…)"
+                />
+              </div>
+              <div className="f-fld">
+                <select
+                  className={`fn-input f-sel${form.budget ? ' has-value' : ''}`}
+                  value={form.budget}
+                  onChange={setF('budget')}
+                >
+                  <option value="">Budget range</option>
+                  <option value="Starter ~$600">Starter — ~$600</option>
+                  <option value="Growth ~$1,000">Growth — ~$1,000</option>
+                  <option value="Premium $2k+">Premium — $2,000+</option>
+                  <option value="Not sure yet">Not sure yet</option>
+                </select>
+              </div>
+
+              {formStatus === 'error' && (
+                <p style={{ fontSize: '12px', color: '#e05a5a', margin: '0 0 10px' }}>Something went wrong — try again or email us directly.</p>
+              )}
+
+              <button className="f-sub" type="submit" disabled={formStatus === 'sending'}>
+                {formStatus === 'sending' ? 'Sending…' : 'Send Message →'}
+              </button>
+
+              <p className="f-note">
+                We&apos;ll get back to you within 24 hours. No obligation, no spam.{' '}
+                <br />
+                Already decided?{' '}
+                <a href="/start" style={{ color: 'var(--g)', textDecoration: 'none', fontStyle: 'italic' }}>Start your project here →</a>
+              </p>
+            </form>
+          )}
         </div>
+
       </section>
 
       <footer role="contentinfo">

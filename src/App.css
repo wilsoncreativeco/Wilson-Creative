@@ -1631,11 +1631,27 @@ iframe::-webkit-scrollbar{
    ║  CTA / CONTACT               ║
    ╚══════════════════════════════╝ */
 
+/* ╔══════════════════════════════╗
+   ║  CTA / CONTACT SECTION       ║
+   ╚══════════════════════════════╝ */
+
 .cta-sec{
-  padding:150px 52px;
+  padding:130px 52px;
   text-align:center;
   position:relative;
   overflow:hidden;
+}
+
+/* Split layout */
+.cta-split{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:80px;
+  align-items:center;
+  text-align:left;
+  max-width:1200px;
+  margin:0 auto;
+  padding:130px 52px;
 }
 
 .cta-glow{
@@ -1643,18 +1659,19 @@ iframe::-webkit-scrollbar{
   top:50%;
   left:50%;
   transform:translate(-50%,-50%);
-  width:700px;
-  height:700px;
+  width:800px;
+  height:800px;
   pointer-events:none;
-  background:radial-gradient(circle, rgba(197,164,74,.07), transparent 65%);
+  background:radial-gradient(ellipse at 40% 50%, rgba(197,164,74,.08), transparent 60%);
 }
 
 .cta-sec .stag{ justify-content:center; }
 .cta-sec .stag::before{ display:none; }
+.cta-split .stag{ justify-content:flex-start; }
 
 .cta-h2{
   font-family:'Bebas Neue',sans-serif;
-  font-size:clamp(52px,9vw,130px);
+  font-size:clamp(52px,7vw,110px);
   line-height:.9;
   margin:14px 0 18px;
 }
@@ -1675,60 +1692,70 @@ iframe::-webkit-scrollbar{
   margin:0 auto 50px;
 }
 
+/* ── Right column (form panel) ── */
+.cta-right{
+  position:relative;
+  background:rgba(255,255,255,.025);
+  border:1px solid var(--bd);
+  border-radius:2px;
+  padding:40px 36px 36px;
+}
+
+.cta-right::before{
+  content:'';
+  position:absolute;
+  top:0; left:0;
+  width:2px; height:100%;
+  background:linear-gradient(180deg, transparent 0%, var(--g) 40%, transparent 100%);
+  opacity:.5;
+}
+
 .contact-form{
-  max-width:640px;
-  margin:0 auto;
+  width:100%;
   text-align:left;
 }
 
-.f-row{ display:flex; gap:12px; }
-.f-fld{ flex:1; margin-bottom:12px; }
+.f-row{ display:flex; gap:10px; }
+.f-fld{ flex:1; margin-bottom:10px; }
 
-.f-fld select,
-.f-fld input,
-.f-fld textarea{
+/* reuse fn-input styles for form fields */
+.contact-form .fn-input,
+.contact-form .f-sel{
   width:100%;
-  padding:14px 17px;
-  background:rgba(255,255,255,.04);
-  border:1px solid var(--bd);
+  padding:14px 16px;
+  background:rgba(255,255,255,.03);
+  border:1px solid rgba(255,255,255,.08);
   color:var(--w);
   font-family:'DM Sans',sans-serif;
-  font-size:13.5px;
+  font-size:13px;
   font-weight:300;
+  border-radius:0;
   outline:none;
-  transition:border-color .25s, background .25s;
+  transition:border-color .2s, background .2s;
   -webkit-appearance:none;
 }
 
-.f-fld textarea{ min-height:120px; resize:vertical; }
+.contact-form .fn-input::placeholder{ color:rgba(245,242,236,.28); }
 
-.f-fld select{
+.contact-form .fn-input:focus,
+.contact-form .f-sel:focus{
+  border-color:rgba(197,164,74,.5);
+  background:rgba(255,255,255,.05);
+}
+
+.contact-form .f-sel{
   appearance:none;
   -webkit-appearance:none;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='rgba(245,242,236,.35)' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='rgba(245,242,236,.3)' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
   background-repeat:no-repeat;
   background-position:right 16px center;
+  background-color:rgba(255,255,255,.03);
   cursor:pointer;
+  color:rgba(245,242,236,.28);
 }
 
-.f-fld select option{
-  background:#111;
-  color:var(--w);
-}
-
-.f-fld input::placeholder,
-.f-fld textarea::placeholder{ color:var(--w3); }
-
-.f-fld select{ color:var(--w3); }
-.f-fld select.has-value,
-.f-fld select:not([value='']){ color:var(--w); }
-
-.f-fld input:focus,
-.f-fld select:focus,
-.f-fld textarea:focus{
-  border-color:var(--bdg);
-  background:rgba(255,255,255,.055);
-}
+.contact-form .f-sel.has-value{ color:var(--w); }
+.contact-form .f-sel option{ background:#0f0e13; color:var(--w); }
 
 .f-sub{
   width:100%;
@@ -1739,12 +1766,12 @@ iframe::-webkit-scrollbar{
   font-size:10.5px;
   letter-spacing:.2em;
   text-transform:uppercase;
-  font-weight:500;
+  font-weight:600;
   border:none;
   border-radius:99px;
   cursor:pointer;
   transition:background .3s, transform .25s, box-shadow .3s;
-  margin-top:4px;
+  margin-top:6px;
 }
 
 .f-sub:hover{
@@ -1753,34 +1780,39 @@ iframe::-webkit-scrollbar{
   box-shadow:0 10px 36px var(--gg);
 }
 
-.f-sub:disabled{ opacity:.6; cursor:not-allowed; transform:none; }
+.f-sub:disabled{ opacity:.5; cursor:not-allowed; transform:none; }
 
 .f-note{
   font-size:11px;
   color:var(--w3);
   text-align:center;
-  margin-top:12px;
-  line-height:1.6;
+  margin-top:14px;
+  line-height:1.7;
 }
 
 .f-ok{
   text-align:center;
-  padding:40px;
-  border:1px solid var(--bdg);
-  background:rgba(197,164,74,.03);
+  padding:52px 32px;
 }
 
-.f-ok-ico{ font-size:34px; margin-bottom:12px; }
+.f-ok-ico{
+  font-size:28px;
+  color:var(--g);
+  margin-bottom:16px;
+}
 
 .f-ok h3{
   font-family:'Cormorant Garamond',serif;
-  font-size:24px;
+  font-size:26px;
   font-weight:300;
-  margin-bottom:7px;
+  color:var(--w);
+  margin-bottom:10px;
+  letter-spacing:.01em;
 }
 
-.f-ok p{ font-size:13px; color:var(--w6); }
+.f-ok p{ font-size:13px; color:var(--w6); line-height:1.8; }
 
+/* Contact info strip (left col) */
 .cta-ci{
   display:flex;
   justify-content:center;
@@ -2055,6 +2087,9 @@ footer{
   .f-row{ flex-direction:column; gap:0; }
 
   .cta-sec{ padding:90px 24px; }
+  .cta-split{ grid-template-columns:1fr; gap:52px; padding:90px 24px; }
+  .cta-left .cta-ci{ flex-direction:row !important; gap:28px !important; margin-top:0; }
+  .cta-right{ padding:28px 22px; }
   .cta-ci{ gap:24px; }
   .ci-div{ display:none; }
 

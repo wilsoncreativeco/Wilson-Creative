@@ -7,7 +7,7 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' })
   }
 
-  const { name, email, phone, business, type, package: pkg, style, timeline, message } = req.body
+  const { name, email, type, package: pkg } = req.body
 
   if (!name || !email) {
     return res.status(400).json({ error: 'Missing required fields' })
@@ -15,8 +15,8 @@ export default async function handler(req, res) {
 
   const row = (label, value) => value ? `
     <tr>
-      <td style="padding:12px 0;border-bottom:1px solid #eeeeee;color:#888888;width:110px;font-size:13px;vertical-align:top;">${label}</td>
-      <td style="padding:12px 0;border-bottom:1px solid #eeeeee;color:#0d0d0d;font-size:14px;line-height:1.6;">${value}</td>
+      <td style="padding:11px 0;border-bottom:1px solid #1e1e1e;color:#888;width:120px;font-size:13px;vertical-align:top;">${label}</td>
+      <td style="padding:11px 0;border-bottom:1px solid #1e1e1e;color:#f0ece2;font-size:13px;line-height:1.6;">${value}</td>
     </tr>` : ''
 
   try {
@@ -24,28 +24,24 @@ export default async function handler(req, res) {
       from: 'Wilson Creative Co <contact@wilsoncreativeco.au>',
       to: 'wilsoncreativeco.au@gmail.com',
       replyTo: email,
-      subject: `New enquiry from ${name}${business ? ` — ${business}` : ''}`,
+      subject: `New enquiry — ${name}${type ? ` · ${type}` : ''}`,
       html: `
-        <div style="font-family:sans-serif;max-width:600px;margin:0 auto;background:#ffffff;">
-          <div style="background:#0d0d0d;padding:28px 32px;">
-            <p style="margin:0;font-size:18px;font-weight:600;color:#ffffff;letter-spacing:0.5px;">Wilson <span style="color:#c9a84c;">Creative</span> Co.</p>
+        <div style="font-family:sans-serif;max-width:560px;margin:0 auto;background:#0f0e13;border:1px solid #1e1e1e;border-radius:8px;overflow:hidden;">
+          <div style="background:#07060a;padding:22px 32px;border-bottom:1px solid #1e1e1e;">
+            <p style="margin:0;font-size:16px;font-weight:600;color:#f0ece2;letter-spacing:0.3px;">Wilson <span style="color:#c5a44a;">Creative</span> Co.</p>
           </div>
-          <div style="padding:32px;">
-            <h2 style="margin:0 0 24px;font-size:20px;color:#0d0d0d;">New Project Enquiry</h2>
+          <div style="padding:28px 32px;">
+            <h2 style="margin:0 0 6px;font-size:18px;color:#f0ece2;font-weight:600;">New Enquiry ✦</h2>
+            <p style="margin:0 0 24px;font-size:13px;color:#555;">via wilsoncreativeco.au — reply directly to respond</p>
             <table style="width:100%;border-collapse:collapse;">
-              ${row('Name', name)}
-              ${row('Business', business)}
-              ${row('Email', `<a href="mailto:${email}" style="color:#c9a84c;text-decoration:none;">${email}</a>`)}
-              ${row('Phone', phone)}
-              ${row('Website Type', type)}
-              ${row('Package', pkg)}
-              ${row('Style', style)}
-              ${row('Timeline', timeline)}
-              ${row('Notes', message ? message.replace(/\n/g, '<br>') : '')}
+              ${row('Name',    name)}
+              ${row('Email',   `<a href="mailto:${email}" style="color:#c5a44a;text-decoration:none;">${email}</a>`)}
+              ${row('Need',    type || '—')}
+              ${row('Budget',  pkg  || '—')}
             </table>
           </div>
-          <div style="background:#f7f7f7;padding:16px 32px;">
-            <p style="margin:0;font-size:12px;color:#aaaaaa;">Sent via wilsoncreativeco.au contact form</p>
+          <div style="background:#0b0a0e;padding:14px 32px;border-top:1px solid #1e1e1e;">
+            <p style="margin:0;font-size:11px;color:#444;">Hit reply to respond directly to ${name}.</p>
           </div>
         </div>
       `,
