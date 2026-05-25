@@ -1212,6 +1212,15 @@ body::before{
   pointer-events:none;
 }
 
+.main-preview-img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:top center;
+  display:block;
+  pointer-events:none;
+}
+
 /* CENTER SCALE */
 .main-wrap iframe{
   transform:scale(.64);

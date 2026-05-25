@@ -874,12 +874,15 @@ const goNext = () => {
 
     <div className="build-iframe-wrap main-wrap">
 
-      <iframe
-        key={activeBuild}
-        src={workItems[activeBuild].src}
-        title={workItems[activeBuild].title}
-        scrolling="no"
-      />
+      {workItems[activeBuild].preview
+        ? <img src={workItems[activeBuild].preview} alt={workItems[activeBuild].title} className="main-preview-img" />
+        : <iframe
+            key={activeBuild}
+            src={workItems[activeBuild].src}
+            title={workItems[activeBuild].title}
+            scrolling="no"
+          />
+      }
 
     </div>
 
