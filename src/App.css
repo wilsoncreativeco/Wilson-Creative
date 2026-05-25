@@ -1181,7 +1181,9 @@ body::before{
 }
 
 .build-iframe-wrap{
-  position:relative;
+  display:flex;
+  justify-content:center;
+  align-items:flex-start;
   overflow:hidden;
   background:#000;
 }
@@ -1198,6 +1200,7 @@ body::before{
   width:1440px;
   height:900px;
   border:none;
+  flex-shrink:0;
   transform-origin:top center;
   pointer-events:none;
   display:block;
@@ -2153,7 +2156,9 @@ footer{
 /* ===== FINAL IFRAME FIX ===== */
 
 .build-iframe-wrap{
-  position:relative;
+  display:flex;
+  justify-content:center;
+  align-items:flex-start;
   overflow:hidden;
   background:#000;
 }
