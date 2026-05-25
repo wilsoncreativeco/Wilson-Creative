@@ -1790,6 +1790,31 @@ iframe::-webkit-scrollbar{
   line-height:1.7;
 }
 
+.f-start-link{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-top:18px;
+  padding-top:18px;
+  border-top:1px solid rgba(255,255,255,.07);
+}
+
+.f-start-link span{
+  font-size:12px;
+  color:var(--w3);
+}
+
+.f-start-link a{
+  font-size:12.5px;
+  font-weight:600;
+  color:var(--g);
+  text-decoration:none;
+  letter-spacing:.02em;
+  transition:opacity .2s;
+}
+
+.f-start-link a:hover{ opacity:.75; }
+
 .f-ok{
   text-align:center;
   padding:52px 32px;

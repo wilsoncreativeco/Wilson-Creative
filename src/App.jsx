@@ -1157,11 +1157,13 @@ const goNext = () => {
               </button>
 
               <p className="f-note">
-                We&apos;ll get back to you within 24 hours. No obligation, no spam.{' '}
-                <br />
-                Already decided?{' '}
-                <a href="/start" style={{ color: 'var(--g)', textDecoration: 'none', fontStyle: 'italic' }}>Start your project here →</a>
+                We&apos;ll get back to you within 24 hours. No obligation, no spam.
               </p>
+
+              <div className="f-start-link">
+                <span>Already decided?</span>
+                <a href="/start">Start your project →</a>
+              </div>
             </form>
           )}
         </div>
