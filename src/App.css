@@ -1198,7 +1198,7 @@ body::before{
   width:1440px;
   height:900px;
   border:none;
-  transform-origin:top left;
+  transform-origin:top center;
   pointer-events:none;
   display:block;
 }
