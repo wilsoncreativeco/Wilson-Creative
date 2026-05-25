@@ -1150,6 +1150,11 @@ body::before{
   background:#28c840;
 }
 
+/* Nav arrows — desktop hidden, mobile only */
+.build-nav{
+  display:none;
+}
+
 .build-url{
   flex:1;
   height:32px;
@@ -2317,25 +2322,32 @@ iframe{
   }
 
   .build-nav{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    position:absolute;
     width:44px;
     height:44px;
-    font-size:16px;
-    top:auto;
-    bottom:-64px;
+    font-size:18px;
+    bottom:-56px;
     background:rgba(255,255,255,.1);
     border:1px solid rgba(255,255,255,.2);
+    border-radius:50%;
+    color:#fff;
+    cursor:pointer;
+    z-index:10;
   }
 
   .build-nav.prev{
-    left:calc(50% - 54px);
+    left:calc(50% - 50px);
   }
 
   .build-nav.next{
-    right:calc(50% - 54px);
+    left:calc(50% + 6px);
   }
 
   .build-dots-nav{
-    margin-top:80px;
+    margin-top:76px;
   }
 
   .build-dots-nav{
