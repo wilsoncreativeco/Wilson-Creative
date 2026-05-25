@@ -274,7 +274,7 @@ export default function App() {
   const [scrollProg, setScrollProg] = useState(0)
   const [showFCta, setShowFCta] = useState(false)
   const [openFaq, setOpenFaq] = useState(null)
-  const [formStatus, setFormStatus] = useState('idle')
+  // formStatus removed — homepage form replaced with /start CTA (Option B)
   const [modal, setModal] = useState(null) // null | 'demo' | 'hosting'
   const [modalForm, setModalForm] = useState({ name: '', email: '', business: '', field: '', note: '' })
   const [modalStatus, setModalStatus] = useState('idle')
@@ -524,32 +524,7 @@ const [activeBuild, setActiveBuild] = useState(1)
     scrollTo(href, menuOpen)
   }
 
-  const handleSubmit = async e => {
-    e.preventDefault()
-    setFormStatus('sending')
-    const fd = new FormData(e.target)
-    try {
-      const res = await fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          name: fd.get('name'),
-          email: fd.get('email'),
-          phone: fd.get('phone'),
-          business: fd.get('business'),
-          type: fd.get('type'),
-          package: fd.get('package'),
-          style: fd.get('style'),
-          timeline: fd.get('timeline'),
-          message: fd.get('message'),
-        }),
-      })
-      setFormStatus(res.ok ? 'sent' : 'idle')
-      if (res.ok) e.target.reset()
-    } catch {
-      setFormStatus('idle')
-    }
-  }
+  // handleSubmit removed — homepage form replaced with /start CTA
 
   const openModal = (type) => {
     setModal(type)
@@ -703,7 +678,7 @@ const goNext = () => {
           </h2>
           <p className="h-sub">And turn it into customers.</p>
           <div className="h-btns">
-            <a href="#contact" className="btn-g" onClick={e => handleNav(e, '#contact')}>Start a Project</a>
+            <a href="/start" className="btn-g">Start a Project →</a>
             <a href="#work" className="btn-o" onClick={e => handleNav(e, '#work')}>View Our Work →</a>
           </div>
         </div>
@@ -1078,88 +1053,22 @@ const goNext = () => {
 
       <section id="contact" className="cta-sec" aria-labelledby="cta-h2">
         <div className="cta-glow" aria-hidden="true" />
-        <p className="stag rv" style={{ justifyContent: 'center' }}>Ready to Stand Out?</p>
+        <p className="stag rv" style={{ justifyContent: 'center' }}>Ready to Start?</p>
         <h2 className="cta-h2 rv d1" id="cta-h2">Let&apos;s Build<br /><span>Something</span><br />Unforgettable.</h2>
         <p className="cta-sub rv d2">Your competitors are using templates. Your customers deserve better. Let&apos;s make something that stops the scroll.</p>
-        <div className="contact-form rv d3">
-          {formStatus === 'sent' ? (
-            <div className="f-ok" role="alert" aria-live="polite">
-              <div className="f-ok-ico">✦</div>
-              <h3>Message Received</h3>
-              <p>We&apos;ll get back to you shortly. Talk soon.</p>
-            </div>
-          ) : (
-            <>
-              <form onSubmit={handleSubmit} noValidate>
-                <div className="f-row">
-                  <div className="f-fld">
-                    <input type="text" name="name" placeholder="Your Name *" required autoComplete="name" aria-label="Your Name" />
-                  </div>
-                  <div className="f-fld">
-                    <input type="text" name="business" placeholder="Business Name" autoComplete="organization" aria-label="Business Name" />
-                  </div>
-                </div>
-                <div className="f-row">
-                  <div className="f-fld">
-                    <input type="email" name="email" placeholder="Email Address *" required autoComplete="email" aria-label="Email Address" />
-                  </div>
-                  <div className="f-fld">
-                    <input type="tel" name="phone" placeholder="Phone Number" autoComplete="tel" aria-label="Phone Number" />
-                  </div>
-                </div>
-                <div className="f-row">
-                  <div className="f-fld">
-                    <select name="type" aria-label="Website Type" onChange={e => e.target.style.color = e.target.value ? 'var(--w)' : ''}>
-                      <option value="">Website Type</option>
-                      <option value="New Website">New Website</option>
-                      <option value="Redesign">Redesign Existing Site</option>
-                      <option value="Landing Page">Landing Page</option>
-                      <option value="E-commerce">E-commerce</option>
-                      <option value="Not sure">Not Sure Yet</option>
-                    </select>
-                  </div>
-                  <div className="f-fld">
-                    <select name="package" aria-label="Package Interest" onChange={e => e.target.style.color = e.target.value ? 'var(--w)' : ''}>
-                      <option value="">Package Interest</option>
-                      <option value="Starter">Starter — From $600</option>
-                      <option value="Growth">Growth — From $1,000</option>
-                      <option value="Premium">Premium — From $2,000</option>
-                      <option value="Not sure">Not Sure Yet</option>
-                    </select>
-                  </div>
-                </div>
-                <div className="f-row">
-                  <div className="f-fld">
-                    <select name="style" aria-label="Style Preference" onChange={e => e.target.style.color = e.target.value ? 'var(--w)' : ''}>
-                      <option value="">Style Preference</option>
-                      <option value="Minimal & Clean">Minimal &amp; Clean</option>
-                      <option value="Bold & Striking">Bold &amp; Striking</option>
-                      <option value="Luxury & Premium">Luxury &amp; Premium</option>
-                      <option value="Playful & Creative">Playful &amp; Creative</option>
-                      <option value="Open to direction">Open to Direction</option>
-                    </select>
-                  </div>
-                  <div className="f-fld">
-                    <select name="timeline" aria-label="Timeline" onChange={e => e.target.style.color = e.target.value ? 'var(--w)' : ''}>
-                      <option value="">Timeline</option>
-                      <option value="ASAP">ASAP</option>
-                      <option value="Within 1 month">Within 1 Month</option>
-                      <option value="1–3 months">1–3 Months</option>
-                      <option value="Flexible">Flexible</option>
-                    </select>
-                  </div>
-                </div>
-                <div className="f-fld">
-                  <textarea name="message" placeholder="Anything else you'd like us to know about your project?" aria-label="Additional details" />
-                </div>
-                <button type="submit" className="f-sub" disabled={formStatus === 'sending'}>
-                  {formStatus === 'sending' ? 'Sending…' : 'Send Message →'}
-                </button>
-              </form>
-              <p className="f-note">We&apos;ll get back to you within 24 hours. No obligation, no spam.</p>
-            </>
-          )}
+
+        <div className="rv d3" style={{ textAlign: 'center', margin: '44px 0 0' }}>
+          <a href="/start" className="btn-g" style={{ fontSize: '15px', padding: '16px 44px', letterSpacing: '0.04em' }}>
+            Start a Project →
+          </a>
+          <p style={{ marginTop: '20px', fontSize: '13px', color: 'var(--muted, #888)' }}>
+            Got a question?{' '}
+            <a href="mailto:wilsoncreativeco.au@gmail.com" style={{ color: 'var(--gold, #c5a44a)', textDecoration: 'none' }}>
+              wilsoncreativeco.au@gmail.com
+            </a>
+          </p>
         </div>
+
         <div className="cta-ci rv d4">
           <div className="ci">
             <p className="ci-l">Call Us</p>

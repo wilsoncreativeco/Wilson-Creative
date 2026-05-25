@@ -9,7 +9,9 @@ export default async function handler(req, res) {
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' })
 
   const { clientName, clientEmail, business, siteUrl, balanceAmount,
-          pages, features, personalNote } = req.body
+          pages, features, personalNote,
+          adminUrl, adminPassword, domainRegistrar, domainLogin,
+          hostingProvider, hostingNotes, analyticsId, otherLogins } = req.body
 
   if (!clientName || !clientEmail || !balanceAmount) {
     return res.status(400).json({ error: 'Missing required fields' })
@@ -40,13 +42,16 @@ export default async function handler(req, res) {
       success_url: 'https://wilsoncreativeco.au/?launched=1',
       cancel_url:  'https://wilsoncreativeco.au/',
       metadata: {
-        type:         'balance',
-        client_name:  clientName,
+        type:              'balance',
+        client_name:       clientName,
         business,
-        site_url:     siteUrl || '',
-        pages:        pages || '',
-        features:     features || '',
-        personal_note: personalNote || '',
+        site_url:          siteUrl || '',
+        admin_url:         adminUrl || '',
+        pages:             pages || '',
+        features:          features || '',
+        domain_registrar:  domainRegistrar || '',
+        hosting_provider:  hostingProvider || '',
+        personal_note:     personalNote || '',
       },
       expires_at: Math.floor(Date.now() / 1000) + 60 * 60 * 23,
     })
@@ -83,8 +88,65 @@ export default async function handler(req, res) {
         <div style="background:#0b0a0e;border:1px solid #1e1e1e;border-radius:6px;padding:22px 24px;margin-bottom:32px;">
           <p style="margin:0 0 14px;font-size:12px;color:#c5a44a;letter-spacing:.1em;text-transform:uppercase;font-weight:700;">What We Built</p>
           <table style="width:100%;border-collapse:collapse;">
-            ${pages ? `<tr><td style="padding:10px 0;border-bottom:1px solid #1a1a1a;color:#888;width:110px;font-size:13px;vertical-align:top;">Pages</td><td style="padding:10px 0;border-bottom:1px solid #1a1a1a;color:#f0ece2;font-size:13px;line-height:1.6;">${pages}</td></tr>` : ''}
+            ${pages ? `<tr><td style="padding:10px 0;border-bottom:${features ? '1px solid #1a1a1a' : 'none'};color:#888;width:110px;font-size:13px;vertical-align:top;">Pages</td><td style="padding:10px 0;border-bottom:${features ? '1px solid #1a1a1a' : 'none'};color:#f0ece2;font-size:13px;line-height:1.6;">${pages}</td></tr>` : ''}
             ${features ? `<tr><td style="padding:10px 0;color:#888;font-size:13px;vertical-align:top;">Features</td><td style="padding:10px 0;color:#f0ece2;font-size:13px;line-height:1.6;">${features}</td></tr>` : ''}
+          </table>
+        </div>` : ''}
+
+        <!-- Credentials / handover package -->
+        ${siteUrl || adminUrl || adminPassword || domainRegistrar || domainLogin || hostingProvider || analyticsId || otherLogins ? `
+        <div style="background:#0b0a0e;border:1px solid #1e1e1e;border-radius:6px;padding:22px 24px;margin-bottom:32px;">
+          <p style="margin:0 0 6px;font-size:12px;color:#c5a44a;letter-spacing:.1em;text-transform:uppercase;font-weight:700;">Your Site Credentials</p>
+          <p style="margin:0 0 18px;font-size:12px;color:#555;">Keep this email somewhere safe — these are the keys to your website.</p>
+          <table style="width:100%;border-collapse:collapse;">
+
+            ${siteUrl ? `
+            <tr>
+              <td style="padding:10px 0;border-bottom:1px solid #1a1a1a;color:#888;width:140px;font-size:13px;vertical-align:top;">Live Site</td>
+              <td style="padding:10px 0;border-bottom:1px solid #1a1a1a;font-size:13px;vertical-align:top;">
+                <a href="${siteUrl}" style="color:#c5a44a;text-decoration:none;">${siteUrl}</a>
+              </td>
+            </tr>` : ''}
+
+            ${adminUrl ? `
+            <tr>
+              <td style="padding:10px 0;border-bottom:1px solid #1a1a1a;color:#888;font-size:13px;vertical-align:top;">Editor Login</td>
+              <td style="padding:10px 0;border-bottom:1px solid #1a1a1a;font-size:13px;vertical-align:top;">
+                <a href="${adminUrl}" style="color:#c5a44a;text-decoration:none;">${adminUrl}</a>
+                ${adminPassword ? `<br/><span style="color:#555;font-size:12px;">Password: </span><span style="color:#f0ece2;font-size:12px;font-family:monospace;background:#111;padding:2px 6px;border-radius:3px;">${adminPassword}</span>` : ''}
+              </td>
+            </tr>` : ''}
+
+            ${domainRegistrar || domainLogin ? `
+            <tr>
+              <td style="padding:10px 0;border-bottom:1px solid #1a1a1a;color:#888;font-size:13px;vertical-align:top;">Domain</td>
+              <td style="padding:10px 0;border-bottom:1px solid #1a1a1a;color:#f0ece2;font-size:13px;vertical-align:top;line-height:1.7;">
+                ${domainRegistrar ? `<span>${domainRegistrar}</span>` : ''}
+                ${domainLogin ? `<br/><span style="color:#888;font-size:12px;">Login: </span><span style="color:#f0ece2;font-size:12px;">${domainLogin}</span>` : ''}
+              </td>
+            </tr>` : ''}
+
+            ${hostingProvider ? `
+            <tr>
+              <td style="padding:10px 0;border-bottom:1px solid #1a1a1a;color:#888;font-size:13px;vertical-align:top;">Hosting</td>
+              <td style="padding:10px 0;border-bottom:1px solid #1a1a1a;color:#f0ece2;font-size:13px;vertical-align:top;line-height:1.7;">
+                ${hostingProvider}
+                ${hostingNotes ? `<br/><span style="color:#888;font-size:12px;">${hostingNotes}</span>` : ''}
+              </td>
+            </tr>` : ''}
+
+            ${analyticsId ? `
+            <tr>
+              <td style="padding:10px 0;border-bottom:${otherLogins ? '1px solid #1a1a1a' : 'none'};color:#888;font-size:13px;vertical-align:top;">Google Analytics</td>
+              <td style="padding:10px 0;border-bottom:${otherLogins ? '1px solid #1a1a1a' : 'none'};color:#f0ece2;font-size:13px;vertical-align:top;font-family:monospace;">${analyticsId}</td>
+            </tr>` : ''}
+
+            ${otherLogins ? `
+            <tr>
+              <td style="padding:10px 0;color:#888;font-size:13px;vertical-align:top;">Other</td>
+              <td style="padding:10px 0;color:#f0ece2;font-size:13px;vertical-align:top;line-height:1.8;white-space:pre-line;">${otherLogins}</td>
+            </tr>` : ''}
+
           </table>
         </div>` : ''}
 
@@ -137,10 +199,18 @@ export default async function handler(req, res) {
         <h2 style="margin:0 0 6px;font-size:20px;color:#f0ece2;">Finalisation Sent ✦</h2>
         <p style="margin:0 0 20px;font-size:13px;color:#888;">Balance payment link sent to client. Waiting on payment.</p>
         <table style="width:100%;border-collapse:collapse;">
-          <tr><td style="padding:10px 0;border-bottom:1px solid #1e1e1e;color:#888;width:110px;font-size:13px;">Client</td><td style="padding:10px 0;border-bottom:1px solid #1e1e1e;color:#f0ece2;font-size:13px;">${clientName}</td></tr>
-          <tr><td style="padding:10px 0;border-bottom:1px solid #1e1e1e;color:#888;font-size:13px;">Business</td><td style="padding:10px 0;border-bottom:1px solid #1e1e1e;color:#f0ece2;font-size:13px;">${business}</td></tr>
-          <tr><td style="padding:10px 0;border-bottom:1px solid #1e1e1e;color:#888;font-size:13px;">Email</td><td style="padding:10px 0;border-bottom:1px solid #1e1e1e;color:#c5a44a;font-size:13px;">${clientEmail}</td></tr>
-          <tr><td style="padding:10px 0;color:#888;font-size:13px;">Balance</td><td style="padding:10px 0;color:#f0ece2;font-size:13px;font-weight:600;">${amountFmt}</td></tr>
+          <tr><td style="padding:9px 0;border-bottom:1px solid #1e1e1e;color:#888;width:130px;font-size:13px;">Client</td><td style="padding:9px 0;border-bottom:1px solid #1e1e1e;color:#f0ece2;font-size:13px;">${clientName}</td></tr>
+          <tr><td style="padding:9px 0;border-bottom:1px solid #1e1e1e;color:#888;font-size:13px;">Business</td><td style="padding:9px 0;border-bottom:1px solid #1e1e1e;color:#f0ece2;font-size:13px;">${business}</td></tr>
+          <tr><td style="padding:9px 0;border-bottom:1px solid #1e1e1e;color:#888;font-size:13px;">Email</td><td style="padding:9px 0;border-bottom:1px solid #1e1e1e;color:#c5a44a;font-size:13px;">${clientEmail}</td></tr>
+          <tr><td style="padding:9px 0;border-bottom:1px solid #1e1e1e;color:#888;font-size:13px;">Balance</td><td style="padding:9px 0;border-bottom:1px solid #1e1e1e;color:#f0ece2;font-size:13px;font-weight:600;">${amountFmt}</td></tr>
+          ${siteUrl ? `<tr><td style="padding:9px 0;border-bottom:1px solid #1e1e1e;color:#888;font-size:13px;">Live Site</td><td style="padding:9px 0;border-bottom:1px solid #1e1e1e;font-size:13px;"><a href="${siteUrl}" style="color:#c5a44a;text-decoration:none;">${siteUrl}</a></td></tr>` : ''}
+          ${adminUrl ? `<tr><td style="padding:9px 0;border-bottom:1px solid #1e1e1e;color:#888;font-size:13px;">Editor URL</td><td style="padding:9px 0;border-bottom:1px solid #1e1e1e;font-size:13px;"><a href="${adminUrl}" style="color:#c5a44a;text-decoration:none;">${adminUrl}</a></td></tr>` : ''}
+          ${adminPassword ? `<tr><td style="padding:9px 0;border-bottom:1px solid #1e1e1e;color:#888;font-size:13px;">Admin Pass</td><td style="padding:9px 0;border-bottom:1px solid #1e1e1e;color:#f0ece2;font-size:13px;font-family:monospace;">${adminPassword}</td></tr>` : ''}
+          ${domainRegistrar ? `<tr><td style="padding:9px 0;border-bottom:1px solid #1e1e1e;color:#888;font-size:13px;">Registrar</td><td style="padding:9px 0;border-bottom:1px solid #1e1e1e;color:#f0ece2;font-size:13px;">${domainRegistrar}${domainLogin ? ` · ${domainLogin}` : ''}</td></tr>` : ''}
+          ${hostingProvider ? `<tr><td style="padding:9px 0;border-bottom:1px solid #1e1e1e;color:#888;font-size:13px;">Hosting</td><td style="padding:9px 0;border-bottom:1px solid #1e1e1e;color:#f0ece2;font-size:13px;">${hostingProvider}${hostingNotes ? ` — ${hostingNotes}` : ''}</td></tr>` : ''}
+          ${analyticsId ? `<tr><td style="padding:9px 0;border-bottom:1px solid #1e1e1e;color:#888;font-size:13px;">Analytics</td><td style="padding:9px 0;border-bottom:1px solid #1e1e1e;color:#f0ece2;font-size:13px;font-family:monospace;">${analyticsId}</td></tr>` : ''}
+          ${pages ? `<tr><td style="padding:9px 0;border-bottom:1px solid #1e1e1e;color:#888;font-size:13px;">Pages</td><td style="padding:9px 0;border-bottom:1px solid #1e1e1e;color:#f0ece2;font-size:13px;">${pages}</td></tr>` : ''}
+          ${features ? `<tr><td style="padding:9px 0;color:#888;font-size:13px;">Features</td><td style="padding:9px 0;color:#f0ece2;font-size:13px;">${features}</td></tr>` : ''}
         </table>
       </div>
       ${darkFooter}

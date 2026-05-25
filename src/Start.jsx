@@ -54,12 +54,16 @@ const TIMELINES = [
 ]
 
 const CHECKS = [
-  'I understand the 20% deposit is non-refundable and is forfeited if I cancel after work commences.',
-  'I understand the remaining balance is due before the site goes live — the site will not launch until paid in full.',
-  'I understand the revision rounds included in my package, and that requests outside the agreed scope may be quoted separately.',
-  'I confirm all content I provide (text, images, logos) is owned by me or properly licensed.',
-  'I understand Wilson Creative Co. may display the completed work in its portfolio and marketing materials.',
-  'I have read and agree to be bound by Wilson Creative Co.\'s full client agreement terms.',
+  'I understand my deposit is non-refundable. If I cancel after work has commenced, my deposit is forfeited. Any work completed beyond the deposit value will be invoiced at the hourly rate of $150/hr.',
+  'I understand the remaining balance is due in full before the site goes live. Wilson Creative Co. will not publish, transfer, or hand over any files until payment is received in full.',
+  'I understand what a revision round means: one consolidated set of written feedback covering all requested changes at that stage. Each revision round must be submitted as a single document or message — not drip-fed over multiple exchanges. My package includes the number of rounds stated; additional rounds are billed at $150/hr.',
+  'I understand that additions to the agreed scope — new pages, new features, significant structural or design changes not discussed at the time of this agreement — are not included and will be quoted separately before work begins.',
+  'I understand it is my responsibility to supply all content (text, images, logos, brand assets) in a timely manner. Project timelines are estimates. Delays caused by late content or feedback from my side do not constitute a breach by Wilson Creative Co., and the timeline will be extended accordingly.',
+  'I confirm that all content I provide is owned by me or properly licensed for use on my website. I accept full liability for any third-party intellectual property claims arising from content I supply. Wilson Creative Co. accepts no liability for unlicensed content provided by the client.',
+  'I understand that Wilson Creative Co. does not guarantee specific search engine rankings, website traffic volumes, leads, or business outcomes. SEO foundations are included where stated, but results depend on factors outside Wilson Creative Co.\'s control.',
+  'I understand that after handover, ongoing costs — including domain renewals, hosting fees, and any third-party service subscriptions — are my responsibility. Wilson Creative Co. is not liable for service interruptions caused by unpaid third-party accounts.',
+  'I understand that Wilson Creative Co. retains the right to display the completed work in its portfolio, case studies, and marketing materials, unless I notify Wilson Creative Co. in writing prior to launch that I wish to opt out.',
+  'I have read, understood, and agree to be bound by all terms stated in this agreement. Any disputes will be governed by the laws of Queensland, Australia (ABN 99 664 433 447).',
 ]
 
 const STEPS = ['You', 'Project', 'Agreement', 'Done']
@@ -321,14 +325,24 @@ export default function Start() {
                     <div className="sp-term-val">
                       {pkg ? (typeof pkg.balance === 'number' ? `$${pkg.balance.toLocaleString()}` : pkg.balance) : '80% of total'}
                     </div>
-                    <div className="sp-term-note">Before launch</div>
+                    <div className="sp-term-note">Due before launch</div>
                   </div>
                   <div className="sp-term">
                     <div className="sp-term-label">Revisions</div>
                     <div className="sp-term-val">
                       {pkg?.id === 'starter' ? '1 round' : pkg?.id === 'growth' ? '3 rounds' : 'Unlimited'}
                     </div>
-                    <div className="sp-term-note">Consolidated sets</div>
+                    <div className="sp-term-note">Consolidated · In writing</div>
+                  </div>
+                  <div className="sp-term">
+                    <div className="sp-term-label">Out of Scope</div>
+                    <div className="sp-term-val">$150/hr</div>
+                    <div className="sp-term-note">Quoted before work begins</div>
+                  </div>
+                  <div className="sp-term">
+                    <div className="sp-term-label">Cancellation</div>
+                    <div className="sp-term-val">Deposit forfeited</div>
+                    <div className="sp-term-note">Work beyond deposit at $150/hr</div>
                   </div>
                   <div className="sp-term">
                     <div className="sp-term-label">Jurisdiction</div>

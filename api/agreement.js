@@ -37,12 +37,16 @@ const TIMELINE_LABELS = {
 }
 
 const CHECKS = [
-  'I understand the deposit is non-refundable and is forfeited if I cancel after work commences.',
-  'I understand the remaining balance is due before the site goes live — the site will not launch until paid in full.',
-  'I understand the revision rounds included in my package, and that requests outside the agreed scope may be quoted separately.',
-  'I confirm all content I provide (text, images, logos) is owned by me or properly licensed.',
-  'I understand Wilson Creative Co. may display the completed work in its portfolio and marketing materials.',
-  'I have read and agree to be bound by Wilson Creative Co.\'s full client agreement terms.',
+  'I understand my deposit is non-refundable. If I cancel after work has commenced, my deposit is forfeited. Any work completed beyond the deposit value will be invoiced at $150/hr.',
+  'I understand the remaining balance is due in full before the site goes live. Wilson Creative Co. will not publish, transfer, or hand over any files until payment is received in full.',
+  'I understand what a revision round means: one consolidated set of written feedback covering all requested changes at that stage. Each revision round must be submitted as a single document or message. My package includes the number of rounds stated; additional rounds are billed at $150/hr.',
+  'I understand that additions to the agreed scope — new pages, new features, or significant design changes not discussed at the time of this agreement — are not included and will be quoted separately before work begins.',
+  'I understand it is my responsibility to supply all content (text, images, logos, brand assets) in a timely manner. Delays caused by late content or feedback from my side extend the project timeline and do not constitute a breach by Wilson Creative Co.',
+  'I confirm that all content I provide is owned by me or properly licensed. I accept full liability for any third-party intellectual property claims arising from content I supply. Wilson Creative Co. accepts no liability for unlicensed content provided by the client.',
+  'I understand that Wilson Creative Co. does not guarantee specific search engine rankings, website traffic volumes, leads, or business outcomes.',
+  'I understand that after handover, ongoing costs — including domain renewals, hosting fees, and third-party service subscriptions — are my responsibility.',
+  'I understand that Wilson Creative Co. retains the right to display the completed work in its portfolio and marketing materials, unless I notify Wilson Creative Co. in writing prior to launch that I wish to opt out.',
+  'I have read, understood, and agree to be bound by all terms stated in this agreement. Disputes are governed by the laws of Queensland, Australia (ABN 99 664 433 447).',
 ]
 
 // ── PDF Generator ─────────────────────────────────────────────────────────────
@@ -143,11 +147,56 @@ function buildPDF({ you, project, signature, date }) {
       doc.moveDown(0.6)
     })
 
+    // ── Full Terms & Conditions ───────────────────────────────────────────────
+    doc.addPage()
+    section('Terms & Conditions')
+
+    const terms = [
+      ['1. Deposit & Payment',
+       'A non-refundable deposit is required to commence work. For Starter and Growth packages the deposit amount is fixed; for Premium it is 20% of the agreed project total. The deposit secures the client\'s place in the production schedule. The remaining balance is due in full before the website is published, transferred, or handed over. Wilson Creative Co. will not release any files, code, or credentials until payment is received in full.'],
+
+      ['2. Cancellation',
+       'If the client cancels the project after work has commenced, the deposit is forfeited in full. Any work completed beyond the value of the deposit will be invoiced at Wilson Creative Co.\'s standard hourly rate of $150/hr (AUD) and is due within 14 days of the invoice date.'],
+
+      ['3. Revisions',
+       'Each package includes the number of revision rounds stated at the time of agreement. A revision round is defined as one consolidated set of written feedback submitted in a single communication — not drip-fed across multiple messages or calls. Feedback must be specific and actionable. Wilson Creative Co. will implement changes that fall within the originally agreed scope. Additional revision rounds, or revisions that constitute new scope, are billed at $150/hr and will be quoted before work begins.'],
+
+      ['4. Scope',
+       'The scope of the project is defined by the package selected and the project brief provided at the time of this agreement. Additions to scope — including but not limited to new pages, new features, third-party integrations, e-commerce functionality, booking systems, or significant structural redesigns — are not included in the quoted price. Any additions will be quoted separately and must be agreed in writing before work begins.'],
+
+      ['5. Client Content & Timeline',
+       'The client is responsible for providing all content required for the project — including text, images, logos, fonts, and brand assets — in a format suitable for web use, within the timeframe discussed at project kickoff. Project timelines are estimates based on timely content supply and feedback. Delays caused by the client\'s failure to provide content or feedback on time will extend the project timeline and do not constitute a breach of this agreement by Wilson Creative Co.'],
+
+      ['6. Intellectual Property',
+       'The client confirms that all content supplied by them is either owned outright or properly licensed for digital use. The client accepts full liability for any intellectual property claims, penalties, or costs arising from unlicensed or infringing content they provide. Wilson Creative Co. accepts no liability in this regard. Upon receipt of final payment in full, ownership of the custom design and code produced for the client transfers to the client. Wilson Creative Co. retains ownership of any proprietary frameworks, tools, or components used in production.'],
+
+      ['7. Portfolio & Marketing Rights',
+       'Wilson Creative Co. reserves the right to display the completed website and associated design work in its portfolio, website, case studies, and marketing materials. If the client wishes to opt out, they must notify Wilson Creative Co. in writing before the site goes live. After launch, opt-out requests cannot be guaranteed.'],
+
+      ['8. No Guarantee of Outcomes',
+       'Wilson Creative Co. does not guarantee specific search engine rankings, organic traffic volumes, conversion rates, leads, or business outcomes of any kind. Where SEO foundations are listed as included in a package, this refers to technical on-page SEO setup (meta tags, structured headings, sitemap, mobile responsiveness) and not to ongoing SEO services or ranking guarantees.'],
+
+      ['9. Post-Launch Responsibility',
+       'After handover, the client is solely responsible for all ongoing third-party costs associated with their website, including but not limited to: domain name registration and renewal, web hosting fees, SSL certificates, email hosting, and any third-party service subscriptions (e.g. booking systems, payment processors, analytics tools). Wilson Creative Co. accepts no liability for website downtime or data loss caused by unpaid or expired third-party accounts.'],
+
+      ['10. Dispute Resolution',
+       'This agreement is governed by the laws of Queensland, Australia. In the event of a dispute, both parties agree to first attempt resolution in good faith through direct communication. If a resolution cannot be reached within 14 days, the matter may be referred to mediation before any formal legal proceedings are commenced.'],
+    ]
+
+    terms.forEach(([title, body]) => {
+      if (doc.y > doc.page.height - 160) doc.addPage()
+      doc.fillColor(BODY).font('Helvetica-Bold').fontSize(9).text(title, 56, doc.y, { width: W })
+      doc.moveDown(0.3)
+      doc.fillColor(MUTED).font('Helvetica').fontSize(9).text(body, 56, doc.y, { width: W, lineGap: 2 })
+      doc.moveDown(1)
+    })
+
     // ── Signature block ───────────────────────────────────────────────────────
+    if (doc.y > doc.page.height - 180) doc.addPage()
     section('Digital Signature')
 
     doc.fillColor(MUTED).font('Helvetica').fontSize(9)
-       .text('By typing their full name below, the client agrees to be bound by all terms stated in this agreement.', 56, doc.y, { width: W })
+       .text('By typing their full name below, the client confirms they have read and agree to be bound by all terms stated in this agreement.', 56, doc.y, { width: W })
     doc.moveDown(0.8)
 
     // Signature box
