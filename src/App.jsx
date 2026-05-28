@@ -705,7 +705,7 @@ const goNext = () => {
           </h2>
           <p className="h-sub">And turn it into customers.</p>
           <div className="h-btns">
-            <a href="/start" className="btn-g">Start a Project →</a>
+            <a href="#contact" className="btn-g" onClick={e => handleNav(e, '#contact')}>Get In Touch →</a>
             <a href="#work" className="btn-o" onClick={e => handleNav(e, '#work')}>View Our Work →</a>
           </div>
         </div>
@@ -1173,10 +1173,6 @@ const goNext = () => {
                 We&apos;ll get back to you within 24 hours. No obligation, no spam.
               </p>
 
-              <div className="f-start-link">
-                <span>Already decided?</span>
-                <a href="/start">Start your project →</a>
-              </div>
             </form>
           )}
         </div>
