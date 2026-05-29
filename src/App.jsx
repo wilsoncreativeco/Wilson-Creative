@@ -989,9 +989,9 @@ const goNext = () => {
         <h2 className="sh2 rv d1 testi-h2" id="testi-h2">What our clients<br />are <em>saying</em></h2>
         <div className="testi-grid rv d2">
           {[
-            { initials: 'JM', name: 'James', biz: 'Phantom Detailing, Brisbane', quote: 'George built us a site that actually converts. Enquiries went up almost immediately after launch — it looks premium and loads incredibly fast. Best investment we\'ve made for the business.' },
-            { initials: 'SC', name: 'Zach', biz: 'Zantara Workforce Solutions, Gold Coast', quote: 'Absolutely loved working with George from Wilson Creative Co. He created an amazing website for us that looks professional, modern, and perfectly suits our brand. Great communication, easy process, and an outstanding final result. Highly recommend!' },
-            { initials: 'AK', name: 'Alex', biz: 'Apex Gym, Brisbane', quote: 'Completely custom, fast, and looks elite. Wilson Creative understood exactly what we needed without us having to explain it twice. Would recommend to any business serious about their online presence.' },
+            { initials: 'PD', name: 'James', biz: 'Phantom Detailing, Brisbane', quote: 'George built us a site that actually converts. Enquiries went up almost immediately after launch — it looks premium and loads incredibly fast. Best investment we\'ve made for the business.' },
+            { initials: 'ZW', name: 'Zach', biz: 'Zantara Workforce Solutions, Gold Coast', quote: 'Absolutely loved working with George from Wilson Creative Co. He created an amazing website for us that looks professional, modern, and perfectly suits our brand. Great communication, easy process, and an outstanding final result. Highly recommend!' },
+            { initials: 'AG', name: 'Alex', biz: 'Apex Gym, Brisbane', quote: 'Completely custom, fast, and looks elite. Wilson Creative understood exactly what we needed without us having to explain it twice. Would recommend to any business serious about their online presence.' },
           ].map((t, i) => (
             <div className="testi-card rv" style={{ '--d': `${i * 0.12}s` }} key={i}>
               <div className="testi-stars" aria-label="5 stars">{'★'.repeat(5)}</div>
