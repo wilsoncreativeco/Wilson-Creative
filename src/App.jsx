@@ -1114,7 +1114,7 @@ const goNext = () => {
             <div className="f-ok">
               <div className="f-ok-ico">✦</div>
               <h3>Message received.</h3>
-              <p>We&apos;ll be in touch within 24 hours.<br />Check your inbox — we reply personally, not with a bot.</p>
+              <p>We&apos;ll be in touch within 24 hours.<br />Check your inbox — we reply personally, not with a bot.<br /><span style={{fontSize:'0.85em',opacity:0.6}}>Can't see it? Check your spam folder.</span></p>
             </div>
           ) : (
             <form className="contact-form" onSubmit={handleContactSubmit} noValidate>

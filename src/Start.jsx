@@ -410,6 +410,7 @@ export default function Start() {
               <div className="sp-done-icon">✦</div>
               <h1 className="sp-h1">You're all set,<br /><em>{you.name.split(' ')[0]}.</em></h1>
               <p className="sp-lead">Your agreement has been received. We'll be in touch within 24 hours with your deposit invoice and a project kickoff brief.</p>
+              <p style={{fontSize:'0.85em',opacity:0.5,marginTop:'-8px'}}>Can't find the confirmation email? Check your spam folder.</p>
 
               <div className="sp-done-summary">
                 <div className="sp-done-row">

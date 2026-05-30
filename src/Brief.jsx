@@ -409,6 +409,7 @@ export default function Brief() {
                 Thanks — this is exactly what I need. I'll review it before we kick off and come prepared.
                 Expect to hear from me soon.
               </p>
+              <p style={{fontSize:'0.85em',opacity:0.5,marginTop:'-8px'}}>Can't find the confirmation email? Check your spam folder.</p>
               <div className="br-done-summary">
                 <div className="br-done-row"><span>Aesthetic</span><span>{AESTHETICS.find(a => a.id === form.aesthetic)?.label}</span></div>
                 <div className="br-done-row"><span>Colour direction</span><span>{VIBES.find(v => v.id === form.vibe)?.label}</span></div>
