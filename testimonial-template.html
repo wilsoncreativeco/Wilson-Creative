@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    width: 1080px;
+    height: 1080px;
+    background: #0a0a0a;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  }
+
+  .card {
+    width: 820px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 36px;
+  }
+
+  .stars {
+    display: flex;
+    gap: 10px;
+  }
+
+  .star {
+    font-size: 32px;
+    color: #C5A44A;
+  }
+
+  .quote {
+    font-size: 28px;
+    font-weight: 300;
+    line-height: 1.7;
+    color: #f0ede6;
+    letter-spacing: -0.3px;
+  }
+
+  .divider {
+    width: 40px;
+    height: 1px;
+    background: #C5A44A;
+    opacity: 0.5;
+  }
+
+  .name {
+    font-size: 17px;
+    font-weight: 600;
+    color: #ffffff;
+    letter-spacing: 0.5px;
+  }
+
+  .company {
+    font-size: 13px;
+    font-weight: 400;
+    color: rgba(255,255,255,0.35);
+    letter-spacing: 0.5px;
+    margin-top: 6px;
+  }
+
+  .branding {
+    position: absolute;
+    bottom: 48px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    color: rgba(197,164,74,0.4);
+    text-transform: uppercase;
+  }
+</style>
+</head>
+<body>
+
+  <div class="card">
+    <div class="stars">
+      <span class="star">★</span>
+      <span class="star">★</span>
+      <span class="star">★</span>
+      <span class="star">★</span>
+      <span class="star">★</span>
+    </div>
+
+    <p class="quote">"Absolutely loved working with George from Wilson Creative Co. He created an amazing website for us that looks professional, modern, and perfectly suits our brand. Great communication, easy process, and an outstanding final result. Highly recommend!"</p>
+
+    <div class="divider"></div>
+
+    <div>
+      <div class="name">Zach</div>
+      <div class="company">Zantara Workforce Solutions, Gold Coast</div>
+    </div>
+  </div>
+
+  <div class="branding">Wilson Creative Co.</div>
+
+</body>
+</html>
