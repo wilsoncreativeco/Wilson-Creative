@@ -5,6 +5,8 @@
     { "source": "/brief",      "destination": "/brief.html"    },
     { "source": "/finalise",   "destination": "/finalise.html" },
     { "source": "/api/:path*", "destination": "/api/:path*"    },
-    { "source": "/((?!assets|favicon|images|api|start|watch|brief|finalise).*)", "destination": "/index.html" }
+    { "source": "/content/:path*", "destination": "https://wilson-social-studio.vercel.app/content/:path*" },
+    { "source": "/content",    "destination": "https://wilson-social-studio.vercel.app/content" },
+    { "source": "/((?!assets|favicon|images|api|start|watch|brief|finalise|content).*)", "destination": "/index.html" }
   ]
 }
