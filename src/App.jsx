@@ -274,32 +274,49 @@ const processTracks = {
 
 const pricingCards = [
   {
-    key: 'media',
-    tag: 'Media Production',
-    name: 'Media',
-    price: 'Starting from $399',
-    line: 'Film, photography and aerial — produced to make your brand impossible to ignore.',
-    blurb: 'Every shoot is custom-quoted to your brand. Below is where our most popular formats start.',
+    key: 'single',
+    tag: 'Pay Per Project',
+    name: 'Single Services',
+    price: 'Starting from $550',
+    line: 'One-off shoots, films and aerials — book exactly what you need, nothing you don\'t.',
+    blurb: 'Standalone sessions, each delivered fully edited with commercial rights. Pick the format that fits the brief.',
     breakdown: [
-      { name: 'Photography', price: 'From $399', desc: 'Brand, product & on-location shoots — fully edited gallery.' },
-      { name: 'Social Content & Reels', price: 'From $499', desc: 'Short-form video shot and edited for Instagram, TikTok & ads.' },
-      { name: 'Aerial & Drone', price: 'From $499', desc: 'Licensed pilot, 4K cinematic aerials & site progress footage.' },
-      { name: 'Brand Films & Commercials', price: 'From $1,200', desc: 'Scripted, cinematic films — concept to final cut.' },
-      { name: 'Ongoing Content Packages', price: 'Custom', desc: 'Monthly retainer for brands that need a steady stream of content.' },
+      { name: 'Corporate Headshots', price: '$550', desc: 'Up to 5 people, 3 retouched finals each. +$90 per head beyond five.' },
+      { name: 'Aerial Photography', price: '$650', desc: '15+ stills, flown by a CASA-licensed pilot with NOTAM clearance.' },
+      { name: 'Social Content & Reels', price: '$750', desc: '1× hero reel (30–60s), 2× 15s cuts, captions and 2 revisions.' },
+      { name: 'Brand & Product Shoot', price: '$850', desc: '25+ edited images, 3-hour session, full commercial rights.' },
+      { name: 'Aerial Photo + Video', price: '$950', desc: '15+ stills plus a 60-second cinematic aerial clip.' },
+      { name: 'Brand Film & Commercial', price: '$2,200', desc: 'Full-day shoot, drone, colour grade — master plus 2 social cuts.' },
+    ],
+  },
+  {
+    key: 'packages',
+    tag: 'Retainers & Bundles',
+    name: 'Packages',
+    price: 'From $1,100/mo',
+    line: 'Ongoing content on a retainer, or combine shoots into a bundle and save.',
+    blurb: 'Built for brands and sites that need a steady stream of content — plus one-off bundles that save you up to $200.',
+    breakdown: [
+      { name: 'Progress Documentation Retainer', price: '$1,100/mo', desc: '2 site visits, drone each visit, 50+ images monthly. 3-month minimum.' },
+      { name: 'Content Retainer', price: '$1,400/mo', desc: 'Half-day shoot each month — 15 photos, 2 reels and captions.' },
+      { name: 'Media + Web Retainer', price: '$2,800/mo', desc: 'Content retainer plus monthly web updates and a quarterly brand film.' },
+      { name: 'Site Milestone Visit', price: '$550', desc: 'Construction milestone capture — drone included, 25+ images.' },
+      { name: 'Headshots + Brand Shoot Combo', price: '$1,200', desc: 'Save $200 — up to 5 headshots plus a full brand shoot.' },
+      { name: 'Photo + Reel Combo', price: '$1,400', desc: 'Save $200 — 25+ photos plus a hero reel and 2 short cuts.' },
     ],
   },
   {
     key: 'web',
     tag: 'Web Design',
     name: 'Web',
-    price: 'Starting from $600',
+    price: 'From $600',
     line: 'Custom-coded websites — no templates, built to load fast and convert.',
     blurb: 'Every site is written from scratch and tailored to your business. Pick the scope that fits.',
     breakdown: [
-      { name: 'Starter', price: 'From $600', desc: 'Custom single-page site, mobile-responsive, contact form & basic SEO.' },
-      { name: 'Growth', price: 'From $1,000', desc: 'Up to 5 pages, advanced animations, CMS/blog & full SEO.' },
+      { name: 'Starter', price: 'From $600', desc: 'Custom-coded single-page site — mobile-first, contact form & SEO basics.' },
+      { name: 'Growth', price: 'From $1,000', desc: 'Up to 5 pages, CMS or blog, advanced build & full SEO.' },
       { name: 'Premium', price: 'From $2,000', desc: 'E-commerce or booking system, brand strategy & copywriting.' },
-      { name: 'Managed Hosting', price: '$25 / mo', desc: 'Optional — domain, SSL, uptime monitoring & full hosting management.' },
+      { name: 'Managed Hosting', price: '$25/mo', desc: 'Optional — domain, SSL, uptime monitoring & full hosting management.' },
     ],
   },
 ]
@@ -322,7 +339,7 @@ const faqItems = [
   {
     cat: 'Pricing',
     q: 'How much does a shoot or project cost?',
-    a: "Media projects start from $399 for photography and from $499 for video and aerial, with full brand films and ongoing content packages quoted to scope. Custom websites start from $600. Every project is different, so we quote on exactly what you need — no padded packages, no surprises. The pricing section above has the full breakdown for both.",
+    a: "Single shoots run from $550 for corporate headshots up to $2,200 for a full brand film — with photography, social reels and aerial work in between. Ongoing content packages start from $1,100/mo, and one-off bundles save you up to $200. Custom websites start from $600. Every project is custom-quoted — no padded packages, no surprises — and the pricing section above has the full breakdown.",
   },
   {
     cat: 'Media',
@@ -966,6 +983,21 @@ const goNext = () => {
             <div className="about-pills rv d3">
               {aboutPills.map(p => <span className="pill" key={p}>{p}</span>)}
             </div>
+            <div className="about-sig rv d3">
+              <img
+                src="/founder1.jpg"
+                alt="George Wilson, Founder and Creative Director of Wilson Creative Co."
+                className="about-sig-photo"
+                width="132"
+                height="176"
+                loading="lazy"
+                onError={e => { e.currentTarget.style.display = 'none' }}
+              />
+              <span className="about-sig-meta">
+                <span className="about-sig-name">George Wilson</span>
+                <span className="about-sig-role">Founder &amp; Creative Director</span>
+              </span>
+            </div>
           </div>
         </div>
       </section>
@@ -1000,7 +1032,7 @@ const goNext = () => {
         <div className="price-head">
           <p className="stag rv" style={{ justifyContent: 'center' }}>Investment</p>
           <h2 className="sh2 rv d1" id="price-h2" style={{ textAlign: 'center' }}>Transparent pricing.<br />No <em>surprises.</em></h2>
-          <p className="price-sub rv d2">Two things we do, no confusing tiers up front. Pick a starting point — see the full breakdown inside.</p>
+          <p className="price-sub rv d2">Three ways to work with us — single shoots, ongoing packages, or a custom website. Pick a starting point; the full breakdown is one click inside.</p>
         </div>
         <div className="price-cards rv d1">
           {pricingCards.map(c => (

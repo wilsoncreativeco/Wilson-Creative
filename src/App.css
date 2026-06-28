@@ -1598,6 +1598,36 @@ a.gal-card:hover .gal-card-visit{ opacity:1; transform:none; }
 
 .pill:hover{ border-color:var(--g); color:var(--g); background:var(--gdim); }
 
+.about-sig{
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  gap:14px;
+  padding-top:30px;
+  border-top:1px solid var(--bd);
+}
+.about-sig-photo{
+  width:132px;
+  height:auto;
+  border-radius:14px;
+  border:1px solid var(--bdg);
+  box-shadow:0 14px 36px -14px rgba(0,0,0,.85);
+}
+.about-sig-meta{ display:flex; flex-direction:column; gap:5px; }
+.about-sig-name{
+  font-family:'Cormorant Garamond',serif;
+  font-size:23px;
+  font-weight:400;
+  line-height:1;
+  color:var(--w);
+}
+.about-sig-role{
+  font-size:10.5px;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  color:rgba(197,164,74,.72);
+}
+
 .about-sts{
   display:flex;
   gap:36px;
@@ -2066,9 +2096,9 @@ iframe::-webkit-scrollbar{
 
 .price-cards{
   display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:28px;
-  max-width:920px;
+  grid-template-columns:repeat(3, 1fr);
+  gap:24px;
+  max-width:1160px;
   margin:60px auto 0;
 }
 
@@ -2742,6 +2772,8 @@ footer::before{
 @media(max-width:1100px){
   .about{ grid-template-columns:1fr; }
   .about-caps{ order:2; }
+
+  .price-cards{ grid-template-columns:1fr 1fr; max-width:680px; }
 
   .pcard{
     flex:0 0 360px;
