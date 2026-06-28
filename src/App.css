@@ -2722,11 +2722,52 @@ footer::before{
   .svc-intro{ flex-direction:column; align-items:flex-start; margin-bottom:36px; }
   .svc-intro-r{ max-width:100%; }
 
-  .svc-showcase{ gap:72px; }
-  .svc-feature{ grid-template-columns:1fr; gap:30px; }
+  /* services → swipeable horizontal carousel (mobile only) */
+  .svc-showcase{
+    flex-direction:row;
+    gap:14px;
+    overflow-x:auto;
+    scroll-snap-type:x mandatory;
+    scroll-padding-left:24px;
+    -webkit-overflow-scrolling:touch;
+    overscroll-behavior-x:contain;
+    margin:0 -24px;
+    padding:4px 24px 26px;
+    scrollbar-width:none;
+  }
+  .svc-showcase::-webkit-scrollbar{ display:none; }
+
+  .svc-feature{
+    flex:0 0 80%;
+    grid-template-columns:1fr;
+    gap:0;
+    scroll-snap-align:start;
+    border:1px solid var(--bd);
+    border-radius:20px;
+    overflow:hidden;
+    background:linear-gradient(180deg, rgba(255,255,255,.028), rgba(255,255,255,.006));
+  }
   .svc-feature.rev{ direction:ltr; }
-  .svc-feature-stage{ aspect-ratio:16/10; }
-  .svc-feature-desc{ max-width:100%; }
+  /* keep every card painted — IO never fires for off-screen carousel items */
+  .svc-showcase .svc-feature{ opacity:1; transform:none; }
+
+  .svc-feature-stage{
+    aspect-ratio:auto;
+    height:148px;
+    border:none;
+    border-radius:0;
+  }
+  .svc-feature-num{ top:16px; left:18px; font-size:16px; }
+  .svc-feature-num::before{ width:18px; margin-right:8px; }
+  .svc-feature-icon{ width:54px; height:54px; }
+  .svc-feature-cat{ bottom:13px; font-size:10px; letter-spacing:.42em; }
+
+  .svc-feature-body{ padding:24px 22px 26px; }
+  .svc-feature-eyebrow{ margin-bottom:13px; }
+  .svc-feature-title{ font-size:31px; margin-bottom:7px; }
+  .svc-feature-line{ font-size:18px; margin-bottom:18px; }
+  .svc-feature-desc{ display:none; }
+  .svc-feature-chips{ gap:8px; margin-bottom:22px; }
 
 
   .port{ padding:80px 0 80px 24px; }
