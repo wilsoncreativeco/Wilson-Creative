@@ -1482,93 +1482,38 @@ a.gal-card:hover .gal-card-visit{ opacity:1; transform:none; }
   align-items:center;
 }
 
-/* About — capabilities panel */
-.about-caps{
-  position:relative;
-  padding:40px 38px 34px;
-  border:1px solid var(--bd);
-  border-radius:20px;
-  background:linear-gradient(180deg, #100e15 0%, #0a090e 100%);
-  overflow:hidden;
+/* About — founder portrait */
+.about-portrait{
+  display:flex;
+  flex-direction:column;
+  gap:18px;
 }
-.about-caps::before{
-  content:'';
-  position:absolute;
-  top:-1px;
-  left:38px;
-  right:38px;
-  height:1px;
-  background:linear-gradient(90deg, transparent, var(--g), transparent);
+.about-portrait-img{
+  display:block;
+  width:100%;
+  height:auto;
+  border-radius:18px;
+  border:1px solid var(--bdg);
+  box-shadow:0 34px 80px -34px rgba(0,0,0,.9);
 }
-
-.ac-label{
-  font-size:10px;
-  letter-spacing:.3em;
-  text-transform:uppercase;
-  color:var(--w6);
-  margin-bottom:26px;
+.about-portrait-cap{
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+  padding-left:4px;
 }
-
-.ac-list{ list-style:none; }
-
-.ac-row{
-  position:relative;
-  display:grid;
-  grid-template-columns:auto 1fr auto;
-  align-items:center;
-  gap:20px;
-  padding:20px 4px;
-  border-top:1px solid var(--bd);
-  transition:padding-left .4s var(--ease);
-}
-.ac-row:hover{ padding-left:12px; }
-
-.ac-num{
-  font-family:'Bebas Neue',sans-serif;
-  font-size:22px;
-  letter-spacing:.04em;
-  color:var(--g);
-  opacity:.85;
-}
-
-.ac-body{ display:flex; flex-direction:column; gap:4px; }
-.ac-name{
+.about-portrait-name{
   font-family:'Cormorant Garamond',serif;
-  font-size:27px;
-  font-weight:300;
+  font-size:30px;
+  font-weight:400;
   line-height:1;
   color:var(--w);
 }
-.ac-note{
-  font-size:12px;
-  color:var(--w6);
-  letter-spacing:.01em;
-}
-
-.ac-dot{
-  width:9px;
-  height:9px;
-  border-radius:50%;
-  background:var(--g);
-  box-shadow:0 0 14px rgba(197,164,74,.7);
-  transition:transform .4s var(--ease);
-}
-.ac-row:hover .ac-dot{ transform:scale(1.35); }
-
-.ac-foot{
-  margin-top:26px;
-  padding-top:22px;
-  border-top:1px solid var(--bd);
-  font-size:12px;
-  letter-spacing:.04em;
-  color:var(--w6);
-}
-.ac-foot span{
-  font-family:'Bebas Neue',sans-serif;
-  font-size:17px;
-  color:var(--g);
-  letter-spacing:.03em;
-  margin-right:6px;
+.about-portrait-role{
+  font-size:11px;
+  letter-spacing:.24em;
+  text-transform:uppercase;
+  color:rgba(197,164,74,.82);
 }
 
 .about-text p{
@@ -1597,36 +1542,6 @@ a.gal-card:hover .gal-card-visit{ opacity:1; transform:none; }
 }
 
 .pill:hover{ border-color:var(--g); color:var(--g); background:var(--gdim); }
-
-.about-sig{
-  display:flex;
-  flex-direction:column;
-  align-items:flex-start;
-  gap:14px;
-  padding-top:30px;
-  border-top:1px solid var(--bd);
-}
-.about-sig-photo{
-  width:132px;
-  height:auto;
-  border-radius:14px;
-  border:1px solid var(--bdg);
-  box-shadow:0 14px 36px -14px rgba(0,0,0,.85);
-}
-.about-sig-meta{ display:flex; flex-direction:column; gap:5px; }
-.about-sig-name{
-  font-family:'Cormorant Garamond',serif;
-  font-size:23px;
-  font-weight:400;
-  line-height:1;
-  color:var(--w);
-}
-.about-sig-role{
-  font-size:10.5px;
-  letter-spacing:.22em;
-  text-transform:uppercase;
-  color:rgba(197,164,74,.72);
-}
 
 .about-sts{
   display:flex;
@@ -2771,7 +2686,6 @@ footer::before{
 
 @media(max-width:1100px){
   .about{ grid-template-columns:1fr; }
-  .about-caps{ order:2; }
 
   .price-cards{ grid-template-columns:1fr 1fr; max-width:680px; }
 

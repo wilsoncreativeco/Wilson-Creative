@@ -125,13 +125,6 @@ const aboutPills = [
   'Every Format',
 ]
 
-const aboutCaps = [
-  { n: '01', name: 'Film & Video', note: 'Brand films, commercials & social' },
-  { n: '02', name: 'Photography', note: 'Brand, product & on-location' },
-  { n: '03', name: 'Aerial & Drone', note: 'Cinematic aerials & site surveys' },
-  { n: '04', name: 'Web Design', note: 'Custom-coded, no templates' },
-]
-
 const workItems = [
   {
     src: 'https://zantara.com.au',
@@ -959,22 +952,20 @@ const goNext = () => {
       </section>
       <section id="about" className="secpad" aria-labelledby="about-h2">
         <div className="about">
-          <div className="about-caps rl" aria-hidden="true">
-            <p className="ac-label">Under one roof</p>
-            <ul className="ac-list">
-              {aboutCaps.map(c => (
-                <li className="ac-row" key={c.name}>
-                  <span className="ac-num">{c.n}</span>
-                  <span className="ac-body">
-                    <span className="ac-name">{c.name}</span>
-                    <span className="ac-note">{c.note}</span>
-                  </span>
-                  <span className="ac-dot" />
-                </li>
-              ))}
-            </ul>
-            <p className="ac-foot"><span>One</span> studio, one team — Brisbane, QLD</p>
-          </div>
+          <figure className="about-portrait rl">
+            <img
+              src="/founder1.jpg"
+              alt="George Wilson, Founder and Creative Director of Wilson Creative Co."
+              className="about-portrait-img"
+              width="1000"
+              height="1333"
+              loading="lazy"
+            />
+            <figcaption className="about-portrait-cap">
+              <span className="about-portrait-name">George Wilson</span>
+              <span className="about-portrait-role">Founder &amp; Creative Director</span>
+            </figcaption>
+          </figure>
           <div className="about-text">
             <p className="stag rv">Why Wilson Creative</p>
             <h2 className="sh2 rv d1" id="about-h2">One team.<br /><em>Every format.</em></h2>
@@ -982,21 +973,6 @@ const goNext = () => {
             <p className="rv d3">From a single shoot to a complete brand rollout, we cover every angle and every format — built to make your business impossible to ignore, online and off.</p>
             <div className="about-pills rv d3">
               {aboutPills.map(p => <span className="pill" key={p}>{p}</span>)}
-            </div>
-            <div className="about-sig rv d3">
-              <img
-                src="/founder1.jpg"
-                alt="George Wilson, Founder and Creative Director of Wilson Creative Co."
-                className="about-sig-photo"
-                width="132"
-                height="176"
-                loading="lazy"
-                onError={e => { e.currentTarget.style.display = 'none' }}
-              />
-              <span className="about-sig-meta">
-                <span className="about-sig-name">George Wilson</span>
-                <span className="about-sig-role">Founder &amp; Creative Director</span>
-              </span>
             </div>
           </div>
         </div>
