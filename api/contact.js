@@ -7,7 +7,7 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' })
   }
 
-  const { name, email, type, package: pkg } = req.body
+  const { name, email, phone, business, type, package: pkg, message } = req.body
 
   if (!name || !email) {
     return res.status(400).json({ error: 'Missing required fields' })
@@ -36,8 +36,11 @@ export default async function handler(req, res) {
             <table style="width:100%;border-collapse:collapse;">
               ${row('Name',    name)}
               ${row('Email',   `<a href="mailto:${email}" style="color:#c5a44a;text-decoration:none;">${email}</a>`)}
+              ${row('Phone',   phone ? `<a href="tel:${phone.replace(/\s/g, '')}" style="color:#c5a44a;text-decoration:none;">${phone}</a>` : '')}
+              ${row('Business', business)}
               ${row('Need',    type || '—')}
               ${row('Budget',  pkg  || '—')}
+              ${row('Details', message ? message.replace(/\n/g, '<br>') : '')}
             </table>
           </div>
           <div style="background:#0b0a0e;padding:14px 32px;border-top:1px solid #1e1e1e;">
