@@ -437,7 +437,7 @@ export default function App() {
     } catch { setFormStatus('error') }
   }
 
-  const [modal, setModal] = useState(null) // null | 'demo' | 'hosting'
+  const [modal, setModal] = useState(null) // null | 'demo' | 'hosting' | 'project'
   const [modalForm, setModalForm] = useState({ name: '', email: '', business: '', field: '', note: '' })
   const [modalStatus, setModalStatus] = useState('idle')
   const [flippedCard, setFlippedCard] = useState(null)
@@ -725,6 +725,8 @@ const [activeBuild, setActiveBuild] = useState(1)
     try {
       const body = modal === 'demo'
         ? { name: modalForm.name, email: modalForm.email, business: modalForm.business, type: modalForm.field, message: 'Free Demo Request' }
+        : modal === 'project'
+        ? { name: modalForm.name, email: modalForm.email, business: modalForm.business, type: modalForm.field, message: modalForm.note || 'Start a Project enquiry' }
         : { name: modalForm.name, email: modalForm.email, message: modalForm.note }
       const res = await fetch('/api/contact', {
         method: 'POST',
@@ -798,7 +800,7 @@ const goNext = () => {
             </li>
           ))}
         </ul>
-        <a href="#contact" className="n-cta" onClick={e => handleNav(e, '#contact')}>
+        <a href="#contact" className="n-cta" onClick={e => { e.preventDefault(); openModal('project') }}>
           Start a Project
         </a>
         <button
@@ -877,7 +879,7 @@ const goNext = () => {
           </div>
           <div className="svc-intro-r rv d2">
             <p>Video, photography, drone and web — produced in-house and built to make your brand impossible to ignore.</p>
-            <button className="btn-g" onClick={() => scrollTo('#contact')}>Start a Project →</button>
+            <button className="btn-g" onClick={() => openModal('project')}>Start a Project →</button>
           </div>
         </div>
 
@@ -1262,7 +1264,7 @@ const goNext = () => {
         </div>
       </footer>
 
-      <button id="fcta" className={showFCta ? 'show' : ''} onClick={() => scrollTo('#contact')} aria-label="Start a project">
+      <button id="fcta" className={showFCta ? 'show' : ''} onClick={() => openModal('project')} aria-label="Start a project">
         Start a Project ✦
       </button>
 
@@ -1300,7 +1302,7 @@ const goNext = () => {
             <a
               href="#contact"
               className="btn-g svc-modal-cta"
-              onClick={e => { handleNav(e, '#contact'); closeSvc() }}
+              onClick={e => { e.preventDefault(); closeSvc(); openModal('project') }}
             >Start a Project →</a>
           </div>
         </div>
@@ -1339,7 +1341,7 @@ const goNext = () => {
             <a
               href="#contact"
               className="btn-g svc-modal-cta"
-              onClick={e => { handleNav(e, '#contact'); closePrice() }}
+              onClick={e => { e.preventDefault(); closePrice(); openModal('project') }}
             >Start a Project →</a>
           </div>
         </div>
@@ -1407,7 +1409,7 @@ const goNext = () => {
 
       {/* ── Quick modals ── */}
       {modal && (
-        <div className="modal-overlay" onClick={closeModal} role="dialog" aria-modal="true" aria-label={modal === 'demo' ? 'Free demo request' : 'Hosting enquiry'}>
+        <div className="modal-overlay" onClick={closeModal} role="dialog" aria-modal="true" aria-label={modal === 'demo' ? 'Free demo request' : modal === 'project' ? 'Start a project' : 'Hosting enquiry'}>
           <div className="modal-box" onClick={e => e.stopPropagation()}>
             <button className="modal-close" onClick={closeModal} aria-label="Close">✕</button>
 
@@ -1462,6 +1464,39 @@ const goNext = () => {
                     <textarea className="modal-input modal-textarea" value={modalForm.note} onChange={e => setModalForm(f => ({ ...f, note: e.target.value }))} rows={3} />
                     <button className="btn-g modal-submit" type="submit" disabled={modalStatus === 'sending'}>
                       {modalStatus === 'sending' ? 'Sending…' : 'Send Enquiry →'}
+                    </button>
+                    {modalStatus === 'error' && <p className="modal-err">Something went wrong — email us at wilsoncreativeco.au@gmail.com</p>}
+                  </form>
+                )}
+              </>
+            )}
+
+            {modal === 'project' && (
+              <>
+                <p className="modal-tag">Start a Project</p>
+                <h3 className="modal-title">Let's make<br /><em>something unforgettable</em></h3>
+                <p className="modal-sub">Tell us a little about what you have in mind and we'll be back to you within a few hours to map out the next steps.</p>
+                {modalStatus === 'sent' ? (
+                  <p className="modal-success">✓ Got it — we'll be in touch shortly.</p>
+                ) : (
+                  <form className="modal-form" onSubmit={handleModalSubmit} noValidate>
+                    <div className="modal-row">
+                      <input className="modal-input" type="text" placeholder="Your Name *" required value={modalForm.name} onChange={e => setModalForm(f => ({ ...f, name: e.target.value }))} />
+                      <input className="modal-input" type="email" placeholder="Email Address *" required value={modalForm.email} onChange={e => setModalForm(f => ({ ...f, email: e.target.value }))} />
+                    </div>
+                    <input className="modal-input" type="text" placeholder="Business Name" value={modalForm.business} onChange={e => setModalForm(f => ({ ...f, business: e.target.value }))} />
+                    <select className="modal-input modal-select" value={modalForm.field} onChange={e => setModalForm(f => ({ ...f, field: e.target.value }))}>
+                      <option value="">What do you need?</option>
+                      <option>Film &amp; Video</option>
+                      <option>Photography</option>
+                      <option>Aerial &amp; Drone</option>
+                      <option>Web Design</option>
+                      <option>Full Brand Package</option>
+                      <option>Something Else</option>
+                    </select>
+                    <textarea className="modal-input modal-textarea" placeholder="Tell us about your project (optional)" value={modalForm.note} onChange={e => setModalForm(f => ({ ...f, note: e.target.value }))} rows={3} />
+                    <button className="btn-g modal-submit" type="submit" disabled={modalStatus === 'sending'}>
+                      {modalStatus === 'sending' ? 'Sending…' : 'Send Project Brief →'}
                     </button>
                     {modalStatus === 'error' && <p className="modal-err">Something went wrong — email us at wilsoncreativeco.au@gmail.com</p>}
                   </form>
