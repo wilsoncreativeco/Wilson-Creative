@@ -1,4 +1,7 @@
 import App from './App.jsx'
+import ForBusinesses from './pages/ForBusinesses.jsx'
+import ForEvents from './pages/ForEvents.jsx'
+import About from './pages/About.jsx'
 import WebDesignBrisbane from './pages/WebDesignBrisbane.jsx'
 import CustomWebsiteDevelopmentBrisbane from './pages/CustomWebsiteDevelopmentBrisbane.jsx'
 import AffordableWebDesignBrisbane from './pages/AffordableWebDesignBrisbane.jsx'
@@ -14,6 +17,21 @@ export const routes = [
     path: '/',
     element: <App />,
     entry: 'src/App.jsx',
+  },
+  {
+    path: '/for-businesses',
+    element: <ForBusinesses />,
+    entry: 'src/pages/ForBusinesses.jsx',
+  },
+  {
+    path: '/for-events',
+    element: <ForEvents />,
+    entry: 'src/pages/ForEvents.jsx',
+  },
+  {
+    path: '/about',
+    element: <About />,
+    entry: 'src/pages/About.jsx',
   },
   {
     path: '/web-design-brisbane',
