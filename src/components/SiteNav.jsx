@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import ContactModal from './ContactModal'
 
 const NAV = [
   { label: 'Home', href: '/' },
@@ -15,12 +16,20 @@ const NAV = [
 export default function SiteNav({ onBook }) {
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
+  const [contact, setContact] = useState(false)
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40)
     onScroll()
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
+  }, [])
+
+  // Any page can open the contact modal: window.dispatchEvent(new CustomEvent('wc:contact'))
+  useEffect(() => {
+    const openContact = () => { setMenuOpen(false); setContact(true) }
+    window.addEventListener('wc:contact', openContact)
+    return () => window.removeEventListener('wc:contact', openContact)
   }, [])
 
   useEffect(() => {
@@ -43,6 +52,9 @@ export default function SiteNav({ onBook }) {
               <a href={item.href}>{item.label}</a>
             </li>
           ))}
+          <li>
+            <button type="button" className="n-link-btn" onClick={() => setContact(true)}>Contact</button>
+          </li>
         </ul>
         <button type="button" className="n-cta" onClick={book}>
           Book a Call
@@ -63,6 +75,9 @@ export default function SiteNav({ onBook }) {
             {item.label}
           </a>
         ))}
+        <button type="button" className="mn-link mn-link-btn" onClick={() => { setMenuOpen(false); setContact(true) }}>
+          Contact
+        </button>
         <div className="mn-bottom">
           <div className="mn-contact">
             <a className="mn-c" href="tel:+61401609118">
@@ -108,6 +123,8 @@ export default function SiteNav({ onBook }) {
           </button>
         </div>
       </nav>
+
+      <ContactModal open={contact} onClose={() => setContact(false)} />
     </>
   )
 }

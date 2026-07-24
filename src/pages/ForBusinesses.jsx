@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Head } from 'vite-react-ssg'
 import SiteNav from '../components/SiteNav'
 import SiteFooter from '../components/SiteFooter'
@@ -6,14 +6,36 @@ import BookingModal from '../components/BookingModal'
 import useReveal from '../components/useReveal'
 import { services, businessIndustries } from '../data/offerings'
 
+// cinematic poster media for each craft tile
+const CRAFT_MEDIA = {
+  '01': { video: '/hero.mp4' },
+  '02': { img: '/brisbane.jpg' },
+  '03': { video: '/hero-drone.mp4', poster: '/hero-drone.jpg' },
+  '04': { img: '/work-zantara.jpg' },
+}
+
 const TITLE = 'Media Production for Business in Brisbane | Film, Photo, Aerial & Web — Wilson Creative Co.'
 const DESC = 'Brand films, photography, aerial drone work and custom websites for Brisbane businesses — produced in-house. Industry-tailored content for construction, real estate, hospitality, trades and brands, plus ongoing monthly retainers.'
 const URL = 'https://www.wilsoncreativeco.au/for-businesses'
 
 export default function ForBusinesses() {
   const [booking, setBooking] = useState(false)
+  const [ind, setInd] = useState(null)
+  const [ret, setRet] = useState(false)
   const book = () => setBooking(true)
   useReveal()
+
+  // Industry / retainer modals: lock scroll while open; close on Escape.
+  useEffect(() => {
+    if (!ind && !ret) return
+    document.body.style.overflow = 'hidden'
+    const onKey = e => { if (e.key === 'Escape') { setInd(null); setRet(false) } }
+    window.addEventListener('keydown', onKey)
+    return () => {
+      document.body.style.overflow = ''
+      window.removeEventListener('keydown', onKey)
+    }
+  }, [ind, ret])
 
   return (
     <>
@@ -53,21 +75,25 @@ export default function ForBusinesses() {
       <SiteNav onBook={book} />
 
       <main>
-        <header className="page-top">
-          <div className="lane-mark rv">
-            <span className="lane-idx">For Businesses</span>
-            <span className="lane-div" aria-hidden="true" />
-            <span className="lane-for">Film · Photo · Aerial · Web</span>
-          </div>
-          <h1 className="page-h1 rv d1">Content that makes your<br />brand <em>impossible to ignore.</em></h1>
-          <p className="page-lead rv d2">
-            Film, photography, aerial &amp; web — produced in-house and tuned to your industry.
-            From a single hero film to an always-on content engine, we make the media that fills
-            your feeds, your listings and your pitch decks.
-          </p>
-          <div className="page-cta rv d3">
-            <button className="btn-g" onClick={book}>Book a Call →</button>
-            <a className="btn-o" href="#offerings">See what we make →</a>
+        <header className="page-top biz-hero">
+          <div className="page-top-bg" aria-hidden="true" />
+          <div className="h-grain" aria-hidden="true" />
+          <div className="page-top-inner">
+            <div className="lane-mark rv">
+              <span className="lane-idx">For Businesses</span>
+              <span className="lane-div" aria-hidden="true" />
+              <span className="lane-for">Film · Photo · Aerial · Web</span>
+            </div>
+            <h1 className="page-h1 rv d1">Content that makes your brand <em>impossible to ignore.</em></h1>
+            <p className="page-lead rv d2">
+              Film, photography, aerial &amp; web — produced in-house and tuned to your industry.
+              From a single hero film to an always-on content engine, we make the media that fills
+              your feeds, your listings and your pitch decks.
+            </p>
+            <div className="page-cta rv d3">
+              <button className="btn-g" onClick={book}>Book a Call →</button>
+              <a className="btn-o" href="#offerings">See what we make →</a>
+            </div>
           </div>
         </header>
 
@@ -81,16 +107,20 @@ export default function ForBusinesses() {
               built under one roof. Including the website that turns it all into enquiries.
             </p>
           </div>
-          <div className="ind-grid ind-grid-4">
+          <div className="craft-grid">
             {services.map((s, i) => (
-              <article className="ind-card rv" key={s.num} style={{ transitionDelay: `${(0.05 + i * 0.06).toFixed(2)}s` }}>
-                <span className="ind-num" aria-hidden="true">{s.num} — {s.tag}</span>
-                <h3 className="ind-t">{s.name}</h3>
-                <p className="ind-line">{s.line}</p>
-                <p className="ind-d">{s.desc}</p>
-                <ul className="ind-tags" aria-label="Deliverables">
-                  {s.deliverables.map(d => <li key={d}>{d}</li>)}
-                </ul>
+              <article className="craft-tile rv" key={s.num} style={{ transitionDelay: `${(0.05 + i * 0.06).toFixed(2)}s` }}>
+                <div className="craft-media" aria-hidden="true">
+                  {CRAFT_MEDIA[s.num]?.video
+                    ? <video src={CRAFT_MEDIA[s.num].video} poster={CRAFT_MEDIA[s.num].poster} autoPlay muted loop playsInline />
+                    : <img src={CRAFT_MEDIA[s.num]?.img} alt="" loading="lazy" />}
+                </div>
+                <div className="craft-scrim" aria-hidden="true" />
+                <div className="craft-info">
+                  <span className="craft-num" aria-hidden="true">{s.num} — {s.tag}</span>
+                  <h3 className="craft-name">{s.name}</h3>
+                  <p className="craft-line">{s.line}</p>
+                </div>
               </article>
             ))}
           </div>
@@ -106,33 +136,36 @@ export default function ForBusinesses() {
               web to what actually moves the needle in your industry.
             </p>
           </div>
-          <div className="ind-grid">
+          <div className="indy-index">
             {businessIndustries.map((it, i) => (
-              <article
-                className={`ind-card rv ${it.ongoing ? 'is-ongoing' : ''}`}
+              <button
+                type="button"
+                className="indy-row rv"
                 key={it.t}
-                style={{ transitionDelay: `${(0.05 + i * 0.06).toFixed(2)}s` }}
+                style={{ transitionDelay: `${(0.05 + i * 0.05).toFixed(2)}s` }}
+                onClick={() => setInd(it)}
+                aria-haspopup="dialog"
               >
-                {it.ongoing && <span className="ind-pill">Ongoing</span>}
-                <span className="ind-num" aria-hidden="true">{it.n}</span>
-                <h3 className="ind-t">{it.t}</h3>
-                <p className="ind-d">{it.d}</p>
-                <ul className="ind-tags" aria-label="Services included">
-                  {it.tags.map(tg => <li key={tg}>{tg}</li>)}
-                </ul>
-              </article>
+                <span className="indy-name">
+                  <h3 className="indy-t">{it.t}</h3>
+                  {it.ongoing && <span className="ind-pill">Ongoing</span>}
+                </span>
+                <span className="indy-crafts" aria-label="Services included">{it.tags.join(' · ')}</span>
+                <span className="indy-arw" aria-hidden="true">→</span>
+              </button>
             ))}
           </div>
 
-          <div className="lane-retainer rv">
-            <div className="lr-l">
-              <p className="lr-k">Ongoing content — not one-offs</p>
-              <p className="lr-t">Monthly progress series, retainers &amp; content drops that keep your brand shipping.</p>
-            </div>
-            <p className="lr-d">
+          <div className="retainer rv">
+            <p className="ret-k">Ongoing — Not One-Offs</p>
+            <p className="ret-line">Monthly progress series, retainers &amp; content drops that keep your brand <em>shipping.</em></p>
+            <p className="ret-note">
               Built for construction timelines, property developments and any brand that needs a
               steady feed of fresh film &amp; photo — month after month.
             </p>
+            <button type="button" className="ret-more" onClick={() => setRet(true)} aria-haspopup="dialog">
+              Learn More →
+            </button>
           </div>
         </section>
 
@@ -165,6 +198,7 @@ export default function ForBusinesses() {
             </div>
             <div className="lane-cta-btns">
               <button className="btn-g" onClick={book}>Book a Call →</button>
+              <button className="btn-o" onClick={() => window.dispatchEvent(new CustomEvent('wc:contact'))}>Contact Us →</button>
               <a className="btn-o" href="/for-events">For Events →</a>
             </div>
           </div>
@@ -173,6 +207,68 @@ export default function ForBusinesses() {
 
       <SiteFooter />
       <BookingModal open={booking} onClose={() => setBooking(false)} />
+
+      {ind && (
+        <div className="modal-overlay" onClick={() => setInd(null)} role="dialog" aria-modal="true" aria-label={ind.t}>
+          <div className="modal-box modal-ind" onClick={e => e.stopPropagation()}>
+            <button className="modal-close" onClick={() => setInd(null)} aria-label="Close">✕</button>
+            <p className="modal-tag">Tailored For</p>
+            <h3 className="modal-title">{ind.t}</h3>
+            <p className="indm-lead">{ind.detail.lead}</p>
+            <div className="indm-rows">
+              {ind.detail.crafts.map(c => (
+                <div className="indm-row" key={c.k}>
+                  <span className="indm-k">{c.k}</span>
+                  <p>{c.v}</p>
+                </div>
+              ))}
+            </div>
+            <ul className="ind-tags indm-tags" aria-label="Typical outcomes">
+              {ind.detail.outcomes.map(o => <li key={o}>{o}</li>)}
+            </ul>
+            <div className="page-cta">
+              <button className="btn-g" onClick={() => { setInd(null); book() }}>Book a Call →</button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {ret && (
+        <div className="modal-overlay" onClick={() => setRet(false)} role="dialog" aria-modal="true" aria-label="Ongoing content retainers">
+          <div className="modal-box modal-ind" onClick={e => e.stopPropagation()}>
+            <button className="modal-close" onClick={() => setRet(false)} aria-label="Close">✕</button>
+            <p className="modal-tag">Ongoing Content</p>
+            <h3 className="modal-title">Retainers &amp; Progress Series</h3>
+            <p className="indm-lead">
+              One team on your brand, month after month — shooting, editing and delivering on a
+              schedule, so your feed never runs dry and your projects never go undocumented.
+            </p>
+            <div className="indm-rows">
+              <div className="indm-row">
+                <span className="indm-k">Cadence</span>
+                <p>Monthly or fortnightly shoot days, scheduled around your projects and timelines.</p>
+              </div>
+              <div className="indm-row">
+                <span className="indm-k">Delivery</span>
+                <p>Progress films, social cuts, stills &amp; aerial updates — edited and delivered ready to post.</p>
+              </div>
+              <div className="indm-row">
+                <span className="indm-k">Priority</span>
+                <p>Retainer clients jump the queue — extra shoots and fast turnarounds, whenever you need them.</p>
+              </div>
+            </div>
+            <ul className="ind-tags indm-tags" aria-label="Typical inclusions">
+              <li>Monthly progress films</li>
+              <li>Social content drops</li>
+              <li>Aerial site updates</li>
+              <li>Priority booking</li>
+            </ul>
+            <div className="page-cta">
+              <button className="btn-g" onClick={() => { setRet(false); book() }}>Book a Call →</button>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   )
 }

@@ -8,7 +8,7 @@ export const services = [
     line: 'Stories that move.',
     desc: 'Cinematic brand films, commercials and short-form content that stop the scroll — and stay with people long after.',
     deliverables: ['Brand Films', 'Commercials', 'Social Reels', 'Event Coverage'],
-    glow: '216,116,60',
+    glow: '197,164,74',
     approach: 'From a single hero film to an ongoing content engine, we handle concept, shoot and edit end to end — so all you do is show up.',
     perfectFor: [
       { t: 'Construction', d: 'Timeline, progress & completion films that document the whole build.' },
@@ -25,7 +25,7 @@ export const services = [
     line: 'Every detail, sharp.',
     desc: 'Editorial brand, product and lifestyle photography — shot to sell, not just to look pretty.',
     deliverables: ['Brand & Product', 'Lifestyle', 'Headshots', 'On-Location'],
-    glow: '198,120,150',
+    glow: '197,164,74',
     approach: 'Editorial-grade stills for every corner of your brand — shot, retouched and delivered ready to publish.',
     perfectFor: [
       { t: 'Real Estate', d: 'Interiors & listing galleries that make properties impossible to scroll past.' },
@@ -42,7 +42,7 @@ export const services = [
     line: 'A view they can’t match.',
     desc: 'Licensed drone cinematography that gives your brand a perspective competitors simply can’t reach.',
     deliverables: ['4K Aerial', 'Real Estate', 'Construction', 'Landscapes'],
-    glow: '78,140,180',
+    glow: '197,164,74',
     approach: 'CASA-licensed drone work that adds scale and cinema to any project — flown safely, legally and beautifully.',
     perfectFor: [
       { t: 'Construction', d: 'Aerial progress capture & site surveys from groundbreak to handover.' },
@@ -59,7 +59,7 @@ export const services = [
     line: 'Content into customers.',
     desc: 'Fully custom-coded websites — no templates — that turn all of that content into real, paying customers.',
     deliverables: ['Custom Build', 'No Templates', 'SEO Ready', 'Lightning Fast'],
-    glow: '150,130,210',
+    glow: '197,164,74',
     approach: 'Fully custom-coded sites that turn all this media into enquiries — fast, modern and built to convert.',
     perfectFor: [
       { t: 'Trades & Local Business', d: 'Lead-generation sites that turn clicks into calls.' },
@@ -77,26 +77,72 @@ export const businessIndustries = [
     n: '01', t: 'Construction & Development', ongoing: true,
     d: 'Monthly progress updates, timeline & completion films, plus aerial site capture from groundbreak to handover.',
     tags: ['Film', 'Aerial', 'Photo'],
+    detail: {
+      lead: 'Long builds deserve long-form storytelling. We document your projects from groundbreak to handover — so every milestone becomes marketing.',
+      crafts: [
+        { k: 'Film', v: 'Timeline, progress & completion films that document the whole build.' },
+        { k: 'Aerial', v: 'CASA-licensed progress capture & site surveys, flown on a schedule.' },
+        { k: 'Photo', v: 'Site & milestone stills for reports, tenders and marketing.' },
+      ],
+      outcomes: ['Monthly progress series', 'Completion film', '4K site aerials', 'Tender-ready stills'],
+    },
   },
   {
     n: '02', t: 'Real Estate',
     d: 'Listing films, editorial interiors & aerial showcases that sell the lifestyle — not just the floorplan.',
     tags: ['Film', 'Photo', 'Aerial', 'Web'],
+    detail: {
+      lead: 'Buyers fall for lifestyle, not floorplans. We make every listing look like it belongs in a magazine — and move faster because of it.',
+      crafts: [
+        { k: 'Film', v: 'Listing & development showcases that sell the lifestyle.' },
+        { k: 'Photo', v: 'Editorial interiors & galleries impossible to scroll past.' },
+        { k: 'Aerial', v: 'Property & land showcases that reveal the full scope.' },
+        { k: 'Web', v: 'Development micro-sites that turn interest into enquiries.' },
+      ],
+      outcomes: ['Listing films', 'Editorial interiors', 'Aerial showcases', 'Development sites'],
+    },
   },
   {
     n: '03', t: 'Hospitality & Venues',
     d: 'Food, drink & atmosphere reels — plus booking-ready sites — that fill tables and rooms.',
     tags: ['Film', 'Photo', 'Web'],
+    detail: {
+      lead: 'People book with their eyes. We make food, drink & atmosphere content that lets them taste it before they arrive.',
+      crafts: [
+        { k: 'Film', v: 'Venue & atmosphere reels that fill tables and rooms.' },
+        { k: 'Photo', v: 'Food & drink shoots that look as good as they taste.' },
+        { k: 'Web', v: 'Booking-ready sites that convert the craving.' },
+      ],
+      outcomes: ['Atmosphere reels', 'Menu & venue shoots', 'Booking websites', 'Social content drops'],
+    },
   },
   {
     n: '04', t: 'Trades & Local Business',
     d: 'Lead-generation websites, backed by the photo & video content that makes them convert.',
     tags: ['Web', 'Film', 'Photo'],
+    detail: {
+      lead: 'Work that wins locals: a site that ranks and converts, backed by content that proves you’re the real deal.',
+      crafts: [
+        { k: 'Web', v: 'Custom-coded lead-gen sites — no templates, built to convert.' },
+        { k: 'Film', v: 'On-the-job films that build trust before the first call.' },
+        { k: 'Photo', v: 'Team & project shoots that humanise the brand.' },
+      ],
+      outcomes: ['Lead-gen website', 'Job-site films', 'Team shoots', 'Google-ready galleries'],
+    },
   },
   {
     n: '05', t: 'Brands & Product',
     d: 'Commercials, social campaigns & editorial stills built to move product and grow reach.',
     tags: ['Film', 'Photo', 'Web'],
+    detail: {
+      lead: 'Scroll-stopping campaigns and editorial stills, built to move product — and grow the brand behind it.',
+      crafts: [
+        { k: 'Film', v: 'Commercials & social campaigns built to convert.' },
+        { k: 'Photo', v: 'Studio & lifestyle imagery that drives sales.' },
+        { k: 'Web', v: 'Brand sites that turn attention into customers.' },
+      ],
+      outcomes: ['Commercials', 'Social campaigns', 'Product stills', 'Brand sites'],
+    },
   },
 ]
 

@@ -153,6 +153,7 @@ export default function ForEvents() {
             </div>
             <div className="lane-cta-btns">
               <button className="btn-g" onClick={book}>Book a Call →</button>
+              <button className="btn-o" onClick={() => window.dispatchEvent(new CustomEvent('wc:contact'))}>Contact Us →</button>
               <a className="btn-o" href="/for-businesses">For Businesses →</a>
             </div>
           </div>
