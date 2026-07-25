@@ -4,6 +4,7 @@ import SiteNav from '../components/SiteNav'
 import SiteFooter from '../components/SiteFooter'
 import BookingModal from '../components/BookingModal'
 import useReveal from '../components/useReveal'
+import useLazyVideo from '../components/useLazyVideo'
 import { services, eventTypes } from '../data/offerings'
 
 // cinematic poster media for each craft tile (no Web on events)
@@ -22,6 +23,7 @@ export default function ForEvents() {
   const [ind, setInd] = useState(null)
   const book = () => setBooking(true)
   useReveal()
+  useLazyVideo()
 
   // Event-type modal: lock scroll while open; close on Escape.
   useEffect(() => {
@@ -110,7 +112,7 @@ export default function ForEvents() {
               <article className="craft-tile rv" key={s.num} style={{ transitionDelay: `${(0.05 + i * 0.06).toFixed(2)}s` }}>
                 <div className="craft-media" aria-hidden="true">
                   {CRAFT_MEDIA[s.num]?.video
-                    ? <video src={CRAFT_MEDIA[s.num].video} poster={CRAFT_MEDIA[s.num].poster} autoPlay muted loop playsInline />
+                    ? <video src={CRAFT_MEDIA[s.num].video} poster={CRAFT_MEDIA[s.num].poster} autoPlay muted loop playsInline preload="metadata" />
                     : <img src={CRAFT_MEDIA[s.num]?.img} alt="" loading="lazy" />}
                 </div>
                 <div className="craft-scrim" aria-hidden="true" />

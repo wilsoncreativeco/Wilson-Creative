@@ -1200,6 +1200,42 @@ body::before{
   .indy-row:hover{ padding-left:8px; }
 }
 
+/* ── legal pages (privacy) ── */
+.legal-top{ padding-bottom:20px; }
+.legal-updated{
+  font-size:10px;
+  letter-spacing:.3em;
+  text-transform:uppercase;
+  color:var(--w3);
+  margin-top:26px;
+}
+.legal-body{
+  max-width:720px;
+  display:flex;
+  flex-direction:column;
+}
+.legal-block{
+  padding:30px 0;
+  border-top:1px solid var(--bd);
+}
+.legal-h{
+  font-family:'Cormorant Garamond',serif;
+  font-weight:500;
+  font-size:clamp(21px,2vw,26px);
+  line-height:1.14;
+  margin-bottom:12px;
+}
+.legal-p{
+  font-size:14px;
+  color:var(--w6);
+  line-height:1.85;
+}
+.legal-link{ color:var(--g); }
+.legal-link:hover{ color:var(--gl); }
+
+/* ── 404 ── */
+.nf-hero{ min-height:70vh; display:flex; flex-direction:column; justify-content:center; }
+
 /* ── retainer statement band ── */
 .retainer{
   margin-top:72px;

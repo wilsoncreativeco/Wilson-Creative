@@ -10,6 +10,8 @@ import WebDesignNewFarm from './pages/WebDesignNewFarm.jsx'
 import WebDesignNewstead from './pages/WebDesignNewstead.jsx'
 import Blog from './pages/Blog.jsx'
 import BlogPost from './pages/BlogPost.jsx'
+import Privacy from './pages/Privacy.jsx'
+import NotFound from './pages/NotFound.jsx'
 import './App.css'
 
 export const routes = [
@@ -107,5 +109,20 @@ export const routes = [
     path: '/blog/website-speed-matters-brisbane-business',
     element: <BlogPost slug="website-speed-matters-brisbane-business" />,
     entry: 'src/pages/BlogPost.jsx',
+  },
+  {
+    path: '/privacy',
+    element: <Privacy />,
+    entry: 'src/pages/Privacy.jsx',
+  },
+  {
+    path: '/404',
+    element: <NotFound />,
+    entry: 'src/pages/NotFound.jsx',
+  },
+  {
+    path: '*',
+    element: <NotFound />,
+    entry: 'src/pages/NotFound.jsx',
   },
 ]

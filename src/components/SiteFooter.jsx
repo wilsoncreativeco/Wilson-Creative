@@ -24,6 +24,7 @@ export default function SiteFooter() {
             <a href="/for-events">For Events</a>
             <a href="/about">About</a>
             <a href="/blog">Blog</a>
+            <a href="/privacy">Privacy</a>
           </div>
           <div className="fc">
             <p>Connect</p>
