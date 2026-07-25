@@ -3311,8 +3311,11 @@ footer::before{
   }
   .h-scroll{ display:none; }
   .h-btns{ flex-direction:column; width:100%; }
-  .hero-doors{ flex-direction:column; width:100%; margin-top:6px; }
-  .hero-door{ flex:none; width:100%; max-width:none; }
+  .hero-doors{ width:100%; gap:10px; margin-top:6px; }
+  .hero-door{ flex:1 1 0; min-width:0; max-width:none; padding:18px 16px 16px; }
+  .hd-t{ font-size:26px; }
+  .hd-d{ display:none; }
+  .hd-go{ margin-top:10px; }
   .h1{ margin-bottom:22px; }
   .h-sub{ margin-bottom:30px; }
 
