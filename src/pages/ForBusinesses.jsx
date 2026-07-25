@@ -10,9 +10,9 @@ import { services, businessIndustries } from '../data/offerings'
 // cinematic poster media for each craft tile
 const CRAFT_MEDIA = {
   '01': { video: '/hero.mp4' },
-  '02': { img: '/brisbane.jpg' },
+  '02': { img: '/brisbane.jpg', w: 1800, h: 2400 },
   '03': { video: '/hero-drone.mp4', poster: '/hero-drone.jpg' },
-  '04': { img: '/work-zantara.jpg' },
+  '04': { img: '/work-zantara.jpg', w: 1400, h: 875 },
 }
 
 const TITLE = 'Media Production for Business in Brisbane | Film, Photo, Aerial & Web — Wilson Creative Co.'
@@ -115,7 +115,7 @@ export default function ForBusinesses() {
                 <div className="craft-media" aria-hidden="true">
                   {CRAFT_MEDIA[s.num]?.video
                     ? <video src={CRAFT_MEDIA[s.num].video} poster={CRAFT_MEDIA[s.num].poster} autoPlay muted loop playsInline preload="metadata" />
-                    : <img src={CRAFT_MEDIA[s.num]?.img} alt="" loading="lazy" />}
+                    : <img src={CRAFT_MEDIA[s.num]?.img} alt="" loading="lazy" width={CRAFT_MEDIA[s.num]?.w} height={CRAFT_MEDIA[s.num]?.h} />}
                 </div>
                 <div className="craft-scrim" aria-hidden="true" />
                 <div className="craft-info">

@@ -10,7 +10,7 @@ import { services, eventTypes } from '../data/offerings'
 // cinematic poster media for each craft tile (no Web on events)
 const CRAFT_MEDIA = {
   '01': { video: '/hero.mp4' },
-  '02': { img: '/brisbane.jpg' },
+  '02': { img: '/brisbane.jpg', w: 1800, h: 2400 },
   '03': { video: '/hero-drone.mp4', poster: '/hero-drone.jpg' },
 }
 
@@ -113,7 +113,7 @@ export default function ForEvents() {
                 <div className="craft-media" aria-hidden="true">
                   {CRAFT_MEDIA[s.num]?.video
                     ? <video src={CRAFT_MEDIA[s.num].video} poster={CRAFT_MEDIA[s.num].poster} autoPlay muted loop playsInline preload="metadata" />
-                    : <img src={CRAFT_MEDIA[s.num]?.img} alt="" loading="lazy" />}
+                    : <img src={CRAFT_MEDIA[s.num]?.img} alt="" loading="lazy" width={CRAFT_MEDIA[s.num]?.w} height={CRAFT_MEDIA[s.num]?.h} />}
                 </div>
                 <div className="craft-scrim" aria-hidden="true" />
                 <div className="craft-info">
