@@ -1141,8 +1141,19 @@ body::before{
   .craft-grid{ grid-template-columns:repeat(2,1fr); }
 }
 @media(max-width:520px){
-  .craft-grid{ gap:10px; }
-  .craft-info{ padding:16px 14px 14px; }
+  /* two-up tiles were too narrow — the craft copy overflowed the card.
+     One full-width cinematic still per craft reads better and fits. */
+  .craft-grid,
+  .craft-grid-3{ grid-template-columns:1fr; gap:12px; }
+  .craft-tile{ aspect-ratio:16/10; }
+  .craft-info{ padding:20px 20px 18px; }
+  .craft-num{ white-space:nowrap; }
+
+  /* an 84px label column is too much of a 285px row — stack instead */
+  .indm-row{ grid-template-columns:1fr; gap:7px; padding:14px 15px; }
+  .indm-k{ padding-top:0; }
+  .modal-box{ padding:30px 22px 24px; }
+  .modal-ind{ max-height:84svh; }
 }
 
 /* ── industry index (editorial ledger) ── */
@@ -1325,10 +1336,14 @@ body::before{
 }
 .rate-cta{ margin-top:12px; }
 @media(max-width:720px){
-  .rate-row{ grid-template-columns:1fr auto; gap:10px 16px; }
-  .rate-row .rate-mkt{ grid-column:2; font-size:12px; }
-  .rate-row .rate-p{ grid-column:2; grid-row:1; }
+  /* keep the market rate tucked under its own price instead of drifting to the
+     bottom of the row on an implicit grid line */
+  .rate-row{ grid-template-columns:1fr auto; gap:4px 16px; align-items:start; padding:18px 4px; }
+  .rate-row .rate-n{ grid-column:1; grid-row:1 / span 2; }
+  .rate-row .rate-p{ grid-column:2; grid-row:1; font-size:21px; line-height:1.1; }
+  .rate-row .rate-mkt{ grid-column:2; grid-row:2; font-size:11.5px; align-self:start; }
   .rate-row-h{ display:none; }
+  .rate-group{ margin-bottom:48px; }
 }
 
 /* ── 404 ── */
@@ -1384,13 +1399,19 @@ body::before{
 }
 .ret-more:hover{ background:rgba(197,164,74,.08); border-color:var(--g); }
 
-/* mobile-menu Contact trigger — inherit .mn-link look on a button */
+/* mobile-menu Contact trigger — must keep the .mn-link Bebas treatment,
+   so only reset the button chrome, never the typography */
 .mn-link-btn{
   appearance:none;
   -webkit-appearance:none;
   background:none;
   border:none;
-  font-family:inherit;
+  border-bottom:1px solid var(--bd);
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(2.4rem,11vw,3.6rem);
+  letter-spacing:.04em;
+  line-height:1;
+  text-transform:uppercase;
   text-align:left;
   width:100%;
   cursor:pointer;
@@ -3437,8 +3458,12 @@ footer::before{
   #nav.sc{ padding:11px 24px; }
   .n-links, .n-cta{ display:none; }
   .ham{ display:flex; }
+  /* wordmark ran under the hamburger at 375px */
+  .n-logo{ gap:10px; min-width:0; }
+  .n-logo-img{ height:30px; }
+  .n-logo-text{ font-size:10px; letter-spacing:.22em; }
 
-  .hero{ padding:100px 24px 56px; min-height:100svh; justify-content:flex-start; }
+  .hero{ padding:96px 24px 76px; min-height:100svh; justify-content:center; }
   /* top-weighted scrim so the headline/sub stay legible over bright sky on narrow screens */
   .h-ov{
     background:linear-gradient(to bottom,
@@ -3454,10 +3479,26 @@ footer::before{
   .h1{ margin-bottom:22px; }
   .h-sub{ margin-bottom:30px; }
 
+  /* the Cal iframe renders its whole slot list inline — 1600px on a phone.
+     Cap it and let the calendar scroll inside its own frame. */
+  .cal-wrap{ margin-top:24px; }
+  .cal-embed{ min-height:0; height:64svh; max-height:560px; overflow-y:auto; -webkit-overflow-scrolling:touch; }
+  #book{ padding-bottom:104px; }
+
   .btn-g,
   .btn-o{ width:100%; text-align:center; padding:16px; }
 
   .secpad{ padding:80px 24px; }
+
+  /* floating CTA sat centre-screen over the cards — tuck it into the corner */
+  #fcta{
+    left:auto; right:16px; bottom:16px;
+    transform:translateX(0) translateY(120px);
+    padding:12px 20px; font-size:9.5px; letter-spacing:.16em;
+  }
+  #fcta.show{ transform:translateX(0) translateY(0); }
+
+  .ind-card{ padding:24px 22px 22px; }
 
   .svc-intro{ flex-direction:column; align-items:flex-start; margin-bottom:36px; }
   .svc-intro-r{ max-width:100%; }

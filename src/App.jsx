@@ -490,7 +490,12 @@ const [activeBuild, setActiveBuild] = useState(1)
       const h = document.documentElement.scrollHeight - window.innerHeight
       setNavScrolled(sy > 60)
       setScrollProg(h > 0 ? (sy / h) * 100 : 0)
-      setShowFCta(sy > window.innerHeight * 0.8)
+      // hide the floating CTA over the booking section — it covers the calendar
+      const bk = document.getElementById('book')
+      const bkInView = bk
+        ? (() => { const r = bk.getBoundingClientRect(); return r.top < window.innerHeight * 0.9 && r.bottom > 60 })()
+        : false
+      setShowFCta(sy > window.innerHeight * 0.8 && !bkInView)
     }
     window.addEventListener('scroll', onScroll, { passive: true })
     onScroll()
