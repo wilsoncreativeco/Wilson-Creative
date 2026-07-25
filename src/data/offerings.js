@@ -152,20 +152,54 @@ export const eventTypes = [
     n: '01', t: 'Weddings',
     d: 'Cinematic films and full-day photography that let you relive the day — not just remember it.',
     tags: ['Film', 'Photo', 'Aerial'],
+    detail: {
+      lead: 'The one day you can’t reshoot. A calm, unobtrusive crew with cinema cameras and full-day photography — so every vow, speech and dance-floor moment is yours forever.',
+      crafts: [
+        { k: 'Film', v: 'A cinematic highlight film — plus the full ceremony & speeches, uncut.' },
+        { k: 'Photo', v: 'Editorial full-day photography, from prep to the last dance.' },
+        { k: 'Aerial', v: 'Venue & couple aerials that set the scene.' },
+      ],
+      outcomes: ['Highlight film', 'Full ceremony edit', 'Full-day gallery', 'Venue aerials'],
+    },
   },
   {
     n: '02', t: 'Parties & Celebrations',
     d: 'Milestones, launches and private events captured with energy and taste.',
     tags: ['Film', 'Photo'],
+    detail: {
+      lead: 'Milestones deserve better than phone footage. We capture the energy, the people and the feeling of the night — with taste.',
+      crafts: [
+        { k: 'Film', v: 'Recap films with the night’s energy, cut ready to share.' },
+        { k: 'Photo', v: 'Candid, editorial coverage of the people who matter.' },
+      ],
+      outcomes: ['Recap film', 'Social cuts', 'Candid gallery', 'Fast delivery'],
+    },
   },
   {
     n: '03', t: 'Corporate & Conferences',
     d: 'Recap films, speaker coverage and photography that give your event a second life online.',
     tags: ['Film', 'Photo'],
+    detail: {
+      lead: 'Your event ends — its content shouldn’t. Recap films, speaker sessions and photography that give the day a second life across your channels.',
+      crafts: [
+        { k: 'Film', v: 'Recap films plus full speaker & session coverage.' },
+        { k: 'Photo', v: 'Stage, delegate & networking photography, brand-safe.' },
+      ],
+      outcomes: ['Recap film', 'Speaker sessions', 'Event gallery', 'Social cuts'],
+    },
   },
   {
     n: '04', t: 'Live & Performance',
     d: 'Multi-angle films and stills that capture the scale — and the feeling of the room.',
     tags: ['Film', 'Photo', 'Aerial'],
+    detail: {
+      lead: 'Multi-angle coverage that captures the scale of the production — and the feeling in the room when it all lands.',
+      crafts: [
+        { k: 'Film', v: 'Multi-cam films cut to the energy of the set.' },
+        { k: 'Photo', v: 'Stage, crowd & backstage stills.' },
+        { k: 'Aerial', v: 'Venue-scale aerials, where licensed & safe.' },
+      ],
+      outcomes: ['Multi-cam film', 'Aftermovie', 'Stage stills', 'Crowd energy'],
+    },
   },
 ]
