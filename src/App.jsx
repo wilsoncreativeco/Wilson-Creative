@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import { Head } from 'vite-react-ssg'
 import SiteNav from './components/SiteNav'
 import SiteFooter from './components/SiteFooter'
 import CalEmbed from './components/CalEmbed'
@@ -774,6 +775,20 @@ const goNext = () => {
           </div>
         </div>
       )}
+
+      <Head>
+        <title>Wilson Creative Co. | Film, Photo &amp; Drone Studio Brisbane</title>
+        <meta name="description" content="Wilson Creative Co. is a full-service creative studio in Brisbane — brand films, photography, aerial drone work and custom-coded websites, produced in-house. From $550." />
+        <meta name="keywords" content="video production Brisbane, brand films Brisbane, commercial videography Brisbane, photography Brisbane, drone videography Brisbane, aerial cinematography Brisbane, social media content Brisbane, creative studio Brisbane, custom web design Brisbane" />
+        <link rel="canonical" href="https://www.wilsoncreativeco.au" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://www.wilsoncreativeco.au" />
+        <meta property="og:title" content="Wilson Creative Co. | Brisbane Creative Studio" />
+        <meta property="og:description" content="Brand films, photography, aerial drone work and custom websites — produced in-house to make your brand impossible to ignore." />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Wilson Creative Co. | Brisbane Creative Studio" />
+        <meta name="twitter:description" content="Film, photography, aerial &amp; web — produced in-house to make your brand impossible to ignore." />
+      </Head>
 
       <SiteNav onBook={() => document.getElementById('book')?.scrollIntoView({ behavior: 'smooth', block: 'start' })} />
 
