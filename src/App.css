@@ -3454,10 +3454,23 @@ footer::before{
 @media(max-width:768px){
   #nav{
     padding:calc(16px + env(safe-area-inset-top, 0px)) 24px 16px;
-    background:rgba(7,6,10,.92);
-    backdrop-filter:blur(20px);
-    -webkit-backdrop-filter:blur(20px);
+    background:rgba(7,6,10,.97);
+    backdrop-filter:blur(22px) saturate(120%);
+    -webkit-backdrop-filter:blur(22px) saturate(120%);
     border-bottom:1px solid var(--bd);
+  }
+  /* solid shield across the iPhone status-bar strip, so nothing shows through
+     above the bar even while the page scrolls under it */
+  #nav::before{
+    content:'';
+    position:fixed;
+    top:0;
+    left:0;
+    right:0;
+    height:env(safe-area-inset-top, 0px);
+    background:#07060A;
+    z-index:2;
+    pointer-events:none;
   }
   #nav.sc{ padding:calc(11px + env(safe-area-inset-top, 0px)) 24px 11px; }
   /* menu panel and floating CTA clear the notch and the home indicator */
