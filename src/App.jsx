@@ -395,6 +395,9 @@ export default function App() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [scrollProg, setScrollProg] = useState(0)
   const [showFCta, setShowFCta] = useState(false)
+  // 1080p hero on desktop, lighter 720p cut on phones — chosen after mount so
+  // the prerendered HTML never hardcodes the 22MB file for mobile visitors.
+  const [heroSrc, setHeroSrc] = useState(undefined)
   const [openFaq, setOpenFaq] = useState(null)
   const [formStatus, setFormStatus] = useState('idle') // idle | sending | sent | error
   const [form, setForm] = useState({ name: '', email: '', phone: '', service: '', message: '', budget: '' })
@@ -500,6 +503,10 @@ const [activeBuild, setActiveBuild] = useState(1)
     window.addEventListener('scroll', onScroll, { passive: true })
     onScroll()
     return () => window.removeEventListener('scroll', onScroll)
+  }, [])
+
+  useEffect(() => {
+    setHeroSrc(window.innerWidth <= 768 ? '/hero-drone-m.mp4' : '/hero-drone.mp4')
   }, [])
 
   useEffect(() => {
@@ -809,9 +816,8 @@ const goNext = () => {
             playsInline
             preload="auto"
             aria-hidden="true"
-          >
-            <source src="/hero-drone.mp4" type="video/mp4" />
-          </video>
+            src={heroSrc}
+          />
         </div>
         <div className="h-ov" aria-hidden="true" />
         <div className="h-grain" aria-hidden="true" />

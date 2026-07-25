@@ -11,7 +11,7 @@ import { services, businessIndustries } from '../data/offerings'
 const CRAFT_MEDIA = {
   '01': { video: '/hero.mp4' },
   '02': { img: '/brisbane.jpg', w: 1800, h: 2400 },
-  '03': { video: '/hero-drone.mp4', poster: '/hero-drone.jpg' },
+  '03': { video: '/hero-drone-m.mp4', poster: '/hero-drone.jpg' },
   '04': { img: '/work-zantara.jpg', w: 1400, h: 875 },
 }
 

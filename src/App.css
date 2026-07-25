@@ -233,12 +233,14 @@ body::before{
   display:flex;
   align-items:center;
   justify-content:space-between;
-  padding:28px 52px;
+  /* safe-area inset keeps the bar's background filling the iPhone status-bar
+     strip; resolves to 0 everywhere else, so desktop is unchanged */
+  padding:calc(28px + env(safe-area-inset-top, 0px)) 52px 28px;
   transition:padding .4s var(--ease), background .4s, border-color .4s;
 }
 
 #nav.sc{
-  padding:14px 52px;
+  padding:calc(14px + env(safe-area-inset-top, 0px)) 52px 14px;
   background:rgba(7,6,10,.9);
   backdrop-filter:blur(22px);
   -webkit-backdrop-filter:blur(22px);
@@ -3451,11 +3453,16 @@ footer::before{
 
 @media(max-width:768px){
   #nav{
-    padding:16px 24px;
-    background:var(--bg);
+    padding:calc(16px + env(safe-area-inset-top, 0px)) 24px 16px;
+    background:rgba(7,6,10,.92);
+    backdrop-filter:blur(20px);
+    -webkit-backdrop-filter:blur(20px);
     border-bottom:1px solid var(--bd);
   }
-  #nav.sc{ padding:11px 24px; }
+  #nav.sc{ padding:calc(11px + env(safe-area-inset-top, 0px)) 24px 11px; }
+  /* menu panel and floating CTA clear the notch and the home indicator */
+  #mnav{ padding-top:calc(96px + env(safe-area-inset-top, 0px)); }
+  #fcta{ bottom:calc(16px + env(safe-area-inset-bottom, 0px)); }
   .n-links, .n-cta{ display:none; }
   .ham{ display:flex; }
   /* wordmark ran under the hamburger at 375px */
