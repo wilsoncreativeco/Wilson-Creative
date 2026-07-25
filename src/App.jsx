@@ -326,7 +326,7 @@ const faqItems = [
   {
     cat: 'Pricing',
     q: 'How much does a shoot or project cost?',
-    a: "Single shoots run from $550 for corporate headshots up to $2,200 for a full brand film — with photography, social reels and aerial work in between. Ongoing content packages start from $1,100/mo, and one-off bundles save you up to $200. Custom websites start from $600. Every project is custom-quoted — no padded packages, no surprises — and the pricing section above has the full breakdown.",
+    a: "Most brand projects land between $1,500 and $3,000 — a full brand film with a shoot day, colour grade and social cuts sits around $2,200. Ongoing content retainers start from $1,100/mo. Smaller one-off sessions like headshots, aerial stills or a social reel start from $550, and custom websites from $600. Every project is custom-quoted — no padded packages, no surprises — and the pricing section above has the full breakdown.",
   },
   {
     cat: 'Media',
@@ -778,7 +778,7 @@ const goNext = () => {
 
       <Head>
         <title>Wilson Creative Co. | Film, Photo &amp; Drone Studio Brisbane</title>
-        <meta name="description" content="Wilson Creative Co. is a full-service creative studio in Brisbane — brand films, photography, aerial drone work and custom-coded websites, produced in-house. From $550." />
+        <meta name="description" content="Wilson Creative Co. is a full-service creative studio in Brisbane — brand films, photography, aerial drone work and custom-coded websites, produced in-house. Projects from $1,500." />
         <meta name="keywords" content="video production Brisbane, brand films Brisbane, commercial videography Brisbane, photography Brisbane, drone videography Brisbane, aerial cinematography Brisbane, social media content Brisbane, creative studio Brisbane, custom web design Brisbane" />
         <link rel="canonical" href="https://www.wilsoncreativeco.au" />
         <meta property="og:type" content="website" />

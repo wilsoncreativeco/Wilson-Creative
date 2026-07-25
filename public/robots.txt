@@ -3,5 +3,6 @@ Allow: /
 
 Disallow: /api/
 Disallow: /admin/
+Disallow: /pricing
 
 Sitemap: https://www.wilsoncreativeco.au/sitemap.xml

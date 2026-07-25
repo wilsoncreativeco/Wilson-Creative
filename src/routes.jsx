@@ -11,6 +11,7 @@ import WebDesignNewstead from './pages/WebDesignNewstead.jsx'
 import Blog from './pages/Blog.jsx'
 import BlogPost from './pages/BlogPost.jsx'
 import Privacy from './pages/Privacy.jsx'
+import Pricing from './pages/Pricing.jsx'
 import NotFound from './pages/NotFound.jsx'
 import './App.css'
 
@@ -129,6 +130,11 @@ export const routes = [
     path: '/privacy',
     element: <Privacy />,
     entry: 'src/pages/Privacy.jsx',
+  },
+  {
+    path: '/pricing',
+    element: <Pricing />,
+    entry: 'src/pages/Pricing.jsx',
   },
   {
     path: '/404',
