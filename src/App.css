@@ -3459,17 +3459,18 @@ footer::before{
     -webkit-backdrop-filter:blur(22px) saturate(120%);
     border-bottom:1px solid var(--bd);
   }
-  /* solid shield across the iPhone status-bar strip, so nothing shows through
-     above the bar even while the page scrolls under it */
+  /* Extend the bar's own background upward past the top of the layout viewport
+     so the iPhone status-bar strip is solid. Absolute (not fixed) on purpose:
+     backdrop-filter on #nav makes it a containing block for fixed children,
+     which is why an env()-sized fixed shield covered nothing. */
   #nav::before{
     content:'';
-    position:fixed;
-    top:0;
+    position:absolute;
     left:0;
     right:0;
-    height:env(safe-area-inset-top, 0px);
+    bottom:100%;
+    height:220px;
     background:#07060A;
-    z-index:2;
     pointer-events:none;
   }
   #nav.sc{ padding:calc(11px + env(safe-area-inset-top, 0px)) 24px 11px; }
