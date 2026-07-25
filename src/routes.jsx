@@ -71,6 +71,21 @@ export const routes = [
     entry: 'src/pages/Blog.jsx',
   },
   {
+    path: '/blog/how-much-does-a-brand-video-cost-brisbane',
+    element: <BlogPost slug="how-much-does-a-brand-video-cost-brisbane" />,
+    entry: 'src/pages/BlogPost.jsx',
+  },
+  {
+    path: '/blog/wedding-videography-brisbane-what-it-costs',
+    element: <BlogPost slug="wedding-videography-brisbane-what-it-costs" />,
+    entry: 'src/pages/BlogPost.jsx',
+  },
+  {
+    path: '/blog/construction-progress-video-brisbane',
+    element: <BlogPost slug="construction-progress-video-brisbane" />,
+    entry: 'src/pages/BlogPost.jsx',
+  },
+  {
     path: '/blog/how-much-does-a-website-cost-brisbane-2026',
     element: <BlogPost slug="how-much-does-a-website-cost-brisbane-2026" />,
     entry: 'src/pages/BlogPost.jsx',
