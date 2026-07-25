@@ -710,7 +710,7 @@ body::before{
 }
 
 .gold-line{
-  background:linear-gradient(135deg,#7A6422 0%,#B8A050 38%,#E8C97A 52%,#B8A050 66%,#7A6422 100%);
+  background:linear-gradient(135deg,#C5A44A 0%,#E8C97A 36%,#FFF6DD 52%,#E8C97A 68%,#C5A44A 100%);
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
   background-clip:text;
@@ -2915,7 +2915,7 @@ iframe::-webkit-scrollbar{
 
 .cta-h2 span{
   display:block;
-  background:linear-gradient(135deg,#7A6422 0%,#B8A050 38%,#E8C97A 52%,#B8A050 66%,#7A6422 100%);
+  background:linear-gradient(135deg,#C5A44A 0%,#E8C97A 36%,#FFF6DD 52%,#E8C97A 68%,#C5A44A 100%);
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
   background-clip:text;

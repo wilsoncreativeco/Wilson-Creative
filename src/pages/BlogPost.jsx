@@ -1,4 +1,8 @@
+import { useState } from 'react'
 import { Head } from 'vite-react-ssg'
+import SiteNav from '../components/SiteNav'
+import SiteFooter from '../components/SiteFooter'
+import BookingModal from '../components/BookingModal'
 import { posts } from '../data/blogPosts.js'
 
 const SITE = 'https://www.wilsoncreativeco.au'
@@ -20,6 +24,7 @@ function renderSection(s, i) {
 }
 
 export default function BlogPost({ slug }) {
+  const [booking, setBooking] = useState(false)
   const post = posts.find(p => p.slug === slug)
   if (!post) return null
 
@@ -58,13 +63,7 @@ export default function BlogPost({ slug }) {
         })}</script>
       </Head>
 
-      <nav id="nav" className="sc" aria-label="Main navigation">
-        <a href="/" className="n-logo" aria-label="Wilson Creative Co. Home">
-          <img src="/wlogo.png" alt="Wilson Creative Co." className="n-logo-img" width="1536" height="1024" />
-          <span className="n-logo-text">Wilson <span>Creative</span> Co.</span>
-        </a>
-        <a href="/#contact" className="n-cta">Start a Project</a>
-      </nav>
+      <SiteNav onBook={() => setBooking(true)} />
 
       <article className="bp-wrap" aria-labelledby="bp-title">
         <div className="bp-header">
@@ -112,38 +111,8 @@ export default function BlogPost({ slug }) {
         </div>
       </section>
 
-      <footer role="contentinfo">
-        <div className="ft">
-          <div className="fb">
-            <p className="fb-name">Wilson <span>Creative</span> Co.</p>
-            <p>Custom web design in Brisbane and across Australia. No templates. No lock-in. From $600.</p>
-          </div>
-          <div className="f-cols">
-            <div className="fc">
-              <p>Navigate</p>
-              <a href="/">Home</a>
-              <a href="/#services">Services</a>
-              <a href="/#work">Our Work</a>
-              <a href="/blog">Blog</a>
-              <a href="/#contact">Contact</a>
-            </div>
-            <div className="fc">
-              <p>Services</p>
-              <a href="/web-design-brisbane">Web Design Brisbane</a>
-              <a href="/custom-website-development-brisbane">Custom Development</a>
-              <a href="/affordable-web-design-brisbane">Affordable Web Design</a>
-            </div>
-            <div className="fc">
-              <p>Contact</p>
-              <a href="mailto:wilsoncreativeco.au@gmail.com">wilsoncreativeco.au@gmail.com</a>
-              <a href="tel:+61401609118">0401 609 118</a>
-            </div>
-          </div>
-        </div>
-        <div className="fb-bot">
-          <p className="f-copy">© {new Date().getFullYear()} Wilson Creative Co. All rights reserved. | Brisbane, QLD, Australia</p>
-        </div>
-      </footer>
+      <SiteFooter />
+      <BookingModal open={booking} onClose={() => setBooking(false)} />
     </>
   )
 }
