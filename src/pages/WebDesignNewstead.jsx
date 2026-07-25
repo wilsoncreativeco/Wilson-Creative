@@ -5,7 +5,7 @@ import SiteFooter from '../components/SiteFooter'
 
 const TITLE = 'Web Design Newstead | Custom Websites From $600 — Wilson Creative Co.'
 const DESC = 'Web design for Newstead businesses — custom-coded sites for hospitality, retail, professional services, and creative brands in one of Brisbane\'s fastest-growing precincts. From $600.'
-const URL = 'https://www.wilsoncreativeco.au/web-design-newstead'
+const URL = 'https://wilsoncreativeco.au/web-design-newstead'
 
 const faqs = [
   {
@@ -70,7 +70,7 @@ export default function WebDesignNewstead() {
         <meta property="og:description" content={DESC} />
         <meta property="og:url" content={URL} />
         <meta property="og:type" content="website" />
-        <meta property="og:image" content="https://www.wilsoncreativeco.au/og.jpg" />
+        <meta property="og:image" content="https://wilsoncreativeco.au/og.jpg" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={TITLE} />
         <meta name="twitter:description" content={DESC} />
@@ -78,7 +78,7 @@ export default function WebDesignNewstead() {
           '@context': 'https://schema.org',
           '@type': 'BreadcrumbList',
           itemListElement: [
-            { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.wilsoncreativeco.au' },
+            { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://wilsoncreativeco.au' },
             { '@type': 'ListItem', position: 2, name: 'Web Design Newstead', item: URL },
           ],
         })}</script>
@@ -86,7 +86,7 @@ export default function WebDesignNewstead() {
           '@context': 'https://schema.org',
           '@type': 'Service',
           name: 'Web Design Newstead',
-          provider: { '@type': 'ProfessionalService', name: 'Wilson Creative Co.', url: 'https://www.wilsoncreativeco.au' },
+          provider: { '@type': 'ProfessionalService', name: 'Wilson Creative Co.', url: 'https://wilsoncreativeco.au' },
           areaServed: [{ '@type': 'Place', name: 'Newstead, Brisbane' }, { '@type': 'City', name: 'Brisbane' }],
           description: 'Custom web design for Newstead businesses. No templates. From $600.',
           offers: { '@type': 'AggregateOffer', lowPrice: '600', highPrice: '2000', priceCurrency: 'AUD' },

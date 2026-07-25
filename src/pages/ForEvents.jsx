@@ -16,7 +16,7 @@ const CRAFT_MEDIA = {
 
 const TITLE = 'Event Videography & Photography in Brisbane | Weddings, Corporate & Live — Wilson Creative Co.'
 const DESC = 'Cinematic event films, photography and aerial coverage for Brisbane weddings, parties, corporate events and live performances — shot and edited in-house. Relive the day, not just remember it.'
-const URL = 'https://www.wilsoncreativeco.au/for-events'
+const URL = 'https://wilsoncreativeco.au/for-events'
 
 export default function ForEvents() {
   const [booking, setBooking] = useState(false)
@@ -48,7 +48,7 @@ export default function ForEvents() {
         <meta property="og:description" content={DESC} />
         <meta property="og:url" content={URL} />
         <meta property="og:type" content="website" />
-        <meta property="og:image" content="https://www.wilsoncreativeco.au/og.jpg" />
+        <meta property="og:image" content="https://wilsoncreativeco.au/og.jpg" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={TITLE} />
         <meta name="twitter:description" content={DESC} />
@@ -56,7 +56,7 @@ export default function ForEvents() {
           '@context': 'https://schema.org',
           '@type': 'BreadcrumbList',
           itemListElement: [
-            { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.wilsoncreativeco.au' },
+            { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://wilsoncreativeco.au' },
             { '@type': 'ListItem', position: 2, name: 'For Events', item: URL },
           ],
         })}</script>
@@ -65,7 +65,7 @@ export default function ForEvents() {
           '@type': 'Service',
           name: 'Event Videography & Photography',
           serviceType: 'Wedding, corporate, party & live event film and photography',
-          provider: { '@type': 'ProfessionalService', name: 'Wilson Creative Co.', url: 'https://www.wilsoncreativeco.au' },
+          provider: { '@type': 'ProfessionalService', name: 'Wilson Creative Co.', url: 'https://wilsoncreativeco.au' },
           areaServed: [{ '@type': 'City', name: 'Brisbane' }, { '@type': 'Country', name: 'Australia' }],
           description: DESC,
           url: URL,

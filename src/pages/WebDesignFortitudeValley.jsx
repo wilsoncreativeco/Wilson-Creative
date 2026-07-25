@@ -5,7 +5,7 @@ import SiteFooter from '../components/SiteFooter'
 
 const TITLE = 'Web Design Fortitude Valley | Custom Websites From $600 — Wilson Creative Co.'
 const DESC = 'Web design for Fortitude Valley businesses — custom-coded sites for bars, venues, cafés, retail, creative studios and more. From $600. You own the code. Brisbane-based.'
-const URL = 'https://www.wilsoncreativeco.au/web-design-fortitude-valley'
+const URL = 'https://wilsoncreativeco.au/web-design-fortitude-valley'
 
 const faqs = [
   {
@@ -70,7 +70,7 @@ export default function WebDesignFortitudeValley() {
         <meta property="og:description" content={DESC} />
         <meta property="og:url" content={URL} />
         <meta property="og:type" content="website" />
-        <meta property="og:image" content="https://www.wilsoncreativeco.au/og.jpg" />
+        <meta property="og:image" content="https://wilsoncreativeco.au/og.jpg" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={TITLE} />
         <meta name="twitter:description" content={DESC} />
@@ -78,7 +78,7 @@ export default function WebDesignFortitudeValley() {
           '@context': 'https://schema.org',
           '@type': 'BreadcrumbList',
           itemListElement: [
-            { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.wilsoncreativeco.au' },
+            { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://wilsoncreativeco.au' },
             { '@type': 'ListItem', position: 2, name: 'Web Design Fortitude Valley', item: URL },
           ],
         })}</script>
@@ -86,7 +86,7 @@ export default function WebDesignFortitudeValley() {
           '@context': 'https://schema.org',
           '@type': 'Service',
           name: 'Web Design Fortitude Valley',
-          provider: { '@type': 'ProfessionalService', name: 'Wilson Creative Co.', url: 'https://www.wilsoncreativeco.au' },
+          provider: { '@type': 'ProfessionalService', name: 'Wilson Creative Co.', url: 'https://wilsoncreativeco.au' },
           areaServed: [{ '@type': 'Place', name: 'Fortitude Valley, Brisbane' }, { '@type': 'City', name: 'Brisbane' }],
           description: 'Custom web design for Fortitude Valley businesses. No templates. From $600.',
           offers: { '@type': 'AggregateOffer', lowPrice: '600', highPrice: '2000', priceCurrency: 'AUD' },

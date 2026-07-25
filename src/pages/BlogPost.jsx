@@ -5,7 +5,7 @@ import SiteFooter from '../components/SiteFooter'
 import BookingModal from '../components/BookingModal'
 import { posts } from '../data/blogPosts.js'
 
-const SITE = 'https://www.wilsoncreativeco.au'
+const SITE = 'https://wilsoncreativeco.au'
 
 function formatDate(dateStr) {
   const d = new Date(dateStr)

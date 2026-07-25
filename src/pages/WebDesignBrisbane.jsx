@@ -5,7 +5,7 @@ import SiteFooter from '../components/SiteFooter'
 
 const TITLE = 'Web Design Brisbane | Custom Websites From $600 — Wilson Creative Co.'
 const DESC = 'Custom-coded web design in Brisbane from $600. No templates, no Wix. Hand-built sites for trades, cafés & businesses across Brisbane and Australia. You own the code.'
-const URL = 'https://www.wilsoncreativeco.au/web-design-brisbane'
+const URL = 'https://wilsoncreativeco.au/web-design-brisbane'
 
 const faqs = [
   {
@@ -70,7 +70,7 @@ export default function WebDesignBrisbane() {
         <meta property="og:description" content={DESC} />
         <meta property="og:url" content={URL} />
         <meta property="og:type" content="website" />
-        <meta property="og:image" content="https://www.wilsoncreativeco.au/og.jpg" />
+        <meta property="og:image" content="https://wilsoncreativeco.au/og.jpg" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={TITLE} />
         <meta name="twitter:description" content={DESC} />
@@ -78,7 +78,7 @@ export default function WebDesignBrisbane() {
           '@context': 'https://schema.org',
           '@type': 'BreadcrumbList',
           itemListElement: [
-            { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.wilsoncreativeco.au' },
+            { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://wilsoncreativeco.au' },
             { '@type': 'ListItem', position: 2, name: 'Web Design Brisbane', item: URL },
           ],
         })}</script>
@@ -86,7 +86,7 @@ export default function WebDesignBrisbane() {
           '@context': 'https://schema.org',
           '@type': 'Service',
           name: 'Web Design Brisbane',
-          provider: { '@type': 'ProfessionalService', name: 'Wilson Creative Co.', url: 'https://www.wilsoncreativeco.au' },
+          provider: { '@type': 'ProfessionalService', name: 'Wilson Creative Co.', url: 'https://wilsoncreativeco.au' },
           areaServed: [{ '@type': 'City', name: 'Brisbane' }, { '@type': 'Country', name: 'Australia' }],
           description: 'Custom-coded web design for Brisbane businesses. No templates. From $600.',
           offers: { '@type': 'AggregateOffer', lowPrice: '600', highPrice: '2000', priceCurrency: 'AUD' },

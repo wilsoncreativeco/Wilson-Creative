@@ -17,7 +17,7 @@ const CRAFT_MEDIA = {
 
 const TITLE = 'Media Production for Business in Brisbane | Film, Photo, Aerial & Web — Wilson Creative Co.'
 const DESC = 'Brand films, photography, aerial drone work and custom websites for Brisbane businesses — produced in-house. Industry-tailored content for construction, real estate, hospitality, trades and brands, plus ongoing monthly retainers.'
-const URL = 'https://www.wilsoncreativeco.au/for-businesses'
+const URL = 'https://wilsoncreativeco.au/for-businesses'
 
 export default function ForBusinesses() {
   const [booking, setBooking] = useState(false)
@@ -50,7 +50,7 @@ export default function ForBusinesses() {
         <meta property="og:description" content={DESC} />
         <meta property="og:url" content={URL} />
         <meta property="og:type" content="website" />
-        <meta property="og:image" content="https://www.wilsoncreativeco.au/og.jpg" />
+        <meta property="og:image" content="https://wilsoncreativeco.au/og.jpg" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={TITLE} />
         <meta name="twitter:description" content={DESC} />
@@ -58,7 +58,7 @@ export default function ForBusinesses() {
           '@context': 'https://schema.org',
           '@type': 'BreadcrumbList',
           itemListElement: [
-            { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.wilsoncreativeco.au' },
+            { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://wilsoncreativeco.au' },
             { '@type': 'ListItem', position: 2, name: 'For Businesses', item: URL },
           ],
         })}</script>
@@ -67,7 +67,7 @@ export default function ForBusinesses() {
           '@type': 'Service',
           name: 'Media Production for Business',
           serviceType: 'Brand film, photography, aerial & web for businesses',
-          provider: { '@type': 'ProfessionalService', name: 'Wilson Creative Co.', url: 'https://www.wilsoncreativeco.au' },
+          provider: { '@type': 'ProfessionalService', name: 'Wilson Creative Co.', url: 'https://wilsoncreativeco.au' },
           areaServed: [{ '@type': 'City', name: 'Brisbane' }, { '@type': 'Country', name: 'Australia' }],
           description: DESC,
           url: URL,

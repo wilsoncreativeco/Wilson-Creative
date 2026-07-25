@@ -5,7 +5,7 @@ import SiteFooter from '../components/SiteFooter'
 
 const TITLE = 'Custom Website Development Brisbane | Hand-Built From $600 — Wilson Creative Co.'
 const DESC = 'Custom website development in Brisbane — no templates, no WordPress, no Wix. Hand-coded sites built for performance, SEO, and conversion. From $600. You own the code.'
-const URL = 'https://www.wilsoncreativeco.au/custom-website-development-brisbane'
+const URL = 'https://wilsoncreativeco.au/custom-website-development-brisbane'
 
 const faqs = [
   {
@@ -70,7 +70,7 @@ export default function CustomWebsiteDevelopmentBrisbane() {
         <meta property="og:description" content={DESC} />
         <meta property="og:url" content={URL} />
         <meta property="og:type" content="website" />
-        <meta property="og:image" content="https://www.wilsoncreativeco.au/og.jpg" />
+        <meta property="og:image" content="https://wilsoncreativeco.au/og.jpg" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={TITLE} />
         <meta name="twitter:description" content={DESC} />
@@ -78,7 +78,7 @@ export default function CustomWebsiteDevelopmentBrisbane() {
           '@context': 'https://schema.org',
           '@type': 'BreadcrumbList',
           itemListElement: [
-            { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.wilsoncreativeco.au' },
+            { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://wilsoncreativeco.au' },
             { '@type': 'ListItem', position: 2, name: 'Custom Website Development Brisbane', item: URL },
           ],
         })}</script>
@@ -86,7 +86,7 @@ export default function CustomWebsiteDevelopmentBrisbane() {
           '@context': 'https://schema.org',
           '@type': 'Service',
           name: 'Custom Website Development Brisbane',
-          provider: { '@type': 'ProfessionalService', name: 'Wilson Creative Co.', url: 'https://www.wilsoncreativeco.au' },
+          provider: { '@type': 'ProfessionalService', name: 'Wilson Creative Co.', url: 'https://wilsoncreativeco.au' },
           areaServed: [{ '@type': 'City', name: 'Brisbane' }, { '@type': 'Country', name: 'Australia' }],
           description: 'Custom-coded website development for Brisbane businesses. No templates. From $600.',
           offers: { '@type': 'AggregateOffer', lowPrice: '600', highPrice: '2000', priceCurrency: 'AUD' },

@@ -7,7 +7,7 @@ import useReveal from '../components/useReveal'
 
 const TITLE = 'About Wilson Creative Co. | Brisbane Creative Studio — Film, Photo, Aerial & Web'
 const DESC = 'Wilson Creative Co. is a Brisbane creative studio founded by George Wilson — film, photography, aerial drone and web under one roof. Meet the team that makes brands impossible to ignore.'
-const URL = 'https://www.wilsoncreativeco.au/about'
+const URL = 'https://wilsoncreativeco.au/about'
 
 const PILLS = ['One Team', 'Film & Photo', 'Drone Certified', 'Custom Web', 'Brisbane Based', 'Every Format']
 
@@ -42,7 +42,7 @@ export default function About() {
         <meta property="og:description" content={DESC} />
         <meta property="og:url" content={URL} />
         <meta property="og:type" content="website" />
-        <meta property="og:image" content="https://www.wilsoncreativeco.au/og.jpg" />
+        <meta property="og:image" content="https://wilsoncreativeco.au/og.jpg" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={TITLE} />
         <meta name="twitter:description" content={DESC} />
@@ -50,7 +50,7 @@ export default function About() {
           '@context': 'https://schema.org',
           '@type': 'BreadcrumbList',
           itemListElement: [
-            { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.wilsoncreativeco.au' },
+            { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://wilsoncreativeco.au' },
             { '@type': 'ListItem', position: 2, name: 'About', item: URL },
           ],
         })}</script>
@@ -63,8 +63,8 @@ export default function About() {
           mainEntity: {
             '@type': 'ProfessionalService',
             name: 'Wilson Creative Co.',
-            url: 'https://www.wilsoncreativeco.au',
-            image: 'https://www.wilsoncreativeco.au/og.jpg',
+            url: 'https://wilsoncreativeco.au',
+            image: 'https://wilsoncreativeco.au/og.jpg',
             areaServed: [{ '@type': 'City', name: 'Brisbane' }, { '@type': 'Country', name: 'Australia' }],
             founder: { '@type': 'Person', name: 'George Wilson', jobTitle: 'Founder & Creative Director' },
           },

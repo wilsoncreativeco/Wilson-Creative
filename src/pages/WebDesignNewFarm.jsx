@@ -5,7 +5,7 @@ import SiteFooter from '../components/SiteFooter'
 
 const TITLE = 'Web Design New Farm | Custom Websites From $600 — Wilson Creative Co.'
 const DESC = 'Web design for New Farm businesses — custom-coded sites for cafés, restaurants, boutiques, studios, and professional services. From $600. Brisbane-based. You own the code.'
-const URL = 'https://www.wilsoncreativeco.au/web-design-new-farm'
+const URL = 'https://wilsoncreativeco.au/web-design-new-farm'
 
 const faqs = [
   {
@@ -70,7 +70,7 @@ export default function WebDesignNewFarm() {
         <meta property="og:description" content={DESC} />
         <meta property="og:url" content={URL} />
         <meta property="og:type" content="website" />
-        <meta property="og:image" content="https://www.wilsoncreativeco.au/og.jpg" />
+        <meta property="og:image" content="https://wilsoncreativeco.au/og.jpg" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={TITLE} />
         <meta name="twitter:description" content={DESC} />
@@ -78,7 +78,7 @@ export default function WebDesignNewFarm() {
           '@context': 'https://schema.org',
           '@type': 'BreadcrumbList',
           itemListElement: [
-            { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.wilsoncreativeco.au' },
+            { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://wilsoncreativeco.au' },
             { '@type': 'ListItem', position: 2, name: 'Web Design New Farm', item: URL },
           ],
         })}</script>
@@ -86,7 +86,7 @@ export default function WebDesignNewFarm() {
           '@context': 'https://schema.org',
           '@type': 'Service',
           name: 'Web Design New Farm',
-          provider: { '@type': 'ProfessionalService', name: 'Wilson Creative Co.', url: 'https://www.wilsoncreativeco.au' },
+          provider: { '@type': 'ProfessionalService', name: 'Wilson Creative Co.', url: 'https://wilsoncreativeco.au' },
           areaServed: [{ '@type': 'Place', name: 'New Farm, Brisbane' }, { '@type': 'City', name: 'Brisbane' }],
           description: 'Custom web design for New Farm businesses. No templates. From $600.',
           offers: { '@type': 'AggregateOffer', lowPrice: '600', highPrice: '2000', priceCurrency: 'AUD' },

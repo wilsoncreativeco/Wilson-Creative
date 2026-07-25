@@ -7,7 +7,7 @@ import useReveal from '../components/useReveal'
 
 const TITLE = 'Privacy Policy | Wilson Creative Co.'
 const DESC = 'How Wilson Creative Co. collects, uses and protects the personal information you share through wilsoncreativeco.au.'
-const URL = 'https://www.wilsoncreativeco.au/privacy'
+const URL = 'https://wilsoncreativeco.au/privacy'
 
 const SECTIONS = [
   {

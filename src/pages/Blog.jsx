@@ -7,7 +7,7 @@ import { posts } from '../data/blogPosts.js'
 
 const TITLE = 'Blog | Media Production & Web Design Brisbane — Wilson Creative Co.'
 const DESC = 'Practical advice for Brisbane businesses on brand film, photography, aerial and web design — from the content that actually converts to site costs and Google rankings.'
-const URL = 'https://www.wilsoncreativeco.au/blog'
+const URL = 'https://wilsoncreativeco.au/blog'
 
 function formatDate(dateStr) {
   const d = new Date(dateStr)
@@ -26,12 +26,12 @@ export default function Blog() {
         <meta property="og:description" content={DESC} />
         <meta property="og:url" content={URL} />
         <meta property="og:type" content="website" />
-        <meta property="og:image" content="https://www.wilsoncreativeco.au/og.jpg" />
+        <meta property="og:image" content="https://wilsoncreativeco.au/og.jpg" />
         <script type="application/ld+json">{JSON.stringify({
           '@context': 'https://schema.org',
           '@type': 'BreadcrumbList',
           itemListElement: [
-            { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.wilsoncreativeco.au' },
+            { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://wilsoncreativeco.au' },
             { '@type': 'ListItem', position: 2, name: 'Blog', item: URL },
           ],
         })}</script>
