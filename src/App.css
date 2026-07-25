@@ -3452,37 +3452,32 @@ footer::before{
 }
 
 @media(max-width:768px){
-  #nav{
-    padding:calc(16px + env(safe-area-inset-top, 0px)) 24px 16px;
-    background:rgba(7,6,10,.97);
-    backdrop-filter:blur(22px) saturate(120%);
-    -webkit-backdrop-filter:blur(22px) saturate(120%);
-    border-bottom:1px solid var(--bd);
-  }
-  /* Extend the bar's own background upward past the top of the layout viewport
-     so the iPhone status-bar strip is solid. Absolute (not fixed) on purpose:
-     backdrop-filter on #nav makes it a containing block for fixed children,
-     which is why an env()-sized fixed shield covered nothing. */
-  #nav::before{
-    content:'';
-    position:absolute;
-    left:0;
-    right:0;
-    bottom:100%;
-    height:220px;
-    background:#07060A;
+  /* No bar on mobile — just the floating menu button. Nothing sits across the
+     top, so there is no strip for the iPhone status bar to show through. */
+  #nav,
+  #nav.sc{
+    padding:calc(12px + env(safe-area-inset-top, 0px)) 18px 12px;
+    background:none;
+    backdrop-filter:none;
+    -webkit-backdrop-filter:none;
+    border-bottom:none;
+    justify-content:flex-end;
     pointer-events:none;
   }
-  #nav.sc{ padding:calc(11px + env(safe-area-inset-top, 0px)) 24px 11px; }
+  .n-logo{ display:none; }
+  .ham{
+    pointer-events:auto;
+    background:rgba(7,6,10,.62);
+    backdrop-filter:blur(16px) saturate(120%);
+    -webkit-backdrop-filter:blur(16px) saturate(120%);
+    box-shadow:0 8px 26px -10px rgba(0,0,0,.8);
+  }
   /* menu panel and floating CTA clear the notch and the home indicator */
   #mnav{ padding-top:calc(96px + env(safe-area-inset-top, 0px)); }
   #fcta{ bottom:calc(16px + env(safe-area-inset-bottom, 0px)); }
   .n-links, .n-cta{ display:none; }
   .ham{ display:flex; }
   /* wordmark ran under the hamburger at 375px */
-  .n-logo{ gap:10px; min-width:0; }
-  .n-logo-img{ height:30px; }
-  .n-logo-text{ font-size:10px; letter-spacing:.22em; }
 
   .hero{ padding:96px 24px 76px; min-height:100svh; justify-content:center; }
   /* top-weighted scrim so the headline/sub stay legible over bright sky on narrow screens */
