@@ -7,7 +7,7 @@ export default function SiteFooter() {
       <div className="ft">
         <div className="fb">
           <p className="fb-name">Wilson <span>Creative</span> Co.</p>
-          <p className="fb-tag">A full-service media production house — film, photography, aerial &amp; web. We make brands impossible to ignore.</p>
+          <p className="fb-tag">One studio for film, photography, aerial &amp; web. We make brands impossible to ignore.</p>
           <p className="fb-loc"><span aria-hidden="true">◆</span> Brisbane, QLD · Available Australia-wide</p>
         </div>
         <div className="f-cols">

@@ -5,24 +5,24 @@ import SiteFooter from '../components/SiteFooter'
 import BookingModal from '../components/BookingModal'
 import useReveal from '../components/useReveal'
 
-const TITLE = 'About Wilson Creative Co. | Brisbane Media Production House — Film, Photo, Aerial & Web'
-const DESC = 'Wilson Creative Co. is a Brisbane media production house founded by George Wilson — film, photography, aerial drone and web under one roof. Meet the team that makes brands impossible to ignore.'
+const TITLE = 'About Wilson Creative Co. | Brisbane Creative Studio — Film, Photo, Aerial & Web'
+const DESC = 'Wilson Creative Co. is a Brisbane creative studio founded by George Wilson — film, photography, aerial drone and web under one roof. Meet the team that makes brands impossible to ignore.'
 const URL = 'https://www.wilsoncreativeco.au/about'
 
 const PILLS = ['One Team', 'Film & Photo', 'Drone Certified', 'Custom Web', 'Brisbane Based', 'Every Format']
 
 const VALUES = [
   {
-    n: '01', t: 'One team, one vision',
-    d: 'Film, photo, aerial and web handled under one roof — so your brand stays consistent across every format, with no freelancers to juggle.',
+    n: '01', t: 'Listen first',
+    d: 'Every project starts with a conversation, not a quote. We learn the brand, the day, the goal — so nothing we shoot is decoration. It all means something.',
   },
   {
-    n: '02', t: 'Craft over noise',
-    d: 'Premium is a feeling. We earn it through restraint, detail and finish — every frame, every cut, every pixel considered.',
+    n: '02', t: 'Shoot with intent',
+    d: 'Calm, planned and unobtrusive on the day — cinema cameras, editorial photography, licensed aerial. Every angle covered, no chaos in the room.',
   },
   {
-    n: '03', t: 'Built to convert',
-    d: 'Beautiful is the baseline. Everything we make is built to move the needle — more enquiries, more bookings, more reach.',
+    n: '03', t: 'Finish properly',
+    d: 'The difference lives in the finish: the grade, the retouch, the cut, the build. Delivered ready to run — and made to hold up years from now.',
   },
 ]
 
@@ -36,7 +36,7 @@ export default function About() {
       <Head>
         <title>{TITLE}</title>
         <meta name="description" content={DESC} />
-        <meta name="keywords" content="Wilson Creative Co, George Wilson, media production Brisbane, video production house Brisbane, about, creative director Brisbane" />
+        <meta name="keywords" content="Wilson Creative Co, George Wilson, media production Brisbane, video production Brisbane, creative studio Brisbane, about, creative director Brisbane" />
         <link rel="canonical" href={URL} />
         <meta property="og:title" content={TITLE} />
         <meta property="og:description" content={DESC} />
@@ -74,20 +74,25 @@ export default function About() {
       <SiteNav onBook={book} />
 
       <main>
-        <header className="page-top">
-          <div className="lane-mark rv">
-            <span className="lane-idx">About</span>
-            <span className="lane-div" aria-hidden="true" />
-            <span className="lane-for">Brisbane Based</span>
-          </div>
-          <h1 className="page-h1 rv d1">One team.<br /><em>Every format.</em></h1>
-          <p className="page-lead rv d2">
-            Wilson Creative Co. is a full media production house in Brisbane — film, photography,
-            aerial and web, all handled by one team that understands your whole brand.
-          </p>
-          <div className="page-cta rv d3">
-            <button className="btn-g" onClick={book}>Book a Call →</button>
-            <a className="btn-o" href="/for-businesses">See what we make →</a>
+        <header className="page-top biz-hero">
+          <div className="page-top-bg" aria-hidden="true" />
+          <div className="h-grain" aria-hidden="true" />
+          <div className="page-top-inner">
+            <div className="lane-mark rv">
+              <span className="lane-idx">About</span>
+              <span className="lane-div" aria-hidden="true" />
+              <span className="lane-for">Brisbane Based</span>
+            </div>
+            <h1 className="page-h1 rv d1">What you build deserves <em>to be remembered.</em></h1>
+            <p className="page-lead rv d2">
+              Wilson Creative Co. is one Brisbane studio — film, photography, aerial and web —
+              built on a simple belief: work that carries your name should outlast the scroll.
+              One team. One standard. No seams.
+            </p>
+            <div className="page-cta rv d3">
+              <button className="btn-g" onClick={book}>Book a Call →</button>
+              <a className="btn-o" href="/for-businesses">See what we make →</a>
+            </div>
           </div>
         </header>
 
@@ -110,9 +115,9 @@ export default function About() {
             </figure>
             <div className="about-text">
               <p className="stag rv">Why Wilson Creative</p>
-              <h2 className="sh2 rv d1" id="about-h2">Made by people who<br /><em>sweat the details</em></h2>
-              <p className="rv d2">Wilson Creative Co. started with a simple frustration: brands were handing their vision to five different people who&apos;d never spoken. A videographer here, a photographer there, a web guy who&apos;d never seen the footage. The result always felt stitched together — because it was.</p>
-              <p className="rv d3">So we built the opposite. One team that shoots, edits, retouches and builds under a single roof — film, photography, aerial and web, all speaking the same language. From a single shoot to a complete brand rollout, we cover every angle and every format, built to make your business impossible to ignore, online and off.</p>
+              <h2 className="sh2 rv d1" id="about-h2">How we do anything is<br /><em>how we do everything.</em></h2>
+              <p className="rv d2">Wilson Creative Co. began with a conviction: anything that carries your name should be made properly — by people who care that it&apos;s right, not just that it&apos;s done. We kept watching brands hand their vision to five strangers who&apos;d never spoken — a videographer here, a photographer there, a web build that never saw the footage — and get back something that felt stitched together. Because it was.</p>
+              <p className="rv d3">So we built the opposite. One team that shoots, edits, retouches and builds under a single roof, every frame answering to the same eye. We&apos;re not chasing volume — we&apos;re building a body of work. Yours. The kind people don&apos;t scroll past. The kind they remember.</p>
               <div className="about-pills rv d3">
                 {PILLS.map(p => <span className="pill" key={p}>{p}</span>)}
               </div>
@@ -123,11 +128,10 @@ export default function About() {
         {/* ── What we stand for ── */}
         <section className="secpad lane-biz" aria-labelledby="about-val-h2">
           <div className="lane-head">
-            <p className="stag rv">What We Stand For</p>
+            <p className="stag rv">How We Work</p>
             <h2 className="sh2 rv d1" id="about-val-h2">The way we <em>work</em></h2>
             <p className="lane-sub rv d2">
-              Three things shape everything we make — and they&apos;re the reason our work looks
-              and performs the way it does.
+              Three moves, every project — and the reason the work lands the way it does.
             </p>
           </div>
           <div className="ind-grid">

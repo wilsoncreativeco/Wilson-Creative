@@ -320,7 +320,7 @@ const faqItems = [
   {
     cat: 'The Studio',
     q: 'What does Wilson Creative actually do?',
-    a: "We're a full media production house in Brisbane. We shoot brand films, commercials and social content, run professional photography, fly drones for aerial work, and design custom-coded websites — all in-house, under one roof. Most clients come to us for one thing and quickly realise we can handle their entire brand, online and off.",
+    a: "We're a full-service creative studio in Brisbane. We shoot brand films, commercials and social content, run professional photography, fly drones for aerial work, and design custom-coded websites — all in-house, under one roof. Most clients come to us for one thing and quickly realise we can handle their entire brand, online and off.",
   },
   {
     cat: 'Pricing',
