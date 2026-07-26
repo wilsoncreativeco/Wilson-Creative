@@ -3,6 +3,12 @@
   "trailingSlash": false,
   "redirects": [
     {
+      "source": "/",
+      "has": [{ "type": "host", "value": "www.wilsoncreativeco.au" }],
+      "destination": "https://wilsoncreativeco.au/",
+      "permanent": true
+    },
+    {
       "source": "/:path*",
       "has": [{ "type": "host", "value": "www.wilsoncreativeco.au" }],
       "destination": "https://wilsoncreativeco.au/:path*",
