@@ -1,6 +1,14 @@
 {
   "cleanUrls": true,
   "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "www.wilsoncreativeco.au" }],
+      "destination": "https://wilsoncreativeco.au/:path*",
+      "permanent": true
+    }
+  ],
   "rewrites": [
     { "source": "/start",      "destination": "/start.html"    },
     { "source": "/watch",      "destination": "/watch.html"    },
