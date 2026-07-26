@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { Head } from 'vite-react-ssg'
 import SiteNav from './components/SiteNav'
+import useLazyVideo from './components/useLazyVideo'
 import SiteFooter from './components/SiteFooter'
 import CalEmbed from './components/CalEmbed'
 import './App.css'
@@ -75,6 +76,14 @@ const services = [
     ],
   },
 ]
+
+// cinematic poster media for the four craft tiles, matching the lane pages
+const CRAFT_MEDIA = {
+  '01': { video: '/hero.mp4' },
+  '02': { img: '/brisbane.jpg', w: 1800, h: 2400 },
+  '03': { video: '/hero-drone-m.mp4', poster: '/hero-drone.jpg' },
+  '04': { img: '/work-zantara.jpg', w: 1400, h: 875 },
+}
 
 const svcIcons = {
   Video: (
@@ -391,6 +400,7 @@ export default function App() {
   const [scrambled, setScrambled] = useState(LOADER_TEXT)
   const [loaderOut, setLoaderOut] = useState(false)
   const [loaderHidden, setLoaderHidden] = useState(false)
+  useLazyVideo()
   const [navScrolled, setNavScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
   const [scrollProg, setScrollProg] = useState(0)
@@ -434,6 +444,14 @@ const [activeBuild, setActiveBuild] = useState(1)
   const [svcDetail, setSvcDetail] = useState(null) // null | service object
   const openSvc = s => { setSvcDetail(s); document.body.style.overflow = 'hidden' }
   const closeSvc = () => { setSvcDetail(null); document.body.style.overflow = '' }
+
+  // Escape closes the service modal (overlay click and ✕ already do).
+  useEffect(() => {
+    if (!svcDetail) return
+    const onKey = e => { if (e.key === 'Escape') closeSvc() }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [svcDetail])
   const [procTrack, setProcTrack] = useState('media') // 'media' | 'web'
   const [priceDetail, setPriceDetail] = useState(null) // null | pricing card object
   const openPrice = c => { setPriceDetail(c); document.body.style.overflow = 'hidden' }
@@ -855,14 +873,29 @@ const goNext = () => {
             stays consistent across every format and built to make you impossible to ignore.
           </p>
         </div>
-        <div className="ind-grid ind-grid-4">
+        <div className="craft-grid">
           {services.map((s, i) => (
-            <article className="ind-card rv" key={s.num} style={{ transitionDelay: `${(0.05 + i * 0.06).toFixed(2)}s` }}>
-              <span className="ind-num" aria-hidden="true">{s.num} — {s.tag}</span>
-              <h3 className="ind-t">{s.name}</h3>
-              <p className="ind-line">{s.line}</p>
-              <p className="ind-d">{s.desc}</p>
-            </article>
+            <button
+              type="button"
+              className="craft-tile craft-tile-btn rv"
+              key={s.num}
+              style={{ transitionDelay: `${(0.05 + i * 0.06).toFixed(2)}s` }}
+              onClick={() => openSvc(s)}
+              aria-haspopup="dialog"
+            >
+              <span className="craft-media" aria-hidden="true">
+                {CRAFT_MEDIA[s.num]?.video
+                  ? <video src={CRAFT_MEDIA[s.num].video} poster={CRAFT_MEDIA[s.num].poster} autoPlay muted loop playsInline preload="metadata" />
+                  : <img src={CRAFT_MEDIA[s.num]?.img} alt="" loading="lazy" width={CRAFT_MEDIA[s.num]?.w} height={CRAFT_MEDIA[s.num]?.h} />}
+              </span>
+              <span className="craft-scrim" aria-hidden="true" />
+              <span className="craft-info">
+                <span className="craft-num" aria-hidden="true">{s.num} — {s.tag}</span>
+                <span className="craft-name">{s.name}</span>
+                <span className="craft-line">{s.line}</span>
+                <span className="craft-more" aria-hidden="true">Details <span className="craft-arw">→</span></span>
+              </span>
+            </button>
           ))}
         </div>
       </section>

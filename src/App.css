@@ -1158,6 +1158,41 @@ body::before{
   .modal-ind{ max-height:84svh; }
 }
 
+/* clickable craft tile (homepage) — opens the service detail modal */
+.craft-tile-btn{
+  appearance:none;
+  -webkit-appearance:none;
+  border:1px solid var(--bd);
+  font:inherit;
+  color:inherit;
+  text-align:left;
+  padding:0;
+  cursor:pointer;
+}
+.craft-tile-btn:focus-visible{ outline:1px solid var(--g); outline-offset:3px; }
+.craft-info .craft-name,
+.craft-info .craft-line,
+.craft-info .craft-num{ display:block; }
+.craft-more{
+  display:block;
+  margin-top:12px;
+  font-size:9.5px;
+  letter-spacing:.3em;
+  text-transform:uppercase;
+  color:var(--g);
+  opacity:0;
+  transform:translateY(6px);
+  transition:opacity .45s var(--ease), transform .45s var(--ease);
+}
+.craft-arw{ display:inline-block; transition:transform .4s var(--ease); }
+.craft-tile-btn:hover .craft-more,
+.craft-tile-btn:focus-visible .craft-more{ opacity:1; transform:translateY(0); }
+.craft-tile-btn:hover .craft-arw{ transform:translateX(4px); }
+@media(hover:none){
+  /* no hover on touch — keep the affordance visible */
+  .craft-more{ opacity:.85; transform:none; }
+}
+
 /* ── industry index (editorial ledger) ── */
 .indy-index{ display:flex; flex-direction:column; }
 .indy-row{
