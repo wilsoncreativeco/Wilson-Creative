@@ -914,6 +914,24 @@ const goNext = () => {
         </div>
       </section>
 
+      <section id="testimonials" className="secpad testi-section" aria-labelledby="testi-h2">
+        <p className="stag rv">Client Results</p>
+        <h2 className="sh2 rv d1 testi-h2" id="testi-h2">What our clients<br />are <em>saying</em></h2>
+        <div className="testi-grid testi-grid-single rv d2">
+          <div className="testi-card rv">
+            <span className="testi-mark" aria-hidden="true">&ldquo;</span>
+            <div className="testi-stars" aria-label="5 stars">{'★'.repeat(5)}</div>
+            <p className="testi-quote">Absolutely loved working with George from Wilson Creative Co. He created an amazing website for us that looks professional, modern, and perfectly suits our brand. Great communication, easy process, and an outstanding final result. Highly recommend!</p>
+            <div className="testi-author">
+              <div className="testi-av" aria-hidden="true">ZW</div>
+              <div>
+                <p className="testi-name">Zach</p>
+                <p className="testi-biz">Zantara Workforce Solutions, Gold Coast</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
       <SiteFooter />
 

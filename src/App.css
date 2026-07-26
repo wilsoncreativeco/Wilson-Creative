@@ -3909,11 +3909,20 @@ iframe{
   margin-top: 48px;
 }
 
+/* one genuine testimonial reads better centred than stranded in a 3-up grid */
+.testi-grid-single{
+  max-width: 620px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 @media(min-width:640px){
   .testi-grid{
     grid-template-columns: repeat(3,1fr);
     gap: 24px;
   }
+  /* must come after the 3-up rule to win — a single card stays full width */
+  .testi-grid-single{ grid-template-columns: 1fr; }
 }
 
 .testi-card{
