@@ -914,30 +914,6 @@ const goNext = () => {
         </div>
       </section>
 
-      <section id="testimonials" className="secpad testi-section" aria-labelledby="testi-h2">
-        <p className="stag rv">Client Results</p>
-        <h2 className="sh2 rv d1 testi-h2" id="testi-h2">What our clients<br />are <em>saying</em></h2>
-        <div className="testi-grid rv d2">
-          {[
-            { initials: 'ZW', name: 'Zach', biz: 'Zantara Workforce Solutions, Gold Coast', quote: 'Absolutely loved working with George from Wilson Creative Co. He created an amazing website for us that looks professional, modern, and perfectly suits our brand. Great communication, easy process, and an outstanding final result. Highly recommend!' },
-            { initials: 'MR', name: 'Marcus', biz: 'Apex Construction, Brisbane', quote: 'The monthly drone footage of our site has been a game-changer for keeping clients in the loop — and the final completion film looked like something off a TV ad. Genuinely impressed with the whole team.' },
-            { initials: 'SL', name: 'Sophie', biz: 'Nineteen10 Venue, Gold Coast', quote: 'George shot our venue and the difference was night and day. Our reels actually get shared now and the bookings have followed. The quality speaks for itself — couldn\'t recommend them more.' },
-          ].map((t, i) => (
-            <div className="testi-card rv" style={{ '--d': `${i * 0.12}s` }} key={i}>
-              <span className="testi-mark" aria-hidden="true">&ldquo;</span>
-              <div className="testi-stars" aria-label="5 stars">{'★'.repeat(5)}</div>
-              <p className="testi-quote">{t.quote}</p>
-              <div className="testi-author">
-                <div className="testi-av" aria-hidden="true">{t.initials}</div>
-                <div>
-                  <p className="testi-name">{t.name}</p>
-                  <p className="testi-biz">{t.biz}</p>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
 
       <SiteFooter />
 
