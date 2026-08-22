@@ -22,6 +22,7 @@ export default function SiteFooter() {
             <p>Explore</p>
             <a href="/for-businesses">For Businesses</a>
             <a href="/for-events">For Events</a>
+            <a href="/work">Work</a>
             <a href="/about">About</a>
             <a href="/blog">Blog</a>
             <a href="/privacy">Privacy</a>

@@ -12,6 +12,7 @@ import Blog from './pages/Blog.jsx'
 import BlogPost from './pages/BlogPost.jsx'
 import Privacy from './pages/Privacy.jsx'
 import Pricing from './pages/Pricing.jsx'
+import Work from './pages/Work.jsx'
 import NotFound from './pages/NotFound.jsx'
 import './App.css'
 
@@ -125,6 +126,11 @@ export const routes = [
     path: '/blog/website-speed-matters-brisbane-business',
     element: <BlogPost slug="website-speed-matters-brisbane-business" />,
     entry: 'src/pages/BlogPost.jsx',
+  },
+  {
+    path: '/work',
+    element: <Work />,
+    entry: 'src/pages/Work.jsx',
   },
   {
     path: '/privacy',

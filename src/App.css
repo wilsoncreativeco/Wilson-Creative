@@ -1193,6 +1193,112 @@ body::before{
   .craft-more{ opacity:.85; transform:none; }
 }
 
+/* ── work gallery ── */
+.gal-filters{
+  display:flex; flex-wrap:wrap; gap:9px; margin-bottom:34px;
+}
+.gal-filter{
+  appearance:none; -webkit-appearance:none;
+  font-family:inherit;
+  display:inline-flex; align-items:center; gap:8px;
+  font-size:10px; letter-spacing:.24em; text-transform:uppercase;
+  padding:9px 18px; border-radius:99px;
+  border:1px solid var(--bd); background:rgba(255,255,255,.04);
+  color:var(--w6); cursor:pointer;
+  transition:color .3s, background .3s, border-color .3s;
+}
+.gal-filter:hover{ color:var(--w); border-color:var(--bdg); }
+.gal-filter.on{
+  color:var(--bg); background:var(--g); border-color:var(--g); font-weight:600;
+}
+.gal-filter-n{ font-size:9px; opacity:.65; letter-spacing:.1em; }
+
+/* columns handle the mixed portrait/landscape crops without cropping anything */
+.gal-masonry{ columns:3; column-gap:14px; }
+.gal-item{
+  appearance:none; -webkit-appearance:none;
+  display:block; width:100%; padding:0; margin:0 0 14px;
+  break-inside:avoid; position:relative; overflow:hidden;
+  border:1px solid var(--bd); border-radius:14px;
+  background:var(--bg2); cursor:zoom-in; line-height:0;
+  transition:border-color .45s var(--ease), transform .45s var(--ease);
+}
+.gal-item img{ width:100%; height:auto; display:block; }
+.gal-item-veil{
+  position:absolute; inset:0; pointer-events:none;
+  background:linear-gradient(to top, rgba(6,5,10,.82) 0%, rgba(6,5,10,.18) 42%, transparent 70%);
+  opacity:0; transition:opacity .45s var(--ease);
+}
+.gal-item-cap{
+  position:absolute; left:0; right:0; bottom:0; padding:16px 18px;
+  display:flex; flex-direction:column; gap:3px; text-align:left; line-height:1.3;
+  opacity:0; transform:translateY(8px);
+  transition:opacity .45s var(--ease), transform .45s var(--ease);
+  pointer-events:none;
+}
+.gal-item-cat{ font-size:8.5px; letter-spacing:.3em; text-transform:uppercase; color:var(--g); }
+.gal-item-t{ font-family:'Cormorant Garamond',serif; font-size:17px; color:var(--w); }
+.gal-item:hover{ border-color:var(--bdg); transform:translateY(-3px); }
+.gal-item:hover .gal-item-veil,
+.gal-item:hover .gal-item-cap,
+.gal-item:focus-visible .gal-item-veil,
+.gal-item:focus-visible .gal-item-cap{ opacity:1; transform:translateY(0); }
+.gal-item:focus-visible{ outline:1px solid var(--g); outline-offset:3px; }
+.gal-cta{ margin-top:56px; }
+@media(hover:none){
+  .gal-item-veil, .gal-item-cap{ opacity:1; transform:none; }
+}
+@media(max-width:1000px){ .gal-masonry{ columns:2; } }
+@media(max-width:600px){ .gal-masonry{ columns:1; } .gal-filters{ gap:7px; } .gal-filter{ padding:8px 14px; } }
+
+/* ── lightbox ── */
+.lbx{
+  position:fixed; inset:0; z-index:9000;
+  background:rgba(4,3,8,.94);
+  backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);
+  display:flex; align-items:center; justify-content:center;
+  padding:calc(56px + env(safe-area-inset-top,0px)) 68px calc(48px + env(safe-area-inset-bottom,0px));
+  animation:modalIn .28s var(--ease);
+}
+.lbx-fig{ margin:0; max-width:100%; max-height:100%; display:flex; flex-direction:column; gap:14px; cursor:default; }
+.lbx-fig img{
+  max-width:100%; max-height:78vh; width:auto; height:auto;
+  object-fit:contain; border-radius:6px; display:block; margin:0 auto;
+  box-shadow:0 40px 120px -40px rgba(0,0,0,.9);
+}
+.lbx-fig figcaption{
+  display:flex; align-items:baseline; justify-content:center; gap:14px; flex-wrap:wrap;
+}
+.lbx-cat{ font-size:9px; letter-spacing:.3em; text-transform:uppercase; color:var(--g); }
+.lbx-t{ font-family:'Cormorant Garamond',serif; font-size:19px; color:var(--w); }
+.lbx-n{ font-size:10px; letter-spacing:.2em; color:var(--w3); }
+.lbx-close{
+  position:absolute; top:calc(22px + env(safe-area-inset-top,0px)); right:24px;
+  width:42px; height:42px; border-radius:50%;
+  background:rgba(255,255,255,.07); border:1px solid var(--bd);
+  color:var(--w); font-size:15px; cursor:pointer; z-index:2;
+  transition:background .3s, border-color .3s;
+}
+.lbx-close:hover{ background:rgba(197,164,74,.16); border-color:var(--bdg); }
+.lbx-nav{
+  position:absolute; top:50%; transform:translateY(-50%);
+  width:48px; height:48px; border-radius:50%;
+  background:rgba(255,255,255,.06); border:1px solid var(--bd);
+  color:var(--w); font-size:26px; line-height:1; cursor:pointer; z-index:2;
+  display:flex; align-items:center; justify-content:center;
+  transition:background .3s, border-color .3s;
+}
+.lbx-nav:hover{ background:rgba(197,164,74,.16); border-color:var(--bdg); }
+.lbx-prev{ left:16px; padding-right:3px; }
+.lbx-next{ right:16px; padding-left:3px; }
+@media(max-width:700px){
+  .lbx{ padding:calc(64px + env(safe-area-inset-top,0px)) 12px calc(84px + env(safe-area-inset-bottom,0px)); }
+  .lbx-fig img{ max-height:66vh; }
+  .lbx-nav{ top:auto; bottom:calc(20px + env(safe-area-inset-bottom,0px)); transform:none; }
+  .lbx-prev{ left:24%; }
+  .lbx-next{ right:24%; }
+}
+
 /* ── industry index (editorial ledger) ── */
 .indy-index{ display:flex; flex-direction:column; }
 .indy-row{
