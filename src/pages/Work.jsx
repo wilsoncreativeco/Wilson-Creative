@@ -157,7 +157,6 @@ export default function Work() {
                   aria-label={`${it.title} — view larger`}
                 >
                   <img src={thumb(it.id)} alt={`${it.cat} — ${it.title}`} loading="lazy" decoding="async" />
-                  <span className="setx-cap" aria-hidden="true">{it.title}</span>
                 </button>
               ))}
             </div>
@@ -174,7 +173,6 @@ export default function Work() {
             <img src={full(active.id)} alt={`${active.cat} — ${active.title}`} />
             <figcaption>
               <span className="lbx-cat">{active.cat}</span>
-              <span className="lbx-t">{active.title}</span>
               <span className="lbx-n">{lightbox + 1} / {set.length}</span>
             </figcaption>
           </figure>

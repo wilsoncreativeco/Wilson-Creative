@@ -842,11 +842,11 @@ const goNext = () => {
         <div className="h-inner" ref={heroInnerRef}>
           <p className="h-eye">Brisbane Based</p>
           <h1 className="sr-only">Media Production & Web Design in Brisbane — Wilson Creative Co.</h1>
-          <h2 className="h1" aria-label="We make brands unforgettable.">
-            <span className="hl"><span className="hw hw1">We Make Brands</span></span>
+          <h2 className="h1" aria-label="We make businesses unforgettable.">
+            <span className="hl"><span className="hw hw1">We Make Businesses</span></span>
             <span className="hl"><span className="hw hw2 hgold">Unforgettable.</span></span>
           </h2>
-          <p className="h-sub">Cinematic film, photography, aerial &amp; web. For the brands you build — and the moments you keep.</p>
+          <p className="h-sub">Cinematic film, photography, aerial &amp; web. For the businesses you build — and the moments you keep.</p>
           <div className="hero-doors">
             <a className="hero-door" href="/for-businesses" aria-label="For Businesses">
               <span className="hd-k">For</span>

@@ -1142,6 +1142,11 @@ body::before{
 @media(max-width:960px){
   .craft-grid{ grid-template-columns:repeat(2,1fr); }
 }
+@media(max-width:365px){
+  /* "Businesses" is wider than "Brands" — keep the hero at two lines */
+  .h1{ font-size:41px; }
+}
+
 @media(max-width:520px){
   /* two-up tiles were too narrow — the craft copy overflowed the card.
      One full-width cinematic still per craft reads better and fits. */
@@ -1306,17 +1311,9 @@ body::before{
   transition:border-color .4s var(--ease), transform .4s var(--ease);
 }
 .setx-thumb img{ width:100%; height:100%; object-fit:cover; display:block; transition:transform .6s var(--ease); }
-.setx-cap{
-  position:absolute; left:0; right:0; bottom:0; padding:22px 12px 9px;
-  font-size:11px; color:var(--w); text-align:left; line-height:1.3;
-  background:linear-gradient(to top, rgba(6,5,10,.9), transparent);
-  opacity:0; transition:opacity .4s var(--ease);
-}
 .setx-thumb:hover{ border-color:var(--bdg); transform:translateY(-2px); }
 .setx-thumb:hover img{ transform:scale(1.06); }
-.setx-thumb:hover .setx-cap{ opacity:1; }
-.setx-thumb:focus-visible{ outline:1px solid var(--g); outline-offset:2px; }
-@media(hover:none){ .setx-cap{ opacity:1; } }
+.setx-thumb:hover .setx-thumb:focus-visible{ outline:1px solid var(--g); outline-offset:2px; }
 @media(max-width:600px){
   .col-grid{ gap:34px; }
   .setx{ padding:calc(24px + env(safe-area-inset-top,0px)) 12px calc(24px + env(safe-area-inset-bottom,0px)); }
@@ -1343,7 +1340,6 @@ body::before{
   display:flex; align-items:baseline; justify-content:center; gap:14px; flex-wrap:wrap;
 }
 .lbx-cat{ font-size:9px; letter-spacing:.3em; text-transform:uppercase; color:var(--g); }
-.lbx-t{ font-family:'Cormorant Garamond',serif; font-size:19px; color:var(--w); }
 .lbx-n{ font-size:10px; letter-spacing:.2em; color:var(--w3); }
 .lbx-close{
   position:absolute; top:calc(22px + env(safe-area-inset-top,0px)); right:24px;
