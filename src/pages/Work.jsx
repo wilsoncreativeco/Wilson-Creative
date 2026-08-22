@@ -4,7 +4,7 @@ import SiteNav from '../components/SiteNav'
 import SiteFooter from '../components/SiteFooter'
 import BookingModal from '../components/BookingModal'
 import useReveal from '../components/useReveal'
-import { galleryCats, galleryItems, full, thumb } from '../data/gallery'
+import { collections, galleryItems, full, thumb } from '../data/gallery'
 
 const TITLE = 'Our Work | Aerial, Construction & Real Estate Photography Brisbane — Wilson Creative Co.'
 const DESC = 'Selected photography from Wilson Creative Co. — licensed aerial, construction progress and real estate work across Brisbane and the Gold Coast.'
@@ -12,35 +12,35 @@ const URL = 'https://wilsoncreativeco.au/work'
 
 export default function Work() {
   const [booking, setBooking] = useState(false)
-  const [cat, setCat] = useState('All')
-  const [lightbox, setLightbox] = useState(null) // index into `shown`
+  const [open, setOpen] = useState(null)      // open collection category
+  const [lightbox, setLightbox] = useState(null) // index within the open set
   const book = () => setBooking(true)
   useReveal()
 
-  const shown = cat === 'All' ? galleryItems : galleryItems.filter(i => i.cat === cat)
+  const set = open ? galleryItems.filter(i => i.cat === open) : []
 
-  const close = useCallback(() => setLightbox(null), [])
+  const closeSet = useCallback(() => { setOpen(null); setLightbox(null) }, [])
   const step = useCallback(d => {
-    setLightbox(i => (i === null ? i : (i + d + shown.length) % shown.length))
-  }, [shown.length])
+    setLightbox(i => (i === null ? i : (i + d + set.length) % set.length))
+  }, [set.length])
 
-  // Lock scroll and wire keyboard while the lightbox is open.
+  // One scroll lock for both layers; Escape steps back one level at a time.
   useEffect(() => {
-    if (lightbox === null) return
+    if (!open) return
     document.body.style.overflow = 'hidden'
     const onKey = e => {
-      if (e.key === 'Escape') close()
-      else if (e.key === 'ArrowRight') step(1)
-      else if (e.key === 'ArrowLeft') step(-1)
+      if (e.key === 'Escape') { lightbox !== null ? setLightbox(null) : closeSet() }
+      else if (lightbox !== null && e.key === 'ArrowRight') step(1)
+      else if (lightbox !== null && e.key === 'ArrowLeft') step(-1)
     }
     window.addEventListener('keydown', onKey)
     return () => {
       document.body.style.overflow = ''
       window.removeEventListener('keydown', onKey)
     }
-  }, [lightbox, close, step])
+  }, [open, lightbox, closeSet, step])
 
-  const active = lightbox === null ? null : shown[lightbox]
+  const active = lightbox === null ? null : set[lightbox]
 
   return (
     <>
@@ -88,56 +88,41 @@ export default function Work() {
             </div>
             <h1 className="page-h1 rv d1">Proof, <em>not promises.</em></h1>
             <p className="page-lead rv d2">
-              A selection of recent stills — licensed aerial, construction progress and
-              property work, shot and graded in-house.
+              Three collections — licensed aerial, construction progress and property work.
+              Open one to look through the set.
             </p>
           </div>
         </header>
 
-        <section className="secpad" aria-label="Work gallery">
-          <div className="gal-filters rv" role="tablist" aria-label="Filter by category">
-            {galleryCats.map(c => (
-              <button
-                key={c}
-                type="button"
-                role="tab"
-                aria-selected={cat === c}
-                className={`gal-filter ${cat === c ? 'on' : ''}`}
-                onClick={() => { setCat(c); setLightbox(null) }}
-              >
-                {c}
-                <span className="gal-filter-n">
-                  {c === 'All' ? galleryItems.length : galleryItems.filter(i => i.cat === c).length}
-                </span>
-              </button>
-            ))}
-          </div>
-
-          <div className="gal-masonry">
-            {shown.map((it, i) => (
-              <button
-                type="button"
-                className="gal-item rv"
-                key={it.id}
-                style={{ transitionDelay: `${Math.min(0.3, 0.03 * i).toFixed(2)}s` }}
-                onClick={() => setLightbox(i)}
-                aria-label={`${it.title} — view larger`}
-              >
-                <img
-                  src={thumb(it.id)}
-                  alt={`${it.cat} photography — ${it.title}`}
-                  width={it.w}
-                  height={it.h}
-                  loading="lazy"
-                  decoding="async"
-                />
-                <span className="gal-item-veil" aria-hidden="true" />
-                <span className="gal-item-cap" aria-hidden="true">
-                  <span className="gal-item-cat">{it.cat}</span>
-                  <span className="gal-item-t">{it.title}</span>
-                </span>
-              </button>
-            ))}
+        <section className="secpad" aria-label="Work collections">
+          <div className="col-grid">
+            {collections.map((c, i) => {
+              const count = galleryItems.filter(g => g.cat === c.cat).length
+              return (
+                <button
+                  type="button"
+                  className="col-card rv"
+                  key={c.cat}
+                  style={{ transitionDelay: `${(0.05 + i * 0.07).toFixed(2)}s` }}
+                  onClick={() => { setOpen(c.cat); setLightbox(null) }}
+                  aria-haspopup="dialog"
+                >
+                  <span className="col-stack" aria-hidden="true" />
+                  <span className="col-media">
+                    <img src={thumb(c.cover)} alt={`${c.cat} photography`} loading="lazy" decoding="async" />
+                    <span className="col-veil" aria-hidden="true" />
+                  </span>
+                  <span className="col-body">
+                    <span className="col-top">
+                      <span className="col-name">{c.cat}</span>
+                      <span className="col-count">{count}</span>
+                    </span>
+                    <span className="col-blurb">{c.blurb}</span>
+                    <span className="col-open" aria-hidden="true">Open set <span className="col-arw">→</span></span>
+                  </span>
+                </button>
+              )
+            })}
           </div>
 
           <div className="retainer rv gal-cta">
@@ -151,27 +136,49 @@ export default function Work() {
         </section>
       </main>
 
+      {/* collection popup */}
+      {open && (
+        <div className="setx" onClick={closeSet} role="dialog" aria-modal="true" aria-label={`${open} collection`}>
+          <div className="setx-box" onClick={e => e.stopPropagation()}>
+            <div className="setx-head">
+              <div>
+                <p className="setx-eyebrow">Collection</p>
+                <h2 className="setx-title">{open}</h2>
+              </div>
+              <button className="setx-close" onClick={closeSet} aria-label="Close collection">✕</button>
+            </div>
+            <div className="setx-grid">
+              {set.map((it, i) => (
+                <button
+                  type="button"
+                  className="setx-thumb"
+                  key={it.id}
+                  onClick={() => setLightbox(i)}
+                  aria-label={`${it.title} — view larger`}
+                >
+                  <img src={thumb(it.id)} alt={`${it.cat} — ${it.title}`} loading="lazy" decoding="async" />
+                  <span className="setx-cap" aria-hidden="true">{it.title}</span>
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* full-size viewer */}
       {active && (
-        <div className="lbx" onClick={close} role="dialog" aria-modal="true" aria-label={active.title}>
-          <button className="lbx-close" onClick={close} aria-label="Close">✕</button>
-          <button
-            className="lbx-nav lbx-prev"
-            onClick={e => { e.stopPropagation(); step(-1) }}
-            aria-label="Previous image"
-          >‹</button>
+        <div className="lbx" onClick={() => setLightbox(null)} role="dialog" aria-modal="true" aria-label={active.title}>
+          <button className="lbx-close" onClick={() => setLightbox(null)} aria-label="Close">✕</button>
+          <button className="lbx-nav lbx-prev" onClick={e => { e.stopPropagation(); step(-1) }} aria-label="Previous image">‹</button>
           <figure className="lbx-fig" onClick={e => e.stopPropagation()}>
             <img src={full(active.id)} alt={`${active.cat} — ${active.title}`} />
             <figcaption>
               <span className="lbx-cat">{active.cat}</span>
               <span className="lbx-t">{active.title}</span>
-              <span className="lbx-n">{lightbox + 1} / {shown.length}</span>
+              <span className="lbx-n">{lightbox + 1} / {set.length}</span>
             </figcaption>
           </figure>
-          <button
-            className="lbx-nav lbx-next"
-            onClick={e => { e.stopPropagation(); step(1) }}
-            aria-label="Next image"
-          >›</button>
+          <button className="lbx-nav lbx-next" onClick={e => { e.stopPropagation(); step(1) }} aria-label="Next image">›</button>
         </div>
       )}
 

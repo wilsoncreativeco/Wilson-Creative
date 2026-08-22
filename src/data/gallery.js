@@ -5,6 +5,13 @@
 
 export const galleryCats = ['All', 'Real Estate', 'Construction', 'Aerial']
 
+// Collections shown as folders on /work — click one to open its set.
+export const collections = [
+  { cat: 'Aerial',       cover: 'drn-03', blurb: 'Licensed drone work — sites, boundaries and elevated overviews.' },
+  { cat: 'Construction', cover: 'con-02', blurb: 'Progress and structure documented from groundbreak onward.' },
+  { cat: 'Real Estate',  cover: 're-01',  blurb: 'Property and interiors, shot to sell the lifestyle.' },
+]
+
 export const galleryItems = [
   { id: 'drn-03', cat: 'Aerial',       title: 'Boundary line, first light',  w: 1920, h: 1440 },
   { id: 're-01',  cat: 'Real Estate',  title: 'Residential exterior',        w: 1920, h: 1279 },
